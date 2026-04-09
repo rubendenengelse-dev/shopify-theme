@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-cart-empty" viewBox="0 0 24 24">
+  <g transform="translate(-6.1 -6.1) scale(1.58)">
+    <path d="M12 18.2V8.6" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+    <path d="M7.2 10.2h9.6v6.4a1.5 1.5 0 0 1-1.5 1.5h-6.6a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/>
+    <path d="M6.7 8.1h10.6a.9.9 0 0 1 .9.9v1.2H5.8V9a.9.9 0 0 1 .9-.9z" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/>
+    <path d="M12 8.1h-2.1c-.95 0-1.6-.56-1.6-1.33 0-.77.63-1.32 1.46-1.32.92 0 1.63.57 2.24 1.64.61-1.07 1.32-1.64 2.24-1.64.83 0 1.46.55 1.46 1.32 0 .77-.65 1.33-1.6 1.33H12z" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
