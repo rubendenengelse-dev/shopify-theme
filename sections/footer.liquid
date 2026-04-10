@@ -48,6 +48,14 @@
     margin: 0;
   }
 
+  .footer-block.grid__item + .footer-block.grid__item {
+    margin-top: 1.2rem;
+  }
+
+  .footer-block.open + .footer-block {
+    margin-top: 0;
+  }
+
   .footer-toggle-button {
     display: flex;
     align-items: center;
@@ -59,6 +67,9 @@
 
   .footer-toggle-label {
     display: inline-block;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .footer-toggle-icon {
@@ -95,6 +106,10 @@
     transform: rotate(180deg);
   }
 
+  .footer-block.open {
+    border-bottom-color: transparent;
+  }
+
   .footer-content {
     display: block;
     max-height: 0;
@@ -113,8 +128,30 @@
     padding-bottom: 1.2rem;
   }
 
+  .footer-block.open .footer-block__details-content,
+  .footer-block.open .footer-block__brand-info {
+    padding-bottom: 0.8rem;
+  }
+
+  .footer-block--menu:first-of-type .footer-block__details-content {
+    padding-bottom: 0;
+  }
+
+  .footer-block--menu:first-of-type .footer-content {
+    padding-bottom: 0;
+  }
+
+  .footer-block--menu:first-of-type.open .footer-block__details-content {
+    padding-bottom: 0;
+  }
+
+  .footer-block--menu:first-of-type.open .list-menu__item:last-child {
+    padding-bottom: 0.2rem;
+  }
+
+
   .footer-block__details-content.list-unstyled li {
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+    border-bottom: 0;
   }
 
   .footer-block__details-content.list-unstyled li:last-child {
@@ -124,10 +161,12 @@
   .footer-block__details-content .list-menu__item {
     display: block;
     padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
     text-decoration: none;
     color: rgba(var(--color-foreground), 0.82);
     font-size: 1.4rem;
     line-height: 1.4;
+    white-space: nowrap;
     transition: color 0.2s ease, transform 0.2s ease;
   }
 
@@ -137,16 +176,7 @@
   }
 
   .footer-block__details-content .list-menu__item::after {
-    content: '';
-    display: inline-block;
-    width: 0.6rem;
-    height: 0.6rem;
-    margin-left: 0.8rem;
-    border-top: 1px solid currentColor;
-    border-right: 1px solid currentColor;
-    transform: rotate(45deg);
-    opacity: 0.45;
-    vertical-align: middle;
+    display: none;
   }
 
   .footer-block__newsletter {
@@ -248,7 +278,7 @@
     gap: 0.8rem;
     border: 0;
     background: transparent;
-    color: rgb(var(--color-foreground));
+    color: #000;
     font: inherit;
     cursor: pointer;
     padding: 1rem 1.4rem;
@@ -264,6 +294,7 @@
   .footer-back-to-top__text {
     font-size: 1.4rem;
     letter-spacing: 0.04rem;
+    font-weight: 600;
   }
 
   .footer-back-to-top__icon {
@@ -273,6 +304,53 @@
     border-top: 1.5px solid currentColor;
     border-left: 1.5px solid currentColor;
     transform: rotate(45deg) translateY(1px);
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .section-{{ section.id }}-padding {
+    padding-top: 0 !important;
+  }
+
+  .footer__content-top {
+    padding-top: 0;
+  }
+
+  .footer__blocks-wrapper {
+    margin-top: 2.8rem;
+  }
+
+  .footer-block.grid__item {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .footer-block.grid__item + .footer-block.grid__item {
+    margin-top: 1.2rem;
+  }
+
+  .footer-block.grid__item:last-child {
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-block--image-only {
+    display: none;
+  }
+
+  .footer-block__newsletter {
+    margin-top: 3.2rem;
+  }
+
+  .footer-block--newsletter {
+    margin-top: 0;
+  }
+
+  .footer-back-to-top-wrapper {
+    padding-top: 0.8rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -328,7 +406,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'image' %} footer-block--image-only{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
