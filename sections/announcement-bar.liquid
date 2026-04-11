@@ -19,6 +19,20 @@
 {% endif %}
 
 <style>
+  .announcement-bar-section {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .announcement-bar-section + .section-header.shopify-section-group-header-group {
+    z-index: 4;
+  }
+
+  .announcement-bar-section ~ .section-header .shopify-section-header-sticky {
+    top: var(--announcement-bar-height, 0px);
+  }
+
   .announcement-bar-left {
     display: flex;
     align-items: center;
@@ -396,6 +410,57 @@
     </div>
   </div>
 </div>
+
+<script>
+  (() => {
+    const sectionId = 'shopify-section-{{ section.id }}';
+
+    const updateAnnouncementBarHeight = () => {
+      const sectionElement = document.getElementById(sectionId);
+      const height = sectionElement ? sectionElement.offsetHeight : 0;
+      document.documentElement.style.setProperty('--announcement-bar-height', `${height}px`);
+    };
+
+    const initAnnouncementBar = () => {
+      const sectionElement = document.getElementById(sectionId);
+      if (!sectionElement) return;
+
+      updateAnnouncementBarHeight();
+
+      if ('ResizeObserver' in window && !sectionElement.announcementBarResizeObserver) {
+        sectionElement.announcementBarResizeObserver = new ResizeObserver(() => {
+          updateAnnouncementBarHeight();
+        });
+        sectionElement.announcementBarResizeObserver.observe(sectionElement);
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnnouncementBar, { once: true });
+    } else {
+      initAnnouncementBar();
+    }
+
+    window.addEventListener('resize', updateAnnouncementBarHeight);
+
+    document.addEventListener('shopify:section:load', (event) => {
+      if (event.detail.sectionId === '{{ section.id }}') {
+        initAnnouncementBar();
+      }
+    });
+
+    document.addEventListener('shopify:section:unload', (event) => {
+      if (event.detail.sectionId !== '{{ section.id }}') return;
+
+      const sectionElement = document.getElementById(sectionId);
+      if (sectionElement && sectionElement.announcementBarResizeObserver) {
+        sectionElement.announcementBarResizeObserver.disconnect();
+      }
+
+      document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+    });
+  })();
+</script>
 
 {% schema %}
 {
