@@ -182,8 +182,8 @@
   }
 
 .header--middle-left {
-  grid-template-areas: 'navigation icons';
-  grid-template-columns: 1fr auto;
+  grid-template-areas: 'navigation heading icons';
+  grid-template-columns: 1fr auto 1fr;
   column-gap: 2.4rem;
   align-items: center;
   position: relative;
@@ -204,7 +204,6 @@
   left: auto;
   top: auto;
   transform: none;
-  display: none;
 }
 
 .header--middle-left .header__heading-link {
@@ -247,7 +246,7 @@
   grid-area: navigation;
   justify-self: start;
   width: max-content;
-  margin-left: 0;
+  margin-left: -36rem;
 }
 
 .header--middle-left .header__inline-menu .list-menu--inline {
@@ -265,7 +264,7 @@
   justify-content: flex-end;
   gap: 0.2rem;
   padding-right: 0;
-  margin-right: 0;
+  margin-right: -36rem;
 }
 
   .header__menu-item {
