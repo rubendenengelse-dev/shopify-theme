@@ -11,7 +11,7 @@
 <div class="header__search" data-search-root>
   <button
     type="button"
-    class="header__icon header__icon--search link focus-inset desktop-search-toggle"
+    class="header__icon header__icon--search link desktop-search-toggle"
     aria-haspopup="dialog"
     aria-expanded="false"
     aria-controls="HeaderSearchPanel"
@@ -20,6 +20,21 @@
   >
     <span class="svg-wrapper">
       {{- 'icon-search.svg' | inline_asset_content -}}
+    </span>
+  </button>
+  <button
+    type="button"
+    class="mobile-search-toggle"
+    aria-haspopup="dialog"
+    aria-expanded="false"
+    aria-controls="HeaderSearchPanelMobile"
+    aria-label="{{ 'general.search.search' | t }}"
+  >
+    <span class="mobile-search-toggle__icon" aria-hidden="true">
+      <svg viewBox="0 0 18 18" focusable="false">
+        <circle cx="7.25" cy="7.25" r="4.75" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M10.9 10.9L15.2 15.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </svg>
     </span>
   </button>
   <div
@@ -33,6 +48,16 @@
     data-search-panel
   >
     <div class="desktop-search-panel__surface" tabindex="-1">
+      <a href="{{ routes.root_url }}" class="desktop-search-panel__logo link link--text focus-inset" aria-label="{{ shop.name }}">
+        <img
+          src="{{ 'search-sublogo.png' | asset_url }}"
+          alt="{{ shop.name }}"
+          class="desktop-search-panel__logo-image"
+          loading="eager"
+          width="120"
+          height="120"
+        >
+      </a>
       <div class="desktop-search-panel__form-shell">
         <form action="{{ routes.search_url }}" method="get" role="search" class="search desktop-search-panel__form">
           <div class="field">
@@ -43,6 +68,7 @@
               name="q"
               value="{{ search.terms | escape }}"
               placeholder="{% if section.settings.search_placeholder_text != blank %}{{ section.settings.search_placeholder_text }}{% else %}{{ 'general.search.search' | t }}{% endif %}"
+              data-desktop-placeholder="{% if section.settings.search_placeholder_text != blank %}{{ section.settings.search_placeholder_text | escape }}{% else %}{{ 'general.search.search' | t | escape }}{% endif %}"
               autocorrect="off"
               autocomplete="off"
               autocapitalize="off"
@@ -72,6 +98,72 @@
         class="desktop-search-panel__close link link--text focus-inset"
         aria-label="{{ 'accessibility.close' | t }}"
         data-search-close
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </button>
+      <button
+        type="button"
+        class="mobile-search-panel__close link link--text focus-inset"
+        aria-label="{{ 'accessibility.close' | t }}"
+        data-search-close
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    id="HeaderSearchPanelMobile"
+    class="mobile-search-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ 'general.search.search' | t }}"
+    aria-hidden="true"
+    hidden
+    data-mobile-search-panel
+  >
+    <div class="mobile-search-panel__surface" tabindex="-1">
+      <div class="mobile-search-panel__form-shell">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search mobile-search-panel__form">
+          <div class="field">
+            <input
+              class="search__input field__input"
+              id="{{ input_id }}-mobile"
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              autocorrect="off"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+            >
+            <label class="field__label" for="{{ input_id }}-mobile">{{ 'general.search.search' | t }}</label>
+            <input type="hidden" name="options[prefix]" value="last">
+            <button
+              type="reset"
+              class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+              aria-label="{{ 'general.search.reset' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-reset.svg' | inline_asset_content -}}
+              </span>
+            </button>
+            <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+              <span class="svg-wrapper">
+                {{- 'icon-search.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <button
+        type="button"
+        class="mobile-search-panel__close link link--text focus-inset"
+        aria-label="{{ 'accessibility.close' | t }}"
+        data-mobile-search-close
       >
         <span class="svg-wrapper">
           {{- 'icon-close.svg' | inline_asset_content -}}
