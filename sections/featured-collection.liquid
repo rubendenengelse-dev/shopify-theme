@@ -30,10 +30,217 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  #collection-{{ section.id }} .collection__title .title,
+  #collection-{{ section.id }} h2.title,
+  #collection-{{ section.id }} .title.inline-richtext,
+  #collection-{{ section.id }} .inline-richtext,
+  #collection-{{ section.id }} .collection__title .title *,
+  #collection-{{ section.id }} .collection__description,
+  #collection-{{ section.id }} .collection__description *,
+  #collection-{{ section.id }} .card__heading,
+  #collection-{{ section.id }} .card__information,
+  #collection-{{ section.id }} .card-information,
+  #collection-{{ section.id }} .card-information__text,
+  #collection-{{ section.id }} .card__heading *,
+  #collection-{{ section.id }} .price,
+  #collection-{{ section.id }} .price * {
+    font-family: var(--font-body-family) !important;
+    font-style: var(--font-body-style) !important;
+    font-weight: var(--font-body-weight) !important;
+  }
+
+  #collection-{{ section.id }} .collection__title .title,
+  #collection-{{ section.id }} h2.title,
+  #collection-{{ section.id }} .title.inline-richtext {
+    font-weight: 700 !important;
+  }
+
+  #collection-{{ section.id }} .collection__view-all .bestsellers-view-all,
+  #collection-{{ section.id }} .collection__view-all .bestsellers-view-all:visited {
+    color: #000 !important;
+    font-weight: 700 !important;
+  }
+
+  #collection-{{ section.id }} .collection__title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+  }
+
+  #collection-{{ section.id }} .collection__title .title {
+    margin: 0;
+    text-align: left !important;
+    align-self: flex-start;
+    margin-right: auto;
+    padding-top: 0.9rem !important;
+  }
+
+  #collection-{{ section.id }} .collection__description {
+    flex-basis: 100%;
+  }
+
+  #collection-{{ section.id }} .collection__title .collection__view-all {
+    margin: 0 14rem 0 auto;
+    text-align: right;
+    align-self: flex-start;
+  }
+
+  #collection-{{ section.id }} a,
+  #collection-{{ section.id }} a:hover,
+  #collection-{{ section.id }} a:focus,
+  #collection-{{ section.id }} a:focus-visible {
+    text-decoration: none !important;
+    text-underline-offset: 0 !important;
+    text-decoration-thickness: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #collection-{{ section.id }} .bestsellers-view-all,
+  #collection-{{ section.id }} .bestsellers-view-all:hover,
+  #collection-{{ section.id }} .bestsellers-view-all:focus,
+  #collection-{{ section.id }} .bestsellers-view-all:focus-visible,
+  #collection-{{ section.id }} .bestsellers-view-all:active {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    #collection-{{ section.id }} a,
+    #collection-{{ section.id }} button,
+    #collection-{{ section.id }} .button,
+    #collection-{{ section.id }} .card__heading a,
+    #collection-{{ section.id }} .quick-add__submit,
+    #collection-{{ section.id }} .slider-button,
+    #collection-{{ section.id }} .full-unstyled-link,
+    #collection-{{ section.id }} .card-wrapper,
+    #collection-{{ section.id }} .card-wrapper * {
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    #collection-{{ section.id }} a:focus,
+    #collection-{{ section.id }} a:focus-visible,
+    #collection-{{ section.id }} button:focus,
+    #collection-{{ section.id }} button:focus-visible,
+    #collection-{{ section.id }} .button:focus,
+    #collection-{{ section.id }} .button:focus-visible,
+    #collection-{{ section.id }} .quick-add__submit:focus,
+    #collection-{{ section.id }} .quick-add__submit:focus-visible,
+    #collection-{{ section.id }} .slider-button:focus,
+    #collection-{{ section.id }} .slider-button:focus-visible,
+    #collection-{{ section.id }} .full-unstyled-link:focus,
+    #collection-{{ section.id }} .full-unstyled-link:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }}-padding {
+      margin-top: 0 !important;
+    }
+
+    #collection-{{ section.id }} .collection__title .title,
+    #collection-{{ section.id }} h2.title,
+    #collection-{{ section.id }} .title.inline-richtext {
+      font-size: 1.8rem !important;
+      line-height: 1.15 !important;
+      padding-top: 1.2rem !important;
+    }
+
+    #collection-{{ section.id }} .collection__title .collection__view-all {
+      margin: 0 0 0 auto;
+      transform: translateX(1.6rem);
+    }
+
+    #collection-{{ section.id }} .collection__view-all .bestsellers-view-all,
+    #collection-{{ section.id }} .collection__view-all .bestsellers-view-all-text {
+      font-size: 1.15rem !important;
+      line-height: 1.15 !important;
+    }
+
+    #collection-{{ section.id }} .collection__view-all .bestsellers-view-all {
+      margin-top: 1.8rem !important;
+    }
+
+    #collection-{{ section.id }} .collection__view-all .bestsellers-view-all-text {
+      padding-bottom: 0.35rem !important;
+      background-image: linear-gradient(currentColor, currentColor) !important;
+      background-repeat: no-repeat !important;
+      background-position: left calc(100% - 0.02rem) !important;
+      background-size: 100% 1px !important;
+      transition: none !important;
+    }
+
+    #collection-{{ section.id }} .slider-buttons {
+      display: none !important;
+    }
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #collection-{{ section.id }} .collection__view-all .bestsellers-view-all {
+      position: relative !important;
+      display: inline-block !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: rgb(var(--color-foreground)) !important;
+      font-family: var(--font-body-family) !important;
+      font-style: var(--font-body-style) !important;
+      font-weight: 700 !important;
+      font-size: 1.5rem !important;
+      letter-spacing: normal !important;
+      line-height: 1.2 !important;
+      text-transform: none !important;
+    }
+
+    #collection-{{ section.id }} .collection__title {
+      margin-left: -3rem;
+    }
+
+    #collection-{{ section.id }} .collection__title .title,
+    #collection-{{ section.id }} h2.title,
+    #collection-{{ section.id }} .title.inline-richtext {
+      font-size: 2.8rem !important;
+      line-height: 1.05 !important;
+    }
+
+    #collection-{{ section.id }} .collection__title .collection__view-all {
+      margin: 0 64rem 0 auto;
+      transform: none;
+    }
+
+    #collection-{{ section.id }} .collection__view-all .bestsellers-view-all {
+      margin-top: 1.8rem !important;
+    }
+
+    #collection-{{ section.id }} .collection__view-all .bestsellers-view-all-text {
+      position: relative !important;
+      display: inline-block !important;
+      padding-bottom: 0.45rem;
+      background-image: linear-gradient(currentColor, currentColor);
+      background-repeat: no-repeat;
+      background-position: left calc(100% - 0.1rem);
+      background-size: 100% 1px;
+      transition: none !important;
+      opacity: 0.95;
+    }
+
+    #collection-{{ section.id }} .slider-buttons {
+      transform: translateY(-0.8rem);
     }
   }
 {%- endstyle -%}
@@ -75,8 +282,19 @@
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.title }}
+          POPULAIRE BESTSELLERS
         </h2>
+      {%- endif -%}
+      {%- if section.settings.show_view_all and more_in_collection -%}
+        <div class="collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <a
+            href="{{ section.settings.collection.url }}"
+            class="bestsellers-view-all"
+            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
+          >
+            <span class="bestsellers-view-all-text">BEKIJK ALLES</span>
+          </a>
+        </div>
       {%- endif -%}
       {%- if section.settings.description != blank
         or section.settings.show_description
@@ -196,18 +414,6 @@
         </div>
       {%- endif -%}
     </slider-component>
-
-    {%- if section.settings.show_view_all and more_in_collection -%}
-      <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        <a
-          href="{{ section.settings.collection.url }}"
-          class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
-        >
-          {{ 'sections.featured_collection.view_all' | t }}
-        </a>
-      </div>
-    {%- endif -%}
     {% if section.settings.image_shape == 'arch' %}
       {{ 'mask-arch.svg' | inline_asset_content }}
     {%- endif -%}
