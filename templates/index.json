@@ -87,7 +87,7 @@
         "products_to_show": 8,
         "title": "<strong>POPULAIRE BESTSELLERS</strong>",
         "heading_size": "h2",
-        "description": "<p><a href=\"/collections/best-sellers\" title=\"Best sellers\">See all</a></p>",
+        "description": "<p><a href=\"/collections/best-sellers\" title=\"Best sellers\">Bekijk Alles</a></p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
