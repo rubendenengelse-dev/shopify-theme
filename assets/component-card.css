@@ -478,6 +478,12 @@
   color: rgb(var(--color-foreground));
 }
 
+.card-information > .price,
+.card-information > .price * {
+  color: #000;
+  font-weight: 600;
+}
+
 .card--horizontal .card-information > .price {
   color: rgba(var(--color-foreground), 0.75);
 }

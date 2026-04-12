@@ -49,6 +49,32 @@
     font-weight: var(--font-body-weight) !important;
   }
 
+  #collection-{{ section.id }} .card__heading,
+  #collection-{{ section.id }} .card__heading a,
+  #collection-{{ section.id }} .card-information,
+  #collection-{{ section.id }} .card-information__text,
+  #collection-{{ section.id }} .price,
+  #collection-{{ section.id }} .price * {
+    color: #000 !important;
+  }
+
+  #collection-{{ section.id }} .price,
+  #collection-{{ section.id }} .price * {
+    font-weight: 600 !important;
+  }
+
+  #collection-{{ section.id }} .price__prefix,
+  #collection-{{ section.id }} .price-item__label,
+  #collection-{{ section.id }} .price .currency,
+  #collection-{{ section.id }} .price .currency-code,
+  #collection-{{ section.id }} .price .price__suffix,
+  #collection-{{ section.id }} .price .price-item__label,
+  #collection-{{ section.id }} .price .price__regular .visually-hidden,
+  #collection-{{ section.id }} .price .price__sale .visually-hidden,
+  #collection-{{ section.id }} .price .price-item .visually-hidden {
+    display: none !important;
+  }
+
   #collection-{{ section.id }} .collection__title .title,
   #collection-{{ section.id }} h2.title,
   #collection-{{ section.id }} .title.inline-richtext {
@@ -163,7 +189,9 @@
     }
 
     #collection-{{ section.id }} .collection__view-all .bestsellers-view-all {
-      margin-top: 1.8rem !important;
+      display: inline-block !important;
+      margin-top: calc(1.8rem + 5px) !important;
+      transform: translateY(calc(-0.4rem - 5px));
     }
 
     #collection-{{ section.id }} .collection__view-all .bestsellers-view-all-text {
@@ -224,7 +252,7 @@
     }
 
     #collection-{{ section.id }} .collection__view-all .bestsellers-view-all {
-      margin-top: 1.8rem !important;
+      margin-top: calc(1.8rem - 5px) !important;
     }
 
     #collection-{{ section.id }} .collection__view-all .bestsellers-view-all-text {
@@ -240,7 +268,113 @@
     }
 
     #collection-{{ section.id }} .slider-buttons {
-      transform: translateY(-0.8rem);
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+      transform: translate(-5.5rem, -5.1rem);
+      gap: 1rem;
+    }
+
+    #collection-{{ section.id }} .slider-button {
+      width: 3.4rem;
+      height: 3.4rem;
+      border-radius: 50%;
+      border: 0;
+      box-shadow: none;
+    }
+
+    #collection-{{ section.id }} .slider-button .svg-wrapper {
+      width: 1.1rem;
+      height: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #collection-{{ section.id }} .slider-button .svg-wrapper svg {
+      width: 1.1rem !important;
+      height: 1.1rem !important;
+    }
+
+    #collection-{{ section.id }} .slider-counter {
+      display: none;
+    }
+
+    #collection-{{ section.id }} .slider-button--prev {
+      background: #d9d9d9;
+      color: #000;
+      transform: translateX(-1px);
+    }
+
+    #collection-{{ section.id }} .slider-button--prev .svg-wrapper {
+      color: #000;
+      opacity: 1;
+      transform: translateX(-2px);
+    }
+
+    #collection-{{ section.id }} .slider-button--prev .svg-wrapper svg {
+      fill: currentColor;
+      stroke: currentColor;
+    }
+
+    #collection-{{ section.id }} .slider-button--prev[disabled] .svg-wrapper,
+    #collection-{{ section.id }} .slider-button--prev[disabled] .svg-wrapper svg,
+    #collection-{{ section.id }} .slider-button--prev[disabled] .svg-wrapper svg * {
+      color: #000 !important;
+      fill: #000 !important;
+      stroke: #000 !important;
+    }
+
+    #collection-{{ section.id }} .slider-button--prev:not([disabled]) {
+      background: #000;
+      color: #fff;
+    }
+
+    #collection-{{ section.id }} .slider-button--prev:not([disabled]) .svg-wrapper,
+    #collection-{{ section.id }} .slider-button--prev:not([disabled]) .svg-wrapper svg,
+    #collection-{{ section.id }} .slider-button--prev:not([disabled]) .svg-wrapper svg * {
+      color: #fff !important;
+      fill: #fff !important;
+      stroke: #fff !important;
+    }
+
+    #collection-{{ section.id }} .slider-button--next {
+      background: #000;
+      color: #fff;
+    }
+
+    #collection-{{ section.id }} .slider-button--next .svg-wrapper {
+      color: #fff;
+      opacity: 1;
+      transform: translateX(2px);
+    }
+
+    #collection-{{ section.id }} .slider-button--next .svg-wrapper svg {
+      fill: currentColor;
+      stroke: currentColor;
+    }
+
+    #collection-{{ section.id }} .slider-button--next[disabled] {
+      background: #d9d9d9;
+      color: #000;
+    }
+
+    #collection-{{ section.id }} .slider-button--next[disabled] .svg-wrapper,
+    #collection-{{ section.id }} .slider-button--next[disabled] .svg-wrapper svg,
+    #collection-{{ section.id }} .slider-button--next[disabled] .svg-wrapper svg * {
+      color: #000 !important;
+      fill: #000 !important;
+      stroke: #000 !important;
+    }
+
+    #collection-{{ section.id }} .card__heading,
+    #collection-{{ section.id }} .card__heading a,
+    #collection-{{ section.id }} .card-information,
+    #collection-{{ section.id }} .card-information__text,
+    #collection-{{ section.id }} .price,
+    #collection-{{ section.id }} .price * {
+      font-size: 1.5rem !important;
     }
   }
 {%- endstyle -%}
@@ -345,7 +479,8 @@
                   show_rating: section.settings.show_rating,
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
-                  quick_add: section.settings.quick_add
+                  quick_add: section.settings.quick_add,
+                  remove_currency_code: true
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
@@ -375,7 +510,8 @@
                 media_aspect_ratio: section.settings.image_ratio,
                 image_shape: section.settings.image_shape,
                 lazy_load: false,
-                placeholder_image: placeholder_image
+                placeholder_image: placeholder_image,
+                remove_currency_code: true
               %}
             </li>
           {%- endfor -%}

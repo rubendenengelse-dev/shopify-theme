@@ -33,7 +33,190 @@
     display: none;
   }
 
+  @media screen and (min-width: 750px) {
+    .footer-content {
+      overflow: visible;
+    }
+
+    .footer__content-top {
+      position: relative;
+    }
+
+    .footer__blocks-wrapper {
+      align-items: start;
+      justify-content: flex-start;
+    }
+
+    .footer-block--menu {
+      margin-left: 0;
+      transform: translateX(calc(-98rem - 15px));
+    }
+
+    .footer-block--menu .footer-block__heading,
+    .footer-block--menu .footer-block__details-content {
+      transform: translateX(calc(-66rem - 15px));
+    }
+
+    .footer-block--newsletter {
+      margin-left: 0;
+      transform: translate(-68rem, 1.8rem);
+    }
+
+    .footer-block__newsletter {
+      margin-left: 0;
+      text-align: left;
+      transform: translate(-68rem, 1.8rem);
+    }
+
+    .footer-block__newsletter .footer__newsletter {
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+
+    .footer-block--brand,
+    .footer-block--image-only {
+      position: relative;
+      left: 0;
+      transform: translateX(62rem);
+      justify-self: end;
+    }
+
+    .footer-block--brand {
+      width: 100%;
+    }
+
+    .footer-block__brand-info {
+      margin-left: auto;
+      margin-right: 0;
+      align-items: flex-end;
+      text-align: right;
+      transform: translateX(12rem);
+      width: max-content;
+      margin-right: -38rem;
+    }
+
+    .footer-block__image-wrapper,
+    .footer__list-social {
+      margin-left: auto;
+      justify-content: flex-end;
+    }
+
+    .footer__list-social {
+      transform: translate(68rem, 2rem);
+    }
+
+    .footer-block__brand-info .footer-block__image-wrapper,
+    .footer-block--image-only .footer-block__image-wrapper {
+      position: relative;
+      left: auto;
+      margin-left: auto;
+      transform: translate(38rem, -0.2rem);
+      margin-right: -30rem;
+    }
+
+    .footer-block__brand-info .footer-block__image-wrapper img,
+    .footer-block--image-only .footer-block__image-wrapper img {
+      position: relative;
+      left: 0;
+      display: block;
+      max-width: 100%;
+    }
+
+    .footer__payment--desktop {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 2rem;
+      margin-bottom: 0;
+      transform: translateY(1.8rem);
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .footer__payment--desktop .list-payment {
+      justify-content: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .footer__payment--desktop .list-payment__item {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer__payment--desktop .icon--full-color {
+      display: block;
+      width: auto;
+      height: 2.2rem;
+    }
+
+    .footer__payment--desktop .payment-icon--ideal svg {
+      display: none;
+    }
+
+    .footer__payment--desktop .payment-icon--ideal img {
+      display: block !important;
+      width: 8.6rem;
+      height: 2.8rem;
+      max-width: none;
+      object-fit: contain;
+      transform: none;
+    }
+
+    .footer__payment--desktop .list-payment__item:has(.payment-icon--ideal) {
+      margin-left: -1.8rem;
+    }
+
+    .footer__payment--desktop .payment-icon--ideal {
+      display: inline-flex;
+      align-items: center;
+      transform: none;
+    }
+
+    .footer__content-bottom .footer__payment {
+      display: none;
+    }
+
+    .footer-block__details-content .list-menu__item,
+    .footer-block__details-content .list-menu__item:hover,
+    .footer-block__details-content .list-menu__item:focus,
+    .footer-block__details-content .list-menu__item:focus-visible {
+      position: relative;
+      display: inline-block;
+      padding: 0 0 0.45rem;
+      color: rgba(var(--color-foreground), 0.82);
+      text-decoration: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+
+    .footer-block__details-content .list-menu__item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 0.5px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.24s ease;
+      display: block;
+    }
+
+    .footer-block__details-content .list-menu__item:hover::after,
+    .footer-block__details-content .list-menu__item:focus-visible::after {
+      transform: scaleX(1);
+    }
+  }
+
 @media screen and (max-width: 749px) {
+  .footer__payment--desktop {
+    display: none;
+  }
+
   .footer__content-top {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -410,7 +593,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'image' %} footer-block--image-only{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'image' %} footer-block--image-only{% endif %}{% if block.type == 'brand_information' %} footer-block--brand{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -596,6 +779,32 @@
                   </h3>
                 {%- endif -%}
               {%- endform -%}
+
+              {%- if section.settings.payment_enable -%}
+                <div class="footer__payment footer__payment--desktop">
+                  <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+                  <ul class="list list-payment" role="list">
+                    {%- for type in shop.enabled_payment_types -%}
+                      {%- unless type == 'ideal' -%}
+                        <li class="list-payment__item">
+                          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                        </li>
+                      {%- endunless -%}
+                    {%- endfor -%}
+                    <li class="list-payment__item">
+                      <span class="payment-icon--ideal" aria-hidden="true">
+                        <img
+                          src="{{ 'icon-ideal-reference.png' | asset_url }}"
+                          alt="iDEAL"
+                          loading="lazy"
+                          width="74"
+                          height="24"
+                        >
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              {%- endif -%}
             </div>
           {%- endif -%}
 
@@ -609,6 +818,7 @@
             {%- render 'social-icons', class: 'footer__list-social' -%}
           {%- endif -%}
         </div>
+
       </div>
     {%- endunless -%}
   {%- endif -%}
