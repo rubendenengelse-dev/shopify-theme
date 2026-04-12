@@ -77,7 +77,7 @@
     .footer-block--image-only {
       position: relative;
       left: 0;
-      transform: translateX(62rem);
+      transform: translateX(80rem);
       justify-self: end;
     }
 
@@ -90,9 +90,9 @@
       margin-right: 0;
       align-items: flex-end;
       text-align: right;
-      transform: translateX(12rem);
+      transform: translateX(23rem);
       width: max-content;
-      margin-right: -38rem;
+      margin-right: -28rem;
     }
 
     .footer-block__image-wrapper,
@@ -102,16 +102,16 @@
     }
 
     .footer__list-social {
-      transform: translate(68rem, 2rem);
+      transform: translate(68rem, 3rem);
     }
 
     .footer-block__brand-info .footer-block__image-wrapper,
     .footer-block--image-only .footer-block__image-wrapper {
+      display: block;
       position: relative;
-      left: auto;
       margin-left: auto;
-      transform: translate(38rem, -0.2rem);
-      margin-right: -30rem;
+      transform: translate(48rem, 44rem);
+      margin-right: -20rem;
     }
 
     .footer-block__brand-info .footer-block__image-wrapper img,
@@ -177,6 +177,20 @@
 
     .footer__content-bottom .footer__payment {
       display: none;
+    }
+
+    .footer__content-bottom-wrapper.page-width:last-child {
+      justify-content: flex-start;
+    }
+
+    .footer__copyright.caption {
+      transform: translate(calc(-70rem + 15px), -2.4rem);
+      text-align: left;
+      width: max-content;
+    }
+
+    .footer__copyright.caption .policies {
+      justify-content: flex-start;
     }
 
     .footer-block__details-content .list-menu__item,
@@ -250,6 +264,17 @@
     gap: 1.2rem;
     cursor: pointer;
     padding: 1.4rem 0;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .footer-toggle-button:focus,
+  .footer-toggle-button:focus-visible,
+  .footer-toggle-button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
   }
 
   .footer-toggle-label {
@@ -355,11 +380,22 @@
     line-height: 1.4;
     white-space: nowrap;
     transition: color 0.2s ease, transform 0.2s ease;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .footer-block__details-content .list-menu__item:hover {
     color: rgb(var(--color-foreground));
     transform: translateX(4px);
+  }
+
+  .footer-block__details-content .list-menu__item:focus,
+  .footer-block__details-content .list-menu__item:focus-visible,
+  .footer-block__details-content .list-menu__item:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
   }
 
   .footer-block__details-content .list-menu__item::after {
@@ -471,11 +507,22 @@
     padding: 1rem 1.4rem;
     border-radius: 999px;
     transition: transform 0.2s ease, opacity 0.2s ease;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .footer-back-to-top:hover {
     transform: translateY(-2px);
     opacity: 0.8;
+  }
+
+  .footer-back-to-top:focus,
+  .footer-back-to-top:focus-visible,
+  .footer-back-to-top:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
   }
 
   .footer-back-to-top__text {
@@ -491,6 +538,22 @@
     border-top: 1.5px solid currentColor;
     border-left: 1.5px solid currentColor;
     transform: rotate(45deg) translateY(1px);
+  }
+
+  .footer__list-social .list-social__link,
+  .footer__list-social .list-social__link:focus,
+  .footer__list-social .list-social__link:focus-visible,
+  .footer__list-social .list-social__link:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .footer__list-social .list-social__link .svg-wrapper,
+  .footer__list-social .list-social__link .icon {
+    outline: none !important;
+    box-shadow: none !important;
   }
 }
 
@@ -893,6 +956,7 @@
         {%- endif -%}
       </div>
     </div>
+
   </div>
 </footer>
 
