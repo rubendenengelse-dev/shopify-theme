@@ -1,0 +1,309 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_yGBKb3": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_YPxjhA": {
+          "type": "heading",
+          "settings": {
+            "heading": "T-SHIRT",
+            "heading_size": "h1"
+          }
+        },
+        "text_zntDt9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Onze T-shirts vormen de basis van elke sterke outfit. Gemaakt voor dagelijks comfort, ontworpen met oog voor detail en uitgevoerd in hoogwaardige materialen. Van subtiele designs tot krachtige statements: elk T-shirt draagt een boodschap en een uitstraling die verder gaat dan trends.<br/><br/>Dit is meer dan mode. Het is een manier om Gods Woord zichtbaar te dragen, verpakt in kwaliteit en vakmanschap. Ontworpen met passie voor God en gedreven door een missie om de kledingindustrie eerlijker en bewuster te maken.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_YPxjhA",
+        "text_zntDt9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collection_list_Khdp6m": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_BFwAdJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hoodies"
+          }
+        },
+        "featured_collection_zPLhGc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oversize-tshirts"
+          }
+        },
+        "featured_collection_7Bwqhj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "over-size"
+          }
+        },
+        "featured_collection_CPBmen": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "polos"
+          }
+        },
+        "featured_collection_CFGWPi": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-t-shirtss"
+          }
+        },
+        "featured_collection_GB6VKi": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-hoodies"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_BFwAdJ",
+        "featured_collection_zPLhGc",
+        "featured_collection_7Bwqhj",
+        "featured_collection_CPBmen",
+        "featured_collection_CFGWPi",
+        "featured_collection_GB6VKi"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 6,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_qitDwY": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "mens",
+        "products_to_show": 25,
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "rich_text_rnxHdp": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_YNqk6b": {
+          "type": "heading",
+          "settings": {
+            "heading": "T-SHIRTS VAN WOG",
+            "heading_size": "h2"
+          }
+        },
+        "text_eU6hTY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>WOG T-shirts zijn meer dan een bewuste keuze: het staat voor kwaliteit, verantwoordelijkheid en respect voor mens en milieu. Al onze kleding wordt gemaakt van milieubewuste stoffen zoals biologisch katoen. Dit katoen wordt verbouwd zonder schadelijke pesticiden en chemicaliën, wat beter is voor de aarde én voor de mensen die het katoen verbouwen.</p><p><br/>Daarnaast voelt biologisch katoen zachter aan en gaat het langer mee. Dat betekent meer comfort, een betere pasvorm en een T-shirt dat er ook na veel dragen goed uit blijft zien. Je investeert dus niet alleen in duurzaamheid, maar ook in een veilige en eerlijke werkomgeving voor mensen in een industrie waar vaak misbruik wordt gemaakt van slechte arbeidswetten en leefomstandigheden. Bovendien investeer je in jezelf met een prachtig kledingstuk van langdurige kwaliteit. </p><p><br/>Door te kiezen voor Warrior of God draag je bij aan een eerlijkere kledingindustrie. Minder milieuvervuiling, betere werkomstandigheden en kleding die met zorg is gemaakt: dat is stijl met impact.<br/>Maak een verschil met wat je aantrekt. Draag bewust. Draag WOG. <br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_YNqk6b",
+        "text_eU6hTY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_cNJzFh": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_PWeR6h": {
+          "type": "heading",
+          "settings": {
+            "heading": "LONGSLEEVES",
+            "heading_size": "h2"
+          }
+        },
+        "text_PAcUk6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een longsleeve T-shirt is perfect voor dagen waarop een gewoon T-shirt te koud is, maar een trui te warm. Het biedt comfort en veelzijdigheid: draag het los voor een casual look of combineer het met een jas of vest. Ideaal voor elk seizoen en eenvoudig te stylen met iedere outfit.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_PWeR6h",
+        "text_PAcUk6"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_KCyDpw": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ePanwJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "T-SHIRT’S",
+            "heading_size": "h2"
+          }
+        },
+        "text_8EMEer": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een T-shirt is een onmisbaar item in elke garderobe. Het is comfortabel, tijdloos en makkelijk te combineren met elke stijl - van casual tot streetwear.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ePanwJ",
+        "text_8EMEer"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_kfix4F": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XjJXpw": {
+          "type": "heading",
+          "settings": {
+            "heading": "OVERSIZED T-SHIRT’S",
+            "heading_size": "h2"
+          }
+        },
+        "text_wgBARn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een oversized T-shirt biedt comfort en een moderne, relaxte uitstraling. Het geeft je outfit karakter en past perfect binnen de streetwear look. Ideaal om los te dragen of te combineren in laagjes, het hele jaar door. <br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XjJXpw",
+        "text_wgBARn"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_MUPGmB": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XCQFQc": {
+          "type": "heading",
+          "settings": {
+            "heading": "POLO’S",
+            "heading_size": "h2"
+          }
+        },
+        "text_RTB9bG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een polo is ideaal wanneer je er verzorgd uit wilt zien zonder in te leveren op comfort. Het combineert de casual uitstraling van een T-shirt met een nettere look, waardoor het geschikt is voor zowel werk als vrije tijd. Perfect voor momenten waarop je stijlvol en ontspannen voor de dag wilt komen.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XCQFQc",
+        "text_RTB9bG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "rich_text_yGBKb3",
+    "main",
+    "collection_list_Khdp6m",
+    "featured_collection_qitDwY",
+    "rich_text_rnxHdp",
+    "rich_text_cNJzFh",
+    "rich_text_KCyDpw",
+    "rich_text_kfix4F",
+    "rich_text_MUPGmB"
+  ]
+}
