@@ -169,6 +169,37 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "rich_text_kfix4F": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XjJXpw": {
+          "type": "heading",
+          "settings": {
+            "heading": "OVERSIZED T-SHIRT’S",
+            "heading_size": "h2"
+          }
+        },
+        "text_wgBARn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een oversized T-shirt biedt comfort en een moderne, relaxte uitstraling. Het geeft je outfit karakter en past perfect binnen de streetwear look. Ideaal om los te dragen of te combineren in laagjes, het hele jaar door. <br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XjJXpw",
+        "text_wgBARn"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -177,6 +208,7 @@
     "featured_collection_qitDwY",
     "rich_text_rnxHdp",
     "rich_text_cNJzFh",
-    "rich_text_KCyDpw"
+    "rich_text_KCyDpw",
+    "rich_text_kfix4F"
   ]
 }
