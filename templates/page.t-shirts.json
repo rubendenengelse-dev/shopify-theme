@@ -200,6 +200,37 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "rich_text_MUPGmB": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XCQFQc": {
+          "type": "heading",
+          "settings": {
+            "heading": "POLO’S",
+            "heading_size": "h2"
+          }
+        },
+        "text_RTB9bG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een polo is ideaal wanneer je er verzorgd uit wilt zien zonder in te leveren op comfort. Het combineert de casual uitstraling van een T-shirt met een nettere look, waardoor het geschikt is voor zowel werk als vrije tijd. Perfect voor momenten waarop je stijlvol en ontspannen voor de dag wilt komen.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XCQFQc",
+        "text_RTB9bG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -209,6 +240,7 @@
     "rich_text_rnxHdp",
     "rich_text_cNJzFh",
     "rich_text_KCyDpw",
-    "rich_text_kfix4F"
+    "rich_text_kfix4F",
+    "rich_text_MUPGmB"
   ]
 }
