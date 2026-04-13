@@ -98,16 +98,16 @@
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
-        "title": "Collecties",
+        "title": "",
         "heading_size": "h1",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "columns_desktop": 6,
         "color_scheme": "",
         "show_view_all": false,
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "featured_collection_4QHXiD": {
