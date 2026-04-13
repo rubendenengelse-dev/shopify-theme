@@ -48,6 +48,68 @@
         "padding_bottom": 28
       }
     },
+    "collection_list_Khdp6m": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_BFwAdJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hoodies"
+          }
+        },
+        "featured_collection_zPLhGc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oversize-tshirts"
+          }
+        },
+        "featured_collection_7Bwqhj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "over-size"
+          }
+        },
+        "featured_collection_CPBmen": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "polos"
+          }
+        },
+        "featured_collection_CFGWPi": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-t-shirtss"
+          }
+        },
+        "featured_collection_GB6VKi": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-hoodies"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_BFwAdJ",
+        "featured_collection_zPLhGc",
+        "featured_collection_7Bwqhj",
+        "featured_collection_CPBmen",
+        "featured_collection_CFGWPi",
+        "featured_collection_GB6VKi"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 6,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "featured_collection_qitDwY": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -228,68 +290,6 @@
         "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "collection_list_Khdp6m": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_BFwAdJ": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_zPLhGc": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_7Bwqhj": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_CPBmen": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_CFGWPi": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_GB6VKi": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_BFwAdJ",
-        "featured_collection_zPLhGc",
-        "featured_collection_7Bwqhj",
-        "featured_collection_CPBmen",
-        "featured_collection_CFGWPi",
-        "featured_collection_GB6VKi"
-      ],
-      "name": "t:sections.collection-list.presets.name",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_ratio": "adapt",
-        "columns_desktop": 6,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
         "padding_top": 0,
         "padding_bottom": 0
       }
