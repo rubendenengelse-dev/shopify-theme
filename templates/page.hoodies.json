@@ -145,32 +145,20 @@
         "heading_CjGhGR": {
           "type": "heading",
           "settings": {
-            "heading": "Vertel over je merk",
-            "heading_size": "h1"
+            "heading": "TRUI",
+            "heading_size": "h2"
           }
         },
         "text_aEDgKG": {
           "type": "text",
           "settings": {
-            "text": "<p>Deel informatie over je merk met klanten. Beschrijf een product, doe aankondigingen of verwelkom klanten in je winkel.</p>"
-          }
-        },
-        "button_zCN8mz": {
-          "type": "button",
-          "settings": {
-            "button_label": "Knoplabel",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p>Een trui is de mooie keuze voor dagen waarop je wat netter gekleed moet dan in een hoodie. Het biedt warmte en comfort in een tijdloze pasvorm, zonder in te leveren op stijl. Draag de trui los voor een cleane look of combineer hem met een jas voor extra warmte en gelaagdheid.<br/>Ideaal voor koelere dagen en eenvoudig te stylen met elke outfit.<br/><br/></p>"
           }
         }
       },
       "block_order": [
         "heading_CjGhGR",
-        "text_aEDgKG",
-        "button_zCN8mz"
+        "text_aEDgKG"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
