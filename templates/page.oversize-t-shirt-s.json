@@ -114,7 +114,7 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "collection": "mens",
+        "collection": "oversize-tshirts",
         "products_to_show": 25,
         "title": "",
         "heading_size": "h1",
