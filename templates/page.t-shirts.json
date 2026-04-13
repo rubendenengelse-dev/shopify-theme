@@ -9,15 +9,78 @@
  */
 {
   "sections": {
+    "rich_text_yGBKb3": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_YPxjhA": {
+          "type": "heading",
+          "settings": {
+            "heading": "Vertel over je merk",
+            "heading_size": "h1"
+          }
+        },
+        "text_zntDt9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Onze T-shirts vormen de basis van elke sterke outfit. Gemaakt voor dagelijks comfort, ontworpen met oog voor detail en uitgevoerd in hoogwaardige materialen. Van subtiele designs tot krachtige statements: elk         T-shirt draagt een boodschap en een uitstraling die verder gaat dan trends.<br/><br/>Dit is meer dan mode. Het is een manier om Gods Woord zichtbaar te dragen, verpakt in kwaliteit en vakmanschap. Ontworpen met passie voor God en gedreven door een missie om de kledingindustrie eerlijker en bewuster te maken.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_YPxjhA",
+        "text_zntDt9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "featured_collection_qitDwY": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "mens",
+        "products_to_show": 25,
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "rich_text_yGBKb3",
+    "main",
+    "featured_collection_qitDwY"
   ]
 }
