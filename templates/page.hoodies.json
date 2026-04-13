@@ -48,6 +48,68 @@
         "padding_bottom": 0
       }
     },
+    "collection_list_LM94Mm": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_V77wDF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mens"
+          }
+        },
+        "featured_collection_rVmVc3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oversize-tshirts"
+          }
+        },
+        "featured_collection_inCLin": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "over-size"
+          }
+        },
+        "featured_collection_BVtAXA": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_FMxnAC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_VMxPxQ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_V77wDF",
+        "featured_collection_rVmVc3",
+        "featured_collection_inCLin",
+        "featured_collection_BVtAXA",
+        "featured_collection_FMxnAC",
+        "featured_collection_VMxPxQ"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Collecties",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection_4QHXiD": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -205,6 +267,7 @@
   "order": [
     "main",
     "rich_text_hx7KA4",
+    "collection_list_LM94Mm",
     "featured_collection_4QHXiD",
     "rich_text_4tyAdC",
     "rich_text_iCHfdW",
