@@ -253,6 +253,7 @@
         "heading_XjJXpw",
         "text_wgBARn"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
