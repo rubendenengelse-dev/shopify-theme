@@ -90,7 +90,7 @@
         "text_aBtCw8": {
           "type": "text",
           "settings": {
-            "text": "<p>Deel informatie over je merk met klanten. Beschrijf een product, doe aankondigingen of verwelkom klanten in je winkel.</p>"
+            "text": "<p>WOG Hoodies zijn meer dan een bewuste keuze: het staat voor kwaliteit, verantwoordelijkheid en respect voor mens en milieu. Al onze kleding wordt gemaakt van milieubewuste stoffen zoals biologisch katoen. Dit katoen wordt verbouwd zonder schadelijke pesticiden en chemicaliën, wat beter is voor de aarde én voor de mensen die het katoen verbouwen.<br/>Daarnaast voelt biologisch katoen zachter aan en gaat het langer mee. Dat betekent meer comfort, een betere pasvorm en een hoodies dat er ook na veel dragen goed uit blijft zien. Je investeert dus niet alleen in duurzaamheid, maar ook in een veilige en eerlijke werkomgeving voor mensen in een industrie waar vaak misbruik wordt gemaakt van slechte arbeidswetten en leefomstandigheden. Bovendien investeer je in jezelf met een prachtig kledingstuk van langdurige kwaliteit.<br/>Door te kiezen voor Warrior of God draag je bij aan een eerlijkere kledingindustrie. Minder milieuvervuiling, betere werkomstandigheden en kleding die met zorg is gemaakt: dat is stijl met impact.<br/>Maak een verschil met wat je aantrekt. Draag bewust. Draag WOG.<br/><br/></p>"
           }
         }
       },
@@ -107,12 +107,44 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "rich_text_iCHfdW": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_xKdJbf": {
+          "type": "heading",
+          "settings": {
+            "heading": "Vertel over je merk",
+            "heading_size": "h1"
+          }
+        },
+        "text_yr6MAU": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Deel informatie over je merk met klanten. Beschrijf een product, doe aankondigingen of verwelkom klanten in je winkel.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_xKdJbf",
+        "text_yr6MAU"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "main",
     "rich_text_hx7KA4",
     "featured_collection_4QHXiD",
-    "rich_text_4tyAdC"
+    "rich_text_4tyAdC",
+    "rich_text_iCHfdW"
   ]
 }
