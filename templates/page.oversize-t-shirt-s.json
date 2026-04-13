@@ -51,16 +51,16 @@
     "collection_list_Khdp6m": {
       "type": "collection-list",
       "blocks": {
+        "featured_collection_zPLhGc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mens"
+          }
+        },
         "featured_collection_BFwAdJ": {
           "type": "featured_collection",
           "settings": {
             "collection": "hoodies"
-          }
-        },
-        "featured_collection_zPLhGc": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "oversize-tshirts"
           }
         },
         "featured_collection_7Bwqhj": {
@@ -89,8 +89,8 @@
         }
       },
       "block_order": [
-        "featured_collection_BFwAdJ",
         "featured_collection_zPLhGc",
+        "featured_collection_BFwAdJ",
         "featured_collection_7Bwqhj",
         "featured_collection_CPBmen",
         "featured_collection_CFGWPi",
