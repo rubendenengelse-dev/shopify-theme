@@ -145,14 +145,14 @@
         "heading_ePanwJ": {
           "type": "heading",
           "settings": {
-            "heading": "Vertel over je merk",
-            "heading_size": "h1"
+            "heading": "T-SHIRT’S",
+            "heading_size": "h2"
           }
         },
         "text_8EMEer": {
           "type": "text",
           "settings": {
-            "text": "<p>Deel informatie over je merk met klanten. Beschrijf een product, doe aankondigingen of verwelkom klanten in je winkel.</p>"
+            "text": "<p>Een T-shirt is een onmisbaar item in elke garderobe. Het is comfortabel, tijdloos en makkelijk te combineren met elke stijl - van casual tot streetwear.<br/><br/></p>"
           }
         }
       },
@@ -162,12 +162,12 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
