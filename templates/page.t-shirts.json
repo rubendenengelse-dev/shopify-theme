@@ -107,12 +107,44 @@
         "padding_top": 0,
         "padding_bottom": 52
       }
+    },
+    "rich_text_cNJzFh": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_PWeR6h": {
+          "type": "heading",
+          "settings": {
+            "heading": "LONGSLEEVES",
+            "heading_size": "h2"
+          }
+        },
+        "text_PAcUk6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een longsleeve T-shirt is perfect voor dagen waarop een gewoon T-shirt te koud is, maar een trui te warm. Het biedt comfort en veelzijdigheid: draag het los voor een casual look of combineer het met een jas of vest. Ideaal voor elk seizoen en eenvoudig te stylen met iedere outfit.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_PWeR6h",
+        "text_PAcUk6"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "rich_text_yGBKb3",
     "main",
     "featured_collection_qitDwY",
-    "rich_text_rnxHdp"
+    "rich_text_rnxHdp",
+    "rich_text_cNJzFh"
   ]
 }
