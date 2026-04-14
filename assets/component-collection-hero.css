@@ -47,6 +47,16 @@
 }
 
 @media screen and (min-width: 750px) {
+  .collection-hero__title {
+    font-family: var(--font-body-family) !important;
+    font-style: var(--font-body-style) !important;
+    font-weight: 900 !important;
+    font-size: 3.6rem !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    line-height: 1.1 !important;
+  }
+
   .collection-hero__title + .collection-hero__description {
     font-size: 1.8rem;
     margin-top: 2rem;
