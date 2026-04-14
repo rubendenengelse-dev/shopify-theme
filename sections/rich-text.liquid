@@ -11,6 +11,18 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+
+    {% if template.suffix == 't-shirts' %}
+      .section-{{ section.id }}-padding .rich-text__heading--tshirts-page-hero {
+        font-family: var(--font-body-family) !important;
+        font-style: var(--font-body-style) !important;
+        font-weight: 900 !important;
+        font-size: 3.8rem !important;
+        letter-spacing: 0.18em !important;
+        text-transform: uppercase !important;
+        line-height: 1.05 !important;
+      }
+    {% endif %}
   }
 {%- endstyle -%}
 
@@ -22,7 +34,7 @@
           {%- case block.type -%}
             {%- when 'heading' -%}
               <h2
-                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if template.suffix == 't-shirts' and block.settings.heading_size == 'h1' and block.settings.heading == 'T-SHIRT' %} rich-text__heading--tshirts-page-hero{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
