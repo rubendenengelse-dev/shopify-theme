@@ -13,6 +13,16 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+
+    {% if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
+      .section-{{ section.id }}-padding.collection-list-wrapper {
+        max-width: 100%;
+        padding-left: 1.6rem;
+        padding-right: 5rem;
+        margin-left: 0;
+        margin-right: auto;
+      }
+    {% endif %}
   }
 {%- endstyle -%}
 

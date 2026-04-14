@@ -224,6 +224,40 @@
     .footer-block__details-content .list-menu__item:focus-visible::after {
       transform: scaleX(1);
     }
+
+    .footer__newsletter .field {
+      display: flex;
+      align-items: center;
+      min-height: 5.6rem;
+    }
+
+    .footer__newsletter .field__input {
+      padding-top: 1.6rem;
+      padding-bottom: 1.6rem;
+      line-height: 1.2;
+    }
+
+    .footer__newsletter .field__label {
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+    }
+
+    .footer__newsletter .field__input:focus,
+    .footer__newsletter .field__input:not(:placeholder-shown),
+    .footer__newsletter .field__input:-webkit-autofill {
+      padding-top: 1.6rem;
+      padding-bottom: 1.6rem;
+    }
+
+    .footer__newsletter .field__input:focus ~ .field__label,
+    .footer__newsletter .field__input:not(:placeholder-shown) ~ .field__label,
+    .footer__newsletter .field__input:-webkit-autofill ~ .field__label {
+      top: 50%;
+      left: 1.8rem;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+    }
   }
 
 @media screen and (max-width: 749px) {

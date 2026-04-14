@@ -6,22 +6,166 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  @media screen and (max-width: 749px) {
+    {% if template.suffix == 't-shirts' or template.suffix == 'hoodies' or template.suffix == 'oversize-t-shirt-s' %}
+      .section-{{ section.id }}-padding .rich-text__heading--desktop-page-hero {
+        font-family: var(--font-body-family) !important;
+        font-style: var(--font-body-style) !important;
+        font-weight: 900 !important;
+        letter-spacing: 0.14em !important;
+        text-transform: uppercase !important;
+        line-height: 1.05 !important;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 {
+        font-family: var(--font-body-family) !important;
+        font-style: var(--font-body-style) !important;
+        font-size: 1.65rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.14em !important;
+        text-transform: uppercase !important;
+        color: rgba(0, 0, 0, 0.42) !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.35rem !important;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text {
+        margin-top: 0 !important;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore {
+        display: inline;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore[hidden] {
+        display: none !important;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button {
+        display: inline;
+        margin-left: 0.35rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #111111;
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:focus,
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:focus-visible,
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:active {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button[hidden] {
+        display: none !important;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-intro {
+        display: inline;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button {
+        display: block;
+        margin-top: 0.1rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #111111;
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button:focus,
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button:focus-visible,
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button:active {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button[hidden] {
+        display: none !important;
+      }
+    {% endif %}
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
-    {% if template.suffix == 't-shirts' %}
-      .section-{{ section.id }}-padding .rich-text__heading--tshirts-page-hero {
+    {% if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
+      .section-{{ section.id }}-padding .rich-text__wrapper.page-width {
+        max-width: 100%;
+        padding-left: 1.6rem;
+        padding-right: 5rem;
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__heading--desktop-page-hero {
         font-family: var(--font-body-family) !important;
         font-style: var(--font-body-style) !important;
         font-weight: 900 !important;
-        font-size: 3.8rem !important;
+        font-size: 4.4rem !important;
         letter-spacing: 0.18em !important;
         text-transform: uppercase !important;
         line-height: 1.05 !important;
       }
+
+      {% if template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
+        .section-{{ section.id }}-padding .rich-text__heading--desktop-page-hero + .rich-text__text {
+          font-size: 1.75rem;
+          line-height: 1.75;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__heading--desktop-page-hero + .rich-text__text p {
+          max-width: 96rem;
+        }
+      {% endif %}
+
+      {% if template.suffix == 'oversize-t-shirt-s' or template.suffix == 't-shirts' or template.suffix == 'hoodies' %}
+        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 {
+          font-family: var(--font-body-family) !important;
+          font-style: var(--font-body-style) !important;
+          font-size: 1.9rem !important;
+          font-weight: 800 !important;
+          letter-spacing: 0.14em !important;
+          text-transform: uppercase !important;
+          line-height: 1.15 !important;
+          color: rgba(0, 0, 0, 0.42) !important;
+          transform: translateY(0.4rem);
+        }
+
+        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text {
+          width: 100%;
+          max-width: none;
+          margin-top: 0.6rem;
+          font-size: 1.6rem;
+          line-height: 1.75;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text p {
+          max-width: none;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 ~ .rich-text__text {
+          width: 100%;
+          max-width: none;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__blocks:has(.rich-text__heading.rte.inline-richtext.h2) {
+          width: 100%;
+          max-width: none;
+        }
+      {% endif %}
     {% endif %}
   }
 {%- endstyle -%}
@@ -34,7 +178,7 @@
           {%- case block.type -%}
             {%- when 'heading' -%}
               <h2
-                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if template.suffix == 't-shirts' and block.settings.heading_size == 'h1' and block.settings.heading == 'T-SHIRT' %} rich-text__heading--tshirts-page-hero{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if block.settings.heading_size == 'h1' and template.suffix == 't-shirts' or block.settings.heading_size == 'h1' and template.suffix == 'oversize-t-shirt-s' or block.settings.heading_size == 'h1' and template.suffix == 'hoodies' %} rich-text__heading--desktop-page-hero{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -105,6 +249,73 @@
     </div>
   </div>
 </div>
+
+{% if template.suffix == 't-shirts' or template.suffix == 'hoodies' or template.suffix == 'oversize-t-shirt-s' %}
+  <script>
+    (() => {
+      const applyMobileReadMore = () => {
+        if (window.innerWidth >= 750) return;
+
+        const section = document.querySelector('.section-{{ section.id }}-padding');
+        if (!section || section.dataset.mobileReadmoreApplied === 'true') return;
+
+        const heroHeading = section.querySelector('.rich-text__heading--desktop-page-hero');
+        const introText = heroHeading ? heroHeading.nextElementSibling : null;
+        if (!introText || !introText.classList.contains('rich-text__text')) return;
+
+        const paragraph = introText.querySelector('p');
+        if (!paragraph) return;
+
+        const fullText = paragraph.innerHTML.trim();
+        const splitMarkers = {
+          't-shirts': 'Onze T-shirts vormen de basis van elke sterke outfit.',
+          'hoodies': 'Onze hoodies zijn gemaakt om elke dag te dragen.',
+          'oversize-t-shirt-s': 'Onze oversized T-shirts zijn een absolute must-have voor jouw collectie.'
+        };
+        const splitMarker = splitMarkers['{{ template.suffix }}'];
+        if (!splitMarker) return;
+        const splitIndex = fullText.indexOf(splitMarker);
+        if (splitIndex === -1) return;
+
+        const visiblePart = fullText.slice(0, splitIndex + splitMarker.length);
+        const hiddenPart = fullText.slice(splitIndex + splitMarker.length).trim();
+        if (!hiddenPart) return;
+
+        introText.innerHTML = `
+          <p>
+            <span class="rich-text__mobile-readmore-intro">${visiblePart}</span><button type="button" class="rich-text__mobile-readmore-button">...Bekijk meer</button>
+            <span class="rich-text__mobile-readmore" hidden> ${hiddenPart}</span>
+          </p>
+          <button type="button" class="rich-text__mobile-readless-button" hidden>Zie minder</button>
+        `;
+
+        const hiddenContent = introText.querySelector('.rich-text__mobile-readmore');
+        const button = introText.querySelector('.rich-text__mobile-readmore-button');
+        const readLessButton = introText.querySelector('.rich-text__mobile-readless-button');
+
+        button.addEventListener('click', () => {
+          hiddenContent.hidden = false;
+          button.hidden = true;
+          readLessButton.hidden = false;
+        });
+
+        readLessButton.addEventListener('click', () => {
+          hiddenContent.hidden = true;
+          button.hidden = false;
+          readLessButton.hidden = true;
+        });
+
+        section.dataset.mobileReadmoreApplied = 'true';
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyMobileReadMore, { once: true });
+      } else {
+        applyMobileReadMore();
+      }
+    })();
+  </script>
+{% endif %}
 
 {% schema %}
 {
