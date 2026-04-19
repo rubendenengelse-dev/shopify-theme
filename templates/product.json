@@ -34,11 +34,6 @@
             "swatch_shape": "circle"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "disabled": true,
-          "settings": {}
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -48,6 +43,7 @@
         },
         "description": {
           "type": "description",
+          "disabled": true,
           "settings": {}
         },
         "share": {
@@ -63,7 +59,6 @@
         "title",
         "price",
         "variant_picker",
-        "quantity_selector",
         "buy_buttons",
         "description",
         "share"
