@@ -37,6 +37,251 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    .product__title--body h1 {
+      color: #000;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: inherit;
+      line-height: inherit;
+      margin: 0;
+    }
+
+    .product__price--collection,
+    .product__price--collection * {
+      color: #000 !important;
+      font-family: var(--font-body-family) !important;
+      font-style: var(--font-body-style) !important;
+      font-weight: 600 !important;
+    }
+
+    .product-gallery-progress {
+      display: none;
+    }
+
+    #MainProduct-{{ section.id }} .product-form__submit {
+      border-radius: 999px;
+    }
+
+    #MainProduct-{{ section.id }} .product-form__empty-container {
+      align-items: center;
+      background: #fff;
+      border: 0.1rem solid rgba(0, 0, 0, 0.16);
+      border-radius: 0;
+      box-sizing: border-box;
+      display: flex;
+      gap: 1.15rem;
+      margin-top: 2.6rem;
+      min-height: 3.55rem;
+      padding: 0 1.6rem;
+      width: 100%;
+    }
+
+    #MainProduct-{{ section.id }} .product-form__empty-container svg {
+      color: #000;
+      display: block;
+      flex: 0 0 auto;
+      height: 1.9rem;
+      width: 3.4rem;
+    }
+
+    #MainProduct-{{ section.id }} .product-form__empty-container-text {
+      color: rgba(0, 0, 0, 0.68);
+      font-family: var(--font-body-family);
+      font-size: 1.3rem;
+      font-style: var(--font-body-style);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    #MainProduct-{{ section.id }} .product-form__buttons + .product-form__empty-container {
+      max-width: 44rem;
+    }
+
+    @media screen and (max-width: 749px) {
+      #MainProduct-{{ section.id }}.section-{{ section.id }}-padding {
+        padding-top: 0;
+      }
+
+      #MainProduct-{{ section.id }} .page-width {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      #MainProduct-{{ section.id }} .product {
+        margin-top: 0;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-wrapper {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} media-gallery,
+      #MainProduct-{{ section.id }} #GalleryViewer-{{ section.id }} {
+        display: block;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        width: 100vw;
+      }
+
+      #MainProduct-{{ section.id }} #GalleryViewer-{{ section.id }} {
+        position: relative;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list {
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        scroll-padding-left: 0;
+        scroll-padding-right: 0;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list::after {
+        content: none;
+        padding-left: 0;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item {
+        box-sizing: border-box;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+        padding-left: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        scroll-margin: 0;
+        scroll-snap-align: start;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-child,
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-of-type {
+        margin-left: 0;
+        scroll-margin-left: 0;
+        scroll-snap-align: start;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:last-child {
+        scroll-snap-align: end;
+      }
+
+      #MainProduct-{{ section.id }} .product-media-container,
+      #MainProduct-{{ section.id }} .product-media-container .product__modal-opener,
+      #MainProduct-{{ section.id }} .product-media-container .product__media {
+        border: 0;
+        border-radius: 0;
+        height: auto;
+        max-width: 100%;
+        padding-top: 0;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product-media-container .product__media img {
+        border-radius: 0;
+        display: block;
+        height: auto;
+        object-fit: contain;
+        position: static;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-icon,
+      #MainProduct-{{ section.id }} .product__media-toggle {
+        display: none !important;
+      }
+
+      #MainProduct-{{ section.id }} #GalleryViewer-{{ section.id }} > .slider-buttons {
+        display: none !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-form__input--size-pill,
+      #MainProduct-{{ section.id }} .product-form__buttons,
+      #MainProduct-{{ section.id }} .product-form__empty-container {
+        width: min(100% - 3.2rem, 40.8rem);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #MainProduct-{{ section.id }} .product__info-container > .product__text:not(.product__title--body),
+      #MainProduct-{{ section.id }} .product__title--body,
+      #MainProduct-{{ section.id }} #price-{{ section.id }},
+      #MainProduct-{{ section.id }} .product-form__input--swatch,
+      #MainProduct-{{ section.id }} .product__description {
+        width: min(100% - 3.2rem, 40.8rem);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #MainProduct-{{ section.id }} .product-form__input--swatch .form__label {
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-progress {
+        --dot-gap: 0.7rem;
+        --dot-line-height: 0.45rem;
+        --dot-line-width: 1.65rem;
+        --dot-size: 0.55rem;
+        align-items: center;
+        background: #fff;
+        border-radius: 999px;
+        bottom: 1.35rem;
+        box-shadow: 0 0.4rem 1.4rem rgba(0, 0, 0, 0.12);
+        display: flex;
+        left: 50%;
+        padding: 0.62rem 0.78rem;
+        pointer-events: none;
+        position: absolute;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-progress__track {
+        display: flex;
+        gap: var(--dot-gap);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-progress__dot {
+        align-items: center;
+        display: block;
+        height: var(--dot-size);
+        position: relative;
+        width: var(--dot-line-width);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-progress__dot::before,
+      #MainProduct-{{ section.id }} .product-gallery-progress__dot::after {
+        border-radius: 999px;
+        content: '';
+        display: block;
+        height: var(--dot-size);
+        left: 50%;
+        position: absolute;
+        top: 0;
+        transform: translateX(-50%);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-progress__dot::before {
+        background: rgba(0, 0, 0, 0.18);
+        opacity: var(--dot-muted-opacity, 1);
+        width: var(--dot-size);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-progress__dot::after {
+        background: #000;
+        height: var(--dot-line-height);
+        left: 50%;
+        opacity: var(--dot-line-opacity, 0);
+        top: calc((var(--dot-size) - var(--dot-line-height)) / 2);
+        transform: translateX(-50%);
+        width: var(--dot-active-width, var(--dot-size));
+      }
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -97,7 +342,7 @@
                   {{- block.settings.text -}}
                 </p>
               {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
+                <div class="product__title product__title--body product__text inline-richtext" {{ block.shopify_attributes }}>
                   <h1>{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="h1">
@@ -111,26 +356,12 @@
                     product: product,
                     use_variant: true,
                     show_badges: true,
-                    price_class: 'price--large'
+                    price_class: 'product__price--collection'
                   -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
-                  </div>
-                {%- endif -%}
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                  <div class="product__tax caption rte">
-                    {%- if cart.duties_included and cart.taxes_included -%}
-                      {{ 'products.product.duties_and_taxes_included' | t }}
-                    {%- elsif cart.taxes_included -%}
-                      {{ 'products.product.taxes_included' | t }}
-                    {%- elsif cart.duties_included -%}
-                      {{ 'products.product.duties_included' | t }}
-                    {%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%}
-                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                    {%- endif -%}
                   </div>
                 {%- endif -%}
                 <div {{ block.shopify_attributes }}>
@@ -732,9 +963,55 @@
       endif
     -%}
 
-    <script type="application/ld+json">
-      {{ product | structured_data }}
-    </script>
+  <script type="application/ld+json">
+    {{ product | structured_data }}
+  </script>
+  <script>
+    (() => {
+      const root = document.getElementById('MainProduct-{{ section.id }}');
+      const viewer = root?.querySelector('#GalleryViewer-{{ section.id }}');
+      const slider = root?.querySelector('#Slider-Gallery-{{ section.id }}');
+      const dots = root?.querySelector('[data-product-gallery-dots]');
+      const dotItems = dots ? Array.from(dots.querySelectorAll('[data-product-gallery-dot]')) : [];
+
+      if (!viewer || !slider || !dots || !dotItems.length) return;
+
+      let frame = null;
+
+      const updateDots = () => {
+        frame = null;
+        const slides = Array.from(slider.querySelectorAll('.product__media-item')).filter((slide) => slide.offsetWidth);
+        if (slides.length < 2) return;
+
+        const slideDistance = slides[1].offsetLeft - slides[0].offsetLeft || slider.clientWidth;
+        const maxProgress = slides.length - 1;
+        const progress = Math.min(Math.max(slider.scrollLeft / slideDistance, 0), maxProgress);
+
+        dotItems.forEach((dot, index) => {
+          const amount = Math.max(0, 1 - Math.abs(progress - index));
+          const dotSize = 5.5;
+          const lineWidth = 16.5;
+          const activeWidth = dotSize + (lineWidth - dotSize) * amount;
+          const lineOpacity = Math.min(amount * 4, 1);
+
+          dot.style.setProperty('--dot-progress', amount.toFixed(3));
+          dot.style.setProperty('--dot-muted-opacity', (1 - amount).toFixed(3));
+          dot.style.setProperty('--dot-line-opacity', lineOpacity.toFixed(3));
+          dot.style.setProperty('--dot-active-width', `${activeWidth.toFixed(2)}px`);
+        });
+      };
+
+      const requestUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(updateDots);
+      };
+
+      slider.addEventListener('scroll', requestUpdate, { passive: true });
+      viewer.addEventListener('slideChanged', requestUpdate);
+      window.addEventListener('resize', requestUpdate);
+      requestUpdate();
+    })();
+  </script>
   </div>
 </product-info>
 

@@ -97,6 +97,19 @@
             {{ form | payment_button }}
           {%- endif -%}
         </div>
+        <div class="product-form__empty-container" aria-hidden="true">
+          <svg viewBox="0 0 46 22" focusable="false" role="presentation">
+            <path
+              d="M2.5 8.5h8.5M5.5 12.5h5.5M8 16.5h3M13.5 4.5h15.8v11h-15.8v-11Zm15.8 3.2h6.3l5 5v2.8H29.3V7.7Zm3.1 2.1h2.2l2.3 2.4h-4.5V9.8ZM20.5 18a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0Zm17.2 0a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span class="product-form__empty-container-text">Gratis Verzending Vanaf &euro; 69 op alle bestellingen</span>
+        </div>
       {%- endform -%}
     </product-form>
   {%- else -%}
@@ -110,6 +123,19 @@
         >
           {{ 'products.product.sold_out' | t }}
         </button>
+      </div>
+      <div class="product-form__empty-container" aria-hidden="true">
+        <svg viewBox="0 0 46 22" focusable="false" role="presentation">
+          <path
+            d="M2.5 8.5h8.5M5.5 12.5h5.5M8 16.5h3M13.5 4.5h15.8v11h-15.8v-11Zm15.8 3.2h6.3l5 5v2.8H29.3V7.7Zm3.1 2.1h2.2l2.3 2.4h-4.5V9.8ZM20.5 18a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0Zm17.2 0a2.4 2.4 0 1 1-4.8 0 2.4 2.4 0 0 1 4.8 0Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+        </svg>
+        <span class="product-form__empty-container-text">Gratis Verzending Vanaf &euro; 69 op alle bestellingen</span>
       </div>
     </div>
   {%- endif -%}

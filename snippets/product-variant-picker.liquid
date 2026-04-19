@@ -9,6 +9,88 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
+  <style>
+    #variant-selects-{{ section.id }} .product-form__option-label--soft {
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 1.3rem;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__size-pill-options {
+      display: inline-flex;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      border: 0.1rem solid rgba(0, 0, 0, 0.16);
+      border-radius: 0;
+      background: #fff;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--size-pill {
+      max-width: 44rem;
+      width: 100%;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio'] + label {
+      display: inline-flex;
+      flex: 1 1 0;
+      align-items: center;
+      justify-content: center;
+      min-width: 4.6rem;
+      margin: 0;
+      padding: 1.15rem 1.45rem;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #000;
+      font-size: 1.3rem;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio'] + label::before {
+      content: none;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio'] + label:hover {
+      background: #000;
+      border-color: transparent;
+      color: #fff;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio']:checked + label {
+      background: #000;
+      color: #fff;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio']:focus-visible + label {
+      box-shadow: inset 0 0 0 0.2rem rgba(255, 255, 255, 0.7), 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+    }
+
+    @media screen and (max-width: 749px) {
+      #variant-selects-{{ section.id }} .product-form__input {
+        width: min(100% - 3.2rem, 40.8rem) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      #variant-selects-{{ section.id }} .product-form__input--size-pill {
+        max-width: min(100% - 3.2rem, 40.8rem);
+      }
+
+      #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio'] + label {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio']:focus + label,
+      #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio']:focus-visible + label,
+      #variant-selects-{{ section.id }} .product-form__input--size-pill input[type='radio'].focused + label {
+        outline: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -18,6 +100,16 @@
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
         assign picker_type = block.settings.picker_type
+        assign option_label = option.name
+
+        assign option_label_class = ''
+        assign option_fieldset_class = ''
+
+        if option.name == 'Grootte'
+          assign option_label = 'Selecteer een maat'
+          assign option_label_class = ' product-form__option-label--soft'
+          assign option_fieldset_class = ' product-form__input--size-pill'
+        endif
 
         if swatch_count > 0 and block.settings.swatch_shape != 'none'
           if block.settings.picker_type == 'dropdown'
@@ -29,8 +121,8 @@
       -%}
       {%- if picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
-          <legend class="form__label">
-            {{ option.name }}:
+          <legend class="form__label{{ option_label_class }}">
+            {{ option_label }}:
             <span data-selected-value>
               {{- option.selected_value -}}
             </span>
@@ -43,19 +135,30 @@
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options',
-            product: product,
-            option: option,
-            block: block,
-            picker_type: picker_type
-          %}
+        <fieldset class="js product-form__input product-form__input--pill{{ option_fieldset_class }}">
+          <legend class="form__label{{ option_label_class }}">{{ option_label }}</legend>
+          {%- if option.name == 'Grootte' -%}
+            <div class="product-form__size-pill-options">
+              {% render 'product-variant-options',
+                product: product,
+                option: option,
+                block: block,
+                picker_type: picker_type
+              %}
+            </div>
+          {%- else -%}
+            {% render 'product-variant-options',
+              product: product,
+              option: option,
+              block: block,
+              picker_type: picker_type
+            %}
+          {%- endif -%}
         </fieldset>
       {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
+          <label class="form__label{{ option_label_class }}" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+            {{ option_label }}
           </label>
           <div class="select">
             {%- if picker_type == 'swatch_dropdown' -%}

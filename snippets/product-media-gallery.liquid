@@ -125,6 +125,24 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
+    {%- unless hide_mobile_slider -%}
+      <div
+        class="product-gallery-progress"
+        data-product-gallery-dots
+        aria-hidden="true"
+        style="--media-count: {{ media_count }};"
+      >
+        <div class="product-gallery-progress__track">
+          {%- for index in (1..media_count) -%}
+            <span
+              class="product-gallery-progress__dot"
+              data-product-gallery-dot
+              style="--dot-progress: {% if forloop.first %}1{% else %}0{% endif %}; --dot-muted-opacity: {% if forloop.first %}0{% else %}1{% endif %}; --dot-line-opacity: {% if forloop.first %}1{% else %}0{% endif %}; --dot-active-width: 16.5px;"
+            ></span>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endunless -%}
     <div class="slider-buttons quick-add-hidden{% if hide_mobile_slider %} small-hide{% endif %}">
       <button
         type="button"

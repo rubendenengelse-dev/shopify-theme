@@ -19,16 +19,8 @@
             "text_style": "uppercase"
           }
         },
-        "text_KmHMkF": {
-          "type": "text",
-          "settings": {
-            "text": "<strong>WOG Fear not T-Shirt</strong>",
-            "text_style": "body"
-          }
-        },
         "title": {
           "type": "title",
-          "disabled": true,
           "settings": {}
         },
         "price": {
@@ -68,7 +60,6 @@
       },
       "block_order": [
         "vendor",
-        "text_KmHMkF",
         "title",
         "price",
         "variant_picker",

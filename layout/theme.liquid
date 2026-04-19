@@ -301,6 +301,43 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    {%- if template.name == 'product' -%}
+      <style>
+        @media screen and (max-width: 749px) {
+          #MainContent,
+          #MainContent * {
+            -webkit-tap-highlight-color: transparent;
+          }
+
+          #MainContent a:focus,
+          #MainContent a:focus-visible,
+          #MainContent button:focus,
+          #MainContent button:focus-visible,
+          #MainContent input:focus,
+          #MainContent input:focus-visible,
+          #MainContent label:focus,
+          #MainContent label:focus-visible,
+          #MainContent summary:focus,
+          #MainContent summary:focus-visible,
+          #MainContent [tabindex]:focus,
+          #MainContent [tabindex]:focus-visible,
+          #MainContent .button:focus,
+          #MainContent .button:focus-visible,
+          #MainContent .focused,
+          #MainContent .focus-inset:focus-visible,
+          #MainContent .focus-offset:focus-visible,
+          #MainContent input[type='radio']:focus + label,
+          #MainContent input[type='radio']:focus-visible + label,
+          #MainContent input[type='radio'].focused + label,
+          #MainContent .shopify-payment-button__button--unbranded:focus,
+          #MainContent .shopify-payment-button__button--unbranded:focus-visible {
+            outline: 0 !important;
+            box-shadow: none !important;
+          }
+        }
+      </style>
+    {%- endif -%}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
