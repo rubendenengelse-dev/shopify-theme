@@ -101,11 +101,17 @@
         assign swatch_count = option.values | map: 'swatch' | compact | size
         assign picker_type = block.settings.picker_type
         assign option_label = option.name
+        assign normalized_option_name = option.name | downcase | strip
+        assign is_size_option = false
 
         assign option_label_class = ''
         assign option_fieldset_class = ''
 
-        if option.name == 'Grootte'
+        if normalized_option_name == 'grootte' or normalized_option_name == 'maat' or normalized_option_name == 'maten' or normalized_option_name == 'size' or normalized_option_name == 'sizes'
+          assign is_size_option = true
+        endif
+
+        if is_size_option
           assign option_label = 'Selecteer een maat'
           assign option_label_class = ' product-form__option-label--soft'
           assign option_fieldset_class = ' product-form__input--size-pill'
@@ -137,7 +143,7 @@
       {%- elsif picker_type == 'button' -%}
         <fieldset class="js product-form__input product-form__input--pill{{ option_fieldset_class }}">
           <legend class="form__label{{ option_label_class }}">{{ option_label }}</legend>
-          {%- if option.name == 'Grootte' -%}
+          {%- if is_size_option -%}
             <div class="product-form__size-pill-options">
               {% render 'product-variant-options',
                 product: product,

@@ -110,6 +110,28 @@
           </svg>
           <span class="product-form__empty-container-text">Gratis Verzending Vanaf &euro; 69 op alle bestellingen</span>
         </div>
+        <button
+          type="button"
+          class="product-form__description-heading product-form__description-heading--description"
+          data-product-info-drawer-trigger
+          data-product-info-drawer-title="BESCHRIJVING"
+        >
+          <span>BESCHRIJVING</span>
+          <span class="product-form__description-heading-icon svg-wrapper">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+        </button>
+        <button
+          type="button"
+          class="product-form__description-heading"
+          data-product-info-drawer-trigger
+          data-product-info-drawer-title="LEVERING"
+        >
+          <span>LEVERING</span>
+          <span class="product-form__description-heading-icon svg-wrapper">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+        </button>
       {%- endform -%}
     </product-form>
   {%- else -%}
@@ -137,8 +159,43 @@
         </svg>
         <span class="product-form__empty-container-text">Gratis Verzending Vanaf &euro; 69 op alle bestellingen</span>
       </div>
+      <button
+        type="button"
+        class="product-form__description-heading product-form__description-heading--description"
+        data-product-info-drawer-trigger
+        data-product-info-drawer-title="BESCHRIJVING"
+      >
+        <span>BESCHRIJVING</span>
+        <span class="product-form__description-heading-icon svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
+      <button
+        type="button"
+        class="product-form__description-heading"
+        data-product-info-drawer-trigger
+        data-product-info-drawer-title="LEVERING"
+      >
+        <span>LEVERING</span>
+        <span class="product-form__description-heading-icon svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
     </div>
   {%- endif -%}
+
+  <div class="product-info-drawer" data-product-info-drawer aria-hidden="true">
+    <button type="button" class="product-info-drawer__overlay" data-product-info-drawer-close aria-label="Sluiten"></button>
+    <aside class="product-info-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="ProductInfoDrawerTitle-{{ section_id }}">
+      <div class="product-info-drawer__header">
+        <h2 id="ProductInfoDrawerTitle-{{ section_id }}" data-product-info-drawer-title></h2>
+        <button type="button" class="product-info-drawer__close" data-product-info-drawer-close aria-label="Sluiten">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </button>
+      </div>
+      <div class="product-info-drawer__body" data-product-info-drawer-body></div>
+    </aside>
+  </div>
 
   {%- if show_pickup_availability -%}
     {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}

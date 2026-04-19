@@ -20,9 +20,27 @@
 
 <style>
   .announcement-bar-section {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 5;
+  }
+
+  @media screen and (min-width: 750px) {
+    .announcement-bar-section {
+      min-height: var(--announcement-bar-height, auto);
+      position: relative;
+      z-index: 101;
+    }
+
+    .announcement-bar-section > .utility-bar {
+      bottom: auto;
+      height: auto !important;
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: 101;
+    }
   }
 
   .announcement-bar-section + .section-header.shopify-section-group-header-group {
@@ -449,7 +467,8 @@
 
     const updateAnnouncementBarHeight = () => {
       const sectionElement = document.getElementById(sectionId);
-      const height = sectionElement ? sectionElement.offsetHeight : 0;
+      const barElement = sectionElement ? sectionElement.querySelector('.utility-bar') : null;
+      const height = barElement ? barElement.offsetHeight : 0;
       document.documentElement.style.setProperty('--announcement-bar-height', `${height}px`);
     };
 

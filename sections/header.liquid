@@ -1707,13 +1707,31 @@ body.desktop-search-open .desktop-search-panel {
   }
 
   .section-header {
-    position: sticky;
+    height: var(--header-height, auto);
+    position: relative;
+    z-index: 100;
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-header > .header-wrapper {
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: max(0px, calc(var(--announcement-bar-height, 0px) - 1px));
+    transition: top 180ms ease;
+    width: 100%;
+    z-index: 100;
   }
 
   @media screen and (min-width: 750px) {
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    html.announcement-bar-out-of-view .section-header > .header-wrapper {
+      top: 0;
     }
   }
 
@@ -1727,6 +1745,36 @@ body.desktop-search-open .desktop-search-panel {
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 
+<script>
+  (() => {
+    const mobileQuery = window.matchMedia('(max-width: 749px)');
+    let ticking = false;
+
+    const updateMobileHeaderOffset = () => {
+      const announcement = document.querySelector('.announcement-bar-section');
+      const isOutOfView = mobileQuery.matches && (!announcement || announcement.getBoundingClientRect().bottom <= 0);
+      document.documentElement.classList.toggle('announcement-bar-out-of-view', isOutOfView);
+      ticking = false;
+    };
+
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateMobileHeaderOffset);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateMobileHeaderOffset, { once: true });
+    } else {
+      updateMobileHeaderOffset();
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    mobileQuery.addEventListener?.('change', requestUpdate);
+  })();
+</script>
+
 {% assign has_app_block = false %}
 {% for block in section.blocks %}
   {% if block.type == '@app' %}
@@ -1734,7 +1782,7 @@ body.desktop-search-open .desktop-search-panel {
   {% endif %}
 {% endfor %}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+<sticky-header data-sticky-type="always" class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {% assign social_links = false %}
   {% assign localization_forms = false %}
 
@@ -2248,7 +2296,7 @@ body.desktop-search-open .desktop-search-panel {
   </a>
 </div>
   </header>
-</{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
+</sticky-header>
 
 {% if settings.cart_type == 'notification' %}
   {% render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop %}
@@ -2464,9 +2512,7 @@ body.desktop-search-open .desktop-search-panel {
 
     connectedCallback() {
       this.header = document.querySelector('.section-header');
-      this.headerIsAlwaysSticky =
-        this.getAttribute('data-sticky-type') === 'always' ||
-        this.getAttribute('data-sticky-type') === 'reduce-logo-size';
+      this.headerIsAlwaysSticky = true;
       this.headerBounds = {};
 
       this.setHeaderHeight();
@@ -2490,7 +2536,7 @@ body.desktop-search-open .desktop-search-panel {
     }
 
     setHeaderHeight() {
-      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
+      document.documentElement.style.setProperty('--header-height', `${this.offsetHeight}px`);
     }
 
     disconnectedCallback() {
