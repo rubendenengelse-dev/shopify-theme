@@ -5,3 +5,9 @@
 .related-products__heading {
   margin: 0 0 3rem;
 }
+
+@media screen and (min-width: 990px) {
+  .related-products {
+    margin-top: clamp(5rem, 6vw, 8rem);
+  }
+}

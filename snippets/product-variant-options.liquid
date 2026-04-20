@@ -22,7 +22,40 @@
 
 {%- for value in option.values -%}
   {%- liquid
+    assign normalized_color_value = value | downcase | strip
+    assign fallback_color = '#d8d8d8'
     assign swatch_focal_point = null
+
+    if normalized_color_value contains 'black' or normalized_color_value contains 'zwart'
+      assign fallback_color = '#111111'
+    elsif normalized_color_value contains 'white' or normalized_color_value contains 'wit'
+      assign fallback_color = '#ffffff'
+    elsif normalized_color_value contains 'grey' or normalized_color_value contains 'gray' or normalized_color_value contains 'grijs'
+      assign fallback_color = '#8f8f8f'
+    elsif normalized_color_value contains 'navy'
+      assign fallback_color = '#17233f'
+    elsif normalized_color_value contains 'blue' or normalized_color_value contains 'blauw'
+      assign fallback_color = '#2f5fa8'
+    elsif normalized_color_value contains 'red' or normalized_color_value contains 'rood'
+      assign fallback_color = '#b92b2b'
+    elsif normalized_color_value contains 'green' or normalized_color_value contains 'groen'
+      assign fallback_color = '#2f6f45'
+    elsif normalized_color_value contains 'brown' or normalized_color_value contains 'bruin'
+      assign fallback_color = '#6a4630'
+    elsif normalized_color_value contains 'beige'
+      assign fallback_color = '#d7c3a1'
+    elsif normalized_color_value contains 'cream' or normalized_color_value contains 'creme'
+      assign fallback_color = '#efe5cf'
+    elsif normalized_color_value contains 'pink' or normalized_color_value contains 'roze'
+      assign fallback_color = '#d98aa6'
+    elsif normalized_color_value contains 'purple' or normalized_color_value contains 'paars'
+      assign fallback_color = '#7552a8'
+    elsif normalized_color_value contains 'yellow' or normalized_color_value contains 'geel'
+      assign fallback_color = '#e3c84f'
+    elsif normalized_color_value contains 'orange' or normalized_color_value contains 'oranje'
+      assign fallback_color = '#d77a2d'
+    endif
+
     if value.swatch.image
       assign image_url = value.swatch.image | image_url: width: 50
       assign swatch_value = 'url(' | append: image_url | append: ')'
@@ -66,19 +99,45 @@
       {{ label_unavailable }}
     {%- endcapture -%}
 
-    {%
-      render 'swatch-input',
-      id: input_id,
-      name: input_name,
-      value: escaped_value,
-      swatch: value.swatch,
-      product_form_id: product_form_id,
-      checked: value.selected,
-      visually_disabled: option_disabled,
-      shape: block.settings.swatch_shape,
-      help_text: help_text,
-      additional_props: input_dataset
-    %}
+    {%- if swatch_value -%}
+      {%
+        render 'swatch-input',
+        id: input_id,
+        name: input_name,
+        value: escaped_value,
+        swatch: value.swatch,
+        product_form_id: product_form_id,
+        checked: value.selected,
+        visually_disabled: option_disabled,
+        shape: block.settings.swatch_shape,
+        help_text: help_text,
+        additional_props: input_dataset
+      %}
+    {%- else -%}
+      <input
+        type="radio"
+        id="{{ input_id }}"
+        name="{{ input_name | escape }}"
+        value="{{ escaped_value }}"
+        form="{{ product_form_id }}"
+        class="swatch-input__input{% if option_disabled %} visually-disabled{% endif %}"
+        {% if value.selected %}
+          checked
+        {% endif %}
+        {{ input_dataset }}
+      >
+      <label
+        for="{{ input_id }}"
+        title="{{ escaped_value }}"
+        class="swatch-input__label{% if block.settings.swatch_shape == 'square' %} swatch-input__label--square{% endif %}"
+      >
+        <span
+          class="swatch{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+          style="--swatch--background: {{ fallback_color }};"
+        ></span>
+        {{ help_text }}
+      </label>
+    {%- endif -%}
   {%- elsif picker_type == 'button' -%}
     <input
       type="radio"
@@ -96,6 +155,31 @@
     >
     <label for="{{ input_id }}">
       {{ value -}}
+      {{ label_unavailable }}
+    </label>
+  {%- elsif picker_type == 'color_button' -%}
+    <input
+      type="radio"
+      id="{{ input_id }}"
+      name="{{ input_name | escape }}"
+      value="{{ escaped_value }}"
+      form="{{ product_form_id }}"
+      {% if value.selected %}
+        checked
+      {% endif %}
+      {% if option_disabled %}
+        class="disabled"
+      {% endif %}
+      {{ input_dataset }}
+    >
+    <label
+      for="{{ input_id }}"
+      class="product-form__color-swatch-label"
+      title="{{ escaped_value }}"
+      style="--product-color-swatch: {{ fallback_color }};"
+    >
+      <span class="product-form__color-swatch" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ escaped_value }}</span>
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}

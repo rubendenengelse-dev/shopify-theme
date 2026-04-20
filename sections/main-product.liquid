@@ -43,10 +43,18 @@
         padding-top: 0;
       }
 
+      #MainProduct-{{ section.id }} .page-width,
+      #MainProduct-{{ section.id }} .product {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+
       #MainProduct-{{ section.id }} .product__media-wrapper {
         --product-gallery-left-offset: calc(((100vw - min(100vw, var(--page-width))) / 2) + 5rem);
+        --product-gallery-visual-lift: 3.4rem;
         align-self: flex-start;
-        height: calc(100vh - var(--header-height, 0px));
+        height: calc(100vh - var(--header-height, 0px) + var(--product-gallery-visual-lift));
+        margin-top: 0 !important;
         overflow: visible;
         position: sticky;
         top: var(--header-height, 0px);
@@ -56,12 +64,15 @@
       #MainProduct-{{ section.id }} .product-gallery-scroll {
         direction: rtl;
         display: block;
-        height: 100%;
+        height: calc(100% + var(--product-gallery-visual-lift));
         margin-left: calc(-1 * var(--product-gallery-left-offset));
+        margin-top: 0 !important;
         overflow-x: hidden;
         overflow-y: auto;
         overscroll-behavior: contain;
+        padding-top: 0 !important;
         scrollbar-width: none;
+        transform: translateY(calc(-1 * var(--product-gallery-visual-lift)));
         width: calc(100% + var(--product-gallery-left-offset));
       }
 
@@ -82,7 +93,139 @@
       #MainProduct-{{ section.id }} .product-gallery-scroll media-gallery {
         direction: ltr;
         display: block;
+        margin-top: 0 !important;
         min-height: 100%;
+        padding-top: 0 !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list,
+      #MainProduct-{{ section.id }} #GalleryViewer-{{ section.id }} {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links {
+        align-items: center;
+        direction: ltr;
+        display: flex !important;
+        font-family: var(--font-body-family);
+        font-size: 1.82rem;
+        font-style: var(--font-body-style);
+        font-weight: 420;
+        gap: clamp(1.65rem, 2.1vw, 3rem);
+        left: calc(-1 * var(--product-gallery-left-offset) + 2.4rem);
+        letter-spacing: 0;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0 0 3.2rem 0;
+        position: absolute;
+        text-transform: none;
+        top: calc(100% + clamp(2.4rem, 3vw, 4rem));
+        white-space: nowrap;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button {
+        appearance: none;
+        background: none;
+        border: 0;
+        color: rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+        font: inherit;
+        letter-spacing: inherit;
+        line-height: inherit;
+        padding: 0 0 0.45rem;
+        position: relative;
+        transition: color 180ms ease;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button::after {
+        background: currentColor;
+        bottom: 0;
+        content: '';
+        height: 0.14rem;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        transform: scaleX(0.65);
+        transform-origin: center;
+        transition: opacity 180ms ease, transform 180ms ease;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button.is-active {
+        color: #000;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button.is-active::after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-tab-content {
+        box-sizing: border-box;
+        direction: ltr;
+        display: block;
+        margin-left: calc(-1 * (((100vw - min(100vw, var(--page-width))) / 2) + 5rem) + 2.4rem);
+        margin-top: clamp(7rem, 8vw, 11rem);
+        max-width: min(92rem, calc(100vw - 4.8rem));
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-tab-panel[hidden] {
+        display: none !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-tab-text {
+        color: rgba(0, 0, 0, 0.72);
+        font-family: var(--font-body-family);
+        font-size: clamp(1.45rem, 1.05vw, 1.65rem);
+        font-style: var(--font-body-style);
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1.75;
+        margin: 0;
+        max-width: 74rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefits {
+        display: flex;
+        flex-direction: column;
+        gap: 1.55rem;
+        margin-top: 3.2rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit {
+        align-items: center;
+        color: rgba(0, 0, 0, 0.74);
+        display: flex;
+        font-family: var(--font-body-family);
+        font-size: 1.45rem;
+        font-style: var(--font-body-style);
+        font-weight: 430;
+        gap: 1.35rem;
+        letter-spacing: 0;
+        line-height: 1.35;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon {
+        align-items: center;
+        border: 0.1rem solid rgba(0, 0, 0, 0.14);
+        border-radius: 50%;
+        color: #000;
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 3.4rem;
+        justify-content: center;
+        width: 3.4rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon svg {
+        display: block;
+        height: 1.75rem;
+        width: 1.75rem;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-wrapper .slider-buttons {
+        display: none !important;
       }
 
       #MainProduct-{{ section.id }} .product-gallery-scroll-indicator {
@@ -181,18 +324,21 @@
         top: calc(var(--header-height, 0px) + clamp(3.6rem, 4.5vw, 6.8rem));
       }
 
-      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-child {
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-child,
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item--filtered-large {
         flex: 0 0 100% !important;
         max-width: 100% !important;
         order: 2;
         width: 100% !important;
       }
 
-      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-child .product-media-container {
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-child .product-media-container,
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item--filtered-large .product-media-container {
         width: 100% !important;
       }
 
-      #MainProduct-{{ section.id }} .product__media-list .product__media-item:not(:first-child) {
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:not(:first-child),
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item--filtered-small {
         order: 1;
       }
 
@@ -260,6 +406,19 @@
 
     .product-gallery-scroll-indicator {
       display: none;
+    }
+
+    .product-gallery-links {
+      display: none;
+    }
+
+    .product-gallery-tab-content {
+      display: none;
+    }
+
+    #MainProduct-{{ section.id }} .product__media-item.is-product-media-filtered,
+    #MainProduct-{{ section.id }} .thumbnail-list__item.is-product-media-filtered {
+      display: none !important;
     }
 
     #MainProduct-{{ section.id }} .product-form__submit {
@@ -570,7 +729,7 @@
 
       .product-info-drawer__panel {
         background: #fff;
-        bottom: 0 !important;
+        bottom: 1.1rem !important;
         box-shadow: none;
         box-sizing: border-box;
         max-width: 76rem;
@@ -958,15 +1117,20 @@
       }
 
       .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header {
-        border-bottom: 0;
-        padding-left: 5rem !important;
-        padding-top: 5rem !important;
+        align-items: flex-start;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+        justify-content: center;
+        padding-left: 4.8rem !important;
+        padding-right: 4.8rem !important;
+        padding-top: 0.6rem !important;
+        position: relative;
+        text-align: center;
       }
 
       .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header h2 {
         font-size: 2.35rem;
         font-weight: 650;
-        transform: translate(0, 1.5rem);
+        transform: none;
       }
 
       .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__body {
@@ -976,13 +1140,40 @@
 
       .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close {
         height: 3.8rem;
-        margin-right: 1rem;
+        margin-right: 0;
+        position: absolute;
+        right: 1.6rem;
+        top: -0.3rem;
         width: 3.8rem;
       }
 
       .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close svg {
         height: 1.7rem;
         width: 1.7rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-copy strong::before,
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-copy strong::after,
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-estimate::after,
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-free::after {
+        content: none !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-estimate,
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-free {
+        align-items: center;
+        display: flex;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-estimate::before,
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__delivery-free::before {
+        content: '\2022';
+        display: inline-block;
+        font-size: 1.55em;
+        font-weight: 700;
+        line-height: 0;
+        margin-right: 0.75rem;
+        transform: translateY(0.1rem);
       }
 
       #MainProduct-{{ section.id }} .product__info-container > .product__text:not(.product__title--body),
@@ -1100,6 +1291,11 @@
       <div class="grid__item product__media-wrapper">
         <div class="product-gallery-scroll">
           {% render 'product-media-gallery', variant_images: variant_images %}
+        </div>
+        <div class="product-gallery-links" aria-label="Productinformatie">
+          <button class="product-gallery-links__button is-active" type="button" aria-pressed="true" data-product-gallery-tab="designed-for">Ontworpen voor</button>
+          <button class="product-gallery-links__button" type="button" aria-pressed="false" data-product-gallery-tab="description">Productbeschrijving</button>
+          <button class="product-gallery-links__button" type="button" aria-pressed="false" data-product-gallery-tab="features">Functies</button>
         </div>
         <div class="product-gallery-scroll-indicator" aria-hidden="true">
           <span class="product-gallery-scroll-indicator__arrow">
@@ -1709,6 +1905,42 @@
         </section>
       </div>
     </div>
+    <div class="product-gallery-tab-content" data-product-gallery-tab-content>
+      <div class="product-gallery-tab-panel" data-product-gallery-tab-panel="designed-for">
+        <p class="product-gallery-tab-text">
+          Onze shirtjes worden gemaakt met zorg voor mens en milieu. Ze worden geproduceerd onder veilige en eerlijke arbeidsomstandigheden, waarbij een eerlijke prijs wordt betaald voor de kleding die we inkopen. De ontwerpen printen wij zelf hier in Apeldoorn, zodat we jullie duurzame en eerlijke kleding kunnen aanbieden voor een eerlijke prijs.
+        </p>
+        <div class="product-gallery-benefits" aria-label="Producteigenschappen">
+          <div class="product-gallery-benefit">
+            <span class="product-gallery-benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M12 2.8 14.2 7.1 19 7.5 16.1 11.4 17.2 16.1 12 14 6.8 16.1 7.9 11.4 5 7.5 9.8 7.1 12 2.8Z" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Goede kwaliteit</span>
+          </div>
+          <div class="product-gallery-benefit">
+            <span class="product-gallery-benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M6.3 13.1c0-5.5 5.1-8.8 11.7-8.7.1 6.8-3.2 11.9-8.8 11.9-1.1 0-2.1-.3-2.9-.9Z" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.4 19.6c2.6-5.1 6.4-7.5 11.2-9.5" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>100% biologisch katoen</span>
+          </div>
+          <div class="product-gallery-benefit">
+            <span class="product-gallery-benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M9.8 4.5 12 2.8l2.2 1.7M12 2.8v5.4M16.9 8.2l2.6.9-.5 2.7M19.5 9.1l-4.7 2.7M14.8 17.8l-2.2 1.7-2.2-1.7M12.6 19.5v-5.4M7.1 15.8l-2.6-.9.5-2.7M4.5 14.9l4.7-2.7" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>100% recyclebaar</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-gallery-tab-panel" data-product-gallery-tab-panel="description" hidden></div>
+      <div class="product-gallery-tab-panel" data-product-gallery-tab-panel="features" hidden></div>
+    </div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
 
@@ -1767,9 +1999,11 @@
       const viewer = root?.querySelector('#GalleryViewer-{{ section.id }}');
       const slider = root?.querySelector('#Slider-Gallery-{{ section.id }}');
       const dots = root?.querySelector('[data-product-gallery-dots]');
-      const dotItems = dots ? Array.from(dots.querySelectorAll('[data-product-gallery-dot]')) : [];
+      let dotItems = dots ? Array.from(dots.querySelectorAll('[data-product-gallery-dot]')) : [];
       const galleryScroll = root?.querySelector('.product-gallery-scroll');
       const galleryScrollIndicator = root?.querySelector('.product-gallery-scroll-indicator');
+      const galleryLinkButtons = root ? Array.from(root.querySelectorAll('.product-gallery-links__button')) : [];
+      const galleryTabPanels = root ? Array.from(root.querySelectorAll('[data-product-gallery-tab-panel]')) : [];
       const drawer = root?.querySelector('[data-product-info-drawer]');
       const productMediaModal = document.getElementById('ProductModal-{{ section.id }}');
       if (drawer && drawer.parentElement !== document.body) {
@@ -1782,6 +2016,29 @@
       const desktopDrawerMedia = window.matchMedia('(min-width: 750px)');
       const desktopGalleryZoomMedia = window.matchMedia('(min-width: 990px)');
       const mobileProductMedia = window.matchMedia('(max-width: 749px)');
+
+      const setGalleryProgressDotCount = (count) => {
+        if (!dots) return;
+        const track = dots.querySelector('.product-gallery-progress__track');
+        if (!track) return;
+        const normalizedCount = Math.max(count, 1);
+        const currentCount = track.querySelectorAll('[data-product-gallery-dot]').length;
+        if (currentCount === normalizedCount) return;
+
+        track.innerHTML = '';
+        for (let index = 0; index < normalizedCount; index += 1) {
+          const dot = document.createElement('span');
+          dot.className = 'product-gallery-progress__dot';
+          dot.dataset.productGalleryDot = '';
+          dot.style.setProperty('--dot-progress', index === 0 ? '1' : '0');
+          dot.style.setProperty('--dot-muted-opacity', index === 0 ? '0' : '1');
+          dot.style.setProperty('--dot-line-opacity', index === 0 ? '1' : '0');
+          dot.style.setProperty('--dot-active-width', '16.5px');
+          track.appendChild(dot);
+        }
+        dotItems = Array.from(track.querySelectorAll('[data-product-gallery-dot]'));
+        dots.style.setProperty('--media-count', String(normalizedCount));
+      };
 
       const closeInfoDrawer = () => {
         if (!drawer) return;
@@ -1890,29 +2147,54 @@
         syncMobileModalLock();
       }
 
+      let galleryScrollFrame = null;
+      const updateGalleryScrollIndicator = () => {
+        if (!galleryScroll || !galleryScrollIndicator) return;
+        galleryScrollFrame = null;
+        const maxScroll = galleryScroll.scrollHeight - galleryScroll.clientHeight;
+        const progress = maxScroll > 0 ? galleryScroll.scrollTop / maxScroll : 0;
+        galleryScrollIndicator.style.setProperty('--gallery-scroll-progress', Math.min(Math.max(progress, 0), 1).toFixed(4));
+      };
+
+      const requestGalleryScrollUpdate = () => {
+        if (!galleryScroll || !galleryScrollIndicator || galleryScrollFrame) return;
+        galleryScrollFrame = window.requestAnimationFrame(updateGalleryScrollIndicator);
+      };
+
       if (galleryScroll && galleryScrollIndicator) {
-        let galleryScrollFrame = null;
-
-        const updateGalleryScrollIndicator = () => {
-          galleryScrollFrame = null;
-          const maxScroll = galleryScroll.scrollHeight - galleryScroll.clientHeight;
-          const progress = maxScroll > 0 ? galleryScroll.scrollTop / maxScroll : 0;
-          galleryScrollIndicator.style.setProperty('--gallery-scroll-progress', Math.min(Math.max(progress, 0), 1).toFixed(4));
-        };
-
-        const requestGalleryScrollUpdate = () => {
-          if (galleryScrollFrame) return;
-          galleryScrollFrame = window.requestAnimationFrame(updateGalleryScrollIndicator);
-        };
-
         galleryScroll.addEventListener('scroll', requestGalleryScrollUpdate, { passive: true });
         window.addEventListener('resize', requestGalleryScrollUpdate);
         requestGalleryScrollUpdate();
       }
 
-      const topZoomItems = slider ? Array.from(slider.querySelectorAll('.product__media-item:not(:first-child)')).slice(0, 2) : [];
-      const largeZoomItem = slider?.querySelector('.product__media-item:first-child');
-      const clickZoomItems = largeZoomItem ? [...topZoomItems, largeZoomItem] : topZoomItems;
+      galleryLinkButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const selectedTab = button.dataset.productGalleryTab;
+          galleryLinkButtons.forEach((item) => {
+            const isActive = item === button;
+            item.classList.toggle('is-active', isActive);
+            item.setAttribute('aria-pressed', String(isActive));
+          });
+          galleryTabPanels.forEach((panel) => {
+            panel.hidden = panel.dataset.productGalleryTabPanel !== selectedTab;
+          });
+        });
+      });
+
+      const normalizeProductColor = (value = '') => {
+        const normalized = value.trim().toLowerCase();
+        if (normalized === 'zwart' || normalized === 'black') return 'black';
+        if (normalized === 'wit' || normalized === 'white') return 'white';
+        return normalized;
+      };
+
+      const getSelectedProductColor = () => {
+        const selectedColor = root?.querySelector('.product-form__input--color-option input[type="radio"]:checked');
+        return selectedColor ? normalizeProductColor(selectedColor.value) : '';
+      };
+
+      let clickZoomItems = [];
+      const clickZoomTeardowns = new WeakMap();
       const resetClickZoom = () => {
         clickZoomItems.forEach((item) => {
           item.classList.remove('is-click-zoomed');
@@ -1920,13 +2202,12 @@
         });
       };
 
-      largeZoomItem?.classList.add('product__media-item--click-zoom-large');
-
-      clickZoomItems.forEach((item) => {
-        item.classList.add('product__media-item--click-zoom');
+      const bindClickZoomItem = (item) => {
+        if (clickZoomTeardowns.has(item)) return;
         const opener = item.querySelector('.product__modal-opener--image');
         const toggle = item.querySelector('.product__media-toggle');
         const image = item.querySelector('.product__media img');
+        if (!opener || !image) return;
 
         const updateZoomOrigin = (event) => {
           if (!desktopGalleryZoomMedia.matches || !item.classList.contains('is-click-zoomed') || !image) return;
@@ -1955,18 +2236,137 @@
           updateZoomOrigin(event);
         };
 
-        opener?.addEventListener('click', handleClickZoom, true);
-        toggle?.addEventListener('click', handleClickZoom, true);
-        item.addEventListener('mousemove', updateZoomOrigin);
-        item.addEventListener('mouseleave', () => {
+        const handleMouseLeave = () => {
           item.classList.remove('is-click-zoomed');
           image?.style.removeProperty('transform-origin');
+        };
+
+        opener.addEventListener('click', handleClickZoom, true);
+        toggle?.addEventListener('click', handleClickZoom, true);
+        item.addEventListener('mousemove', updateZoomOrigin);
+        item.addEventListener('mouseleave', handleMouseLeave);
+
+        clickZoomTeardowns.set(item, () => {
+          opener.removeEventListener('click', handleClickZoom, true);
+          toggle?.removeEventListener('click', handleClickZoom, true);
+          item.removeEventListener('mousemove', updateZoomOrigin);
+          item.removeEventListener('mouseleave', handleMouseLeave);
         });
+      };
+
+      const syncGalleryZoomLayout = () => {
+        if (!slider) return;
+        const visibleItems = Array.from(slider.querySelectorAll('.product__media-item[data-media-id]')).filter(
+          (item) => !item.classList.contains('is-product-media-filtered')
+        );
+        const orderedVisibleItems = [...visibleItems].sort((a, b) => {
+          const viewWeight = (item) => {
+            if (item.dataset.productMediaView === 'front') return 0;
+            if (item.dataset.productMediaView === 'detail') return 1;
+            if (item.dataset.productMediaView === 'back') return 2;
+            return 1;
+          };
+          return viewWeight(a) - viewWeight(b);
+        });
+
+        slider.querySelectorAll('.product__media-item').forEach((item) => {
+          item.classList.remove(
+            'product__media-item--filtered-small',
+            'product__media-item--filtered-large',
+            'product__media-item--click-zoom',
+            'product__media-item--click-zoom-large'
+          );
+          item.classList.remove('is-click-zoomed');
+          item.querySelector('.product__media img')?.style.removeProperty('transform-origin');
+          item.style.removeProperty('order');
+        });
+
+        clickZoomItems = orderedVisibleItems.slice(0, 3);
+        clickZoomItems.forEach((item, index) => {
+          item.classList.add('product__media-item--click-zoom');
+          if (index < 2) {
+            item.classList.add('product__media-item--filtered-small');
+            item.style.order = String(index + 1);
+          } else {
+            item.classList.add('product__media-item--filtered-large', 'product__media-item--click-zoom-large');
+            item.style.order = '3';
+          }
+          bindClickZoomItem(item);
+        });
+
+        visibleItems.forEach((item, index) => {
+          if (!clickZoomItems.includes(item)) item.style.order = String(index + 4);
+        });
+      };
+
+      const syncGalleryToSelectedColor = () => {
+        if (!slider) return;
+        const selectedColor = getSelectedProductColor();
+        const mediaItems = Array.from(slider.querySelectorAll('.product__media-item[data-media-id]'));
+        if (!selectedColor || !mediaItems.length) return;
+
+        const mediaMatches = (item) => {
+          const colors = (item.dataset.productMediaColors || '')
+            .split(/\s+/)
+            .map(normalizeProductColor)
+            .filter(Boolean);
+          return colors.includes(selectedColor);
+        };
+
+        const hasMatchingMedia = mediaItems.some(mediaMatches);
+        if (!hasMatchingMedia) {
+          mediaItems.forEach((item) => item.classList.remove('is-product-media-filtered'));
+          setGalleryProgressDotCount(mediaItems.length);
+          syncGalleryZoomLayout();
+          return;
+        }
+
+        mediaItems.forEach((item) => {
+          item.classList.toggle('is-product-media-filtered', !mediaMatches(item));
+          item.classList.remove('is-active');
+        });
+
+        const visibleItems = mediaItems.filter((item) => !item.classList.contains('is-product-media-filtered'));
+        visibleItems[0]?.classList.add('is-active');
+        setGalleryProgressDotCount(visibleItems.length);
+
+        root?.querySelectorAll('.thumbnail-list__item[data-target]').forEach((thumbnail) => {
+          const target = thumbnail.dataset.target;
+          const mediaItem = mediaItems.find((item) => item.dataset.mediaId === target);
+          thumbnail.classList.toggle('is-product-media-filtered', Boolean(mediaItem?.classList.contains('is-product-media-filtered')));
+        });
+
+        syncGalleryZoomLayout();
+        if (galleryScroll) galleryScroll.scrollTop = 0;
+        if (slider) {
+          slider.scrollLeft = 0;
+          slider.scrollTo?.({ left: 0, behavior: 'instant' });
+        }
+        resetClickZoom();
+        requestGalleryScrollUpdate();
+        window.requestAnimationFrame(() => {
+          slider.dispatchEvent(new Event('scroll'));
+        });
+      };
+
+      const scheduleGalleryColorSync = () => {
+        syncGalleryToSelectedColor();
+        window.setTimeout(syncGalleryToSelectedColor, 120);
+        window.setTimeout(syncGalleryToSelectedColor, 420);
+        window.setTimeout(() => slider?.dispatchEvent(new Event('scroll')), 520);
+      };
+
+      root?.addEventListener('change', (event) => {
+        if (event.target?.matches('.product-form__input--color-option input[type="radio"]')) {
+          scheduleGalleryColorSync();
+        }
       });
 
       desktopGalleryZoomMedia.addEventListener?.('change', (event) => {
         if (!event.matches) resetClickZoom();
       });
+
+      scheduleGalleryColorSync();
 
       if (!viewer || !slider || !dots || !dotItems.length) return;
 
@@ -1974,10 +2374,12 @@
 
       const updateDots = () => {
         frame = null;
-        const slides = Array.from(slider.querySelectorAll('.product__media-item')).filter((slide) => slide.offsetWidth);
+        const slides = Array.from(slider.querySelectorAll('.product__media-item')).filter(
+          (slide) => !slide.classList.contains('is-product-media-filtered') && slide.getBoundingClientRect().width > 0
+        );
         if (slides.length < 2) return;
 
-        const slideDistance = slides[1].offsetLeft - slides[0].offsetLeft || slider.clientWidth;
+        const slideDistance = slider.clientWidth || slides[0].getBoundingClientRect().width || 1;
         const maxProgress = slides.length - 1;
         const progress = Math.min(Math.max(slider.scrollLeft / slideDistance, 0), maxProgress);
 

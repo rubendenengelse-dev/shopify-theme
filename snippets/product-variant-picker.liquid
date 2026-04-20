@@ -68,6 +68,86 @@
       box-shadow: inset 0 0 0 0.2rem rgba(255, 255, 255, 0.7), 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
     }
 
+    #variant-selects-{{ section.id }} .product-form__input--color-option {
+      align-items: flex-start;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--color-option .form__label {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+      width: 100%;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__color-value {
+      display: inline-block;
+      transform: translateX(0);
+    }
+
+    #variant-selects-{{ section.id }} .product-form__color-value[data-color-value='wit'],
+    #variant-selects-{{ section.id }} .product-form__color-value[data-color-value='white'] {
+      transform: translateX(6px);
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--color-option .swatch-input__input + .swatch-input__label,
+    #variant-selects-{{ section.id }} .product-form__input--color-option input[type='radio'] + .product-form__color-swatch-label {
+      --swatch-input--border-radius: 50%;
+      --swatch-input--size: 3.2rem;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.12);
+      border: 0;
+      border-radius: 50%;
+      box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.14), inset 0 0 0 0.1rem rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+      cursor: pointer;
+      display: inline-flex;
+      height: var(--swatch-input--size);
+      justify-content: center;
+      margin: 0;
+      outline: 0;
+      padding: 0.28rem;
+      position: relative;
+      transition: box-shadow 180ms ease, transform 180ms ease;
+      width: var(--swatch-input--size);
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--color-option .swatch,
+    #variant-selects-{{ section.id }} .product-form__color-swatch {
+      border-radius: 50%;
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
+    #variant-selects-{{ section.id }} .product-form__color-swatch {
+      background: var(--product-color-swatch, #d8d8d8);
+      border: 0.1rem solid rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 0 0 0.1rem rgba(0, 0, 0, 0.08);
+    }
+
+    #variant-selects-{{ section.id }} .product-form__color-swatch-label[style*='#ffffff'] .product-form__color-swatch,
+    #variant-selects-{{ section.id }} .swatch-input__label .swatch[style*='#ffffff'],
+    #variant-selects-{{ section.id }} .swatch-input__label .swatch[style*='255, 255, 255'] {
+      border-color: rgba(0, 0, 0, 0.32);
+      box-shadow: inset 0 0 0 0.1rem rgba(0, 0, 0, 0.12);
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--color-option .swatch-input__input:checked + .swatch-input__label,
+    #variant-selects-{{ section.id }} .product-form__input--color-option input[type='radio']:checked + .product-form__color-swatch-label {
+      box-shadow: 0 0 0 0.14rem #000, 0 0.45rem 1.15rem rgba(0, 0, 0, 0.18), inset 0 0 0 0.1rem rgba(0, 0, 0, 0.16);
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--color-option .swatch-input__input + .swatch-input__label:hover,
+    #variant-selects-{{ section.id }} .product-form__input--color-option input[type='radio'] + .product-form__color-swatch-label:hover {
+      box-shadow: 0 0 0 0.14rem rgba(0, 0, 0, 0.42), 0 0.45rem 1.15rem rgba(0, 0, 0, 0.18), inset 0 0 0 0.1rem rgba(0, 0, 0, 0.16);
+    }
+
+    #variant-selects-{{ section.id }} .product-form__input--color-option input[type='radio'] + .product-form__color-swatch-label::before {
+      content: none;
+    }
+
     @media screen and (max-width: 749px) {
       #variant-selects-{{ section.id }} .product-form__input {
         width: min(100% - 3.2rem, 40.8rem) !important;
@@ -103,6 +183,7 @@
         assign option_label = option.name
         assign normalized_option_name = option.name | downcase | strip
         assign is_size_option = false
+        assign is_color_option = false
 
         assign option_label_class = ''
         assign option_fieldset_class = ''
@@ -111,10 +192,16 @@
           assign is_size_option = true
         endif
 
+        if normalized_option_name == 'kleur' or normalized_option_name == 'color' or normalized_option_name == 'colour'
+          assign is_color_option = true
+        endif
+
         if is_size_option
           assign option_label = 'Selecteer een maat'
           assign option_label_class = ' product-form__option-label--soft'
           assign option_fieldset_class = ' product-form__input--size-pill'
+        elsif is_color_option
+          assign option_fieldset_class = ' product-form__input--color-option'
         endif
 
         if swatch_count > 0 and block.settings.swatch_shape != 'none'
@@ -123,15 +210,27 @@
           else
             assign picker_type = 'swatch'
           endif
+        elsif is_color_option and picker_type == 'button'
+          assign picker_type = 'color_button'
         endif
       -%}
       {%- if picker_type == 'swatch' -%}
-        <fieldset class="js product-form__input product-form__input--swatch">
+        <fieldset class="js product-form__input product-form__input--swatch{{ option_fieldset_class }}">
           <legend class="form__label{{ option_label_class }}">
-            {{ option_label }}:
-            <span data-selected-value>
-              {{- option.selected_value -}}
-            </span>
+            {%- if is_color_option -%}
+              <span
+                class="product-form__color-value"
+                data-selected-value
+                data-color-value="{{ option.selected_value | downcase | strip | escape }}"
+              >
+                {{- option.selected_value -}}
+              </span>
+            {%- else -%}
+              {{ option_label }}:
+              <span data-selected-value>
+                {{- option.selected_value -}}
+              </span>
+            {%- endif -%}
           </legend>
           {% render 'product-variant-options',
             product: product,
@@ -140,9 +239,21 @@
             picker_type: picker_type
           %}
         </fieldset>
-      {%- elsif picker_type == 'button' -%}
+      {%- elsif picker_type == 'button' or picker_type == 'color_button' -%}
         <fieldset class="js product-form__input product-form__input--pill{{ option_fieldset_class }}">
-          <legend class="form__label{{ option_label_class }}">{{ option_label }}</legend>
+          <legend class="form__label{{ option_label_class }}">
+            {%- if is_color_option -%}
+              <span
+                class="product-form__color-value"
+                data-selected-value
+                data-color-value="{{ option.selected_value | downcase | strip | escape }}"
+              >
+                {{- option.selected_value -}}
+              </span>
+            {%- else -%}
+              {{ option_label }}
+            {%- endif -%}
+          </legend>
           {%- if is_size_option -%}
             <div class="product-form__size-pill-options">
               {% render 'product-variant-options',
@@ -198,6 +309,42 @@
 
     <script type="application/json" data-selected-variant>
       {{ product.selected_or_first_available_variant | json }}
+    </script>
+
+    <script>
+      (() => {
+        const picker = document.getElementById('variant-selects-{{ section.id }}');
+        if (!picker) return;
+
+        const normalizeColorValue = (value) => value.trim().toLowerCase();
+        const colorFieldsets = picker.querySelectorAll('.product-form__input--color-option');
+
+        colorFieldsets.forEach((fieldset) => {
+          const valueLabel = fieldset.querySelector('[data-selected-value]');
+          if (!valueLabel) return;
+
+          const setValueLabel = (value) => {
+            valueLabel.textContent = value;
+            valueLabel.dataset.colorValue = normalizeColorValue(value);
+          };
+
+          const setCheckedValue = () => {
+            const checkedInput = fieldset.querySelector('input[type="radio"]:checked');
+            if (checkedInput) setValueLabel(checkedInput.value);
+          };
+
+          fieldset.querySelectorAll('input[type="radio"] + label').forEach((label) => {
+            const input = label.previousElementSibling;
+            if (!input || input.type !== 'radio') return;
+
+            label.addEventListener('mouseenter', () => setValueLabel(input.value));
+            label.addEventListener('mouseleave', setCheckedValue);
+            input.addEventListener('change', setCheckedValue);
+          });
+
+          setCheckedValue();
+        });
+      })();
     </script>
   </variant-selects>
 {%- endunless -%}

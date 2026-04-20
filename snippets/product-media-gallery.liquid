@@ -40,6 +40,14 @@
   elsif section.settings.media_size == 'small'
     assign media_width = 0.45
   endif
+
+  assign color_option_position = 0
+  for option_name in product.options
+    assign normalized_option_name = option_name | downcase | strip
+    if normalized_option_name == 'kleur' or normalized_option_name == 'color' or normalized_option_name == 'colour'
+      assign color_option_position = forloop.index
+    endif
+  endfor
 -%}
 
 <media-gallery
@@ -63,10 +71,57 @@
     >
       {%- if product.selected_or_first_available_variant.featured_media != null -%}
         {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+        {%- liquid
+          assign media_color_tokens = ''
+          assign media_text = featured_media.alt | append: ' ' | append: featured_media.preview_image.alt | append: ' ' | append: featured_media.preview_image.src | downcase
+
+          if media_text contains 'zwart' or media_text contains 'black'
+            assign media_color_tokens = media_color_tokens | append: ' black zwart'
+          endif
+
+          if media_text contains 'wit' or media_text contains 'white'
+            assign media_color_tokens = media_color_tokens | append: ' white wit'
+          endif
+
+          assign media_view = ''
+          if media_text contains 'achterkant' or media_text contains 'back'
+            assign media_view = 'back'
+          elsif media_text contains 'voorkant' or media_text contains 'front'
+            assign media_view = 'front'
+          elsif media_text contains 'detail'
+            assign media_view = 'detail'
+          endif
+
+          if color_option_position > 0
+            for variant in product.variants
+              if variant.featured_media.id == featured_media.id
+                case color_option_position
+                  when 1
+                    assign variant_color_value = variant.option1
+                  when 2
+                    assign variant_color_value = variant.option2
+                  when 3
+                    assign variant_color_value = variant.option3
+                endcase
+
+                assign normalized_variant_color = variant_color_value | downcase | strip
+                if normalized_variant_color == 'zwart' or normalized_variant_color == 'black'
+                  assign media_color_tokens = media_color_tokens | append: ' black zwart'
+                elsif normalized_variant_color == 'wit' or normalized_variant_color == 'white'
+                  assign media_color_tokens = media_color_tokens | append: ' white wit'
+                else
+                  assign media_color_tokens = media_color_tokens | append: ' ' | append: normalized_variant_color
+                endif
+              endif
+            endfor
+          endif
+        -%}
         <li
           id="Slide-{{ section.id }}-{{ featured_media.id }}"
           class="product__media-item grid__item slider__slide is-active{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           data-media-id="{{ section.id }}-{{ featured_media.id }}"
+          data-product-media-colors="{{ media_color_tokens | split: ' ' | uniq | join: ' ' | strip | escape }}"
+          data-product-media-view="{{ media_view }}"
         >
           {%- assign media_position = 1 -%}
           {% render 'product-thumbnail',
@@ -95,10 +150,57 @@
         {% endif %}
 
         {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+          {%- liquid
+            assign media_color_tokens = ''
+            assign media_text = media.alt | append: ' ' | append: media.preview_image.alt | append: ' ' | append: media.preview_image.src | downcase
+
+            if media_text contains 'zwart' or media_text contains 'black'
+              assign media_color_tokens = media_color_tokens | append: ' black zwart'
+            endif
+
+            if media_text contains 'wit' or media_text contains 'white'
+              assign media_color_tokens = media_color_tokens | append: ' white wit'
+            endif
+
+            assign media_view = ''
+            if media_text contains 'achterkant' or media_text contains 'back'
+              assign media_view = 'back'
+            elsif media_text contains 'voorkant' or media_text contains 'front'
+              assign media_view = 'front'
+            elsif media_text contains 'detail'
+              assign media_view = 'detail'
+            endif
+
+            if color_option_position > 0
+              for variant in product.variants
+                if variant.featured_media.id == media.id
+                  case color_option_position
+                    when 1
+                      assign variant_color_value = variant.option1
+                    when 2
+                      assign variant_color_value = variant.option2
+                    when 3
+                      assign variant_color_value = variant.option3
+                  endcase
+
+                  assign normalized_variant_color = variant_color_value | downcase | strip
+                  if normalized_variant_color == 'zwart' or normalized_variant_color == 'black'
+                    assign media_color_tokens = media_color_tokens | append: ' black zwart'
+                  elsif normalized_variant_color == 'wit' or normalized_variant_color == 'white'
+                    assign media_color_tokens = media_color_tokens | append: ' white wit'
+                  else
+                    assign media_color_tokens = media_color_tokens | append: ' ' | append: normalized_variant_color
+                  endif
+                endif
+              endfor
+            endif
+          -%}
           <li
             id="Slide-{{ section.id }}-{{ media.id }}"
             class="product__media-item grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             data-media-id="{{ section.id }}-{{ media.id }}"
+            data-product-media-colors="{{ media_color_tokens | split: ' ' | uniq | join: ' ' | strip | escape }}"
+            data-product-media-view="{{ media_view }}"
           >
             {%- liquid
               assign media_position = media_position | default: 0 | plus: 1
