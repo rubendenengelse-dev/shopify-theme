@@ -38,6 +38,205 @@
       }
     }
 
+    @media screen and (min-width: 990px) {
+      #MainProduct-{{ section.id }}.section-{{ section.id }}-padding {
+        padding-top: 0;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-wrapper {
+        --product-gallery-left-offset: calc(((100vw - min(100vw, var(--page-width))) / 2) + 5rem);
+        align-self: flex-start;
+        height: calc(100vh - var(--header-height, 0px));
+        overflow: visible;
+        position: sticky;
+        top: var(--header-height, 0px);
+        transform: none;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll {
+        direction: rtl;
+        display: block;
+        height: 100%;
+        margin-left: calc(-1 * var(--product-gallery-left-offset));
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
+        width: calc(100% + var(--product-gallery-left-offset));
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll::-webkit-scrollbar {
+        height: 0;
+        width: 0;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.32);
+        border-radius: 999px;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll media-gallery {
+        direction: ltr;
+        display: block;
+        min-height: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator {
+        --gallery-scroll-progress: 0;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.68);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        justify-content: center;
+        left: calc(-1 * var(--product-gallery-left-offset) + 3rem);
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3.6rem;
+        z-index: 2;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator svg {
+        display: block;
+        height: 1.15rem;
+        width: 1.15rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator__arrow,
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator__track {
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 0.6rem 1.8rem rgba(0, 0, 0, 0.1);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator__arrow {
+        align-items: center;
+        border-radius: 50%;
+        display: flex;
+        height: 3.6rem;
+        justify-content: center;
+        width: 3.6rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator__track {
+        align-items: center;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 999px;
+        display: flex;
+        height: 14rem;
+        justify-content: center;
+        overflow: visible;
+        padding: 1.55rem 0;
+        position: relative;
+        width: 3.6rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator__track::before {
+        background: rgba(0, 0, 0, 0.18);
+        border-radius: 999px;
+        content: '';
+        height: 10.9rem;
+        width: 0.5rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-scroll-indicator__thumb {
+        background: rgba(0, 0, 0, 0.72);
+        border-radius: 999px;
+        height: 1.65rem;
+        left: 50%;
+        position: absolute;
+        top: calc(1.55rem + (10.9rem - 1.65rem) * var(--gallery-scroll-progress));
+        transform: translateX(-50%);
+        transition: top 80ms linear;
+        width: 0.5rem;
+      }
+
+      #MainProduct-{{ section.id }} .product__info-wrapper {
+        left: clamp(20rem, 22vw, 37rem);
+        position: relative;
+        transform: none !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__info-container {
+        padding-top: clamp(3.6rem, 4.5vw, 6.8rem);
+      }
+
+      #MainProduct-{{ section.id }} .product__title--body {
+        max-width: 44rem;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product__title--body h1 {
+        font-size: clamp(1.75rem, 1.25vw, 2.15rem);
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      #MainProduct-{{ section.id }} .product__column-sticky {
+        top: calc(var(--header-height, 0px) + clamp(3.6rem, 4.5vw, 6.8rem));
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-child {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        order: 2;
+        width: 100% !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:first-child .product-media-container {
+        width: 100% !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item:not(:first-child) {
+        order: 1;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom .product__modal-opener--image,
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom .product__media {
+        overflow: hidden;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom .product__media img {
+        transform-origin: center center;
+        transition: transform 240ms ease, transform-origin 80ms linear;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom.is-click-zoomed .product__media img {
+        transform: scale(1.5);
+      }
+
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom-large.is-click-zoomed .product__media img {
+        transform: scale(1.25);
+      }
+
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom.is-click-zoomed .product-media-container.media-type-image,
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom.is-click-zoomed .product__modal-opener--image,
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom.is-click-zoomed .product__modal-opener--image .product__media,
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom.is-click-zoomed .product__modal-opener--image .product__media img,
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom.is-click-zoomed .product__modal-opener--image .product__media-toggle,
+      #MainProduct-{{ section.id }} .product__media-item--click-zoom.is-click-zoomed .product__modal-opener--image .product__media-toggle::after {
+        cursor: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='17' fill='white' fill-opacity='0.94'/%3E%3Cpath d='M12.5 20h15' stroke='%23363636' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") 20 20, zoom-out !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-media-container.media-type-image,
+      #MainProduct-{{ section.id }} .product__modal-opener--image,
+      #MainProduct-{{ section.id }} .product__modal-opener--image .product__media,
+      #MainProduct-{{ section.id }} .product__modal-opener--image .product__media img,
+      #MainProduct-{{ section.id }} .product__modal-opener--image .product__media-toggle,
+      #MainProduct-{{ section.id }} .product__modal-opener--image .product__media-toggle::after {
+        cursor: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='17' fill='white' fill-opacity='0.94'/%3E%3Cpath d='M20 12.5v15M12.5 20h15' stroke='%23363636' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") 20 20, zoom-in !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-icon {
+        display: none !important;
+      }
+    }
+
     .product__title--body h1 {
       color: #000;
       font: inherit;
@@ -56,6 +255,10 @@
     }
 
     .product-gallery-progress {
+      display: none;
+    }
+
+    .product-gallery-scroll-indicator {
       display: none;
     }
 
@@ -279,6 +482,54 @@
         padding-top: 2rem;
       }
 
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header {
+        border-bottom: 0;
+        padding-left: 8.6rem !important;
+        padding-top: 7.4rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header h2 {
+        font-size: clamp(2.4rem, 2.3vw, 3.2rem);
+        font-weight: 650;
+        transform: translate(0, 2rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__body {
+        padding-left: 8.6rem !important;
+        padding-top: 9.2rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close {
+        height: 4rem;
+        margin-right: 2.4rem;
+        width: 4rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close svg {
+        height: 1.8rem;
+        width: 1.8rem;
+      }
+
+      .product-info-drawer__delivery-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .product-info-drawer__delivery-estimate::before,
+      .product-info-drawer__delivery-free::before {
+        content: '\2022';
+        display: inline-block;
+        font-size: 1.35em;
+        line-height: 0;
+        margin-right: 0.7rem;
+        transform: translateY(0.08rem);
+      }
+
+      .product-info-drawer__delivery-free {
+        display: block;
+      }
+
       .product-info-drawer {
         bottom: 0 !important;
         display: block;
@@ -378,6 +629,54 @@
       .product-info-drawer__body {
         min-height: 18rem;
         padding-top: 2rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header {
+        border-bottom: 0;
+        padding-left: 8.6rem !important;
+        padding-top: 7.4rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header h2 {
+        font-size: clamp(2.4rem, 2.3vw, 3.2rem);
+        font-weight: 650;
+        transform: translate(0, 2rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__body {
+        padding-left: 8.6rem !important;
+        padding-top: 9.2rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close {
+        height: 4rem;
+        margin-right: 2.4rem;
+        width: 4rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close svg {
+        height: 1.8rem;
+        width: 1.8rem;
+      }
+
+      .product-info-drawer__delivery-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .product-info-drawer__delivery-estimate::before,
+      .product-info-drawer__delivery-free::before {
+        content: '\2022';
+        display: inline-block;
+        font-size: 1.35em;
+        line-height: 0;
+        margin-right: 0.7rem;
+        transform: translateY(0.08rem);
+      }
+
+      .product-info-drawer__delivery-free {
+        display: block;
       }
     }
 
@@ -479,6 +778,68 @@
 
       #MainProduct-{{ section.id }} #GalleryViewer-{{ section.id }} > .slider-buttons {
         display: none !important;
+      }
+
+      #ProductModal-{{ section.id }} .product-media-modal__content {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        overflow: hidden !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        touch-action: none;
+      }
+
+      #ProductModal-{{ section.id }} .product-media-modal__content > *,
+      #ProductModal-{{ section.id }} .product-media-modal__content > img.active {
+        flex: 0 0 auto;
+        max-width: none !important;
+        width: 146vw !important;
+      }
+
+      #ProductModal-{{ section.id }} .product-media-modal__content img,
+      #ProductModal-{{ section.id }} .product-media-modal__content > img.active {
+        height: auto;
+        max-height: none !important;
+        object-fit: contain !important;
+        touch-action: none;
+        user-select: none;
+        will-change: transform;
+        -webkit-user-drag: none;
+      }
+
+      #ProductModal-{{ section.id }} .product-media-modal__dialog,
+      #ProductModal-{{ section.id }}[open] {
+        overflow: hidden !important;
+        touch-action: none;
+      }
+
+      html.product-media-modal-pan-open,
+      html.product-media-modal-pan-open body {
+        overflow: hidden !important;
+        overscroll-behavior: none;
+        touch-action: none;
+      }
+
+      #ProductModal-{{ section.id }},
+      #ProductModal-{{ section.id }} *,
+      #ProductModal-{{ section.id }} .product-media-modal__toggle,
+      #ProductModal-{{ section.id }} .product-media-modal__toggle * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      #ProductModal-{{ section.id }} .product-media-modal__toggle {
+        box-shadow: none !important;
+        outline: 0 !important;
+      }
+
+      #ProductModal-{{ section.id }} .product-media-modal__toggle::after,
+      #ProductModal-{{ section.id }} .product-media-modal__toggle:focus,
+      #ProductModal-{{ section.id }} .product-media-modal__toggle:focus-visible,
+      #ProductModal-{{ section.id }} .product-media-modal__toggle.focused,
+      #ProductModal-{{ section.id }} .product-media-modal__toggle.focused::after {
+        box-shadow: none !important;
+        outline: 0 !important;
       }
 
       #MainProduct-{{ section.id }} .product-form__input--size-pill,
@@ -596,6 +957,34 @@
         padding-top: 1.8rem;
       }
 
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header {
+        border-bottom: 0;
+        padding-left: 5rem !important;
+        padding-top: 5rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__header h2 {
+        font-size: 2.35rem;
+        font-weight: 650;
+        transform: translate(0, 1.5rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__body {
+        padding-left: 5rem !important;
+        padding-top: 7.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close {
+        height: 3.8rem;
+        margin-right: 1rem;
+        width: 3.8rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='LEVERING'] .product-info-drawer__close svg {
+        height: 1.7rem;
+        width: 1.7rem;
+      }
+
       #MainProduct-{{ section.id }} .product__info-container > .product__text:not(.product__title--body),
       #MainProduct-{{ section.id }} .product__title--body,
       #MainProduct-{{ section.id }} #price-{{ section.id }},
@@ -709,7 +1098,24 @@
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
-        {% render 'product-media-gallery', variant_images: variant_images %}
+        <div class="product-gallery-scroll">
+          {% render 'product-media-gallery', variant_images: variant_images %}
+        </div>
+        <div class="product-gallery-scroll-indicator" aria-hidden="true">
+          <span class="product-gallery-scroll-indicator__arrow">
+            <svg viewBox="0 0 12 12" focusable="false">
+              <path d="M2.2 7.3 6 3.7l3.8 3.6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div class="product-gallery-scroll-indicator__track">
+            <span class="product-gallery-scroll-indicator__thumb"></span>
+          </div>
+          <span class="product-gallery-scroll-indicator__arrow">
+            <svg viewBox="0 0 12 12" focusable="false">
+              <path d="M2.2 4.7 6 8.3l3.8-3.6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
@@ -723,11 +1129,12 @@
               {%- when '@app' -%}
                 {% render block %}
               {%- when 'text' -%}
+                {%- assign product_text = block.settings.text | replace: '-', ' ' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
                 >
-                  {{- block.settings.text -}}
+                  {{- product_text -}}
                 </p>
               {%- when 'title' -%}
                 <div class="product__title product__title--body product__text inline-richtext" {{ block.shopify_attributes }}>
@@ -1361,25 +1768,34 @@
       const slider = root?.querySelector('#Slider-Gallery-{{ section.id }}');
       const dots = root?.querySelector('[data-product-gallery-dots]');
       const dotItems = dots ? Array.from(dots.querySelectorAll('[data-product-gallery-dot]')) : [];
+      const galleryScroll = root?.querySelector('.product-gallery-scroll');
+      const galleryScrollIndicator = root?.querySelector('.product-gallery-scroll-indicator');
       const drawer = root?.querySelector('[data-product-info-drawer]');
+      const productMediaModal = document.getElementById('ProductModal-{{ section.id }}');
       if (drawer && drawer.parentElement !== document.body) {
         document.body.appendChild(drawer);
       }
       const drawerTitle = drawer?.querySelector('[data-product-info-drawer-title]');
+      const drawerBody = drawer?.querySelector('[data-product-info-drawer-body]');
       const drawerTriggers = root ? Array.from(root.querySelectorAll('[data-product-info-drawer-trigger]')) : [];
       const drawerCloseButtons = drawer ? Array.from(drawer.querySelectorAll('[data-product-info-drawer-close]')) : [];
       const desktopDrawerMedia = window.matchMedia('(min-width: 750px)');
+      const desktopGalleryZoomMedia = window.matchMedia('(min-width: 990px)');
+      const mobileProductMedia = window.matchMedia('(max-width: 749px)');
 
       const closeInfoDrawer = () => {
         if (!drawer) return;
         drawer.classList.remove('is-open');
         drawer.setAttribute('aria-hidden', 'true');
+        drawer.removeAttribute('data-product-info-drawer-active-title');
         document.documentElement.classList.remove('product-info-drawer-open');
       };
 
-      const openInfoDrawer = (title) => {
+      const openInfoDrawer = (title, content = '') => {
         if (!drawer) return;
         if (drawerTitle) drawerTitle.textContent = title;
+        if (drawerBody) drawerBody.innerHTML = content;
+        drawer.setAttribute('data-product-info-drawer-active-title', title);
         drawer.classList.add('is-open');
         drawer.setAttribute('aria-hidden', 'false');
         document.documentElement.classList.add('product-info-drawer-open');
@@ -1387,7 +1803,8 @@
 
       drawerTriggers.forEach((trigger) => {
         trigger.addEventListener('click', () => {
-          openInfoDrawer(trigger.dataset.productInfoDrawerTitle || '');
+          const content = trigger.querySelector('[data-product-info-drawer-content]')?.innerHTML || '';
+          openInfoDrawer(trigger.dataset.productInfoDrawerTitle || '', content);
         });
       });
 
@@ -1401,6 +1818,154 @@
 
       desktopDrawerMedia.addEventListener?.('change', (event) => {
         if (!event.matches) closeInfoDrawer();
+      });
+
+      const mobileMediaOpeners = root ? Array.from(root.querySelectorAll('.product__modal-opener--image')) : [];
+      mobileMediaOpeners.forEach((opener) => {
+        const button = opener.querySelector('.product__media-toggle');
+        if (!button) return;
+
+        opener.addEventListener('click', (event) => {
+          if (!mobileProductMedia.matches || event.target.closest('.product__media-toggle')) return;
+          event.preventDefault();
+          event.stopPropagation();
+          button.click();
+        });
+      });
+
+      if (productMediaModal) {
+        const modalContent = productMediaModal.querySelector('.product-media-modal__content');
+        let isPanningProductMedia = false;
+        let panStartX = 0;
+        let panStartY = 0;
+        let panX = 0;
+        let panY = 0;
+
+        const getActiveModalImage = () => productMediaModal.querySelector('.product-media-modal__content > img.active');
+
+        const resetMobileModalPan = () => {
+          isPanningProductMedia = false;
+          panX = 0;
+          panY = 0;
+          getActiveModalImage()?.style.removeProperty('transform');
+        };
+
+        const syncMobileModalLock = () => {
+          const shouldLock = mobileProductMedia.matches && productMediaModal.hasAttribute('open');
+          document.documentElement.classList.toggle('product-media-modal-pan-open', shouldLock);
+          if (!shouldLock) resetMobileModalPan();
+        };
+
+        const modalObserver = new MutationObserver(syncMobileModalLock);
+        modalObserver.observe(productMediaModal, { attributes: true, attributeFilter: ['open'] });
+        mobileProductMedia.addEventListener?.('change', syncMobileModalLock);
+
+        const startMobileModalPan = (event) => {
+          if (!mobileProductMedia.matches || !productMediaModal.hasAttribute('open') || event.touches.length !== 1) return;
+          const image = getActiveModalImage();
+          if (!image) return;
+          isPanningProductMedia = true;
+          panStartX = event.touches[0].clientX - panX;
+          panStartY = event.touches[0].clientY - panY;
+        };
+
+        const moveMobileModalPan = (event) => {
+          if (!isPanningProductMedia || !mobileProductMedia.matches || event.touches.length !== 1) return;
+          const image = getActiveModalImage();
+          if (!image) return;
+          event.preventDefault();
+          panX = event.touches[0].clientX - panStartX;
+          panY = event.touches[0].clientY - panStartY;
+          image.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0)`;
+        };
+
+        const stopMobileModalPan = () => {
+          isPanningProductMedia = false;
+        };
+
+        modalContent?.addEventListener('touchstart', startMobileModalPan, { passive: true });
+        modalContent?.addEventListener('touchmove', moveMobileModalPan, { passive: false });
+        modalContent?.addEventListener('touchend', stopMobileModalPan);
+        modalContent?.addEventListener('touchcancel', stopMobileModalPan);
+        syncMobileModalLock();
+      }
+
+      if (galleryScroll && galleryScrollIndicator) {
+        let galleryScrollFrame = null;
+
+        const updateGalleryScrollIndicator = () => {
+          galleryScrollFrame = null;
+          const maxScroll = galleryScroll.scrollHeight - galleryScroll.clientHeight;
+          const progress = maxScroll > 0 ? galleryScroll.scrollTop / maxScroll : 0;
+          galleryScrollIndicator.style.setProperty('--gallery-scroll-progress', Math.min(Math.max(progress, 0), 1).toFixed(4));
+        };
+
+        const requestGalleryScrollUpdate = () => {
+          if (galleryScrollFrame) return;
+          galleryScrollFrame = window.requestAnimationFrame(updateGalleryScrollIndicator);
+        };
+
+        galleryScroll.addEventListener('scroll', requestGalleryScrollUpdate, { passive: true });
+        window.addEventListener('resize', requestGalleryScrollUpdate);
+        requestGalleryScrollUpdate();
+      }
+
+      const topZoomItems = slider ? Array.from(slider.querySelectorAll('.product__media-item:not(:first-child)')).slice(0, 2) : [];
+      const largeZoomItem = slider?.querySelector('.product__media-item:first-child');
+      const clickZoomItems = largeZoomItem ? [...topZoomItems, largeZoomItem] : topZoomItems;
+      const resetClickZoom = () => {
+        clickZoomItems.forEach((item) => {
+          item.classList.remove('is-click-zoomed');
+          item.querySelector('.product__media img')?.style.removeProperty('transform-origin');
+        });
+      };
+
+      largeZoomItem?.classList.add('product__media-item--click-zoom-large');
+
+      clickZoomItems.forEach((item) => {
+        item.classList.add('product__media-item--click-zoom');
+        const opener = item.querySelector('.product__modal-opener--image');
+        const toggle = item.querySelector('.product__media-toggle');
+        const image = item.querySelector('.product__media img');
+
+        const updateZoomOrigin = (event) => {
+          if (!desktopGalleryZoomMedia.matches || !item.classList.contains('is-click-zoomed') || !image) return;
+          const bounds = item.getBoundingClientRect();
+          const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+          const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+          image.style.transformOrigin = `${Math.min(Math.max(x, 0), 100).toFixed(2)}% ${Math.min(Math.max(y, 0), 100).toFixed(2)}%`;
+        };
+
+        const handleClickZoom = (event) => {
+          if (!desktopGalleryZoomMedia.matches) return;
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation?.();
+          clickZoomItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('is-click-zoomed');
+              otherItem.querySelector('.product__media img')?.style.removeProperty('transform-origin');
+            }
+          });
+          item.classList.toggle('is-click-zoomed');
+          if (!item.classList.contains('is-click-zoomed')) {
+            image?.style.removeProperty('transform-origin');
+            return;
+          }
+          updateZoomOrigin(event);
+        };
+
+        opener?.addEventListener('click', handleClickZoom, true);
+        toggle?.addEventListener('click', handleClickZoom, true);
+        item.addEventListener('mousemove', updateZoomOrigin);
+        item.addEventListener('mouseleave', () => {
+          item.classList.remove('is-click-zoomed');
+          image?.style.removeProperty('transform-origin');
+        });
+      });
+
+      desktopGalleryZoomMedia.addEventListener?.('change', (event) => {
+        if (!event.matches) resetClickZoom();
       });
 
       if (!viewer || !slider || !dots || !dotItems.length) return;
