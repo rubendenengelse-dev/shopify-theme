@@ -24,6 +24,12 @@
       }
     {% endif %}
   }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }}-padding .slider-buttons {
+      display: none !important;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid

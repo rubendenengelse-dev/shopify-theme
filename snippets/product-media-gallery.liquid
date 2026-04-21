@@ -84,9 +84,9 @@
           endif
 
           assign media_view = ''
-          if media_text contains 'achterkant' or media_text contains 'back'
+          if media_text contains 'achterkant' or media_text contains 'achterzijde' or media_text contains 'achter' or media_text contains 'rug' or media_text contains 'backside' or media_text contains 'back'
             assign media_view = 'back'
-          elsif media_text contains 'voorkant' or media_text contains 'front'
+          elsif media_text contains 'voorkant' or media_text contains 'voorzijde' or media_text contains 'voor' or media_text contains 'front'
             assign media_view = 'front'
           elsif media_text contains 'detail'
             assign media_view = 'detail'
@@ -163,9 +163,9 @@
             endif
 
             assign media_view = ''
-            if media_text contains 'achterkant' or media_text contains 'back'
+            if media_text contains 'achterkant' or media_text contains 'achterzijde' or media_text contains 'achter' or media_text contains 'rug' or media_text contains 'backside' or media_text contains 'back'
               assign media_view = 'back'
-            elsif media_text contains 'voorkant' or media_text contains 'front'
+            elsif media_text contains 'voorkant' or media_text contains 'voorzijde' or media_text contains 'voor' or media_text contains 'front'
               assign media_view = 'front'
             elsif media_text contains 'detail'
               assign media_view = 'detail'

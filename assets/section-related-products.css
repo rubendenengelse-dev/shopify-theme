@@ -3,11 +3,35 @@
 }
 
 .related-products__heading {
-  margin: 0 0 3rem;
+  color: #000;
+  font-family: var(--font-body-family);
+  font-size: 1.9rem;
+  font-style: var(--font-body-style);
+  font-weight: 620;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  margin: 0 0 3.8rem;
+  text-transform: uppercase;
 }
 
 @media screen and (min-width: 990px) {
   .related-products {
+    max-width: min(100vw, 178rem);
     margin-top: clamp(5rem, 6vw, 8rem);
+    margin-bottom: clamp(6rem, 7vw, 11rem);
+    padding-left: clamp(2.4rem, 3.5vw, 6rem);
+    padding-right: clamp(2.4rem, 3.5vw, 6rem);
+  }
+
+  .related-products .product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: clamp(1.6rem, 1.6vw, 2.8rem);
+    row-gap: 4.2rem;
+  }
+
+  .related-products .product-grid .grid__item {
+    max-width: none;
+    width: 100%;
   }
 }

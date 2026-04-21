@@ -109,17 +109,17 @@
         direction: ltr;
         display: flex !important;
         font-family: var(--font-body-family);
-        font-size: 1.82rem;
+        font-size: 1.52rem;
         font-style: var(--font-body-style);
-        font-weight: 420;
+        font-weight: 620;
         gap: clamp(1.65rem, 2.1vw, 3rem);
         left: calc(-1 * var(--product-gallery-left-offset) + 2.4rem);
-        letter-spacing: 0;
+        letter-spacing: 0.16em;
         line-height: 1.2;
         margin: 0;
         padding: 0 0 3.2rem 0;
         position: absolute;
-        text-transform: none;
+        text-transform: uppercase;
         top: calc(100% + clamp(2.4rem, 3vw, 4rem));
         white-space: nowrap;
       }
@@ -156,6 +156,10 @@
         color: #000;
       }
 
+      #MainProduct-{{ section.id }} .product-gallery-links__button:hover {
+        color: #000;
+      }
+
       #MainProduct-{{ section.id }} .product-gallery-links__button.is-active::after {
         opacity: 1;
         transform: scaleX(1);
@@ -175,15 +179,50 @@
       }
 
       #MainProduct-{{ section.id }} .product-gallery-tab-text {
-        color: rgba(0, 0, 0, 0.72);
+        color: rgba(0, 0, 0, 0.76);
         font-family: var(--font-body-family);
-        font-size: clamp(1.45rem, 1.05vw, 1.65rem);
+        font-size: clamp(1.55rem, 1.08vw, 1.75rem);
         font-style: var(--font-body-style);
-        font-weight: 400;
+        font-weight: 440;
         letter-spacing: 0;
-        line-height: 1.75;
+        line-height: 1.68;
         margin: 0;
         max-width: 74rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-description {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2rem;
+        max-width: 74rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-description__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-description__heading {
+        color: #000;
+        font-family: var(--font-body-family);
+        font-size: 1.38rem;
+        font-style: var(--font-body-style);
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1.2;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-description__text {
+        color: rgba(0, 0, 0, 0.68);
+        font-family: var(--font-body-family);
+        font-size: 1.42rem;
+        font-weight: 360;
+        letter-spacing: 0;
+        line-height: 1.55;
+        margin: 0;
       }
 
       #MainProduct-{{ section.id }} .product-gallery-benefits {
@@ -194,7 +233,7 @@
       }
 
       #MainProduct-{{ section.id }} .product-gallery-benefit {
-        align-items: center;
+        align-items: flex-start;
         color: rgba(0, 0, 0, 0.74);
         display: flex;
         font-family: var(--font-body-family);
@@ -206,22 +245,52 @@
         line-height: 1.35;
       }
 
+      #MainProduct-{{ section.id }} .product-gallery-benefit__content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        padding-top: 0.2rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__title {
+        color: #000;
+        font-family: var(--font-body-family);
+        font-size: 1.38rem;
+        font-style: var(--font-body-style);
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__description {
+        color: rgba(0, 0, 0, 0.68);
+        font-size: 1.42rem;
+        font-weight: 360;
+        line-height: 1.45;
+        margin: 0;
+        max-width: 64rem;
+      }
+
       #MainProduct-{{ section.id }} .product-gallery-benefit__icon {
         align-items: center;
-        border: 0.1rem solid rgba(0, 0, 0, 0.14);
-        border-radius: 50%;
         color: #000;
         display: inline-flex;
         flex: 0 0 auto;
-        height: 3.4rem;
+        height: 3.6rem;
         justify-content: center;
-        width: 3.4rem;
+        width: 3.6rem;
       }
 
-      #MainProduct-{{ section.id }} .product-gallery-benefit__icon svg {
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon svg,
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon img {
         display: block;
-        height: 1.75rem;
-        width: 1.75rem;
+        height: 2.55rem;
+        width: 2.55rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links--mobile {
+        display: none !important;
       }
 
       #MainProduct-{{ section.id }} .product__media-wrapper .slider-buttons {
@@ -512,9 +581,424 @@
       display: none;
     }
 
+    .product-info-drawer__cart-added {
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-body-family);
+      gap: 2.4rem;
+      min-height: 100%;
+    }
+
+    .product-info-drawer__checkout-anchor {
+      display: flex;
+      flex-direction: column;
+      margin-top: auto;
+    }
+
+    .product-info-drawer__cart-message {
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 1.42rem;
+      font-weight: 360;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .product-info-drawer__shipping-tracker {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-bottom: 1.8rem;
+    }
+
+    .product-info-drawer__shipping-title {
+      color: #000;
+      font-size: 1.34rem;
+      font-weight: 620;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .product-info-drawer__shipping-message {
+      color: rgba(0, 0, 0, 0.62);
+      font-size: 1.25rem;
+      font-weight: 360;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .product-info-drawer__shipping-track {
+      background: rgba(0, 0, 0, 0.09);
+      border-radius: 999px;
+      height: 0.55rem;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .product-info-drawer__shipping-progress {
+      background: linear-gradient(90deg, #1f6fff 0%, #66a6ff 100%);
+      border-radius: inherit;
+      display: block;
+      height: 100%;
+      transition: width 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+      width: var(--shipping-progress, 0%);
+    }
+
+    .product-info-drawer__shipping-tracker.is-complete .product-info-drawer__shipping-progress {
+      background: linear-gradient(90deg, #15803d 0%, #4ade80 100%);
+    }
+
+    .product-info-drawer__cart-item {
+      align-items: center;
+      border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: 8.8rem minmax(0, 1fr);
+      padding: 1.8rem 0;
+    }
+
+    .product-info-drawer__cart-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-info-drawer__cart-image {
+      background: rgba(0, 0, 0, 0.03);
+      display: block;
+      height: 11rem;
+      object-fit: cover;
+      width: 8.8rem;
+    }
+
+    .product-info-drawer__upsells {
+      border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1.05rem;
+      padding-top: 1.45rem;
+    }
+
+    .product-info-drawer__upsells-title {
+      color: #000;
+      font-size: 1.28rem;
+      font-weight: 560;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .product-info-drawer__upsell-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .product-info-drawer__upsell {
+      align-items: center;
+      cursor: pointer;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 5.6rem minmax(0, 1fr) 3.4rem;
+    }
+
+    .product-info-drawer__upsell-image {
+      background: rgba(0, 0, 0, 0.035);
+      display: block;
+      height: 6.8rem;
+      object-fit: contain;
+      width: 5.6rem;
+    }
+
+    .product-info-drawer__upsell-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      min-width: 0;
+    }
+
+    .product-info-drawer__upsell-title,
+    .product-info-drawer__upsell-price {
+      margin: 0;
+    }
+
+    .product-info-drawer__upsell-title {
+      color: #000;
+      font-size: 1.22rem;
+      font-weight: 520;
+      line-height: 1.25;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .product-info-drawer__upsell-price {
+      color: rgba(0, 0, 0, 0.58);
+      font-size: 1.14rem;
+      font-weight: 360;
+      line-height: 1.25;
+    }
+
+    .product-info-drawer__upsell-add {
+      align-items: center;
+      appearance: none;
+      background: #000;
+      border: 0.1rem solid #000;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      height: 3.2rem;
+      justify-content: center;
+      padding: 0;
+      width: 3.2rem;
+    }
+
+    .product-info-drawer__upsell-add:disabled {
+      cursor: wait;
+      opacity: 0.48;
+    }
+
+    .product-info-drawer__upsell-add svg {
+      display: block;
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+
+    .product-info-drawer__upsell-picker {
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-body-family);
+      gap: 2rem;
+    }
+
+    .product-info-drawer__upsell-picker-summary {
+      align-items: flex-start;
+      display: grid;
+      gap: 2.1rem;
+      grid-template-columns: 24rem minmax(0, 1fr);
+    }
+
+    .product-info-drawer__upsell-picker-image-link {
+      display: block;
+      line-height: 0;
+    }
+
+    .product-info-drawer__upsell-picker-image {
+      display: block;
+      height: 29rem;
+      object-fit: contain;
+      object-position: left top;
+      width: 24rem;
+    }
+
+    .product-info-drawer__upsell-picker-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      padding-top: 0.2rem;
+    }
+
+    .product-info-drawer__upsell-picker-title {
+      color: #000;
+      font-size: 1.72rem;
+      font-weight: 620;
+      line-height: 1.22;
+      margin: 0;
+    }
+
+    .product-info-drawer__upsell-picker-price {
+      color: #000;
+      font-size: 1.42rem;
+      font-weight: 620;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .product-info-drawer__upsell-size-label {
+      color: rgba(0, 0, 0, 0.64);
+      font-size: 1.38rem;
+      font-weight: 460;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .product-info-drawer__upsell-size-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .product-info-drawer__upsell-size-button {
+      appearance: none;
+      background: #fff;
+      border: 0.1rem solid rgba(0, 0, 0, 0.18);
+      color: #000;
+      cursor: pointer;
+      font-family: var(--font-body-family);
+      font-size: 1.34rem;
+      font-weight: 560;
+      min-height: 4.6rem;
+      padding: 1.1rem 1.6rem;
+      text-align: left;
+      width: 100%;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .product-info-drawer__upsell-size-button:hover,
+    .product-info-drawer__upsell-size-button:focus-visible {
+      background: #000;
+      border-color: #000;
+      color: #fff;
+      outline: 0;
+    }
+
+    .product-info-drawer__upsell-size-button:disabled {
+      cursor: wait;
+      opacity: 0.5;
+    }
+
+    .product-info-drawer__cart-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      min-width: 0;
+    }
+
+    .product-info-drawer__cart-title {
+      color: #000;
+      font-size: 1.46rem;
+      font-weight: 620;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .product-info-drawer__cart-meta,
+    .product-info-drawer__cart-price {
+      color: rgba(0, 0, 0, 0.62);
+      font-size: 1.28rem;
+      font-weight: 360;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .product-info-drawer__quantity {
+      align-items: center;
+      border: 0.1rem solid rgba(0, 0, 0, 0.16);
+      border-radius: 999px;
+      display: inline-flex;
+      height: 3.6rem;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+      overflow: hidden;
+      width: 10.8rem;
+    }
+
+    .product-info-drawer__quantity-button {
+      align-items: center;
+      appearance: none;
+      background: transparent;
+      border: 0;
+      color: #000;
+      cursor: pointer;
+      display: inline-flex;
+      flex: 0 0 3.4rem;
+      height: 100%;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .product-info-drawer__quantity-button:disabled {
+      cursor: wait;
+      opacity: 0.45;
+    }
+
+    .product-info-drawer__quantity-button svg {
+      display: block;
+      height: 1.15rem;
+      width: 1.15rem;
+    }
+
+    .product-info-drawer__quantity-count {
+      color: #000;
+      flex: 1 1 auto;
+      font-size: 1.28rem;
+      font-weight: 520;
+      text-align: center;
+    }
+
+    .product-info-drawer__cart-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .product-info-drawer__order-summary {
+      border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      padding-top: 1.8rem;
+    }
+
+    .product-info-drawer__summary-heading {
+      color: #000;
+      font-size: 1.42rem;
+      font-weight: 560;
+      line-height: 1.3;
+      margin: 0 0 0.35rem;
+    }
+
+    .product-info-drawer__summary-row {
+      align-items: center;
+      color: rgba(0, 0, 0, 0.64);
+      display: flex;
+      font-size: 1.3rem;
+      font-weight: 360;
+      justify-content: space-between;
+      line-height: 1.35;
+    }
+
+    .product-info-drawer__summary-row--total {
+      color: #000;
+      font-size: 1.46rem;
+      font-weight: 650;
+      margin-top: 0.4rem;
+    }
+
+    .product-info-drawer__cart-button {
+      align-items: center;
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 1.28rem;
+      font-weight: 560;
+      justify-content: center;
+      letter-spacing: 0.08em;
+      min-height: 4.4rem;
+      margin-top: 0;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .product-info-drawer__cart-button--primary {
+      background: #000;
+      border: 0.1rem solid #000;
+      color: #fff;
+    }
+
+    .product-info-drawer__cart-button--secondary {
+      background: #fff;
+      border: 0.1rem solid rgba(0, 0, 0, 0.18);
+      color: #000;
+    }
+
     html.product-info-drawer-open,
     html.product-info-drawer-open body {
       overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: none;
     }
 
     @media screen and (min-width: 750px) {
@@ -689,6 +1173,68 @@
         display: block;
       }
 
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header {
+        border-bottom: 0;
+        padding-left: 8.6rem !important;
+        padding-top: 5.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header h2 {
+        font-size: clamp(2.4rem, 2.3vw, 3.2rem);
+        font-weight: 650;
+        transform: translate(0, 0.8rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+        padding-left: 8.6rem !important;
+        padding-top: 6.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-added {
+        min-height: calc(100dvh - 30rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__checkout-anchor {
+        margin-top: 4.2rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close {
+        height: 4rem;
+        margin-right: 2.4rem;
+        width: 4rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close svg {
+        height: 1.8rem;
+        width: 1.8rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__header {
+        border-bottom: 0;
+        padding-left: 8.6rem !important;
+        padding-top: 5.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__header h2 {
+        font-size: clamp(2.2rem, 2.1vw, 3rem);
+        font-weight: 650;
+        transform: translate(0, 0.8rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__body {
+        padding-left: 8.6rem !important;
+        padding-top: 5.4rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__close {
+        margin-right: 3.8rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__close svg {
+        height: 2rem;
+        width: 2rem;
+      }
+
       .product-info-drawer {
         bottom: 0 !important;
         display: block;
@@ -729,7 +1275,7 @@
 
       .product-info-drawer__panel {
         background: #fff;
-        bottom: 1.1rem !important;
+        bottom: 0 !important;
         box-shadow: none;
         box-sizing: border-box;
         max-width: 76rem;
@@ -836,6 +1382,68 @@
 
       .product-info-drawer__delivery-free {
         display: block;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header {
+        border-bottom: 0;
+        padding-left: 8.6rem !important;
+        padding-top: 5.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header h2 {
+        font-size: clamp(2.4rem, 2.3vw, 3.2rem);
+        font-weight: 650;
+        transform: translate(0, 0.8rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+        padding-left: 8.6rem !important;
+        padding-top: 6.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-added {
+        min-height: calc(100dvh - 30rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__checkout-anchor {
+        margin-top: 4.2rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close {
+        height: 4rem;
+        margin-right: 2.4rem;
+        width: 4rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close svg {
+        height: 1.8rem;
+        width: 1.8rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__header {
+        border-bottom: 0;
+        padding-left: 8.6rem !important;
+        padding-top: 5.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__header h2 {
+        font-size: clamp(2.2rem, 2.1vw, 3rem);
+        font-weight: 650;
+        transform: translate(0, 0.8rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__body {
+        padding-left: 8.6rem !important;
+        padding-top: 5.4rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__close {
+        margin-right: 3.8rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__close svg {
+        height: 2rem;
+        width: 2rem;
       }
     }
 
@@ -1014,6 +1622,168 @@
         display: none;
       }
 
+      #MainProduct-{{ section.id }} .product-gallery-links--mobile {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex !important;
+        font-family: var(--font-body-family);
+        font-size: 1.38rem;
+        font-style: var(--font-body-style);
+        font-weight: 560;
+        gap: 1.55rem;
+        justify-content: flex-start;
+        letter-spacing: 0.12em;
+        line-height: 1.2;
+        margin: 1.8rem auto 0;
+        overflow-x: auto;
+        padding: 0 0 1.25rem;
+        scrollbar-width: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+        width: min(100% - 3.2rem, 40.8rem);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links--mobile::-webkit-scrollbar {
+        display: none;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button {
+        appearance: none;
+        background: none;
+        border: 0;
+        color: rgba(0, 0, 0, 0.22);
+        cursor: pointer;
+        flex: 0 0 auto;
+        font: inherit;
+        letter-spacing: inherit;
+        line-height: inherit;
+        padding: 0 0 0.45rem;
+        position: relative;
+        transition: color 180ms ease;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button::after {
+        background: currentColor;
+        bottom: 0;
+        content: '';
+        height: 0.13rem;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        transform: scaleX(0.65);
+        transform-origin: center;
+        transition: opacity 180ms ease, transform 180ms ease;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button.is-active {
+        color: #000;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-links__button.is-active::after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-tab-content {
+        box-sizing: border-box;
+        display: block;
+        margin: 1.6rem auto 4.8rem;
+        width: min(100% - 3.2rem, 40.8rem);
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-tab-panel[hidden] {
+        display: none !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-tab-text {
+        color: rgba(0, 0, 0, 0.76);
+        font-family: var(--font-body-family);
+        font-size: 1.42rem;
+        font-style: var(--font-body-style);
+        font-weight: 380;
+        letter-spacing: 0;
+        line-height: 1.62;
+        margin: 0;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefits {
+        display: flex;
+        flex-direction: column;
+        gap: 1.65rem;
+        margin-top: 3rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit {
+        align-items: flex-start;
+        color: rgba(0, 0, 0, 0.72);
+        display: flex;
+        font-family: var(--font-body-family);
+        gap: 1.25rem;
+        line-height: 1.35;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon {
+        align-items: center;
+        color: #000;
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 3.2rem;
+        justify-content: center;
+        width: 3.2rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon svg,
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon img {
+        display: block;
+        height: 2.35rem;
+        width: 2.35rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__content,
+      #MainProduct-{{ section.id }} .product-gallery-description {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__content {
+        gap: 0.45rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-description {
+        gap: 2rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-description__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__title,
+      #MainProduct-{{ section.id }} .product-gallery-description__heading {
+        color: #000;
+        font-family: var(--font-body-family);
+        font-size: 1.22rem;
+        font-style: var(--font-body-style);
+        font-weight: 650;
+        letter-spacing: 0.14em;
+        line-height: 1.2;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__description,
+      #MainProduct-{{ section.id }} .product-gallery-description__text {
+        color: rgba(0, 0, 0, 0.66);
+        font-family: var(--font-body-family);
+        font-size: 1.34rem;
+        font-weight: 340;
+        letter-spacing: 0;
+        line-height: 1.5;
+        margin: 0;
+      }
+
       .product-info-drawer {
         bottom: 0 !important;
         display: block;
@@ -1111,6 +1881,35 @@
         width: 1.35rem;
       }
 
+      .product-info-drawer,
+      .product-info-drawer *,
+      .product-info-drawer button,
+      .product-info-drawer a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .product-info-drawer button,
+      .product-info-drawer a {
+        box-shadow: none !important;
+        outline: 0 !important;
+        touch-action: manipulation;
+        -webkit-touch-callout: none;
+      }
+
+      .product-info-drawer button::before,
+      .product-info-drawer button::after,
+      .product-info-drawer a::before,
+      .product-info-drawer a::after,
+      .product-info-drawer button:focus,
+      .product-info-drawer button:focus-visible,
+      .product-info-drawer button:active,
+      .product-info-drawer a:focus,
+      .product-info-drawer a:focus-visible,
+      .product-info-drawer a:active {
+        box-shadow: none !important;
+        outline: 0 !important;
+      }
+
       .product-info-drawer__body {
         min-height: 16rem;
         padding-top: 1.8rem;
@@ -1174,6 +1973,265 @@
         line-height: 0;
         margin-right: 0.75rem;
         transform: translateY(0.1rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header {
+        align-items: flex-start;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+        box-shadow: 0 1.1rem 1.7rem -1.7rem rgba(0, 0, 0, 0.38);
+        justify-content: center;
+        padding-left: 4.8rem !important;
+        padding-right: 4.8rem !important;
+        padding-top: 0.1rem !important;
+        position: relative;
+        text-align: center;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header h2 {
+        font-size: 2.35rem;
+        font-weight: 650;
+        transform: translateY(-0.55rem);
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+        max-height: calc(88dvh - 14.1rem);
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+        padding-left: 2.4rem !important;
+        padding-right: 2.4rem !important;
+        padding-top: 3rem !important;
+        padding-bottom: 1.6rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close {
+        height: 3.8rem;
+        margin-right: 0;
+        position: absolute;
+        right: 1.6rem;
+        top: -0.8rem;
+        width: 3.8rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close svg {
+        height: 1.7rem;
+        width: 1.7rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__header {
+        align-items: flex-start;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+        justify-content: center;
+        padding-left: 4.8rem !important;
+        padding-right: 4.8rem !important;
+        padding-top: 0.45rem !important;
+        position: relative;
+        text-align: center;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__header h2 {
+        font-size: 2.15rem;
+        font-weight: 650;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__body {
+        padding-left: 2.4rem !important;
+        padding-right: 2.4rem !important;
+        padding-top: 2.4rem !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__close {
+        height: 4.1rem;
+        margin-right: 0;
+        position: absolute;
+        right: 2.4rem;
+        top: -0.45rem;
+        width: 4.1rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__close svg {
+        height: 1.95rem;
+        width: 1.95rem;
+      }
+
+      .product-info-drawer__upsell-picker {
+        gap: 1.45rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'],
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] *,
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] button,
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] button,
+      .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] a {
+        box-shadow: none !important;
+        outline: 0 !important;
+        touch-action: manipulation;
+      }
+
+      .product-info-drawer__upsell-picker-summary {
+        gap: 1.45rem;
+        grid-template-columns: 15.4rem minmax(0, 1fr);
+      }
+
+      .product-info-drawer__upsell-picker-image {
+        height: 19.2rem;
+        width: 15.4rem;
+      }
+
+      .product-info-drawer__upsell-picker-details {
+        gap: 0.55rem;
+        padding-top: 0.2rem;
+      }
+
+      .product-info-drawer__upsell-size-button {
+        display: block;
+        line-height: 1.2;
+        min-height: 4.9rem;
+        min-width: 0;
+        padding: 1.2rem 1.3rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__panel {
+        display: flex;
+        flex-direction: column;
+        height: min(88vh, calc(100dvh - 5.8rem));
+        overflow: hidden !important;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-added {
+        gap: 1.45rem;
+        min-height: 0;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__checkout-anchor {
+        background: #fff;
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -1.2rem 1.8rem -1.8rem rgba(0, 0, 0, 0.34);
+        bottom: 3.6rem;
+        left: 0;
+        margin-top: 0;
+        padding: 1rem 2.4rem calc(0.75rem + env(safe-area-inset-bottom));
+        position: absolute;
+        right: 0;
+        z-index: 2;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__shipping-tracker {
+        gap: 0.85rem;
+        padding-bottom: 1.6rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__shipping-title {
+        font-size: 1.28rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__shipping-message {
+        font-size: 1.2rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-message {
+        font-size: 1.34rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-item {
+        align-items: flex-start;
+        gap: 1.05rem;
+        grid-template-columns: 6.6rem minmax(0, 1fr);
+        padding: 1.1rem 0;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-image {
+        height: 8.4rem;
+        width: 6.6rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsells {
+        gap: 0.8rem;
+        padding-top: 1.05rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsells-title {
+        font-size: 1.12rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        position: relative;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-image {
+        height: 6.2rem;
+        width: 100%;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-title {
+        font-size: 1.02rem;
+        padding-right: 2.8rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-price {
+        font-size: 1rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-add {
+        bottom: 0;
+        height: 2.6rem;
+        position: absolute;
+        right: 0;
+        width: 2.6rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-title {
+        font-size: 1.34rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-meta,
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-price {
+        font-size: 1.2rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__quantity {
+        height: 3.4rem;
+        width: 10.2rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__order-summary {
+        padding-top: 1.55rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-actions {
+        padding-top: 0;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__summary-heading {
+        font-size: 1.32rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__summary-row {
+        font-size: 1.22rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__summary-row--total {
+        font-size: 1.36rem;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-button {
+        font-size: 1.16rem;
+        min-height: 4.3rem;
       }
 
       #MainProduct-{{ section.id }} .product__info-container > .product__text:not(.product__title--body),
@@ -1250,6 +2308,20 @@
         width: var(--dot-active-width, var(--dot-size));
       }
     }
+
+    .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__panel,
+    .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+      overflow: hidden !important;
+      overscroll-behavior: none;
+    }
+
+    @media screen and (max-width: 749px) {
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -1286,15 +2358,66 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
+  <script type="application/json" id="ProductDrawerUpsells-{{ section.id }}">
+    [
+      {%- assign drawer_upsell_count = 0 -%}
+      {%- assign drawer_upsell_first = true -%}
+      {%- assign drawer_upsell_collection = product.collections | first -%}
+      {%- if drawer_upsell_collection != blank -%}
+        {%- for drawer_upsell_product in drawer_upsell_collection.products -%}
+          {%- if drawer_upsell_product.id != product.id and drawer_upsell_product.available and drawer_upsell_count < 3 -%}
+            {%- assign drawer_upsell_variant = drawer_upsell_product.selected_or_first_available_variant -%}
+            {%- assign drawer_upsell_image = '' -%}
+            {%- if drawer_upsell_product.featured_media != blank -%}
+              {%- assign drawer_upsell_image = drawer_upsell_product.featured_media | image_url: width: 720 -%}
+            {%- endif -%}
+            {%- unless drawer_upsell_first -%},{%- endunless -%}
+            {
+              "id": {{ drawer_upsell_product.id | json }},
+              "variantId": {{ drawer_upsell_variant.id | json }},
+              "title": {{ drawer_upsell_product.title | json }},
+              "url": {{ drawer_upsell_product.url | json }},
+              "image": {{ drawer_upsell_image | json }},
+              "price": {{ drawer_upsell_variant.price | json }},
+              "variants": [
+                {%- assign drawer_upsell_variant_first = true -%}
+                {%- for drawer_upsell_variant_item in drawer_upsell_product.variants -%}
+                  {%- if drawer_upsell_variant_item.available -%}
+                    {%- assign drawer_upsell_variant_image = drawer_upsell_image -%}
+                    {%- if drawer_upsell_variant_item.featured_media != blank -%}
+                      {%- assign drawer_upsell_variant_image = drawer_upsell_variant_item.featured_media | image_url: width: 720 -%}
+                    {%- endif -%}
+                    {%- unless drawer_upsell_variant_first -%},{%- endunless -%}
+                    {
+                      "id": {{ drawer_upsell_variant_item.id | json }},
+                      "title": {{ drawer_upsell_variant_item.title | json }},
+                      "option1": {{ drawer_upsell_variant_item.option1 | json }},
+                      "option2": {{ drawer_upsell_variant_item.option2 | json }},
+                      "option3": {{ drawer_upsell_variant_item.option3 | json }},
+                      "price": {{ drawer_upsell_variant_item.price | json }},
+                      "image": {{ drawer_upsell_variant_image | json }}
+                    }
+                    {%- assign drawer_upsell_variant_first = false -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              ]
+            }
+            {%- assign drawer_upsell_first = false -%}
+            {%- assign drawer_upsell_count = drawer_upsell_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    ]
+  </script>
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         <div class="product-gallery-scroll">
           {% render 'product-media-gallery', variant_images: variant_images %}
         </div>
-        <div class="product-gallery-links" aria-label="Productinformatie">
+        <div class="product-gallery-links product-gallery-links--desktop" aria-label="Productinformatie">
           <button class="product-gallery-links__button is-active" type="button" aria-pressed="true" data-product-gallery-tab="designed-for">Ontworpen voor</button>
-          <button class="product-gallery-links__button" type="button" aria-pressed="false" data-product-gallery-tab="description">Productbeschrijving</button>
+          <button class="product-gallery-links__button" type="button" aria-pressed="false" data-product-gallery-tab="description">Beschrijving</button>
           <button class="product-gallery-links__button" type="button" aria-pressed="false" data-product-gallery-tab="features">Functies</button>
         </div>
         <div class="product-gallery-scroll-indicator" aria-hidden="true">
@@ -1905,19 +3028,25 @@
         </section>
       </div>
     </div>
+    <div class="product-gallery-links product-gallery-links--mobile" aria-label="Productinformatie">
+      <button class="product-gallery-links__button is-active" type="button" aria-pressed="true" data-product-gallery-tab="designed-for">Ontworpen voor</button>
+      <button class="product-gallery-links__button" type="button" aria-pressed="false" data-product-gallery-tab="description">Beschrijving</button>
+      <button class="product-gallery-links__button" type="button" aria-pressed="false" data-product-gallery-tab="features">Functies</button>
+    </div>
     <div class="product-gallery-tab-content" data-product-gallery-tab-content>
       <div class="product-gallery-tab-panel" data-product-gallery-tab-panel="designed-for">
         <p class="product-gallery-tab-text">
-          Onze shirtjes worden gemaakt met zorg voor mens en milieu. Ze worden geproduceerd onder veilige en eerlijke arbeidsomstandigheden, waarbij een eerlijke prijs wordt betaald voor de kleding die we inkopen. De ontwerpen printen wij zelf hier in Apeldoorn, zodat we jullie duurzame en eerlijke kleding kunnen aanbieden voor een eerlijke prijs.
+          Onze T-shirts worden gemaakt met zorg voor mens en milieu. Ze worden geproduceerd onder veilige en eerlijke arbeidsomstandigheden, waarbij een eerlijke prijs wordt betaald voor de kleding die we inkopen. De ontwerpen printen wij zelf hier in Apeldoorn, zodat we jullie duurzame en eerlijke kleding kunnen aanbieden voor een eerlijke prijs.
         </p>
         <div class="product-gallery-benefits" aria-label="Producteigenschappen">
           <div class="product-gallery-benefit">
             <span class="product-gallery-benefit__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M12 2.8 14.2 7.1 19 7.5 16.1 11.4 17.2 16.1 12 14 6.8 16.1 7.9 11.4 5 7.5 9.8 7.1 12 2.8Z" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round"/>
-              </svg>
+              <img src="{{ 'quality-star-icon.png' | asset_url }}" alt="" loading="lazy">
             </span>
-            <span>Goede kwaliteit</span>
+            <span class="product-gallery-benefit__content">
+              <span class="product-gallery-benefit__title">Goede kwaliteit</span>
+              <span class="product-gallery-benefit__description">Wij zorgen niet alleen voor eerlijke kleding, maar ook voor de beste kwaliteit. Zowel het textiel als de print worden met zorg geselecteerd en geproduceerd, zodat de kleding net als vroeger gemaakt is om lang mee te gaan.</span>
+            </span>
           </div>
           <div class="product-gallery-benefit">
             <span class="product-gallery-benefit__icon" aria-hidden="true">
@@ -1926,19 +3055,40 @@
                 <path d="M4.4 19.6c2.6-5.1 6.4-7.5 11.2-9.5" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
               </svg>
             </span>
-            <span>100% biologisch katoen</span>
+            <span class="product-gallery-benefit__content">
+              <span class="product-gallery-benefit__title">100% biologisch katoen</span>
+              <span class="product-gallery-benefit__description">Deze T-shirts zijn gemaakt van 100% biologisch katoen, wat beter is voor het milieu én voor uw gezondheid. Daarnaast is katoen een natuurlijk materiaal dat langer meegaat, goed ademt en dat helpt om zweet te verkomen.</span>
+            </span>
           </div>
           <div class="product-gallery-benefit">
             <span class="product-gallery-benefit__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M9.8 4.5 12 2.8l2.2 1.7M12 2.8v5.4M16.9 8.2l2.6.9-.5 2.7M19.5 9.1l-4.7 2.7M14.8 17.8l-2.2 1.7-2.2-1.7M12.6 19.5v-5.4M7.1 15.8l-2.6-.9.5-2.7M4.5 14.9l4.7-2.7" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img src="{{ 'recycling-icon.png' | asset_url }}" alt="" loading="lazy">
             </span>
-            <span>100% recyclebaar</span>
+            <span class="product-gallery-benefit__content">
+              <span class="product-gallery-benefit__title">100% recyclebaar</span>
+              <span class="product-gallery-benefit__description">Wij verkopen alleen kleding die lang meegaat en 100% recyclebaar is. We selecteren uitsluitend textiel waarmee dit mogelijk is en printen onze ontwerpen in de hoogste kwaliteit die op de markt beschikbaar is. Zo blijft de print goed zitten en behoudt de stof zijn natuurlijke textuur, ongeacht hoe groot de print is. Dit is belangrijk, want wanneer de textuur van de stof wordt verstoord, is het textiel vaak niet meer goed recyclebaar.</span>
+            </span>
           </div>
         </div>
       </div>
-      <div class="product-gallery-tab-panel" data-product-gallery-tab-panel="description" hidden></div>
+      <div class="product-gallery-tab-panel" data-product-gallery-tab-panel="description" hidden>
+        <div class="product-gallery-description">
+          <div class="product-gallery-description__group">
+            <h3 class="product-gallery-description__heading">GEWICHT EN SAMENSTELLING</h3>
+            <p class="product-gallery-description__text">180 g/m²<br>100% katoen</p>
+          </div>
+          <div class="product-gallery-description__group">
+            <h3 class="product-gallery-description__heading">Pasvorm</h3>
+            <p class="product-gallery-description__text">Het shirt valt mooi over de schouders en heeft een sportieve, maar toch comfortabele en relaxte pasvorm.</p>
+          </div>
+          <div class="product-gallery-description__group">
+            <h3 class="product-gallery-description__heading">Over het product</h3>
+            <p class="product-gallery-description__text">WOG staat voor Warrior Of God. Als christen is het mijn doel om Gods woord zichtbaar te maken in het dagelijks leven, zodat je niet vergeet dat je er nooit alleen voor staat.</p>
+            <p class="product-gallery-description__text">Onze kleding is gemaakt van 100% biologisch katoen en staat voor kwaliteit, duurzaamheid en geloof. WOG-kleding is ontworpen voor christenen, maar is natuurlijk ook prima te dragen voor iedereen die waarde hecht aan eerlijke en biologische kleding.</p>
+            <p class="product-gallery-description__text">WOG is een christelijk kledingmerk dat stijl, geloof en duurzaamheid samenbrengt.</p>
+          </div>
+        </div>
+      </div>
       <div class="product-gallery-tab-panel" data-product-gallery-tab-panel="features" hidden></div>
     </div>
 
@@ -2016,6 +3166,8 @@
       const desktopDrawerMedia = window.matchMedia('(min-width: 750px)');
       const desktopGalleryZoomMedia = window.matchMedia('(min-width: 990px)');
       const mobileProductMedia = window.matchMedia('(max-width: 749px)');
+      let drawerShippingProgress = null;
+      let lastDrawerCartContent = '';
 
       const setGalleryProgressDotCount = (count) => {
         if (!dots) return;
@@ -2046,6 +3198,16 @@
         drawer.setAttribute('aria-hidden', 'true');
         drawer.removeAttribute('data-product-info-drawer-active-title');
         document.documentElement.classList.remove('product-info-drawer-open');
+        drawerShippingProgress = null;
+      };
+
+      const returnToDrawerCart = () => {
+        if (lastDrawerCartContent) {
+          openInfoDrawer('WINKELWAGEN', lastDrawerCartContent);
+          animateShippingProgress();
+          return;
+        }
+        closeInfoDrawer();
       };
 
       const openInfoDrawer = (title, content = '') => {
@@ -2058,6 +3220,358 @@
         document.documentElement.classList.add('product-info-drawer-open');
       };
 
+      const animateShippingProgress = () => {
+        const progress = drawerBody?.querySelector('[data-shipping-progress]');
+        if (!progress) return;
+        const targetProgress = progress.dataset.shippingProgress;
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            progress.style.setProperty('--shipping-progress', `${targetProgress}%`);
+            drawerShippingProgress = targetProgress;
+          });
+        });
+      };
+
+      const escapeDrawerHTML = (value = '') =>
+        String(value).replace(/[&<>"']/g, (character) => {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;',
+          }[character];
+        });
+
+      const formatDrawerMoney = (value) => {
+        const amount = Number(value || 0) / 100;
+        return new Intl.NumberFormat('nl-NL', {
+          style: 'currency',
+          currency: {{ cart.currency.iso_code | json }},
+        }).format(amount);
+      };
+
+      const getDrawerCartState = async () => {
+        try {
+          const cartResponse = await fetch(`${window.routes?.cart_url || '/cart'}.js`, {
+            headers: { Accept: 'application/json' },
+          });
+          if (cartResponse.ok) return await cartResponse.json();
+        } catch (error) {
+          return {};
+        }
+        return {};
+      };
+
+      const updateDrawerCartIcon = (cartState = {}) => {
+        const cartIconSection = cartState.sections?.['cart-icon-bubble'];
+        if (!cartIconSection) return;
+        const cartIcon = document.getElementById('shopify-section-cart-icon-bubble');
+        const updatedCartIcon = new DOMParser()
+          .parseFromString(cartIconSection, 'text/html')
+          .getElementById('shopify-section-cart-icon-bubble');
+        if (cartIcon && updatedCartIcon) cartIcon.innerHTML = updatedCartIcon.innerHTML;
+      };
+
+      const drawerUpsellProducts = (() => {
+        const upsellScript = document.getElementById('ProductDrawerUpsells-{{ section.id }}');
+        if (!upsellScript?.textContent) return [];
+        try {
+          return JSON.parse(upsellScript.textContent).filter((item) => item?.variantId && item?.variants?.length);
+        } catch (error) {
+          return [];
+        }
+      })();
+
+      const getDrawerUpsellProduct = (productId) =>
+        drawerUpsellProducts.find((item) => Number(item.id) === Number(productId));
+
+      const getDrawerUpsellSizeLabel = (variant = {}) => {
+        const sizeValues = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', '2XL', '3XL'];
+        const options = [variant.option1, variant.option2, variant.option3].filter(Boolean);
+        return options.find((option) => sizeValues.includes(String(option).toUpperCase())) || variant.title || 'Maat';
+      };
+
+      const buildDrawerUpsellSizePicker = (item = {}) => {
+        const variants = Array.isArray(item.variants) ? item.variants : [];
+        const firstVariant = variants[0] || {};
+        const pickerImage = firstVariant.image || item.image;
+        const pickerPrice = firstVariant.price || item.price;
+        const seenSizes = new Set();
+        const sizeVariants = variants.filter((variant) => {
+          const sizeLabel = getDrawerUpsellSizeLabel(variant);
+          if (seenSizes.has(sizeLabel)) return false;
+          seenSizes.add(sizeLabel);
+          return true;
+        });
+
+        return `
+          <div class="product-info-drawer__upsell-picker">
+            <div class="product-info-drawer__upsell-picker-summary">
+              ${
+                pickerImage
+                  ? `<a class="product-info-drawer__upsell-picker-image-link" href="${escapeDrawerHTML(item.url || '#')}"><img class="product-info-drawer__upsell-picker-image" src="${escapeDrawerHTML(pickerImage)}" alt="${escapeDrawerHTML(item.title)}" loading="lazy"></a>`
+                  : '<span class="product-info-drawer__upsell-picker-image" aria-hidden="true"></span>'
+              }
+              <div class="product-info-drawer__upsell-picker-details">
+                <p class="product-info-drawer__upsell-picker-title">${escapeDrawerHTML(item.title)}</p>
+                <p class="product-info-drawer__upsell-picker-price">${formatDrawerMoney(pickerPrice)}</p>
+              </div>
+            </div>
+            <p class="product-info-drawer__upsell-size-label">Selecteer een maat</p>
+            <div class="product-info-drawer__upsell-size-grid">
+              ${sizeVariants
+                .map(
+                  (variant) => `
+                    <button class="product-info-drawer__upsell-size-button" type="button" data-cart-upsell-variant-id="${escapeDrawerHTML(variant.id)}">
+                      ${escapeDrawerHTML(getDrawerUpsellSizeLabel(variant))}
+                    </button>
+                  `
+                )
+                .join('')}
+            </div>
+          </div>
+        `;
+      };
+
+      const buildDrawerUpsells = (cartItems = []) => {
+        const cartProductIds = new Set(cartItems.map((item) => Number(item.product_id)).filter(Boolean));
+        const upsells = drawerUpsellProducts
+          .filter((item) => !cartProductIds.has(Number(item.id)))
+          .slice(0, 2);
+
+        if (!upsells.length) return '';
+
+        return `
+          <div class="product-info-drawer__upsells">
+            <p class="product-info-drawer__upsells-title">Misschien wil je deze ook toevoegen</p>
+            <div class="product-info-drawer__upsell-list">
+              ${upsells
+                .map(
+                  (item) => `
+                    <div class="product-info-drawer__upsell" data-cart-upsell-product-id="${escapeDrawerHTML(item.id)}">
+                      ${
+                        item.image
+                          ? `<img class="product-info-drawer__upsell-image" src="${escapeDrawerHTML(item.image)}" alt="${escapeDrawerHTML(item.title)}" loading="lazy">`
+                          : '<span class="product-info-drawer__upsell-image" aria-hidden="true"></span>'
+                      }
+                      <div class="product-info-drawer__upsell-details">
+                        <p class="product-info-drawer__upsell-title">${escapeDrawerHTML(item.title)}</p>
+                        <p class="product-info-drawer__upsell-price">${formatDrawerMoney(item.price)}</p>
+                      </div>
+                      <button class="product-info-drawer__upsell-add" type="button" data-cart-upsell-product-id="${escapeDrawerHTML(item.id)}" aria-label="${escapeDrawerHTML(item.title)} maat kiezen">
+                        <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
+                          <path d="M6 2v8M2 6h8" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  `
+                )
+                .join('')}
+            </div>
+          </div>
+        `;
+      };
+
+      const buildDrawerCartItems = (cartItems = []) => {
+        if (!cartItems.length) return '';
+        const sortedCartItems = [...cartItems].sort((a, b) => {
+          const aIsCurrentProduct = Number(a.product_id) === {{ product.id | json }};
+          const bIsCurrentProduct = Number(b.product_id) === {{ product.id | json }};
+          if (aIsCurrentProduct === bIsCurrentProduct) return 0;
+          return aIsCurrentProduct ? -1 : 1;
+        });
+
+        return `
+          <div class="product-info-drawer__cart-list">
+            ${sortedCartItems
+              .map((item) => {
+                const itemTitle = item.product_title || item.title || 'Product';
+                const itemVariantTitle = item.variant_title && item.variant_title !== 'Default Title' ? item.variant_title : '';
+                const itemImageMarkup = item.image
+                  ? `<img class="product-info-drawer__cart-image" src="${escapeDrawerHTML(item.image)}" alt="${escapeDrawerHTML(itemTitle)}" loading="lazy">`
+                  : '<span class="product-info-drawer__cart-image" aria-hidden="true"></span>';
+                const itemLinePrice = formatDrawerMoney(item.final_line_price || item.final_price || item.price);
+                const itemQuantity = Math.max(Number(item.quantity || 1), 0);
+
+                return `
+                  <div class="product-info-drawer__cart-item">
+                    ${itemImageMarkup}
+                    <div class="product-info-drawer__cart-details">
+                      <p class="product-info-drawer__cart-title">${escapeDrawerHTML(itemTitle)}</p>
+                      ${itemVariantTitle ? `<p class="product-info-drawer__cart-meta">${escapeDrawerHTML(itemVariantTitle)}</p>` : ''}
+                      <p class="product-info-drawer__cart-price">${itemQuantity} x ${itemLinePrice}</p>
+                      <div class="product-info-drawer__quantity" data-cart-line-key="${escapeDrawerHTML(item.key)}" data-cart-line-quantity="${itemQuantity}">
+                        <button class="product-info-drawer__quantity-button" type="button" data-cart-quantity-action="minus" aria-label="Aantal verlagen">
+                          <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
+                            <path d="M2 6h8" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+                          </svg>
+                        </button>
+                        <span class="product-info-drawer__quantity-count">${itemQuantity}</span>
+                        <button class="product-info-drawer__quantity-button" type="button" data-cart-quantity-action="plus" aria-label="Aantal verhogen">
+                          <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
+                            <path d="M6 2v8M2 6h8" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              })
+              .join('')}
+          </div>
+        `;
+      };
+
+      const buildCartAddedDrawerContent = (cartData = {}, cartState = {}) => {
+        const cartItems = Array.isArray(cartState.items) ? cartState.items : [];
+        const freeShippingTarget = 6900;
+        const standardDeliveryPrice = 495;
+        const cartTotal = Number(cartState.total_price || 0);
+        const remainingForFreeShipping = Math.max(freeShippingTarget - cartTotal, 0);
+        const shippingProgress = Math.min((cartTotal / freeShippingTarget) * 100, 100).toFixed(2);
+        const startingShippingProgress = drawerShippingProgress ?? shippingProgress;
+        const shippingMessage = remainingForFreeShipping > 0
+          ? `Nog ${formatDrawerMoney(remainingForFreeShipping)} tot gratis verzending.`
+          : 'Je hebt gratis verzending ontgrendeld.';
+        const deliveryPrice = cartTotal >= freeShippingTarget ? 0 : standardDeliveryPrice;
+        const orderTotal = cartTotal + deliveryPrice;
+
+        const drawerCartContent = `
+          <div class="product-info-drawer__cart-added">
+            <div class="product-info-drawer__shipping-tracker${remainingForFreeShipping === 0 ? ' is-complete' : ''}">
+              <p class="product-info-drawer__shipping-title">Gratis verzending vanaf ${formatDrawerMoney(freeShippingTarget)}</p>
+              <p class="product-info-drawer__shipping-message">${shippingMessage}</p>
+              <div class="product-info-drawer__shipping-track" aria-hidden="true">
+                <span class="product-info-drawer__shipping-progress" data-shipping-progress="${shippingProgress}" style="--shipping-progress: ${startingShippingProgress}%"></span>
+              </div>
+            </div>
+            ${buildDrawerCartItems(cartItems)}
+            ${buildDrawerUpsells(cartItems)}
+            <div class="product-info-drawer__cart-actions">
+              <div class="product-info-drawer__order-summary">
+                <p class="product-info-drawer__summary-heading">Samenvatting van bestelling</p>
+                <div class="product-info-drawer__summary-row">
+                  <span>Totaal</span>
+                  <span>${formatDrawerMoney(cartTotal)}</span>
+                </div>
+                <div class="product-info-drawer__summary-row">
+                  <span>Standaard verzending</span>
+                  <span>${deliveryPrice === 0 ? 'Vrij' : formatDrawerMoney(deliveryPrice)}</span>
+                </div>
+                <div class="product-info-drawer__summary-row product-info-drawer__summary-row--total">
+                  <span>Totaal</span>
+                  <span>${formatDrawerMoney(orderTotal)}</span>
+                </div>
+              </div>
+            </div>
+            <div class="product-info-drawer__checkout-anchor">
+              <a class="product-info-drawer__cart-button product-info-drawer__cart-button--primary" href="/checkout">Afrekenen</a>
+            </div>
+          </div>
+        `;
+        lastDrawerCartContent = drawerCartContent;
+        return drawerCartContent;
+      };
+
+      document.addEventListener('product:cart-added-drawer', async (event) => {
+        if (!drawer || !root?.contains(event.detail?.productForm)) return;
+        const cartState = await getDrawerCartState();
+        openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent(event.detail?.cartData, cartState));
+        animateShippingProgress();
+      });
+
+      document.getElementById('cart-icon-bubble')?.addEventListener('click', async (event) => {
+        if (!drawer) return;
+        event.preventDefault();
+        const cartState = await getDrawerCartState();
+        openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent({}, cartState));
+        animateShippingProgress();
+      });
+
+      drawerBody?.addEventListener('click', async (event) => {
+        const upsellSizeButton = event.target.closest('[data-cart-upsell-variant-id]');
+        if (upsellSizeButton) {
+          const variantId = Number(upsellSizeButton.dataset.cartUpsellVariantId);
+          if (!variantId) return;
+          upsellSizeButton.disabled = true;
+
+          try {
+            const addResponse = await fetch(window.routes?.cart_add_url || '/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+              body: JSON.stringify({
+                id: variantId,
+                quantity: 1,
+                sections: 'cart-icon-bubble',
+                sections_url: window.location.pathname,
+              }),
+            });
+            if (!addResponse.ok) throw new Error('Cart upsell add failed');
+            const addedItem = await addResponse.json();
+            const cartState = await getDrawerCartState();
+            updateDrawerCartIcon(addedItem.sections ? addedItem : cartState);
+            openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent(addedItem, cartState));
+            animateShippingProgress();
+          } catch (error) {
+            upsellSizeButton.disabled = false;
+          }
+          return;
+        }
+
+        const upsellProductTrigger = event.target.closest('.product-info-drawer__upsell[data-cart-upsell-product-id], .product-info-drawer__upsell-add[data-cart-upsell-product-id]');
+        if (upsellProductTrigger) {
+          const upsellProduct = getDrawerUpsellProduct(upsellProductTrigger.dataset.cartUpsellProductId);
+          if (!upsellProduct) return;
+          openInfoDrawer('MAAT SELECTEREN', buildDrawerUpsellSizePicker(upsellProduct));
+          return;
+        }
+
+        const quantityButton = event.target.closest('[data-cart-quantity-action]');
+        if (!quantityButton) return;
+        const quantityWrapper = quantityButton.closest('[data-cart-line-key]');
+        const itemKey = quantityWrapper?.dataset.cartLineKey;
+        if (!itemKey) return;
+
+        const currentQuantity = Number(quantityWrapper.dataset.cartLineQuantity || 1);
+        const nextQuantity = quantityButton.dataset.cartQuantityAction === 'plus'
+          ? currentQuantity + 1
+          : Math.max(currentQuantity - 1, 0);
+
+        quantityWrapper.querySelectorAll('button').forEach((button) => {
+          button.disabled = true;
+        });
+
+        try {
+          const changeResponse = await fetch(window.routes?.cart_change_url || '/cart/change.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({
+              id: itemKey,
+              quantity: nextQuantity,
+              sections: 'cart-icon-bubble',
+              sections_url: window.location.pathname,
+            }),
+          });
+          if (!changeResponse.ok) throw new Error('Cart quantity update failed');
+          const cartState = await changeResponse.json();
+          updateDrawerCartIcon(cartState);
+          const updatedItem = cartState.items?.find((item) => item.key === itemKey);
+          openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent(updatedItem || { key: itemKey }, cartState, !updatedItem));
+          animateShippingProgress();
+        } catch (error) {
+          quantityWrapper.querySelectorAll('button').forEach((button) => {
+            button.disabled = false;
+          });
+        }
+      });
+
       drawerTriggers.forEach((trigger) => {
         trigger.addEventListener('click', () => {
           const content = trigger.querySelector('[data-product-info-drawer-content]')?.innerHTML || '';
@@ -2066,7 +3580,13 @@
       });
 
       drawerCloseButtons.forEach((button) => {
-        button.addEventListener('click', closeInfoDrawer);
+        button.addEventListener('click', () => {
+          if (drawer?.dataset.productInfoDrawerActiveTitle === 'MAAT SELECTEREN') {
+            returnToDrawerCart();
+            return;
+          }
+          closeInfoDrawer();
+        });
       });
 
       document.addEventListener('keydown', (event) => {
@@ -2171,7 +3691,7 @@
         button.addEventListener('click', () => {
           const selectedTab = button.dataset.productGalleryTab;
           galleryLinkButtons.forEach((item) => {
-            const isActive = item === button;
+            const isActive = item.dataset.productGalleryTab === selectedTab;
             item.classList.toggle('is-active', isActive);
             item.setAttribute('aria-pressed', String(isActive));
           });
@@ -2243,12 +3763,14 @@
 
         opener.addEventListener('click', handleClickZoom, true);
         toggle?.addEventListener('click', handleClickZoom, true);
+        item.addEventListener('click', handleClickZoom, true);
         item.addEventListener('mousemove', updateZoomOrigin);
         item.addEventListener('mouseleave', handleMouseLeave);
 
         clickZoomTeardowns.set(item, () => {
           opener.removeEventListener('click', handleClickZoom, true);
           toggle?.removeEventListener('click', handleClickZoom, true);
+          item.removeEventListener('click', handleClickZoom, true);
           item.removeEventListener('mousemove', updateZoomOrigin);
           item.removeEventListener('mouseleave', handleMouseLeave);
         });
@@ -2259,15 +3781,19 @@
         const visibleItems = Array.from(slider.querySelectorAll('.product__media-item[data-media-id]')).filter(
           (item) => !item.classList.contains('is-product-media-filtered')
         );
-        const orderedVisibleItems = [...visibleItems].sort((a, b) => {
-          const viewWeight = (item) => {
-            if (item.dataset.productMediaView === 'front') return 0;
-            if (item.dataset.productMediaView === 'detail') return 1;
-            if (item.dataset.productMediaView === 'back') return 2;
-            return 1;
-          };
-          return viewWeight(a) - viewWeight(b);
-        });
+        const frontItems = visibleItems.filter((item) => item.dataset.productMediaView === 'front');
+        const detailItems = visibleItems.filter((item) => item.dataset.productMediaView === 'detail');
+        const backItems = visibleItems.filter((item) => item.dataset.productMediaView === 'back');
+        const otherItems = visibleItems.filter(
+          (item) => !['front', 'detail', 'back'].includes(item.dataset.productMediaView)
+        );
+        const beforeBackItems = [...frontItems, ...detailItems, ...otherItems];
+        const orderedVisibleItems = [
+          ...beforeBackItems.slice(0, 2),
+          ...backItems.slice(0, 1),
+          ...beforeBackItems.slice(2),
+          ...backItems.slice(1),
+        ].filter(Boolean);
 
         slider.querySelectorAll('.product__media-item').forEach((item) => {
           item.classList.remove(
@@ -2303,7 +3829,19 @@
         if (!slider) return;
         const selectedColor = getSelectedProductColor();
         const mediaItems = Array.from(slider.querySelectorAll('.product__media-item[data-media-id]'));
-        if (!selectedColor || !mediaItems.length) return;
+        if (!mediaItems.length) return;
+
+        if (!selectedColor) {
+          mediaItems.forEach((item) => item.classList.remove('is-product-media-filtered'));
+          root?.querySelectorAll('.thumbnail-list__item[data-target]').forEach((thumbnail) => {
+            thumbnail.classList.remove('is-product-media-filtered');
+          });
+          setGalleryProgressDotCount(mediaItems.length);
+          syncGalleryZoomLayout();
+          resetClickZoom();
+          requestGalleryScrollUpdate();
+          return;
+        }
 
         const mediaMatches = (item) => {
           const colors = (item.dataset.productMediaColors || '')

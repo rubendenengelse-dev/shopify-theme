@@ -206,9 +206,103 @@
     #collection-{{ section.id }} .slider-buttons {
       display: none !important;
     }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle {
+      align-items: center;
+      display: flex;
+      justify-content: flex-start;
+      margin: 0.6rem auto 1.4rem;
+      width: calc(100% - 3.2rem);
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__group {
+      align-items: center;
+      background: #f4f4f4;
+      border: 0.1rem solid rgba(0, 0, 0, 0.1);
+      border-radius: 999px;
+      display: inline-flex;
+      gap: 0.36rem;
+      padding: 0.42rem;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__button {
+      align-items: center;
+      appearance: none;
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      color: rgba(0, 0, 0, 0.42);
+      display: inline-flex;
+      height: 4.35rem;
+      justify-content: center;
+      padding: 0;
+      transition: background-color 160ms ease, color 160ms ease;
+      width: 7.4rem;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__button.is-active {
+      background: #fff;
+      color: #000;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__button:focus,
+    #collection-{{ section.id }} .mobile-product-column-toggle__button:focus-visible,
+    #collection-{{ section.id }} .mobile-product-column-toggle__button:active {
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__icon {
+      display: grid;
+      gap: 0.25rem;
+      height: 1.74rem;
+      width: 1.9rem;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__button[data-mobile-product-columns='1'] .mobile-product-column-toggle__icon {
+      grid-template-columns: 1fr;
+      height: 2.08rem;
+      width: 1.3rem;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__button[data-mobile-product-columns='2'] .mobile-product-column-toggle__icon {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__icon span {
+      background: currentColor;
+      border-radius: 0.08rem;
+      min-height: 100%;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__button[data-mobile-product-columns='1'] .mobile-product-column-toggle__icon span {
+      background: transparent;
+      border: 0.18rem solid currentColor;
+    }
+
+    #collection-{{ section.id }}[data-mobile-product-columns='1'] .product-grid {
+      column-gap: 0 !important;
+      row-gap: 2.4rem !important;
+    }
+
+    #collection-{{ section.id }}[data-mobile-product-columns='1'] .product-grid .grid__item {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    #collection-{{ section.id }}[data-mobile-product-columns='2'] .product-grid .grid__item {
+      max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+      width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+    }
   }
 
   @media screen and (min-width: 750px) {
+    #collection-{{ section.id }} .mobile-product-column-toggle {
+      display: none !important;
+    }
+
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -377,6 +471,17 @@
       font-size: 1.5rem !important;
     }
   }
+
+  @media screen and (min-width: 990px) {
+    #collection-{{ section.id }} .slider-mobile-gutter.page-width-desktop {
+      max-width: 200rem !important;
+      width: calc(100vw - 8rem) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -412,6 +517,7 @@
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
+    data-mobile-product-columns="2"
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
@@ -442,6 +548,29 @@
           {%- endif %}
         </div>
       {%- endif -%}
+    </div>
+
+    <div class="mobile-product-column-toggle" aria-label="Productweergave">
+      <div class="mobile-product-column-toggle__group" role="group" aria-label="Aantal kolommen">
+        <button
+          class="mobile-product-column-toggle__button is-active"
+          type="button"
+          data-mobile-product-columns="2"
+          aria-label="Toon producten in 2 kolommen"
+          aria-pressed="true"
+        >
+          <span class="mobile-product-column-toggle__icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        </button>
+        <button
+          class="mobile-product-column-toggle__button"
+          type="button"
+          data-mobile-product-columns="1"
+          aria-label="Toon producten in 1 kolom"
+          aria-pressed="false"
+        >
+          <span class="mobile-product-column-toggle__icon" aria-hidden="true"><span></span></span>
+        </button>
+      </div>
     </div>
 
     <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -555,6 +684,42 @@
     {%- endif -%}
   </div>
 </div>
+
+<script>
+  (() => {
+    const collection = document.getElementById('collection-{{ section.id }}');
+    if (!collection) return;
+
+    const buttons = Array.from(collection.querySelectorAll('.mobile-product-column-toggle__button'));
+    if (!buttons.length) return;
+
+    const storageKey = 'wog-mobile-product-columns';
+    const setColumns = (columns) => {
+      const nextColumns = columns === '1' ? '1' : '2';
+      collection.dataset.mobileProductColumns = nextColumns;
+      buttons.forEach((button) => {
+        const isActive = button.dataset.mobileProductColumns === nextColumns;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+      try {
+        window.localStorage.setItem(storageKey, nextColumns);
+      } catch (error) {}
+    };
+
+    try {
+      setColumns(window.localStorage.getItem(storageKey) || '2');
+    } catch (error) {
+      setColumns('2');
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setColumns(button.dataset.mobileProductColumns);
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {

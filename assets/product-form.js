@@ -76,6 +76,29 @@ if (!customElements.get('product-form')) {
                 CartPerformance.measureFromMarker('add:wait-for-subscribers', startMarker);
               });
             this.error = false;
+            const productRoot = this.closest('[id^="MainProduct-"]');
+            const productInfoDrawer = document.querySelector('[data-product-info-drawer]');
+            if (productRoot && productInfoDrawer) {
+              const cartIconSection = response.sections?.['cart-icon-bubble'];
+              if (cartIconSection) {
+                const cartIcon = document.getElementById('shopify-section-cart-icon-bubble');
+                const updatedCartIcon = new DOMParser()
+                  .parseFromString(cartIconSection, 'text/html')
+                  .getElementById('shopify-section-cart-icon-bubble');
+                if (cartIcon && updatedCartIcon) cartIcon.innerHTML = updatedCartIcon.innerHTML;
+              }
+
+              document.dispatchEvent(
+                new CustomEvent('product:cart-added-drawer', {
+                  detail: {
+                    cartData: response,
+                    productForm: this,
+                  },
+                })
+              );
+              return;
+            }
+
             const quickAddModal = this.closest('quick-add-modal');
             if (quickAddModal) {
               document.body.addEventListener(

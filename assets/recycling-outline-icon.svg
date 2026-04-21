@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Recyclebaar">
+  <g fill="none" stroke="currentColor" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M375 215h198c50 0 82 19 108 64l61 105"/>
+    <path d="M716 331l31 53 46-76"/>
+    <path d="M747 384H575"/>
+    <path d="M575 384l-70 74"/>
+    <path d="M505 458 409 300c-34-55-66-82-105-86"/>
+    <path d="M304 214c-33-4-53 11-78 54l-75 128"/>
+    <path d="M151 396 328 496"/>
+    <path d="M328 496l78-135"/>
+
+    <path d="M775 463l90 156c25 44 25 81-1 126l-76 128"/>
+    <path d="M818 733l-30 140h-95"/>
+    <path d="M788 873H606"/>
+    <path d="M606 873v80"/>
+    <path d="M606 873 506 711"/>
+    <path d="M506 711l74-128"/>
+    <path d="M580 583v83"/>
+    <path d="M580 666h170"/>
+    <path d="M750 666c58-2 91-16 115-47"/>
+
+    <path d="M381 809H210c-54 0-86-18-113-64L21 616"/>
+    <path d="M58 662 21 616h92"/>
+    <path d="M21 616l91-156"/>
+    <path d="M112 460H290"/>
+    <path d="M290 460l81 137"/>
+    <path d="M371 597h-82"/>
+    <path d="M289 597 212 731"/>
+    <path d="M212 731c-30 54-32 91-2 78"/>
+    <path d="M212 809h169V597"/>
+  </g>
+</svg>
