@@ -8,21 +8,163 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  {%- if request.page_type == 'index' -%}
+    .section-{{ section.id }}-padding.collection-list-wrapper {
+      padding-top: calc({{ section.settings.padding_top | times: 0.75 | round: 0 }}px + 1.4rem);
+    }
+
+    .section-{{ section.id }}-padding .collection-list-title,
+    .section-{{ section.id }}-padding .collection-list-title * {
+      font-family: var(--font-body-family) !important;
+      font-style: var(--font-body-style) !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      line-height: 1.05 !important;
+    }
+
+    .section-{{ section.id }}-padding .collection-list .card__heading,
+    .section-{{ section.id }}-padding .collection-list .card__heading a {
+      font-family: var(--font-body-family) !important;
+      font-style: var(--font-body-style) !important;
+      font-weight: 600 !important;
+      letter-spacing: 0 !important;
+    }
+  {%- endif -%}
+
+  .section-{{ section.id }}-padding .collection-list .icon-wrap {
+    display: none !important;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
+    {%- if request.page_type == 'index' -%}
+      .section-{{ section.id }}-padding.collection-list-wrapper {
+        padding-top: calc({{ section.settings.padding_top }}px + 1.8rem);
+      }
+    {%- endif -%}
+
     {% if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
       .section-{{ section.id }}-padding.collection-list-wrapper {
         max-width: 100%;
-        padding-left: 1.6rem;
+        padding-left: 4.5rem;
         padding-right: 5rem;
         margin-left: 0;
         margin-right: auto;
       }
+
+      .section-{{ section.id }}-padding .slider-mobile-gutter {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        max-width: 100%;
+        position: relative;
+      }
+
+      .section-{{ section.id }}-padding .collection-list {
+        justify-content: flex-start !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        scroll-padding-left: 0 !important;
+      }
+
+      .section-{{ section.id }}-padding .collection-list__item {
+        scroll-margin-left: 0 !important;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls {
+        display: flex !important;
+        gap: 1rem;
+        position: absolute;
+        right: 3.5rem;
+        top: 0;
+        transform: translateY(-5.1rem);
+        z-index: 2;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button {
+        border: 0;
+        border-radius: 50%;
+        box-shadow: none;
+        height: 3.4rem;
+        width: 3.4rem;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button .svg-wrapper {
+        align-items: center;
+        display: inline-flex;
+        height: 1.1rem;
+        justify-content: center;
+        width: 1.1rem;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button .svg-wrapper svg {
+        height: 1.1rem !important;
+        width: 1.1rem !important;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-counter {
+        display: none;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--prev {
+        background: #d9d9d9;
+        color: #000;
+        transform: translateX(-1px);
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--prev .svg-wrapper {
+        color: #000;
+        opacity: 1;
+        transform: translateX(-2px);
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--prev:not([disabled]) {
+        background: #000;
+        color: #fff;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--prev:not([disabled]) .svg-wrapper,
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--prev:not([disabled]) .svg-wrapper svg,
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--prev:not([disabled]) .svg-wrapper svg * {
+        color: #fff !important;
+        fill: #fff !important;
+        stroke: #fff !important;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--next {
+        background: #000;
+        color: #fff;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--next .svg-wrapper {
+        color: #fff;
+        opacity: 1;
+        transform: translateX(2px);
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--next[disabled] {
+        background: #d9d9d9;
+        color: #000;
+      }
+
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--next[disabled] .svg-wrapper,
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--next[disabled] .svg-wrapper svg,
+      .section-{{ section.id }}-padding .collection-list-desktop-controls .slider-button--next[disabled] .svg-wrapper svg * {
+        color: #000 !important;
+        fill: #000 !important;
+        stroke: #000 !important;
+      }
     {% endif %}
+  }
+
+  @media screen and (max-width: 989px) {
+    .section-{{ section.id }}-padding .collection-list-desktop-controls {
+      display: none !important;
+    }
   }
 
   @media screen and (max-width: 749px) {
@@ -37,6 +179,12 @@
   assign show_mobile_slider = false
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
+  endif
+  assign show_desktop_collection_slider = false
+  if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies'
+    if section.blocks.size > 1
+      assign show_desktop_collection_slider = true
+    endif
   endif
 -%}
 
@@ -66,7 +214,7 @@
 
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile or show_desktop_collection_slider %} slider{% if show_desktop_collection_slider %} slider--desktop{% endif %}{% if section.settings.swipe_on_mobile %} slider--tablet grid--peek{% endif %}{% endif %} collection-list--{{ section.blocks.size }}-items"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -79,7 +227,7 @@
         {%- for block in section.blocks -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="collection-list__item grid__item{% if show_mobile_slider or show_desktop_collection_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -97,8 +245,8 @@
           </li>
         {%- endfor -%}
       </ul>
-      {%- if show_mobile_slider -%}
-        <div class="slider-buttons">
+      {%- if show_mobile_slider or show_desktop_collection_slider -%}
+        <div class="slider-buttons{% if show_desktop_collection_slider %} collection-list-desktop-controls{% endif %}">
           <button
             type="button"
             class="slider-button slider-button--prev"

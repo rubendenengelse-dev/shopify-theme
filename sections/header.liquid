@@ -372,6 +372,7 @@
 .mega-menu__content.global-settings-popup {
   left: calc(50% - 25rem);
   right: auto;
+  top: calc(100% + 2.4rem);
   transform: translateX(-50%);
   width: 100vw;
   max-width: 100vw;
@@ -1227,6 +1228,34 @@ body.desktop-search-open .desktop-search-panel {
       padding-bottom: 1.2rem;
     }
 
+    html.wog-mobile-menu-lock,
+    html.wog-mobile-menu-lock body {
+      height: 100%;
+      overflow: hidden !important;
+      overscroll-behavior: none;
+      touch-action: none;
+    }
+
+    html.wog-mobile-menu-lock #menu-drawer,
+    html.wog-mobile-menu-lock .menu-drawer__inner-container,
+    html.wog-mobile-menu-lock .menu-drawer__navigation-container,
+    html.wog-mobile-menu-lock .menu-drawer__navigation,
+    html.wog-mobile-menu-lock .menu-drawer__menu,
+    html.wog-mobile-menu-lock .menu-drawer__submenu,
+    html.wog-mobile-menu-lock .menu-drawer__inner-submenu {
+      overflow: hidden !important;
+      overscroll-behavior: none;
+      touch-action: none;
+    }
+
+    html.wog-mobile-menu-lock .mobile-menu-promo {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      overscroll-behavior-x: contain;
+      overscroll-behavior-y: none;
+      touch-action: pan-x;
+    }
+
     .menu-drawer__menu-item {
       position: relative;
       border-radius: 1.2rem;
@@ -1775,6 +1804,89 @@ body.desktop-search-open .desktop-search-panel {
   })();
 </script>
 
+<script>
+  (() => {
+    const mobileQuery = window.matchMedia('(max-width: 749px)');
+    const lockClass = 'wog-mobile-menu-lock';
+    let lockedScrollY = 0;
+    let isLocked = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const lockMobileMenuScroll = () => {
+      if (isLocked) return;
+      lockedScrollY = window.scrollY || window.pageYOffset || 0;
+      document.documentElement.classList.add(lockClass);
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${lockedScrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      isLocked = true;
+    };
+
+    const unlockMobileMenuScroll = () => {
+      if (!isLocked) return;
+      document.documentElement.classList.remove(lockClass);
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, lockedScrollY);
+      isLocked = false;
+    };
+
+    const isMenuOpen = (menuDetails) => mobileQuery.matches && menuDetails?.hasAttribute('open');
+
+    const updateMenuScrollLock = (menuDetails) => {
+      if (isMenuOpen(menuDetails)) {
+        lockMobileMenuScroll();
+      } else {
+        unlockMobileMenuScroll();
+      }
+    };
+
+    const rememberTouchStart = (event) => {
+      if (!document.documentElement.classList.contains(lockClass)) return;
+      const touch = event.touches?.[0];
+      if (!touch) return;
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    };
+
+    const preventMobileMenuScroll = (event) => {
+      if (!document.documentElement.classList.contains(lockClass)) return;
+      const touch = event.touches?.[0];
+      const promoScroller = event.target.closest?.('.mobile-menu-promo');
+      if (touch && promoScroller) {
+        const deltaX = Math.abs(touch.clientX - touchStartX);
+        const deltaY = Math.abs(touch.clientY - touchStartY);
+        if (deltaX > deltaY) return;
+      }
+      event.preventDefault();
+    };
+
+    const initMobileMenuScrollLock = () => {
+      const menuDetails = document.getElementById('Details-menu-drawer-container');
+      if (!menuDetails) return;
+
+      menuDetails.addEventListener('toggle', () => updateMenuScrollLock(menuDetails));
+      mobileQuery.addEventListener?.('change', () => updateMenuScrollLock(menuDetails));
+      document.addEventListener('touchstart', rememberTouchStart, { passive: true });
+      document.addEventListener('touchmove', preventMobileMenuScroll, { passive: false });
+      document.addEventListener('wheel', preventMobileMenuScroll, { passive: false });
+      updateMenuScrollLock(menuDetails);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileMenuScrollLock, { once: true });
+    } else {
+      initMobileMenuScrollLock();
+    }
+  })();
+</script>
+
 {% assign has_app_block = false %}
 {% for block in section.blocks %}
   {% if block.type == '@app' %}
@@ -2282,7 +2394,7 @@ body.desktop-search-open .desktop-search-panel {
     {% endcase %}
   {% endfor %}
 
-  <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+  <a href="#cart-drawer" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble" data-cart-icon-trigger>
     <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
     <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
     {% if cart != empty %}

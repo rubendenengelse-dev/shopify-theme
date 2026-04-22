@@ -3489,6 +3489,14 @@
         animateShippingProgress();
       });
 
+      document.addEventListener('wog:open-product-cart-drawer', async (event) => {
+        if (!drawer) return;
+        event.preventDefault();
+        const cartState = await getDrawerCartState();
+        openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent({}, cartState));
+        animateShippingProgress();
+      });
+
       drawerBody?.addEventListener('click', async (event) => {
         const upsellSizeButton = event.target.closest('[data-cart-upsell-variant-id]');
         if (upsellSizeButton) {

@@ -260,6 +260,12 @@
     }
   }
 
+  @media screen and (min-width: 990px) {
+    .section-{{ section.id }}-padding {
+      padding-top: calc({{ section.settings.padding_top }}px + 0.8rem);
+    }
+  }
+
 @media screen and (max-width: 749px) {
   .footer__payment--desktop {
     display: none;

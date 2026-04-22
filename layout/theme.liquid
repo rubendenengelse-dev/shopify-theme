@@ -338,6 +338,447 @@
         }
       </style>
     {%- endif -%}
+
+    <style>
+      html.product-info-drawer-open,
+      html.product-info-drawer-open body {
+        overflow: hidden;
+        overscroll-behavior: none;
+        touch-action: none;
+      }
+
+      .wog-global-cart-drawer {
+        bottom: 0 !important;
+        display: block;
+        left: 0 !important;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed !important;
+        right: 0 !important;
+        top: 0 !important;
+        transition: opacity 180ms ease, visibility 0s linear 320ms;
+        visibility: hidden;
+        z-index: 1000;
+      }
+
+      .wog-global-cart-drawer.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 180ms ease, visibility 0s linear 0s;
+        visibility: visible;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__overlay {
+        background: rgba(0, 0, 0, 0);
+        border: 0;
+        bottom: 0;
+        display: block;
+        left: 0;
+        padding: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        transition: background-color 240ms ease;
+        z-index: 0;
+      }
+
+      .wog-global-cart-drawer.is-open .product-info-drawer__overlay {
+        background: rgba(0, 0, 0, 0.34);
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__panel {
+        background: #fff;
+        bottom: 0 !important;
+        box-shadow: none;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        max-width: 76rem;
+        overflow: hidden !important;
+        padding: 3.2rem;
+        position: fixed !important;
+        right: 0 !important;
+        top: 0 !important;
+        transform: translate3d(calc(100% + 1px), 0, 0);
+        transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms ease;
+        width: min(56vw, 76rem);
+        z-index: 1;
+      }
+
+      .wog-global-cart-drawer.is-open .product-info-drawer__panel {
+        box-shadow: -1.4rem 0 3.4rem rgba(0, 0, 0, 0.18);
+        transform: translateX(0);
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__header {
+        align-items: center;
+        border-bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 5.6rem 2.4rem 1.6rem 8.6rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__header h2 {
+        color: #000;
+        font-family: var(--font-body-family);
+        font-size: clamp(2.4rem, 2.3vw, 3.2rem);
+        font-style: var(--font-body-style);
+        font-weight: 650;
+        letter-spacing: 0;
+        line-height: 1.2;
+        margin: 0;
+        transform: translateY(0.8rem);
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__close {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        color: #000;
+        cursor: pointer;
+        display: inline-flex;
+        height: 4rem;
+        justify-content: center;
+        margin-right: 2.4rem;
+        padding: 0;
+        width: 4rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__close svg {
+        height: 1.8rem;
+        width: 1.8rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__body {
+        min-height: 18rem;
+        overflow-y: auto;
+        padding: 6.6rem 3.2rem 3.2rem 8.6rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-added {
+        color: #000;
+        display: flex;
+        flex-direction: column;
+        font-family: var(--font-body-family);
+        gap: 1.45rem;
+        min-height: calc(100dvh - 30rem);
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__shipping-tracker,
+      .wog-global-cart-drawer .product-info-drawer__cart-list,
+      .wog-global-cart-drawer .product-info-drawer__cart-actions {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__shipping-tracker {
+        gap: 1rem;
+        padding-bottom: 1.8rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__shipping-title,
+      .wog-global-cart-drawer .product-info-drawer__summary-heading {
+        color: #000;
+        font-size: 1.42rem;
+        font-weight: 560;
+        line-height: 1.3;
+        margin: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__shipping-message {
+        color: rgba(0, 0, 0, 0.62);
+        font-size: 1.25rem;
+        font-weight: 360;
+        line-height: 1.4;
+        margin: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__shipping-track {
+        background: rgba(0, 0, 0, 0.09);
+        border-radius: 999px;
+        height: 0.55rem;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__shipping-progress {
+        background: linear-gradient(90deg, #1f6fff 0%, #66a6ff 100%);
+        border-radius: inherit;
+        display: block;
+        height: 100%;
+        transition: width 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+        width: var(--shipping-progress, 0%);
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__shipping-tracker.is-complete .product-info-drawer__shipping-progress {
+        background: linear-gradient(90deg, #15803d 0%, #4ade80 100%);
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-item {
+        align-items: center;
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+        display: grid;
+        gap: 1.6rem;
+        grid-template-columns: 8.8rem minmax(0, 1fr);
+        padding: 1.8rem 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-image {
+        background: rgba(0, 0, 0, 0.03);
+        display: block;
+        height: 11rem;
+        object-fit: cover;
+        width: 8.8rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        min-width: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-title {
+        color: #000;
+        font-size: 1.46rem;
+        font-weight: 620;
+        line-height: 1.25;
+        margin: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-meta,
+      .wog-global-cart-drawer .product-info-drawer__cart-price,
+      .wog-global-cart-drawer .product-info-drawer__summary-row {
+        color: rgba(0, 0, 0, 0.64);
+        font-size: 1.3rem;
+        font-weight: 360;
+        line-height: 1.35;
+        margin: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__quantity {
+        align-items: center;
+        border: 0.1rem solid rgba(0, 0, 0, 0.16);
+        border-radius: 999px;
+        display: inline-flex;
+        height: 3.6rem;
+        justify-content: space-between;
+        margin-top: 0.4rem;
+        overflow: hidden;
+        width: 10.8rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__quantity-button {
+        align-items: center;
+        appearance: none;
+        background: transparent;
+        border: 0;
+        color: #000;
+        cursor: pointer;
+        display: inline-flex;
+        flex: 0 0 3.4rem;
+        height: 100%;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__quantity-button:disabled {
+        cursor: wait;
+        opacity: 0.45;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__quantity-button svg {
+        display: block;
+        height: 1.15rem;
+        width: 1.15rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__quantity-count {
+        color: #000;
+        flex: 1 1 auto;
+        font-size: 1.28rem;
+        font-weight: 520;
+        text-align: center;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-actions {
+        gap: 1rem;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__order-summary {
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        padding-top: 1.8rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__summary-row {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__summary-row--total {
+        color: #000;
+        font-size: 1.46rem;
+        font-weight: 650;
+        margin-top: 0.4rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__checkout-anchor {
+        display: flex;
+        flex-direction: column;
+        margin-top: 4.2rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-button {
+        align-items: center;
+        border-radius: 999px;
+        display: inline-flex;
+        font-size: 1.28rem;
+        font-weight: 560;
+        justify-content: center;
+        letter-spacing: 0.08em;
+        min-height: 4.4rem;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-button--primary {
+        background: #000;
+        border: 0.1rem solid #000;
+        color: #fff;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-empty {
+        color: rgba(0, 0, 0, 0.62);
+        font-size: 1.35rem;
+        margin: 0;
+      }
+
+      @media screen and (max-width: 749px) {
+        .wog-global-cart-drawer,
+        .wog-global-cart-drawer *,
+        .wog-global-cart-drawer button,
+        .wog-global-cart-drawer a {
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        .wog-global-cart-drawer button,
+        .wog-global-cart-drawer a {
+          box-shadow: none !important;
+          outline: 0 !important;
+          touch-action: manipulation;
+          -webkit-touch-callout: none;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__panel {
+          bottom: 0 !important;
+          height: min(94vh, calc(100dvh - 1.2rem));
+          left: 0 !important;
+          max-height: none;
+          padding: 0;
+          right: 0 !important;
+          top: auto !important;
+          transform: translate3d(0, calc(100% + 1px), 0);
+          width: 100%;
+        }
+
+        .wog-global-cart-drawer.is-open .product-info-drawer__panel {
+          box-shadow: 0 -1.4rem 3.4rem rgba(0, 0, 0, 0.18);
+          transform: translateY(0);
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__header {
+          align-items: flex-start;
+          background: #fff;
+          border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1.1rem 1.7rem -1.7rem rgba(0, 0, 0, 0.38);
+          justify-content: center;
+          padding: 1.35rem 4.8rem 1.45rem !important;
+          position: relative;
+          text-align: center;
+          z-index: 3;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__header h2 {
+          font-size: 2.35rem;
+          transform: none;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__close {
+          height: 3.8rem;
+          margin-right: 0;
+          position: absolute;
+          right: 1.6rem;
+          top: 0.4rem;
+          width: 3.8rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__close svg {
+          height: 1.7rem;
+          width: 1.7rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__body {
+          max-height: calc(94dvh - 14.1rem);
+          overflow-y: auto !important;
+          overscroll-behavior: contain;
+          padding: 3rem 2.4rem 1.6rem !important;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-added {
+          gap: 1.45rem;
+          min-height: 0;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__checkout-anchor {
+          background: #fff;
+          border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+          box-shadow: 0 -1.2rem 1.8rem -1.8rem rgba(0, 0, 0, 0.34);
+          bottom: 3.6rem;
+          left: 0;
+          margin-top: 0;
+          padding: 1rem 2.4rem calc(0.75rem + env(safe-area-inset-bottom));
+          position: absolute;
+          right: 0;
+          z-index: 2;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-item {
+          align-items: flex-start;
+          gap: 1.05rem;
+          grid-template-columns: 6.6rem minmax(0, 1fr);
+          padding: 1.1rem 0;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-image {
+          height: 8.4rem;
+          width: 6.6rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-title {
+          font-size: 1.34rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-meta,
+        .wog-global-cart-drawer .product-info-drawer__cart-price {
+          font-size: 1.2rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-button {
+          font-size: 1.16rem;
+          min-height: 4.3rem;
+        }
+      }
+    </style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -348,6 +789,19 @@
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
     {%- endif -%}
+
+    <div class="product-info-drawer wog-global-cart-drawer" data-wog-global-cart-drawer aria-hidden="true">
+      <button type="button" class="product-info-drawer__overlay" data-wog-global-cart-close aria-label="{{ 'accessibility.close' | t }}"></button>
+      <aside class="product-info-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="WogGlobalCartDrawerTitle">
+        <div class="product-info-drawer__header">
+          <h2 id="WogGlobalCartDrawerTitle">WINKELWAGEN</h2>
+          <button type="button" class="product-info-drawer__close" data-wog-global-cart-close aria-label="{{ 'accessibility.close' | t }}">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </button>
+        </div>
+        <div class="product-info-drawer__body" data-wog-global-cart-body></div>
+      </aside>
+    </div>
 
     {% sections 'header-group' %}
 
@@ -414,5 +868,280 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script>
+      {%- if request.page_type == 'cart' -%}
+        window.location.replace('/?open-cart=1');
+      {%- endif -%}
+
+      const globalCartDrawer = document.querySelector('[data-wog-global-cart-drawer]');
+      const globalCartDrawerBody = globalCartDrawer?.querySelector('[data-wog-global-cart-body]');
+      const globalCartDrawerCloseButtons = globalCartDrawer ? Array.from(globalCartDrawer.querySelectorAll('[data-wog-global-cart-close]')) : [];
+
+      const escapeGlobalCartHTML = (value = '') =>
+        String(value).replace(/[&<>"']/g, (character) => {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;',
+          }[character];
+        });
+
+      const formatGlobalCartMoney = (cents = 0) =>
+        new Intl.NumberFormat('nl-NL', {
+          style: 'currency',
+          currency: 'EUR',
+        }).format(Number(cents || 0) / 100);
+
+      const updateGlobalCartIcon = async () => {
+        try {
+          const response = await fetch(`${window.Shopify?.routes?.root || '/'}?sections=cart-icon-bubble`, {
+            headers: { Accept: 'application/json' },
+          });
+          if (!response.ok) return;
+          const sections = await response.json();
+          const cartIconSection = sections['cart-icon-bubble'];
+          if (!cartIconSection) return;
+          const currentCartIcon = document.getElementById('shopify-section-cart-icon-bubble');
+          const updatedCartIcon = new DOMParser()
+            .parseFromString(cartIconSection, 'text/html')
+            .getElementById('shopify-section-cart-icon-bubble');
+          if (currentCartIcon && updatedCartIcon) currentCartIcon.innerHTML = updatedCartIcon.innerHTML;
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const getGlobalCartState = async () => {
+        const response = await fetch(`${window.routes?.cart_url || '/cart'}.js`, {
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error('Cart fetch failed');
+        return response.json();
+      };
+
+      const buildGlobalCartItems = (cartItems = []) => {
+        if (!cartItems.length) {
+          return '<p class="product-info-drawer__cart-empty">Je winkelwagen is leeg.</p>';
+        }
+
+        return `
+          <div class="product-info-drawer__cart-list">
+            ${cartItems
+              .map((item) => {
+                const itemTitle = item.product_title || item.title || 'Product';
+                const itemVariantTitle = item.variant_title && item.variant_title !== 'Default Title' ? item.variant_title : '';
+                const itemQuantity = Math.max(Number(item.quantity || 1), 0);
+                const itemLinePrice = formatGlobalCartMoney(item.final_line_price || item.final_price || item.price);
+                const itemImageMarkup = item.image
+                  ? `<img class="product-info-drawer__cart-image" src="${escapeGlobalCartHTML(item.image)}" alt="${escapeGlobalCartHTML(itemTitle)}" loading="lazy">`
+                  : '<span class="product-info-drawer__cart-image" aria-hidden="true"></span>';
+
+                return `
+                  <div class="product-info-drawer__cart-item">
+                    ${itemImageMarkup}
+                    <div class="product-info-drawer__cart-details">
+                      <p class="product-info-drawer__cart-title">${escapeGlobalCartHTML(itemTitle)}</p>
+                      ${itemVariantTitle ? `<p class="product-info-drawer__cart-meta">${escapeGlobalCartHTML(itemVariantTitle)}</p>` : ''}
+                      <p class="product-info-drawer__cart-price">${itemQuantity} x ${itemLinePrice}</p>
+                      <div class="product-info-drawer__quantity" data-global-cart-line-key="${escapeGlobalCartHTML(item.key)}" data-global-cart-line-quantity="${itemQuantity}">
+                        <button class="product-info-drawer__quantity-button" type="button" data-global-cart-quantity-action="minus" aria-label="Aantal verlagen">
+                          <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
+                            <path d="M2 6h8" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+                          </svg>
+                        </button>
+                        <span class="product-info-drawer__quantity-count">${itemQuantity}</span>
+                        <button class="product-info-drawer__quantity-button" type="button" data-global-cart-quantity-action="plus" aria-label="Aantal verhogen">
+                          <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
+                            <path d="M6 2v8M2 6h8" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              })
+              .join('')}
+          </div>
+        `;
+      };
+
+      const buildGlobalCartContent = (cartState = {}) => {
+        const cartItems = Array.isArray(cartState.items) ? cartState.items : [];
+        const freeShippingTarget = 6900;
+        const cartTotal = Number(cartState.total_price || 0);
+        const deliveryPrice = cartTotal >= freeShippingTarget || cartTotal === 0 ? 0 : 495;
+        const orderTotal = cartTotal + deliveryPrice;
+        const remainingForFreeShipping = Math.max(freeShippingTarget - cartTotal, 0);
+        const shippingProgress = Math.min(Math.round((cartTotal / freeShippingTarget) * 100), 100);
+        const shippingMessage =
+          remainingForFreeShipping === 0
+            ? 'Je hebt gratis verzending unlocked.'
+            : `Nog ${formatGlobalCartMoney(remainingForFreeShipping)} tot gratis verzending.`;
+
+        return `
+          <div class="product-info-drawer__cart-added">
+            <div class="product-info-drawer__shipping-tracker${remainingForFreeShipping === 0 ? ' is-complete' : ''}">
+              <p class="product-info-drawer__shipping-title">Gratis verzending vanaf ${formatGlobalCartMoney(freeShippingTarget)}</p>
+              <p class="product-info-drawer__shipping-message">${shippingMessage}</p>
+              <div class="product-info-drawer__shipping-track" aria-hidden="true">
+                <span class="product-info-drawer__shipping-progress" data-global-shipping-progress="${shippingProgress}" style="--shipping-progress: 0%"></span>
+              </div>
+            </div>
+            ${buildGlobalCartItems(cartItems)}
+            <div class="product-info-drawer__cart-actions">
+              <div class="product-info-drawer__order-summary">
+                <p class="product-info-drawer__summary-heading">Samenvatting van bestelling</p>
+                <div class="product-info-drawer__summary-row">
+                  <span>Totaal</span>
+                  <span>${formatGlobalCartMoney(cartTotal)}</span>
+                </div>
+                <div class="product-info-drawer__summary-row">
+                  <span>Standaard verzending</span>
+                  <span>${deliveryPrice === 0 ? 'Vrij' : formatGlobalCartMoney(deliveryPrice)}</span>
+                </div>
+                <div class="product-info-drawer__summary-row product-info-drawer__summary-row--total">
+                  <span>Totaal</span>
+                  <span>${formatGlobalCartMoney(orderTotal)}</span>
+                </div>
+              </div>
+            </div>
+            <div class="product-info-drawer__checkout-anchor">
+              <a class="product-info-drawer__cart-button product-info-drawer__cart-button--primary" href="/checkout">Afrekenen</a>
+            </div>
+          </div>
+        `;
+      };
+
+      const animateGlobalShippingProgress = () => {
+        const progress = globalCartDrawerBody?.querySelector('[data-global-shipping-progress]');
+        if (!progress) return;
+        const targetProgress = progress.dataset.globalShippingProgress;
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            progress.style.setProperty('--shipping-progress', `${targetProgress}%`);
+          });
+        });
+      };
+
+      const renderGlobalCartDrawer = async () => {
+        if (!globalCartDrawerBody) return;
+        globalCartDrawerBody.innerHTML = '<p class="product-info-drawer__cart-empty">Winkelwagen laden...</p>';
+        try {
+          const cartState = await getGlobalCartState();
+          globalCartDrawerBody.innerHTML = buildGlobalCartContent(cartState);
+          animateGlobalShippingProgress();
+        } catch (error) {
+          console.error(error);
+          globalCartDrawerBody.innerHTML = '<p class="product-info-drawer__cart-empty">De winkelwagen kon niet worden geladen.</p>';
+        }
+      };
+
+      const closeGlobalCartDrawer = () => {
+        if (!globalCartDrawer) return;
+        globalCartDrawer.classList.remove('is-open');
+        globalCartDrawer.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('product-info-drawer-open');
+      };
+
+      const openGlobalCartDrawer = () => {
+        if (!globalCartDrawer) return false;
+        globalCartDrawer.classList.add('is-open');
+        globalCartDrawer.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.add('product-info-drawer-open');
+        renderGlobalCartDrawer();
+        return true;
+      };
+
+      globalCartDrawerCloseButtons.forEach((button) => {
+        button.addEventListener('click', closeGlobalCartDrawer);
+      });
+
+      globalCartDrawerBody?.addEventListener('click', async (event) => {
+        const quantityButton = event.target.closest('[data-global-cart-quantity-action]');
+        if (!quantityButton) return;
+
+        const quantityWrapper = quantityButton.closest('[data-global-cart-line-key]');
+        const itemKey = quantityWrapper?.dataset.globalCartLineKey;
+        const currentQuantity = Number(quantityWrapper?.dataset.globalCartLineQuantity || 1);
+        const quantityAction = quantityButton.dataset.globalCartQuantityAction;
+        const nextQuantity = quantityAction === 'plus' ? currentQuantity + 1 : Math.max(currentQuantity - 1, 0);
+
+        if (!itemKey) return;
+
+        quantityButton.disabled = true;
+        try {
+          const response = await fetch(`${window.routes?.cart_change_url || '/cart/change'}.js`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({ id: itemKey, quantity: nextQuantity }),
+          });
+          if (!response.ok) throw new Error('Cart quantity update failed');
+          const cartState = await response.json();
+          globalCartDrawerBody.innerHTML = buildGlobalCartContent(cartState);
+          animateGlobalShippingProgress();
+          updateGlobalCartIcon();
+        } catch (error) {
+          console.error(error);
+        } finally {
+          quantityButton.disabled = false;
+        }
+      });
+
+      document.addEventListener('keyup', (event) => {
+        if (event.code === 'Escape') closeGlobalCartDrawer();
+      });
+
+      const openWogCartDrawer = (trigger) => {
+        const productCartRequest = new CustomEvent('wog:open-product-cart-drawer', { cancelable: true });
+        document.dispatchEvent(productCartRequest);
+        if (productCartRequest.defaultPrevented) {
+          return true;
+        }
+
+        if (openGlobalCartDrawer()) {
+          return true;
+        }
+
+        const cartNotification = document.querySelector('cart-notification');
+        if (cartNotification && typeof cartNotification.open === 'function') {
+          cartNotification.open();
+          return true;
+        }
+
+        const cartDrawer = document.querySelector('cart-drawer');
+        if (cartDrawer && typeof cartDrawer.open === 'function') {
+          cartDrawer.open(trigger || document.querySelector('#cart-icon-bubble'));
+          return true;
+        }
+
+        return false;
+      };
+
+      document.addEventListener(
+        'click',
+        (event) => {
+          const cartLink = event.target.closest('#cart-icon-bubble');
+          if (!cartLink) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          openWogCartDrawer(cartLink);
+        },
+        true
+      );
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('open-cart') !== '1') return;
+        openWogCartDrawer();
+        params.delete('open-cart');
+        const nextSearch = params.toString();
+        window.history.replaceState({}, '', `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`);
+      });
+    </script>
   </body>
 </html>
