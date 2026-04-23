@@ -87,6 +87,29 @@
         "padding_bottom": 36
       }
     },
+    "rich_text_CG6NQn": {
+      "type": "rich-text",
+      "blocks": {
+        "text_4fG3fE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Het derde jaar stond in het teken van verdieping: zijn huwelijk kreeg prioriteit en hij richtte zich op het verbeteren van de ervaring rondom zijn product. Om structuur aan te brengen in zijn leven vond hij werk bij het Leger des Heils. Overdag bouwde hij aan zijn bedrijf, ’s nachts werkte hij daar. De discipline en orde die hij ooit in het leger had gekend, vond hij hier opnieuw terug.<br/>Nu is het vierde jaar aangebroken.<br/>De jongen die ooit begon met een idee is inmiddels 24 jaar, echtgenoot van een liefdevolle vrouw en vader van een prachtige dochter. In dit vierde jaar verschuift de focus naar voren: laten zien wat hij heeft gebouwd en, belangrijker nog, waarom hij het heeft gebouwd.<br/>Dit is het jaar waarin hij naar de voorgrond treedt.<br/>Dit is het jaar waarin hij laat zien dat kleding anders kan.<br/>Dit is Warrior of God.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_4fG3fE"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "multirow_z74VEk": {
       "type": "multirow",
       "blocks": {
@@ -148,6 +171,7 @@
     "main",
     "rich_text_B4WEEa",
     "image_with_text_JyyQyt",
+    "rich_text_CG6NQn",
     "multirow_z74VEk"
   ]
 }
