@@ -187,6 +187,37 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "rich_text_hifwNn": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_H7dByk": {
+          "type": "heading",
+          "settings": {
+            "heading": "Waar staan we voor?",
+            "heading_size": "h1"
+          }
+        },
+        "text_tKdjdG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wij staan voor een betere kledingindustrie.<br/>Voor kleding die niet ten koste gaat van het milieu of van de mensen die de kleding maken. Bij Warrior of God geloven we dat eerlijke kleding ook echt eerlijk moet zijn. Daarom betalen wij de mensen achter onze producten een eerlijke prijs en kiezen we bewust voor productiemethoden die respectvol zijn voor mens en aarde.<br/>Onze ontwerpen worden geprint met de beste en meest milieuvriendelijke technieken die momenteel beschikbaar zijn. Het bedrukken doen we zelf, hier in Apeldoorn. Zo houden we controle over kwaliteit, arbeidsomstandigheden en prijs en kunnen we jullie eerlijke kleding bieden voor een eerlijke prijs.<br/>Onze kleding is gemaakt om lang mee te gaan. Kwaliteit staat voorop. De enige die de prijs betaalt, ben jij een transparante en eerlijke prijs, zonder dat dit ten koste gaat van een ander of van de wereld om ons heen.<br/>Dat is waar wij voor staan.<br/>Dat is Warrior of God.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_H7dByk",
+        "text_tKdjdG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -196,6 +227,7 @@
     "rich_text_CG6NQn",
     "rich_text_JE9qb9",
     "image_banner_gU88Wp",
-    "rich_text_y97eWe"
+    "rich_text_y97eWe",
+    "rich_text_hifwNn"
   ]
 }
