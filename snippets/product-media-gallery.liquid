@@ -79,8 +79,8 @@
             assign media_color_tokens = media_color_tokens | append: ' black zwart'
           endif
 
-          if media_text contains 'wit' or media_text contains 'white'
-            assign media_color_tokens = media_color_tokens | append: ' white wit'
+          if media_text contains 'wit' or media_text contains 'white' or media_text contains 'ivoor' or media_text contains 'ivory'
+            assign media_color_tokens = media_color_tokens | append: ' white wit ivory ivoor'
           endif
 
           assign media_view = ''
@@ -107,8 +107,8 @@
                 assign normalized_variant_color = variant_color_value | downcase | strip
                 if normalized_variant_color == 'zwart' or normalized_variant_color == 'black'
                   assign media_color_tokens = media_color_tokens | append: ' black zwart'
-                elsif normalized_variant_color == 'wit' or normalized_variant_color == 'white'
-                  assign media_color_tokens = media_color_tokens | append: ' white wit'
+                elsif normalized_variant_color == 'wit' or normalized_variant_color == 'white' or normalized_variant_color == 'ivoor' or normalized_variant_color == 'ivory'
+                  assign media_color_tokens = media_color_tokens | append: ' white wit ivory ivoor'
                 else
                   assign media_color_tokens = media_color_tokens | append: ' ' | append: normalized_variant_color
                 endif
@@ -158,8 +158,8 @@
               assign media_color_tokens = media_color_tokens | append: ' black zwart'
             endif
 
-            if media_text contains 'wit' or media_text contains 'white'
-              assign media_color_tokens = media_color_tokens | append: ' white wit'
+            if media_text contains 'wit' or media_text contains 'white' or media_text contains 'ivoor' or media_text contains 'ivory'
+              assign media_color_tokens = media_color_tokens | append: ' white wit ivory ivoor'
             endif
 
             assign media_view = ''
@@ -186,8 +186,8 @@
                   assign normalized_variant_color = variant_color_value | downcase | strip
                   if normalized_variant_color == 'zwart' or normalized_variant_color == 'black'
                     assign media_color_tokens = media_color_tokens | append: ' black zwart'
-                  elsif normalized_variant_color == 'wit' or normalized_variant_color == 'white'
-                    assign media_color_tokens = media_color_tokens | append: ' white wit'
+                  elsif normalized_variant_color == 'wit' or normalized_variant_color == 'white' or normalized_variant_color == 'ivoor' or normalized_variant_color == 'ivory'
+                    assign media_color_tokens = media_color_tokens | append: ' white wit ivory ivoor'
                   else
                     assign media_color_tokens = media_color_tokens | append: ' ' | append: normalized_variant_color
                   endif

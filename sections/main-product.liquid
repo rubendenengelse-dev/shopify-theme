@@ -3712,7 +3712,7 @@
       const normalizeProductColor = (value = '') => {
         const normalized = value.trim().toLowerCase();
         if (normalized === 'zwart' || normalized === 'black') return 'black';
-        if (normalized === 'wit' || normalized === 'white') return 'white';
+        if (normalized === 'wit' || normalized === 'white' || normalized === 'ivoor' || normalized === 'ivory') return 'white';
         return normalized;
       };
 
@@ -3815,21 +3815,17 @@
           item.style.removeProperty('order');
         });
 
-        clickZoomItems = orderedVisibleItems.slice(0, 3);
+        clickZoomItems = orderedVisibleItems;
         clickZoomItems.forEach((item, index) => {
           item.classList.add('product__media-item--click-zoom');
-          if (index < 2) {
-            item.classList.add('product__media-item--filtered-small');
-            item.style.order = String(index + 1);
-          } else {
+          if (index === 2) {
             item.classList.add('product__media-item--filtered-large', 'product__media-item--click-zoom-large');
             item.style.order = '3';
+          } else {
+            item.classList.add('product__media-item--filtered-small');
+            item.style.order = String(index + 1);
           }
           bindClickZoomItem(item);
-        });
-
-        visibleItems.forEach((item, index) => {
-          if (!clickZoomItems.includes(item)) item.style.order = String(index + 4);
         });
       };
 
