@@ -275,7 +275,6 @@
     line-height: 1.2;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #000 !important;
     text-decoration: none !important;
     box-shadow: none !important;
   }
@@ -378,7 +377,7 @@
 
 .mega-menu__content,
 .mega-menu__content.global-settings-popup {
-  left: calc(50% - 13rem);
+  left: calc(50% - 12rem);
   right: auto;
   top: calc(100% + 2.4rem);
   transform: translateX(-50%);
@@ -2185,15 +2184,12 @@ body.desktop-search-open .desktop-search-panel {
       <ul class="list-menu list-menu--inline" role="list">
         {% for link in section.settings.menu.links %}
           {% assign normalized_top_level_title = link.title | strip | downcase %}
-          {% if normalized_top_level_title == 'onze missie' %}
-          <li class="header__menu-item--ghost" aria-hidden="true">
-            <span class="header__menu-item list-menu__item link focus-inset">
-              <span>{{- link.title | escape -}}</span>
-            </span>
-          </li>
-          {% else %}
           <li>
-            {% if link.links != blank %}
+            {% if normalized_top_level_title == 'onze missie' %}
+              <a class="header__menu-item list-menu__item link focus-inset header__menu-item--ghost" href="#" aria-hidden="true" tabindex="-1">
+                <span>{{- link.title | escape -}}</span>
+              </a>
+            {% elsif link.links != blank %}
               <header-menu>
                 <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
                   <summary
@@ -2300,7 +2296,6 @@ body.desktop-search-open .desktop-search-panel {
               </a>
             {% endif %}
           </li>
-          {% endif %}
         {% endfor %}
       </ul>
     </nav>

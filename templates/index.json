@@ -78,14 +78,10 @@
     },
     "image_banner_KmfCLW": {
       "type": "image-banner",
+      "custom_css": [
+        "@media screen and (max-width: 750px) {.banner, slideshow-component {display: none; }}"
+      ],
       "blocks": {
-        "heading_2d9mQp": {
-          "type": "heading",
-          "settings": {
-            "heading": "Een eerlijke prijs voor een eerlijk product",
-            "heading_size": "h0"
-          }
-        },
         "buttons_YqV9ka": {
           "type": "buttons",
           "settings": {
@@ -99,11 +95,7 @@
         }
       },
       "block_order": [
-        "heading_2d9mQp",
         "buttons_YqV9ka"
-      ],
-      "custom_css": [
-        "@media screen and (max-width: 750px) {.banner, slideshow-component {display: none; }}"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
@@ -111,7 +103,7 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
-        "desktop_content_position": "top-left",
+        "desktop_content_position": "middle-left",
         "desktop_content_alignment": "left",
         "show_text_box": false,
         "color_scheme": "scheme-4",
@@ -124,6 +116,22 @@
       "type": "image-banner",
       "custom_css": [
         "@media screen and (min-width: 750px) {.banner, slideshow-component {display: none; }}"
+      ],
+      "blocks": {
+        "buttons_mobile_missie": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Lees meer",
+            "button_link_1": "https://warrior-of-god.nl/pages/onze-missie",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "buttons_mobile_missie"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
