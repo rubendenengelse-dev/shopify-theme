@@ -124,7 +124,12 @@
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
-              {{ block.settings.heading }}
+              {% if section.id == 'image_banner_KmfCLW' and block.settings.heading == 'Een eerlijke prijs voor een eerlijk product' %}
+                <span class="banner__heading-line">Een eerlijke prijs voor</span>
+                <span class="banner__heading-line">een eerlijk product</span>
+              {% else %}
+                {{ block.settings.heading }}
+              {% endif %}
             </h2>
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
