@@ -110,60 +110,51 @@
         "padding_bottom": 52
       }
     },
-    "multirow_z74VEk": {
-      "type": "multirow",
+    "rich_text_JE9qb9": {
+      "type": "rich-text",
       "blocks": {
-        "row_wWzVFV": {
-          "type": "row",
+        "heading_KwLtU4": {
+          "type": "heading",
           "settings": {
-            "caption": "Bijschrift",
-            "heading": "Rij",
-            "text": "<p>Plaats een afbeelding bij stukken tekst om de aandacht op je gekozen product, collectie of blogpost te richten. Voeg details over beschikbaarheid en stijl toe of plaats een productrecensie.</p>",
-            "button_label": "",
-            "button_link": ""
+            "heading": "Wie is de oprichter?",
+            "heading_size": "h1"
           }
         },
-        "row_a4BagX": {
-          "type": "row",
+        "text_q3zBHm": {
+          "type": "text",
           "settings": {
-            "caption": "Bijschrift",
-            "heading": "Rij",
-            "text": "<p>Plaats een afbeelding bij stukken tekst om de aandacht op je gekozen product, collectie of blogpost te richten. Voeg details over beschikbaarheid en stijl toe of plaats een productrecensie.</p>",
-            "button_label": "Knoplabel",
-            "button_link": ""
-          }
-        },
-        "row_YRP78q": {
-          "type": "row",
-          "settings": {
-            "caption": "Bijschrift",
-            "heading": "Rij",
-            "text": "<p>Plaats een afbeelding bij stukken tekst om de aandacht op je gekozen product, collectie of blogpost te richten. Voeg details over beschikbaarheid en stijl toe of plaats een productrecensie.</p>",
-            "button_label": "Knoplabel",
-            "button_link": ""
+            "text": "<p>De oprichter van Warrior of God is Ruben den Engelse. Een man met één duidelijke drijfveer: een positieve invloed hebben op zijn omgeving.<br/>Op vijftienjarige leeftijd leerde Ruben een levensles die hem blijvend heeft gevormd. Hij redde het leven van een vrouw en zag met eigen ogen wat de impact kan zijn van één kleine, behulpzame daad. Het brengt vreugde, het maakt de ander dankbaar, en het laat zien wat er mogelijk is wanneer iemand opstaat voor een ander.<br/>Eén jongen koos ervoor te handelen waar anderen toekeken. Ondanks dat minstens tien mensen hadden kunnen helpen, namen zij geen risico. De daad van Ruben werd door velen gevierd, en de vreugde was groot toen hij samen met de vrouw levend weg kon lopen. Die ervaring liet Ruben iets belangrijks inzien: zelfs mensen die niet gelijk het juiste doen, dragen vaak wel het juiste in hun hart. Een simpele daad van hulp laat zien hoeveel we, ondanks onze verschillen, eigenlijk op elkaar lijken.<br/>Deze overtuiging vormt de kern van wie Ruben is en waarom hij Warrior of God (WOG) is begonnen: een merk dat staat voor geloof in actie, discipline in uitvoering en ondernemerschap met verantwoordelijkheid.<br/>Warrior of God is daarmee geen toeval, maar het resultaat van een levensles die vroeg werd geleerd en bewust wordt doorgegeven: staan voor wat juist is, waarde toevoegen aan anderen en bouwen aan iets dat groter is dan jezelf. Maar waarom dan specifiek een kledingbedrijf en niet iets anders? Is er niet teveel competitie op de markt?<br/><br/></p>"
           }
         }
       },
       "block_order": [
-        "row_wWzVFV",
-        "row_a4BagX",
-        "row_YRP78q"
+        "heading_KwLtU4",
+        "text_q3zBHm"
       ],
-      "name": "t:sections.multirow.presets.name",
+      "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "image_height": "medium",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "row_color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_banner_gU88Wp": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     }
   },
@@ -172,6 +163,7 @@
     "rich_text_B4WEEa",
     "image_with_text_JyyQyt",
     "rich_text_CG6NQn",
-    "multirow_z74VEk"
+    "rich_text_JE9qb9",
+    "image_banner_gU88Wp"
   ]
 }
