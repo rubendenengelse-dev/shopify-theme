@@ -44,8 +44,8 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "image_with_text_JyyQyt": {
@@ -83,8 +83,8 @@
         "mobile_content_alignment": "left",
         "section_color_scheme": "",
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "rich_text_CG6NQn": {
@@ -106,8 +106,8 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "rich_text_JE9qb9": {
@@ -137,16 +137,17 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "image_banner_gU88Wp": {
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
+        "image": "shopify://shop_images/DSC_5070.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "large",
+        "image_height": "adapt",
         "image_behavior": "none",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
@@ -219,20 +220,23 @@
         "padding_bottom": 52
       }
     },
-    "image_banner_bAxTHK": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
+    "image_with_text_mr7HGi": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image": "shopify://shop_images/DSC_4071.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
         "image_behavior": "none",
-        "desktop_content_position": "middle-center",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "rich_text_VxxGEt": {
@@ -262,8 +266,8 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "rich_text_CrUwRT": {
@@ -296,6 +300,25 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "image_with_text_pr8897": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Duif_zwart_png_logo_27088eb7-f51a-4753-9963-cbbfa3895c10.png",
+        "height": "small",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -307,8 +330,9 @@
     "image_banner_gU88Wp",
     "rich_text_y97eWe",
     "rich_text_hifwNn",
-    "image_banner_bAxTHK",
+    "image_with_text_mr7HGi",
     "rich_text_VxxGEt",
-    "rich_text_CrUwRT"
+    "rich_text_CrUwRT",
+    "image_with_text_pr8897"
   ]
 }
