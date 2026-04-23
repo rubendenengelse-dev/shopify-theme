@@ -103,7 +103,7 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/ruben_8814_advertising_photograph_of_organic_cotton_fabric_--ar_246d17a4-522f-4b7d-8b56-496c34b22ff3.png",
+        "image": "shopify://shop_images/ruben_8814_advertising_photograph_of_organic_cotton_fabric_--ar_246d17a4-522f-4b7d-8b56-496c34b22ff3.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
