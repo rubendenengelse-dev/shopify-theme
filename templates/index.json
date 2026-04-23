@@ -78,24 +78,12 @@
     },
     "image_banner_KmfCLW": {
       "type": "image-banner",
-      "blocks": {
-        "text_egmtCM": {
-          "type": "text",
-          "settings": {
-            "text": "Een eerlijke prijs vooor een eerlijke prijs.",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "text_egmtCM"
-      ],
       "custom_css": [
         "@media screen and (max-width: 750px) {.banner, slideshow-component {display: none; }}"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/100_-bio-test.jpg",
+        "image": "shopify://shop_images/100_-bio_154e13b6-42b1-49c9-bde8-767db2c5e845.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
