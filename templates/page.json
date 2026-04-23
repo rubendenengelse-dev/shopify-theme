@@ -218,6 +218,53 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "image_banner_bAxTHK": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_VxxGEt": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7TtG88": {
+          "type": "heading",
+          "settings": {
+            "heading": "Wat is de WOG community?",
+            "heading_size": "h1"
+          }
+        },
+        "text_hkCiqx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>De WOG community is een gemeenschap die overwinningen toejuicht, samen groeit en er voor elkaar is. Een community gebouwd op het besef dat echte groei en echte positieve verandering nooit alleen plaatsvinden.<br/>Iedereen die succesvol is, weet dat succes niet ontstaat zonder hulp onderweg. Soms moet iemand een deur voor je openhouden. Wij geloven dat God door mensen heen werkt en dat wie Hem vertrouwt, zal ontdekken waartoe hij in staat is.<br/>De Bijbel staat vol verhalen van mannen en vrouwen die hun vertrouwen op God vestigden en daardoor meer bereikten dan zij ooit zelf hadden kunnen bedenken. Diezelfde overtuiging leeft binnen de WOG community.<br/>Wij staan voor samen zijn.<br/>Voor samen wandelen in geloof.<br/>Voor samen groeien als mens, als ondernemer en als gemeenschap.<br/>Wij geloven dat zelfs de kleinste goede daad een grote impact kan hebben. Zeker in een wereld, en in een industrie, die hard toe is aan positieve verandering.<br/>Dat is de WOG community.<br/>Samen sterk. Samen verantwoordelijk. Samen onderweg.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_7TtG88",
+        "text_hkCiqx"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -228,6 +275,8 @@
     "rich_text_JE9qb9",
     "image_banner_gU88Wp",
     "rich_text_y97eWe",
-    "rich_text_hifwNn"
+    "rich_text_hifwNn",
+    "image_banner_bAxTHK",
+    "rich_text_VxxGEt"
   ]
 }
