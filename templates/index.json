@@ -31,7 +31,7 @@
         "@media screen and (max-width: 750px) {.banner, slideshow-component {display: none; }}"
       ],
       "settings": {
-        "image": "shopify://shop_images/test-4.jpg",
+        "image": "shopify://shop_images/warrior-of-God.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
