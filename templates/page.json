@@ -156,6 +156,37 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
+    },
+    "rich_text_y97eWe": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_i8MAnX": {
+          "type": "heading",
+          "settings": {
+            "heading": "Hoe is Warrior of God (WOG) ontstaan?",
+            "heading_size": "h1"
+          }
+        },
+        "text_WRGV3q": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Waarom een kledingmerk? Waarom niet iets dat in de ogen van velen meer kans op succes zou hebben?<br/>Eerlijk gezegd wist Ruben dat zelf aanvankelijk ook niet. Wat hij wél wist, was dat hij deze opdracht had ontvangen van God en dat gehoorzaamheid belangrijker was dan zekerheid. In plaats van te wachten op een volledig uitgewerkt plan, ging hij aan de slag.<br/>Vanuit zijn militaire achtergrond had Ruben al geleerd wat structuur, opoffering en doorzettingsvermogen betekenen. Die waarden nam hij mee in zijn ondernemerschap: niet wachten op perfecte omstandigheden, maar bouwen met wat er is. Dag na dag. Keuze na keuze.<br/>Hoe verder hij kwam in zijn persoonlijke ontwikkeling en in zijn onderneming, hoe helderder de visie werd die God voor hem had. Ruben gelooft dat God vraagt om te wandelen in geloof vóórdat Hij laat zien wat er precies te wachten staat. De enige man die hier op aarde leefde met volledige kennis van zijn missie en lot was Jezus en zelfs Hij openbaarde niet alles in detail aan zijn discipelen. Vertrouwen ging altijd vóór begrip.<br/>Gaandeweg werd duidelijk waarom zijn roeping juist in de kledingindustrie lag. Dit is één van de meest schadelijke industrieën ter wereld. Kinderarbeid, oneerlijke werkomstandigheden en structurele onderbetaling komt nog steeds veel voor. Kleding wordt niet door machines gemaakt, maar door mensenhanden en toch is menselijke arbeid bij veel merken het goedkoopste onderdeel van het product.<br/>Bij Warrior of God is dat anders.<br/>WOG staat voor respect voor arbeid, eerlijkheid en verantwoordelijkheid nemen voor de impact die een merk heeft. Het doel is niet alleen kleding maken, maar een positieve invloed uitoefenen op een industrie die dat hard nodig heeft.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_i8MAnX",
+        "text_WRGV3q"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -164,6 +195,7 @@
     "image_with_text_JyyQyt",
     "rich_text_CG6NQn",
     "rich_text_JE9qb9",
-    "image_banner_gU88Wp"
+    "image_banner_gU88Wp",
+    "rich_text_y97eWe"
   ]
 }
