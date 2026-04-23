@@ -78,6 +78,18 @@
     },
     "image_banner_KmfCLW": {
       "type": "image-banner",
+      "blocks": {
+        "text_egmtCM": {
+          "type": "text",
+          "settings": {
+            "text": "Een eerlijke prijs vooor een eerlijke prijs.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_egmtCM"
+      ],
       "custom_css": [
         "@media screen and (max-width: 750px) {.banner, slideshow-component {display: none; }}"
       ],
