@@ -48,6 +48,45 @@
         "padding_bottom": 52
       }
     },
+    "image_with_text_JyyQyt": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_fcwN9z": {
+          "type": "heading",
+          "settings": {
+            "heading": "Het verhaal van Warrior of God (WOG)",
+            "heading_size": "h1"
+          }
+        },
+        "text_athmBp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Er was eens een 19-jarige militair in opleiding met één duidelijke droom: de wereld beter achterlaten dan hoe hij haar had aangetroffen. Al snel ontdekte hij dat hij binnen het leger niet de impact kon maken waar hij naar zocht. Die realisatie bracht een moeilijke, maar nodige beslissing met zich mee: hij stopte.<br/>Kort daarna ontmoette hij een lieve vrouw, en niet lang daarna zette hij zijn volgende grote stap. Zonder startkapitaal, maar met een duidelijke visie, richtte hij zijn kledingmerk op: Warrior of God (WOG).<br/>Vanaf het begin lag de focus op één principe: waarde bieden. Want wie waarde biedt aan anderen, creëert blijdschap  voor hen én voor zichzelf. Dat eerste jaar was allesbehalve eenvoudig. Het was een periode van vallen en opstaan, waarin hij zichzelf ontwikkelde als persoon én als ondernemer, terwijl hij tegelijkertijd bouwde aan een relatie.<br/>In het tweede jaar kwamen de eerste verkopen. Kleine overwinningen, maar van grote betekenis. In datzelfde jaar trouwde hij met de vrouw die hij anderhalf jaar eerder had ontmoet. De eerste vruchten van het bedrijf gaven hem de bevestiging en bemoediging om door te gaan.<br/><br/></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fcwN9z",
+        "text_athmBp"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/DSC073269.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "multirow_z74VEk": {
       "type": "multirow",
       "blocks": {
@@ -57,7 +96,7 @@
             "caption": "Bijschrift",
             "heading": "Rij",
             "text": "<p>Plaats een afbeelding bij stukken tekst om de aandacht op je gekozen product, collectie of blogpost te richten. Voeg details over beschikbaarheid en stijl toe of plaats een productrecensie.</p>",
-            "button_label": "Knoplabel",
+            "button_label": "",
             "button_link": ""
           }
         },
@@ -108,6 +147,7 @@
   "order": [
     "main",
     "rich_text_B4WEEa",
+    "image_with_text_JyyQyt",
     "multirow_z74VEk"
   ]
 }
