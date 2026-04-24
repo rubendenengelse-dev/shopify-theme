@@ -3950,6 +3950,20 @@
       requestUpdate();
     })();
   </script>
+  <script>
+    (() => {
+      const storageKey = 'wog-recently-viewed-products';
+      const currentProductId = Number({{ product.id | json }});
+      if (!currentProductId) return;
+
+      try {
+        const parsed = JSON.parse(window.localStorage.getItem(storageKey) || '[]');
+        const recentIds = Array.isArray(parsed) ? parsed.map((value) => Number(value)).filter(Boolean) : [];
+        const nextIds = [currentProductId, ...recentIds.filter((productId) => productId !== currentProductId)].slice(0, 24);
+        window.localStorage.setItem(storageKey, JSON.stringify(nextIds));
+      } catch (error) {}
+    })();
+  </script>
   </div>
 </product-info>
 

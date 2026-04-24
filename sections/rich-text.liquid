@@ -45,13 +45,22 @@
         display: inline;
         margin-left: 0.35rem;
         padding: 0;
-        border: 0;
-        background: transparent;
-        color: #111111;
+        color: #000000;
         font: inherit;
         font-weight: 700;
+        line-height: inherit;
         text-decoration: none;
-        cursor: pointer;
+        cursor: pointer !important;
+        user-select: none;
+        outline: none;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:hover,
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:focus,
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:focus-visible,
+      .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:active {
+        color: #000000;
+        cursor: pointer !important;
       }
 
       .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:focus,
@@ -69,17 +78,42 @@
         display: inline;
       }
 
+      {% if template.suffix == 'hoodies' or template.suffix == 't-shirts' %}
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-intro {
+          display: block;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button {
+          display: block;
+          margin-top: 0.1rem;
+          margin-left: 0;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore > p {
+          margin-top: 0.9rem;
+        }
+      {% endif %}
+
       .section-{{ section.id }}-padding .rich-text__mobile-readless-button {
         display: block;
         margin-top: 0.1rem;
         padding: 0;
-        border: 0;
-        background: transparent;
-        color: #111111;
+        color: #000000;
         font: inherit;
         font-weight: 700;
+        line-height: inherit;
         text-decoration: none;
-        cursor: pointer;
+        cursor: pointer !important;
+        user-select: none;
+        outline: none;
+      }
+
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button:hover,
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button:focus,
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button:focus-visible,
+      .section-{{ section.id }}-padding .rich-text__mobile-readless-button:active {
+        color: #000000;
+        cursor: pointer !important;
       }
 
       .section-{{ section.id }}-padding .rich-text__mobile-readless-button:focus,
@@ -164,6 +198,54 @@
         .section-{{ section.id }}-padding .rich-text__blocks:has(.rich-text__heading.rte.inline-richtext.h2) {
           width: 100%;
           max-width: none;
+        }
+      {% endif %}
+
+      {% if template.suffix == 'hoodies' or template.suffix == 't-shirts' %}
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore[hidden] {
+          display: none !important;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button,
+        .section-{{ section.id }}-padding .rich-text__mobile-readless-button {
+          color: #000000 !important;
+          cursor: pointer !important;
+          user-select: none;
+          text-decoration: none !important;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:hover,
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:focus,
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:focus-visible,
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button:active,
+        .section-{{ section.id }}-padding .rich-text__mobile-readless-button:hover,
+        .section-{{ section.id }}-padding .rich-text__mobile-readless-button:focus,
+        .section-{{ section.id }}-padding .rich-text__mobile-readless-button:focus-visible,
+        .section-{{ section.id }}-padding .rich-text__mobile-readless-button:active {
+          color: #000000 !important;
+          cursor: pointer !important;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button[hidden] {
+          display: none !important;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readless-button[hidden] {
+          display: none !important;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-intro {
+          display: block;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore-button {
+          display: block;
+          margin-top: 0.1rem;
+          margin-left: 0;
+        }
+
+        .section-{{ section.id }}-padding .rich-text__mobile-readmore > p {
+          margin-top: 0.9rem;
         }
       {% endif %}
     {% endif %}
@@ -254,7 +336,11 @@
   <script>
     (() => {
       const applyMobileReadMore = () => {
-        if (window.innerWidth >= 750) return;
+        if (
+          window.innerWidth >= 750
+          && '{{ template.suffix }}' != 'hoodies'
+          && '{{ template.suffix }}' != 't-shirts'
+        ) return;
 
         const section = document.querySelector('.section-{{ section.id }}-padding');
         if (!section || section.dataset.mobileReadmoreApplied === 'true') return;
@@ -267,6 +353,61 @@
         if (!paragraph) return;
 
         const fullText = paragraph.innerHTML.trim();
+        if ('{{ template.suffix }}' === 'hoodies' || '{{ template.suffix }}' === 't-shirts') {
+          const paragraphBreakMatch = fullText.match(/<br\s*\/?>\s*<br\s*\/?>/i);
+          if (!paragraphBreakMatch) return;
+
+          const splitIndex = paragraphBreakMatch.index;
+          const visiblePart = fullText.slice(0, splitIndex).trim();
+          const hiddenPart = fullText
+            .slice(splitIndex + paragraphBreakMatch[0].length)
+            .trim();
+
+          if (!visiblePart || !hiddenPart) return;
+
+          introText.innerHTML = `
+            <p>
+              <span class="rich-text__mobile-readmore-intro">${visiblePart}</span>
+            </p>
+            <span class="rich-text__mobile-readmore-button" role="button" tabindex="0">...Bekijk meer</span>
+            <div class="rich-text__mobile-readmore" hidden>
+              <p>${hiddenPart}</p>
+            </div>
+            <span class="rich-text__mobile-readless-button" role="button" tabindex="0" hidden>Zie minder</span>
+          `;
+
+          const hiddenContent = introText.querySelector('.rich-text__mobile-readmore');
+          const button = introText.querySelector('.rich-text__mobile-readmore-button');
+          const readLessButton = introText.querySelector('.rich-text__mobile-readless-button');
+
+          const handleToggleKeydown = (event, callback) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              callback();
+            }
+          };
+
+          const showMore = () => {
+            hiddenContent.hidden = false;
+            button.hidden = true;
+            readLessButton.hidden = false;
+          };
+
+          const showLess = () => {
+            hiddenContent.hidden = true;
+            button.hidden = false;
+            readLessButton.hidden = true;
+          };
+
+          button.addEventListener('click', showMore);
+          button.addEventListener('keydown', (event) => handleToggleKeydown(event, showMore));
+          readLessButton.addEventListener('click', showLess);
+          readLessButton.addEventListener('keydown', (event) => handleToggleKeydown(event, showLess));
+
+          section.dataset.mobileReadmoreApplied = 'true';
+          return;
+        }
+
         const splitMarkers = {
           't-shirts': 'Onze T-shirts vormen de basis van elke sterke outfit.',
           'hoodies': 'Onze hoodies zijn gemaakt om elke dag te dragen.',
@@ -283,27 +424,39 @@
 
         introText.innerHTML = `
           <p>
-            <span class="rich-text__mobile-readmore-intro">${visiblePart}</span><button type="button" class="rich-text__mobile-readmore-button">...Bekijk meer</button>
+            <span class="rich-text__mobile-readmore-intro">${visiblePart}</span><span class="rich-text__mobile-readmore-button" role="button" tabindex="0">...Bekijk meer</span>
             <span class="rich-text__mobile-readmore" hidden> ${hiddenPart}</span>
           </p>
-          <button type="button" class="rich-text__mobile-readless-button" hidden>Zie minder</button>
+          <span class="rich-text__mobile-readless-button" role="button" tabindex="0" hidden>Zie minder</span>
         `;
 
         const hiddenContent = introText.querySelector('.rich-text__mobile-readmore');
         const button = introText.querySelector('.rich-text__mobile-readmore-button');
         const readLessButton = introText.querySelector('.rich-text__mobile-readless-button');
 
-        button.addEventListener('click', () => {
+        const handleToggleKeydown = (event, callback) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            callback();
+          }
+        };
+
+        const showMore = () => {
           hiddenContent.hidden = false;
           button.hidden = true;
           readLessButton.hidden = false;
-        });
+        };
 
-        readLessButton.addEventListener('click', () => {
+        const showLess = () => {
           hiddenContent.hidden = true;
           button.hidden = false;
           readLessButton.hidden = true;
-        });
+        };
+
+        button.addEventListener('click', showMore);
+        button.addEventListener('keydown', (event) => handleToggleKeydown(event, showMore));
+        readLessButton.addEventListener('click', showLess);
+        readLessButton.addEventListener('keydown', (event) => handleToggleKeydown(event, showLess));
 
         section.dataset.mobileReadmoreApplied = 'true';
       };

@@ -1239,11 +1239,11 @@
               </summary>
               <div class="mobile-filter-sort-dropdown__body">
                 <div class="mobile-filter-sort-options" data-mobile-filter-group="sort">
-                  <button class="mobile-filter-sort-option mobile-filter-sort-option--radio is-selected" type="button" aria-pressed="true">
+                  <button class="mobile-filter-sort-option mobile-filter-sort-option--radio" type="button" aria-pressed="false" data-mobile-sort-value="default">
                     <span>Relevantie</span>
                     <span class="mobile-filter-sort-option__radio" aria-hidden="true"></span>
                   </button>
-                  <button class="mobile-filter-sort-option mobile-filter-sort-option--radio" type="button" aria-pressed="false">
+                  <button class="mobile-filter-sort-option mobile-filter-sort-option--radio" type="button" aria-pressed="false" data-mobile-sort-value="newest">
                     <span>Nieuwste</span>
                     <span class="mobile-filter-sort-option__radio" aria-hidden="true"></span>
                   </button>
@@ -1307,11 +1307,11 @@
             </summary>
             <div class="mobile-filter-sort-dropdown__body">
               <div class="mobile-filter-sort-options" data-mobile-filter-group="sort">
-                <button class="mobile-filter-sort-option mobile-filter-sort-option--radio is-selected" type="button" aria-pressed="true">
+                <button class="mobile-filter-sort-option mobile-filter-sort-option--radio" type="button" aria-pressed="false" data-mobile-sort-value="default">
                   <span>Relevantie</span>
                   <span class="mobile-filter-sort-option__radio" aria-hidden="true"></span>
                 </button>
-                <button class="mobile-filter-sort-option mobile-filter-sort-option--radio" type="button" aria-pressed="false">
+                <button class="mobile-filter-sort-option mobile-filter-sort-option--radio" type="button" aria-pressed="false" data-mobile-sort-value="newest">
                   <span>Nieuwste</span>
                   <span class="mobile-filter-sort-option__radio" aria-hidden="true"></span>
                 </button>
@@ -1416,6 +1416,9 @@
               <li
                 id="Slide-{{ section.id }}-{{ forloop.index }}"
                 class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                data-sort-default-order="{{ forloop.index0 }}"
+                data-sort-newest="{{ product.published_at | default: product.created_at | date: '%s' }}"
+                data-product-id="{{ product.id }}"
                 {% if wog_black_media != blank %}
                   data-wog-color-black-src="{{ wog_black_media | image_url: width: 720 }}"
                   data-wog-color-black-srcset="{%- if wog_black_media.width >= 360 -%}{{ wog_black_media | image_url: width: 360 }} 360w,{%- endif -%}{%- if wog_black_media.width >= 533 -%}{{ wog_black_media | image_url: width: 533 }} 533w,{%- endif -%}{%- if wog_black_media.width >= 720 -%}{{ wog_black_media | image_url: width: 720 }} 720w,{%- endif -%}{{ wog_black_media | image_url }} {{ wog_black_media.width }}w"
@@ -1529,7 +1532,9 @@
     const filterSortButton = collection.querySelector('.mobile-product-filter-sort');
     const filterSortSheet = collection.querySelector('.mobile-filter-sort-sheet');
     const filterSortRoots = Array.from(collection.querySelectorAll('.mobile-filter-sort-sheet, .desktop-filter-sidebar'));
+    const productGrid = collection.querySelector('.product-grid');
     const productItems = Array.from(collection.querySelectorAll('.product-grid .grid__item'));
+    const recentlyViewedStorageKey = 'wog-recently-viewed-products';
 
     const storageKey = 'wog-mobile-product-columns';
     const setColumns = (columns) => {
@@ -1605,12 +1610,21 @@
             button.setAttribute('aria-pressed', String(isSelected));
           });
 
+          if (group.dataset.mobileFilterGroup === 'sort') {
+            sortProductItems(option.dataset.mobileSortValue || 'default');
+            return;
+          }
+
           if (group.dataset.mobileFilterGroup === 'color') {
             applyColorFilter(option.dataset.mobileFilterColor || '');
           }
         });
       });
       filterRoot.querySelector('[data-mobile-filter-clear]')?.addEventListener('click', () => {
+        filterRoot.querySelectorAll('[data-mobile-filter-group="sort"] .mobile-filter-sort-option').forEach((button) => {
+          button.classList.remove('is-selected');
+          button.setAttribute('aria-pressed', 'false');
+        });
         filterRoot.querySelectorAll('[data-mobile-filter-group="size"] .mobile-filter-sort-option').forEach((button) => {
           button.classList.remove('is-selected');
           button.setAttribute('aria-pressed', 'false');
@@ -1619,6 +1633,7 @@
           button.classList.remove('is-selected');
           button.setAttribute('aria-pressed', 'false');
         });
+        sortProductItems('default');
         applyColorFilter('');
         if (filterRoot.classList.contains('mobile-filter-sort-sheet')) {
           filterRoot.classList.remove('is-open');
@@ -1663,6 +1678,43 @@
         item.classList.toggle('is-filter-hidden', !nextSrc);
         if (nextSrc) setCardImage(image, nextSrc, nextSrcset);
       });
+    };
+
+    const getRecentlyViewedProductIds = () => {
+      try {
+        const parsed = JSON.parse(window.localStorage.getItem(recentlyViewedStorageKey) || '[]');
+        return Array.isArray(parsed) ? parsed.map((value) => Number(value)).filter(Boolean) : [];
+      } catch (error) {
+        return [];
+      }
+    };
+
+    const sortProductItems = (sortValue) => {
+      if (!productGrid) return;
+      const recentlyViewedProductIds = getRecentlyViewedProductIds();
+      const recentRank = new Map(
+        recentlyViewedProductIds.map((productId, index) => [productId, recentlyViewedProductIds.length - index])
+      );
+
+      const sortedItems = [...productItems].sort((leftItem, rightItem) => {
+        if (sortValue === 'newest') {
+          const leftNewest = Number(leftItem.dataset.sortNewest || 0);
+          const rightNewest = Number(rightItem.dataset.sortNewest || 0);
+
+          if (leftNewest !== rightNewest) return rightNewest - leftNewest;
+        }
+
+        if (sortValue === 'default') {
+          const leftRecentScore = recentRank.get(Number(leftItem.dataset.productId || 0)) || 0;
+          const rightRecentScore = recentRank.get(Number(rightItem.dataset.productId || 0)) || 0;
+
+          if (leftRecentScore !== rightRecentScore) return rightRecentScore - leftRecentScore;
+        }
+
+        return Number(leftItem.dataset.sortDefaultOrder || 0) - Number(rightItem.dataset.sortDefaultOrder || 0);
+      });
+
+      sortedItems.forEach((item) => productGrid.appendChild(item));
     };
   })();
 </script>
