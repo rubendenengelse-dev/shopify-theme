@@ -78,9 +78,6 @@
     },
     "image_banner_KmfCLW": {
       "type": "image-banner",
-      "custom_css": [
-        "@media screen and (max-width: 750px) {.banner, slideshow-component {display: none; }}"
-      ],
       "blocks": {
         "buttons_YqV9ka": {
           "type": "buttons",
@@ -96,6 +93,9 @@
       },
       "block_order": [
         "buttons_YqV9ka"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 750px) {.banner, slideshow-component {display: none; }}"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
@@ -114,9 +114,6 @@
     },
     "image_banner_hda3BV": {
       "type": "image-banner",
-      "custom_css": [
-        "@media screen and (min-width: 750px) {.banner, slideshow-component {display: none; }}"
-      ],
       "blocks": {
         "buttons_mobile_missie": {
           "type": "buttons",
@@ -132,6 +129,9 @@
       },
       "block_order": [
         "buttons_mobile_missie"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.banner, slideshow-component {display: none; }}"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
@@ -163,24 +163,52 @@
             "collection": "hoodies"
           }
         },
+        "featured_collection_VRjCKG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oversize-tshirts"
+          }
+        },
         "featured_collection_mzyJqi": {
           "type": "featured_collection",
           "settings": {
             "collection": "over-size"
+          }
+        },
+        "featured_collection_F9AgjM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "polos"
+          }
+        },
+        "featured_collection_QU4gqM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-t-shirtss"
+          }
+        },
+        "featured_collection_tG9K9t": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-hoodies"
           }
         }
       },
       "block_order": [
         "featured_collection_fUztUe",
         "featured_collection_pd7cVc",
-        "featured_collection_mzyJqi"
+        "featured_collection_VRjCKG",
+        "featured_collection_mzyJqi",
+        "featured_collection_F9AgjM",
+        "featured_collection_QU4gqM",
+        "featured_collection_tG9K9t"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "Explore",
         "heading_size": "h2",
         "image_ratio": "adapt",
-        "columns_desktop": 3,
+        "columns_desktop": 6,
         "color_scheme": "",
         "show_view_all": false,
         "columns_mobile": "1",
