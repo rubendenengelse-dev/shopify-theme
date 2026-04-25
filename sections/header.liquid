@@ -545,15 +545,29 @@
     display: inline-block;
     position: relative;
     margin-bottom: 1.3rem;
-    font-size: 1.34rem;
+    font-size: 1.38rem;
     line-height: 1.2;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #000 !important;
+    color: rgba(var(--color-foreground), 0.4) !important;
     opacity: 1 !important;
     text-decoration: none !important;
     box-shadow: none !important;
+    cursor: default;
+    pointer-events: none;
+    font-family: var(--font-body-family);
+    font-style: normal;
+  }
+
+  @media screen and (min-width: 1537px) {
+    .mega-menu__link--level-2 {
+      font-weight: 900;
+      font-family: inherit;
+      color: rgba(var(--color-foreground), 0.4) !important;
+      -webkit-text-stroke: 0.015em currentColor;
+      text-shadow: 0 0 0 currentColor;
+    }
   }
 
   .mega-menu__link {
@@ -1010,7 +1024,224 @@ body.desktop-search-open .desktop-search-panel {
   display: none !important;
 }
 
+}
 
+@media screen and (min-width: 990px) and (max-width: 1536px) {
+  .header {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    column-gap: 1rem;
+  }
+
+  .header--middle-left {
+    column-gap: 1rem;
+  }
+
+  .header__heading-logo-wrapper {
+    width: 88px !important;
+    max-width: 88px !important;
+  }
+
+  .header--middle-left .header__inline-menu {
+    margin-left: -20rem;
+  }
+
+  .header--middle-left .header__inline-menu .list-menu--inline {
+    gap: 1rem;
+  }
+
+  .header__menu-item {
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+
+  .header--middle-left .header__icons {
+    gap: 0.2rem;
+    margin-right: -12rem;
+  }
+
+  .header__search {
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__search .desktop-search-toggle,
+  .header__search .desktop-search-toggle.header__icon {
+    min-width: 4.4rem;
+    width: 4.4rem;
+    height: 4.4rem;
+    min-height: 4.4rem;
+    gap: 0;
+    padding: 0;
+    border-radius: 999px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  {% if section.settings.search_placeholder_text != blank %}
+    .header__search .desktop-search-toggle::after {
+      content: none;
+    }
+  {% endif %}
+
+  .header__search .desktop-search-toggle,
+  .header__search .desktop-search-toggle.header__icon,
+  .header__search .desktop-search-toggle:focus,
+  .header__search .desktop-search-toggle.header__icon:focus,
+  .header__search .desktop-search-toggle:focus-visible,
+  .header__search .desktop-search-toggle.header__icon:focus-visible,
+  .header__search .desktop-search-toggle:focus-within,
+  .header__search .desktop-search-toggle.header__icon:focus-within,
+  .header__search .desktop-search-toggle:active {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    transform: none !important;
+  }
+
+  .header__search .desktop-search-toggle:hover,
+  .header__search .desktop-search-toggle.header__icon:hover,
+  .header__search .desktop-search-toggle:focus-visible {
+    background-color: rgba(var(--color-foreground), 0.04) !important;
+    box-shadow: inset 0 0 0 1px rgba(var(--color-foreground), 0.06) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .header__search .desktop-search-toggle .svg-wrapper,
+  .header__search .desktop-search-toggle .icon,
+  .header__search .desktop-search-toggle svg {
+    width: 1.9rem !important;
+    height: 1.9rem !important;
+  }
+
+  .mega-menu__content,
+  .mega-menu__content.global-settings-popup {
+    left: calc(50% - 10.7rem);
+    top: calc(100% + 1.2rem);
+    width: calc(100vw + 0.9rem);
+    max-width: calc(100vw + 0.9rem);
+    padding: 2.4rem 2.1rem 2.8rem;
+  }
+
+  .mega-menu__panel {
+    grid-template-columns: minmax(0, 1fr) 30rem;
+    column-gap: 1.6rem;
+  }
+
+  .mega-menu__promo {
+    width: 30rem;
+    max-width: 30rem;
+    gap: 1rem;
+    justify-self: end;
+    margin-right: 0.4rem;
+  }
+
+  .mega-menu__promo-card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.6rem;
+    aspect-ratio: 1 / 1;
+  }
+
+  .mega-menu__promo-card-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .mega-menu__list {
+    gap: 1.4rem;
+    margin: 0 0 0 3rem;
+  }
+
+  .mega-menu__list > li {
+    min-width: 10rem;
+  }
+
+  .mega-menu__list > li::after {
+    content: none !important;
+  }
+
+  .mega-menu__list > li::before {
+    content: '';
+    position: absolute;
+    top: 0.2rem;
+    left: -1.5rem;
+    width: 1px;
+    height: calc(100% - 0.4rem);
+    opacity: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(var(--color-foreground), 0.08) 20%,
+      rgba(var(--color-foreground), 0.16) 42%,
+      rgba(var(--color-foreground), 0.28) 50%,
+      rgba(var(--color-foreground), 0.16) 58%,
+      rgba(var(--color-foreground), 0.08) 80%,
+      transparent 100%
+    );
+    background-size: 100% 220%;
+    background-position: center var(--divider-y);
+    opacity: 0.9;
+    transition: opacity 0.18s ease;
+  }
+
+  .mega-menu__list > li:hover::before,
+  .mega-menu__list > li:focus-within::before {
+    opacity: 1;
+  }
+
+  .mega-menu__link--level-2 {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.4) !important;
+    cursor: default;
+    pointer-events: none;
+    font-family: inherit;
+    font-style: normal;
+  }
+
+  .mega-menu__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0.08rem;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.28s ease;
+    opacity: 0.32;
+  }
+
+  .mega-menu__link {
+    font-size: 1.12rem;
+  }
+
+  .mega-menu__main .list-unstyled,
+  .mega-menu__main .list-unstyled li {
+    border-left: 0 !important;
+    box-shadow: none !important;
+    padding-left: 0 !important;
+  }
+
+  .mega-menu__link--level-2::after,
+  .mega-menu__link--level-2:hover::after,
+  .mega-menu__link--level-2:focus-visible::after,
+  .mega-menu__link--level-2.mega-menu__link--active::after {
+    content: none !important;
+    transform: none !important;
+  }
 }
 
   @media screen and (max-width: 989px) {
@@ -2221,16 +2452,12 @@ body.desktop-search-open .desktop-search-panel {
                         <ul class="mega-menu__list{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}" role="list">
                           {% for childlink in link.links %}
                             <li>
-                              <a
+                              <span
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                                href="{{ childlink.url }}"
-                                class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-                                {% if childlink.current %}
-                                  aria-current="page"
-                                {% endif %}
+                                class="mega-menu__link mega-menu__link--level-2"
                               >
                                 {{ childlink.title | escape }}
-                              </a>
+                              </span>
 
                               {% if childlink.links != blank %}
                                 <ul class="list-unstyled" role="list">

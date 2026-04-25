@@ -266,6 +266,89 @@
     }
   }
 
+  @media screen and (min-width: 990px) and (max-width: 1536px) {
+    .footer__content-top {
+      padding-left: 2.4rem;
+      padding-right: 2.4rem;
+    }
+
+    .footer__blocks-wrapper {
+      column-gap: 1.6rem;
+      row-gap: 1.6rem;
+    }
+
+    .footer-block--menu {
+      transform: translateX(-19rem);
+    }
+
+    .footer-block--menu .footer-block__heading,
+    .footer-block--menu .footer-block__details-content {
+      transform: translateX(-9rem);
+    }
+
+    .footer-block--newsletter,
+    .footer-block__newsletter {
+      transform: translate(-4.5rem, 1.2rem);
+      max-width: 34rem;
+    }
+
+    .footer__newsletter .newsletter-form__button {
+      right: 3.8rem;
+    }
+
+    .footer-block--brand,
+    .footer-block--image-only {
+      transform: translateX(18rem);
+    }
+
+    .footer-block__brand-info {
+      transform: translateX(2rem);
+      margin-right: -8rem;
+    }
+
+    .footer__list-social {
+      transform: translate(92rem, 2rem);
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-end;
+      width: max-content;
+    }
+
+    .footer__list-social .list-social__item {
+      flex: 0 0 auto;
+    }
+
+    .footer-block__brand-info .footer-block__image-wrapper,
+    .footer-block--image-only .footer-block__image-wrapper {
+      transform: translate(6rem, 30rem);
+      margin-right: -6rem;
+      max-width: 18rem;
+    }
+
+    .footer__payment--desktop {
+      transform: translateY(1rem);
+      margin-top: 1.4rem;
+      justify-content: flex-start;
+    }
+
+    .footer__payment--desktop .list-payment {
+      flex-wrap: nowrap;
+      gap: 0.6rem;
+      justify-content: flex-start;
+      transform: translateX(-1.4rem);
+    }
+
+    .footer__payment--desktop .list-payment__item {
+      flex: 0 0 auto;
+    }
+
+    .footer__copyright.caption {
+      transform: translate(-16rem, -1.8rem);
+    }
+  }
+
 @media screen and (max-width: 749px) {
   .footer__payment--desktop {
     display: none;
