@@ -113,7 +113,7 @@
         font-style: var(--font-body-style);
         font-weight: 620;
         gap: clamp(1.65rem, 2.1vw, 3rem);
-        left: calc(-1 * var(--product-gallery-left-offset) + 2.4rem);
+        left: calc(-1 * var(--product-gallery-left-offset) + 4.8rem);
         letter-spacing: 0.16em;
         line-height: 1.2;
         margin: 0;
@@ -169,7 +169,7 @@
         box-sizing: border-box;
         direction: ltr;
         display: block;
-        margin-left: calc(-1 * (((100vw - min(100vw, var(--page-width))) / 2) + 5rem) + 2.4rem);
+        margin-left: calc(-1 * (((100vw - min(100vw, var(--page-width))) / 2) + 5rem) + 4.8rem);
         margin-top: clamp(7rem, 8vw, 11rem);
         max-width: min(92rem, calc(100vw - 4.8rem));
       }
@@ -372,6 +372,12 @@
         left: clamp(20rem, 22vw, 37rem);
         position: relative;
         transform: none !important;
+      }
+
+      @media screen and (min-width: 1024px) and (max-width: 1440px) {
+        #MainProduct-{{ section.id }} .product__info-wrapper {
+          left: clamp(4rem, 6vw, 10rem);
+        }
       }
 
       #MainProduct-{{ section.id }} .product__info-container {
@@ -1058,7 +1064,7 @@
       }
 
       #MainProduct-{{ section.id }} .product-info-drawer.is-open .product-info-drawer__overlay {
-        background: rgba(0, 0, 0, 0.34);
+        background: rgba(0, 0, 0, 0.58);
       }
 
       #MainProduct-{{ section.id }} .product-info-drawer__panel {
@@ -1270,7 +1276,7 @@
       }
 
       .product-info-drawer.is-open .product-info-drawer__overlay {
-        background: rgba(0, 0, 0, 0.34);
+        background: rgba(0, 0, 0, 0.58);
       }
 
       .product-info-drawer__panel {
@@ -1444,6 +1450,248 @@
       .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__close svg {
         height: 2rem;
         width: 2rem;
+      }
+
+      @media screen and (min-width: 1024px) and (max-width: 1440px) {
+        html.product-info-drawer-open,
+        html.product-info-drawer-open body {
+          touch-action: auto;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__panel {
+          display: flex;
+          flex-direction: column;
+          height: 100dvh;
+          max-width: 48rem;
+          overflow: hidden !important;
+          padding: 0;
+          width: min(44rem, calc(100vw - 1.6rem));
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header {
+          align-items: flex-start;
+          background: #fff;
+          border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1.1rem 1.7rem -1.7rem rgba(0, 0, 0, 0.38);
+          justify-content: center;
+          padding: 1.5rem 5.2rem 1.45rem !important;
+          position: sticky;
+          text-align: center;
+          top: 0;
+          z-index: 3;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__header h2 {
+          font-size: 2.2rem;
+          font-weight: 650;
+          transform: none;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close {
+          height: 4rem;
+          margin-right: 0;
+          position: absolute;
+          right: 1.6rem;
+          top: 0.45rem;
+          width: 4rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__close svg {
+          height: 1.75rem;
+          width: 1.75rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+          display: flex;
+          flex: 1 1 auto;
+          flex-direction: column;
+          height: auto;
+          max-height: none;
+          overflow: hidden !important;
+          padding: 2.8rem 2.4rem 1.8rem !important;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-added {
+          display: flex;
+          flex: 1 1 auto;
+          flex-direction: column;
+          gap: 1.45rem;
+          min-height: 0;
+          padding-bottom: 0;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-scroll {
+          display: flex;
+          flex: 1 1 auto;
+          flex-direction: column;
+          gap: 1.45rem;
+          min-height: 0;
+          overflow-y: auto !important;
+          overscroll-behavior: contain;
+          padding-bottom: 1.4rem;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__checkout-anchor {
+          background: #fff;
+          border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+          box-shadow: 0 -1.2rem 1.8rem -1.8rem rgba(0, 0, 0, 0.34);
+          bottom: 0;
+          left: 0;
+          margin-top: 0;
+          padding: 1rem 2.4rem 1.3rem;
+          position: relative;
+          right: 0;
+          z-index: 2;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__shipping-tracker {
+          gap: 0.85rem;
+          padding-bottom: 1.35rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__shipping-title {
+          font-size: 1.32rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__shipping-message {
+          font-size: 1.18rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-item {
+          align-items: flex-start;
+          gap: 1.05rem;
+          grid-template-columns: 6.8rem minmax(0, 1fr);
+          padding: 1.15rem 0;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-image {
+          height: 8.8rem;
+          width: 6.8rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsells {
+          gap: 0.8rem;
+          padding-top: 1.05rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsells-title {
+          font-size: 1.12rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell {
+          align-items: flex-start;
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+          position: relative;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-image {
+          height: 6.2rem;
+          width: 100%;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-title {
+          font-size: 1.02rem;
+          padding-right: 2.8rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-price {
+          font-size: 1rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__upsell-add {
+          bottom: 0;
+          height: 2.6rem;
+          position: absolute;
+          right: 0;
+          width: 2.6rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-title {
+          font-size: 1.34rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-meta,
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-price {
+          font-size: 1.2rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__quantity {
+          height: 3.4rem;
+          width: 10.2rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__order-summary {
+          padding-top: 1.55rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-actions {
+          padding-top: 0;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__summary-heading {
+          font-size: 1.32rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__summary-row {
+          font-size: 1.22rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__summary-row--total {
+          font-size: 1.36rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-button {
+          font-size: 1.16rem;
+          min-height: 4.3rem;
+          width: 100%;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='MAAT SELECTEREN'] .product-info-drawer__body {
+          padding-top: 1.4rem !important;
+        }
+
+        .product-info-drawer__upsell-picker {
+          gap: 1rem;
+        }
+
+        .product-info-drawer__upsell-picker-summary {
+          align-items: flex-start;
+          gap: 1rem;
+          grid-template-columns: 14.6rem minmax(0, 1fr);
+        }
+
+        .product-info-drawer__upsell-picker-image {
+          height: 17.8rem;
+          width: 14.6rem;
+        }
+
+        .product-info-drawer__upsell-picker-details {
+          gap: 0.4rem;
+          padding-top: 0;
+        }
+
+        .product-info-drawer__upsell-size-label {
+          font-size: 1.5rem;
+          margin-top: 0.2rem;
+        }
+
+        .product-info-drawer__upsell-size-grid {
+          gap: 0.8rem;
+        }
+
+        .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-scroll {
+          padding-right: 0.8rem;
+          scrollbar-gutter: stable;
+          margin-right: -1.6rem;
+          padding-right: 2.4rem;
+        }
       }
     }
 
@@ -1819,7 +2067,7 @@
       }
 
       .product-info-drawer.is-open .product-info-drawer__overlay {
-        background: rgba(0, 0, 0, 0.34);
+        background: rgba(0, 0, 0, 0.58);
       }
 
       .product-info-drawer__panel {
@@ -2313,6 +2561,18 @@
     .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
       overflow: hidden !important;
       overscroll-behavior: none;
+    }
+
+    .product-info-drawer__cart-scroll {
+      min-height: 0;
+    }
+
+    @media screen and (min-width: 1024px) and (max-width: 1440px) {
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
     }
 
     @media screen and (max-width: 749px) {
@@ -3439,29 +3699,31 @@
 
         const drawerCartContent = `
           <div class="product-info-drawer__cart-added">
-            <div class="product-info-drawer__shipping-tracker${remainingForFreeShipping === 0 ? ' is-complete' : ''}">
-              <p class="product-info-drawer__shipping-title">Gratis verzending vanaf ${formatDrawerMoney(freeShippingTarget)}</p>
-              <p class="product-info-drawer__shipping-message">${shippingMessage}</p>
-              <div class="product-info-drawer__shipping-track" aria-hidden="true">
-                <span class="product-info-drawer__shipping-progress" data-shipping-progress="${shippingProgress}" style="--shipping-progress: ${startingShippingProgress}%"></span>
+            <div class="product-info-drawer__cart-scroll">
+              <div class="product-info-drawer__shipping-tracker${remainingForFreeShipping === 0 ? ' is-complete' : ''}">
+                <p class="product-info-drawer__shipping-title">Gratis verzending vanaf ${formatDrawerMoney(freeShippingTarget)}</p>
+                <p class="product-info-drawer__shipping-message">${shippingMessage}</p>
+                <div class="product-info-drawer__shipping-track" aria-hidden="true">
+                  <span class="product-info-drawer__shipping-progress" data-shipping-progress="${shippingProgress}" style="--shipping-progress: ${startingShippingProgress}%"></span>
+                </div>
               </div>
-            </div>
-            ${buildDrawerCartItems(cartItems)}
-            ${buildDrawerUpsells(cartItems)}
-            <div class="product-info-drawer__cart-actions">
-              <div class="product-info-drawer__order-summary">
-                <p class="product-info-drawer__summary-heading">Samenvatting van bestelling</p>
-                <div class="product-info-drawer__summary-row">
-                  <span>Totaal</span>
-                  <span>${formatDrawerMoney(cartTotal)}</span>
-                </div>
-                <div class="product-info-drawer__summary-row">
-                  <span>Standaard verzending</span>
-                  <span>${deliveryPrice === 0 ? 'Vrij' : formatDrawerMoney(deliveryPrice)}</span>
-                </div>
-                <div class="product-info-drawer__summary-row product-info-drawer__summary-row--total">
-                  <span>Totaal</span>
-                  <span>${formatDrawerMoney(orderTotal)}</span>
+              ${buildDrawerCartItems(cartItems)}
+              ${buildDrawerUpsells(cartItems)}
+              <div class="product-info-drawer__cart-actions">
+                <div class="product-info-drawer__order-summary">
+                  <p class="product-info-drawer__summary-heading">Samenvatting van bestelling</p>
+                  <div class="product-info-drawer__summary-row">
+                    <span>Totaal</span>
+                    <span>${formatDrawerMoney(cartTotal)}</span>
+                  </div>
+                  <div class="product-info-drawer__summary-row">
+                    <span>Standaard verzending</span>
+                    <span>${deliveryPrice === 0 ? 'Vrij' : formatDrawerMoney(deliveryPrice)}</span>
+                  </div>
+                  <div class="product-info-drawer__summary-row product-info-drawer__summary-row--total">
+                    <span>Totaal</span>
+                    <span>${formatDrawerMoney(orderTotal)}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3496,6 +3758,18 @@
         openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent({}, cartState));
         animateShippingProgress();
       });
+
+      drawer?.addEventListener(
+        'wheel',
+        (event) => {
+          if (!window.matchMedia('(min-width: 1024px) and (max-width: 1440px)').matches) return;
+          const scrollArea = event.target.closest('.product-info-drawer__cart-scroll');
+          if (!scrollArea) return;
+          event.preventDefault();
+          scrollArea.scrollTop += event.deltaY * 0.58;
+        },
+        { passive: false }
+      );
 
       drawerBody?.addEventListener('click', async (event) => {
         const upsellSizeButton = event.target.closest('[data-cart-upsell-variant-id]');

@@ -45,6 +45,12 @@
       padding-right: 0 !important;
     }
   }
+
+  @media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .section-{{ section.id }}-padding #product-grid.grid--5-col-desktop {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">

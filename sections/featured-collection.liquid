@@ -749,6 +749,27 @@
       width: calc(20% - var(--grid-desktop-horizontal-spacing) * 4 / 5) !important;
     }
 
+    @media screen and (min-width: 1024px) and (max-width: 1440px) {
+      #collection-{{ section.id }} .desktop-filter-layout {
+        gap: 49rem;
+      }
+
+      #collection-{{ section.id }} .desktop-filter-layout .product-grid {
+        margin-left: -39.5rem;
+        width: 164%;
+      }
+
+      #collection-{{ section.id }} .desktop-filter-layout .product-grid.grid {
+        column-gap: calc(var(--grid-desktop-horizontal-spacing) * 0.72);
+        row-gap: calc(var(--grid-desktop-vertical-spacing) * 0.88);
+      }
+
+      #collection-{{ section.id }} .desktop-filter-layout .product-grid.grid .grid__item {
+        max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+        width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+      }
+    }
+
     {% if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
       #collection-{{ section.id }} .desktop-filter-layout.scroll-trigger,
       #collection-{{ section.id }} .desktop-filter-layout .scroll-trigger,
