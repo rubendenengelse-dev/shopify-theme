@@ -261,15 +261,30 @@
   }
 
   @media screen and (min-width: 990px) {
+    .footer {
+      --wog-footer-fluid-progress: clamp(0, (100vw - 1024px) / 512, 1);
+      --wog-footer-shell-gutter: clamp(
+        2.4rem,
+        calc(2.4rem + 2.6rem * var(--wog-footer-fluid-progress)),
+        5rem
+      );
+    }
+
     .section-{{ section.id }}-padding {
       padding-top: calc({{ section.settings.padding_top }}px + 0.8rem);
+    }
+
+    .footer__content-top,
+    .footer__content-bottom-wrapper.page-width:last-child {
+      padding-left: var(--wog-footer-shell-gutter);
+      padding-right: var(--wog-footer-shell-gutter);
     }
   }
 
   @media screen and (min-width: 990px) and (max-width: 1536px) {
     .footer__content-top {
-      padding-left: 2.4rem;
-      padding-right: 2.4rem;
+      padding-left: var(--wog-footer-shell-gutter);
+      padding-right: var(--wog-footer-shell-gutter);
     }
 
     .footer__blocks-wrapper {
@@ -379,15 +394,54 @@
 
     .footer-block__brand-info .footer-block__image-wrapper,
     .footer-block--image-only .footer-block__image-wrapper {
-      transform: translate(4.8rem, 30rem);
+      transform: translate(1rem, 30rem);
       margin-right: -3.2rem;
+    }
+
+    .footer__copyright.caption {
+      transform: translate(-4rem, -1.8rem);
     }
   }
 
   @media screen and (min-width: 1441px) {
+    .footer-block--menu {
+      transform: translateX(calc(-98rem + 4.8rem));
+    }
+
+    .footer-block--menu .footer-block__heading,
+    .footer-block--menu .footer-block__details-content {
+      transform: translateX(calc(-66rem + 4.8rem));
+    }
+
+    .footer-block--newsletter,
+    .footer-block__newsletter {
+      transform: translate(calc(-68rem + 4.8rem), 1.8rem);
+    }
+
+    .footer__payment--desktop {
+      transform: translate(4.8rem, 1.8rem);
+    }
+
+    .footer__payment--desktop .list-payment {
+      transform: translateX(-5rem);
+    }
+
+    .footer__copyright.caption {
+      transform: translate(calc(-70rem + 4.8rem + 15px), -2.4rem);
+    }
+
+    .footer__list-social {
+      transform: translate(65.6rem, 3rem);
+    }
+
+    .footer-block__brand-info {
+      transform: translateX(20.2rem);
+      margin-right: -24.8rem;
+    }
+
     .footer-block__brand-info .footer-block__image-wrapper,
     .footer-block--image-only .footer-block__image-wrapper {
-      transform: translate(48rem, 45.2rem);
+      transform: translate(45.4rem, 45.2rem);
     }
   }
 

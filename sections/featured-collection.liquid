@@ -737,7 +737,7 @@
 
     #collection-{{ section.id }} .desktop-filter-layout .product-grid {
       justify-content: flex-start;
-      margin-left: -40rem;
+      margin-left: -28rem;
       margin-right: 0;
       padding-left: 0;
       padding-right: 0;
@@ -755,8 +755,8 @@
       }
 
       #collection-{{ section.id }} .desktop-filter-layout .product-grid {
-        margin-left: -39.5rem;
-        width: 164%;
+        margin-left: -31rem;
+        width: 154%;
       }
 
       #collection-{{ section.id }} .desktop-filter-layout .product-grid.grid {
@@ -765,8 +765,15 @@
       }
 
       #collection-{{ section.id }} .desktop-filter-layout .product-grid.grid .grid__item {
-        max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
-        width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+        max-width: calc(24% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+        width: calc(24% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+      }
+    }
+
+    @media screen and (min-width: 1441px) {
+      #collection-{{ section.id }} .desktop-filter-layout .product-grid {
+        margin-left: -28rem;
+        width: 180%;
       }
     }
 
