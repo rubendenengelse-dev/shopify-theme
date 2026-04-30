@@ -6,10 +6,213 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .customer.login .customer-login__brand {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1.8rem;
+  }
+
+  .customer.login {
+    position: relative;
+  }
+
+  .customer.login .customer-login__brand img {
+    display: block;
+    height: auto;
+    max-width: min(16rem, 42vw);
+    width: 100%;
+  }
+
+  .customer.login #login {
+    font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(1.7rem, 2.2vw, 2.35rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.18;
+    margin-bottom: 1.35rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 32rem;
+    margin-top: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .customer.login .customer-login__intro {
+    color: rgba(18, 18, 18, 0.62);
+    font-size: 1.35rem;
+    line-height: 1.6;
+    margin: 0 0 2.6rem;
+    text-align: center;
+  }
+
+  .customer.login .field input {
+    -webkit-tap-highlight-color: transparent;
+    background: #fff;
+    border: 0.1rem solid rgba(18, 18, 18, 0.12);
+    border-radius: 1rem;
+    box-shadow: 0 0.8rem 2rem rgba(18, 18, 18, 0.04);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .customer.login .field:before,
+  .customer.login .field:after {
+    content: none;
+  }
+
+  .customer.login .field input:focus,
+  .customer.login .field input:focus-visible {
+    border-color: rgba(18, 18, 18, 0.26);
+    box-shadow: none;
+    outline: none;
+  }
+
+  .customer.login form[action*="/account/login"] button {
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2.2rem rgba(18, 18, 18, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .customer.login form[action*="/account/login"] button:hover {
+    box-shadow: 0 1.2rem 2.6rem rgba(18, 18, 18, 0.12);
+    transform: translateY(-0.1rem);
+  }
+
+  .customer.login form[action*="/account/login"] .field,
+  .customer.login form[action*="/account/login"] button,
+  .customer.login form[action*="/account/login"] > a {
+    max-width: 44rem;
+    width: 100%;
+  }
+
+  .customer.login form[action*="/account/login"] button {
+    display: block;
+    margin: 3rem 0 1.2rem;
+  }
+
+  .customer.login form[action*="/account/login"] > a[href="#recover"] {
+    color: #121212;
+    display: block;
+    font-size: 1.45rem;
+    font-weight: 600;
+    margin: 1.2rem auto 1.7rem;
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 0.22rem;
+  }
+
+  .customer.login .customer-login__register-row {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin: 1rem auto 0.4rem;
+    max-width: 100%;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .customer.login .customer-login__register-prompt {
+    color: rgba(18, 18, 18, 0.78);
+    font-size: 1.45rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .customer.login .customer-login__register-link {
+    color: #121212;
+    display: inline-block;
+    font-size: 1.45rem;
+    font-weight: 600;
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 0.22rem;
+    width: auto !important;
+  }
+
   @media screen and (min-width: 750px) {
+    .customer.login.section-{{ section.id }}-padding {
+      max-width: 72rem;
+    }
+
+    .customer.login.section-{{ section.id }}-padding {
+      align-items: center;
+      display: block;
+      min-height: auto;
+      padding-top: 7rem;
+      padding-bottom: 5rem;
+    }
+
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .customer.login .customer-login__brand {
+      margin-bottom: 2.1rem;
+    }
+
+    .customer.login .customer-login__brand img {
+      max-width: 18rem;
+    }
+
+    .customer.login .customer-login__intro {
+      font-size: 1.45rem;
+      margin-bottom: 2.95rem;
+    }
+
+    .customer.login > div:not(:first-of-type) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .customer.login form[action*="/account/login"] {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      max-width: 44rem;
+      width: 100%;
+    }
+
+    .customer.login form[action*="/account/login"] .field,
+    .customer.login form[action*="/account/login"] button,
+    .customer.login form[action*="/account/login"] > a {
+      max-width: none;
+      width: 100%;
+    }
+
+    .customer.login form[action*="/account/login"] > a[href="#recover"] {
+      margin: 1rem auto 1.35rem;
+    }
+
+    .customer.login form[action*="/account/login"] button {
+      margin-top: 2.2rem;
+    }
+
+    .customer.login .customer-login__register-row {
+      margin-top: 0.55rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .customer.login #login {
+      font-size: 2rem;
+    }
+
+    .customer.login .field input,
+    .customer.login .field input:focus,
+    .customer.login .field input:focus-visible {
+      box-shadow: none;
+    }
+
+    .customer.login form[action*="/account/login"] button {
+      margin: 2.2rem 0 0.9rem;
+    }
+
+    .customer.login .customer-login__register-row {
+      margin-top: 0.55rem;
     }
   }
 {%- endstyle -%}
@@ -68,9 +271,23 @@
     {%- endform -%}
   </div>
 
+  {% if settings.logo != blank %}
+    <div class="customer-login__brand">
+      <img
+        src="{{ 'login-sublogo.png' | asset_url }}"
+        class="customer-login__brand-image"
+        alt="{{ shop.name | escape }}"
+        loading="eager"
+        width="400"
+        height="400"
+      >
+    </div>
+  {% endif %}
+
   <h1 id="login" tabindex="-1">
-    {{ 'customer.login_page.title' | t }}
+    Login op je Warrior of God account
   </h1>
+  <p class="customer-login__intro">Welkom terug. Log in om je account en bestellingen te bekijken.</p>
   <div>
     {%- if recover_success == true -%}
       <h3 class="form__message" tabindex="-1" autofocus>
@@ -115,10 +332,10 @@
           {% if form.errors contains 'form' %}
             aria-invalid="true"
           {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
+          placeholder="{{ 'customer.login_page.email' | t }} *"
         >
         <label for="CustomerEmail">
-          {{ 'customer.login_page.email' | t }}
+          {{ 'customer.login_page.email' | t }} *
         </label>
       </div>
 
@@ -133,10 +350,10 @@
             {% if form.errors contains 'form' %}
               aria-invalid="true"
             {% endif %}
-            placeholder="{{ 'customer.login_page.password' | t }}"
+            placeholder="{{ 'customer.login_page.password' | t }} *"
           >
           <label for="CustomerPassword">
-            {{ 'customer.login_page.password' | t }}
+            {{ 'customer.login_page.password' | t }} *
           </label>
         </div>
 
@@ -149,9 +366,12 @@
         {{ 'customer.login_page.sign_in' | t }}
       </button>
 
-      <a href="{{ routes.account_register_url }}">
-        {{ 'customer.login_page.create_account' | t }}
-      </a>
+      <div class="customer-login__register-row">
+        <p class="customer-login__register-prompt">Heeft u geen account?</p>
+        <a class="customer-login__register-link" href="{{ routes.account_register_url }}">
+          Aanmelden
+        </a>
+      </div>
     {%- endform -%}
   </div>
 

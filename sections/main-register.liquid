@@ -6,17 +6,153 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .customer.register h1 {
+    font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(1.7rem, 2.2vw, 2.35rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.18;
+    margin: 0 auto 1.35rem;
+    max-width: 28rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .customer.register .customer-register__brand {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1.8rem;
+  }
+
+  .customer.register .customer-register__brand img {
+    display: block;
+    height: auto;
+    max-width: min(16rem, 42vw);
+    width: 100%;
+  }
+
+  .customer.register .field input {
+    -webkit-tap-highlight-color: transparent;
+    background: #fff;
+    border: 0.1rem solid rgba(18, 18, 18, 0.12);
+    border-radius: 1rem;
+    box-shadow: 0 0.8rem 2rem rgba(18, 18, 18, 0.04);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .customer.register .field:before,
+  .customer.register .field:after {
+    content: none;
+  }
+
+  .customer.register .field input:focus,
+  .customer.register .field input:focus-visible {
+    border-color: rgba(18, 18, 18, 0.26);
+    box-shadow: none;
+    outline: none;
+  }
+
+  .customer.register .field + .field {
+    margin-top: 2rem;
+  }
+
+  .customer.register form {
+    margin: 4rem auto 0;
+    max-width: 44rem;
+    width: 100%;
+  }
+
+  .customer.register form .field,
+  .customer.register form button {
+    max-width: 44rem;
+    width: 100%;
+  }
+
+  .customer.register button {
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2.2rem rgba(18, 18, 18, 0.08);
+    display: block;
+    font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin: 3rem 0 1.2rem;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .customer.register button:hover {
+    box-shadow: 0 1.2rem 2.6rem rgba(18, 18, 18, 0.12);
+    transform: translateY(-0.1rem);
+  }
+
+  .customer.register .customer-register__login-row {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin: 1rem auto 0.4rem;
+    max-width: 100%;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .customer.register .customer-register__login-prompt {
+    color: rgba(18, 18, 18, 0.78);
+    font-size: 1.45rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .customer.register .customer-register__login-link {
+    color: #121212;
+    display: inline-block;
+    font-size: 1.45rem;
+    font-weight: 600;
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 0.22rem;
+    width: auto !important;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+
+    .customer.register .customer-register__brand {
+      margin-bottom: 2.1rem;
+    }
+
+    .customer.register .customer-register__brand img {
+      max-width: 18rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .customer.register h1 {
+      font-size: 2rem;
+    }
   }
 {%- endstyle -%}
 
 <div class="customer register section-{{ section.id }}-padding">
+  {% if settings.logo != blank %}
+    <div class="customer-register__brand">
+      <img
+        src="{{ 'login-sublogo.png' | asset_url }}"
+        class="customer-register__brand-image"
+        alt="{{ shop.name | escape }}"
+        loading="eager"
+        width="400"
+        height="400"
+      >
+    </div>
+  {% endif %}
+
   <h1>
-    {{ 'customer.register.title' | t }}
+    Meld je aan voor<br>een Warrior of God account
   </h1>
   {%- form 'create_customer', novalidate: 'novalidate' -%}
     {%- if form.errors -%}
@@ -50,10 +186,10 @@
           value="{{ form.first_name }}"
         {% endif %}
         autocomplete="given-name"
-        placeholder="{{ 'customer.register.first_name' | t }}"
+        placeholder="{{ 'customer.register.first_name' | t }} *"
       >
       <label for="RegisterForm-FirstName">
-        {{ 'customer.register.first_name' | t }}
+        {{ 'customer.register.first_name' | t }} *
       </label>
     </div>
     <div class="field">
@@ -65,10 +201,10 @@
           value="{{ form.last_name }}"
         {% endif %}
         autocomplete="family-name"
-        placeholder="{{ 'customer.register.last_name' | t }}"
+        placeholder="{{ 'customer.register.last_name' | t }} *"
       >
       <label for="RegisterForm-LastName">
-        {{ 'customer.register.last_name' | t }}
+        {{ 'customer.register.last_name' | t }} *
       </label>
     </div>
     <div class="field">
@@ -87,10 +223,10 @@
           aria-invalid="true"
           aria-describedby="RegisterForm-email-error"
         {% endif %}
-        placeholder="{{ 'customer.register.email' | t }}"
+        placeholder="{{ 'customer.register.email' | t }} *"
       >
       <label for="RegisterForm-email">
-        {{ 'customer.register.email' | t }}
+        {{ 'customer.register.email' | t }} *
       </label>
     </div>
     {%- if form.errors contains 'email' -%}
@@ -112,10 +248,10 @@
           aria-invalid="true"
           aria-describedby="RegisterForm-password-error"
         {% endif %}
-        placeholder="{{ 'customer.register.password' | t }}"
+        placeholder="{{ 'customer.register.password' | t }} *"
       >
       <label for="RegisterForm-password">
-        {{ 'customer.register.password' | t }}
+        {{ 'customer.register.password' | t }} *
       </label>
     </div>
     {%- if form.errors contains 'password' -%}
@@ -128,8 +264,15 @@
       </span>
     {%- endif -%}
     <button>
-      {{ 'customer.register.submit' | t }}
+      Account aanmaken
     </button>
+
+    <div class="customer-register__login-row">
+      <p class="customer-register__login-prompt">Heb je al een account?</p>
+      <a class="customer-register__login-link" href="{{ routes.account_login_url }}">
+        Aanmelden
+      </a>
+    </div>
   {%- endform -%}
 </div>
 

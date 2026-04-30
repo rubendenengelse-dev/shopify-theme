@@ -280,7 +280,7 @@
       "caption": "Artikelen in winkelwagen",
       "remove_title": "{{ title }} verwijderen",
       "note": "Speciale instructies voor bestelling",
-      "checkout": "Afrekenen",
+      "checkout": "Veilig afrekenen",
       "empty": "Je winkelwagen is leeg",
       "cart_error": "Er is een fout opgetreden bij het bijwerken van je winkelwagen. Probeer het opnieuw.",
       "cart_quantity_error_html": "Je kunt maar {{ quantity }} van dit artikel toevoegen aan je winkelwagen.",

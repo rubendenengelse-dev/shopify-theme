@@ -3287,6 +3287,12 @@ details-disclosure > details {
 }
 
 @media screen and (min-width: 750px) {
+  [id$="__image_banner_KmfCLW"] {
+    --wog-home-fluid-progress: clamp(0, (100vw - 1024px) / 512, 1);
+    --wog-home-banner-button-offset: calc(0.45rem + 1.95rem * var(--wog-home-fluid-progress));
+    --wog-home-banner-button-lift: calc(-22rem + (-12rem * var(--wog-home-fluid-progress)));
+  }
+
   [id$="__image_banner_KmfCLW"] .banner__content {
     align-items: flex-start;
     justify-content: flex-start;
@@ -3316,8 +3322,10 @@ details-disclosure > details {
   [id$="__image_banner_KmfCLW"] .banner__buttons {
     justify-content: flex-start;
     margin-top: 0;
-    margin-left: 2.4rem;
-    transform: translateY(-28rem);
+    margin-left: var(--wog-home-banner-button-offset);
+    position: relative;
+    top: -15rem;
+    transform: translateY(var(--wog-home-banner-button-lift));
   }
 
   [id$="__image_banner_KmfCLW"] .banner__buttons .button {
@@ -3348,12 +3356,13 @@ details-disclosure > details {
     box-shadow: 0 22px 44px rgba(0, 0, 0, 0.24), inset 0 0 0 1px rgba(145, 134, 125, 0.9);
     transform: translateY(-4px);
   }
-}
 
-@media screen and (min-width: 990px) and (max-width: 1536px) {
-  [id$="__image_banner_KmfCLW"] .banner__buttons {
-    margin-left: 0.45rem;
-    transform: translateY(-16rem);
+  @media screen and (min-width: 1441px) {
+    [id$="__image_banner_KmfCLW"] .banner__buttons {
+      margin-left: calc(var(--wog-home-banner-button-offset) + 2.4rem);
+      left: 1.6rem;
+      top: -26rem;
+    }
   }
 }
 

@@ -1006,6 +1006,59 @@
       transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
     }
 
+    .product-info-drawer__cart-button-icon {
+      align-items: center;
+      display: inline-flex;
+      flex: 0 0 auto;
+      justify-content: center;
+      margin-right: 0.8rem;
+    }
+
+    .product-info-drawer__cart-button-icon svg {
+      display: block;
+      height: 1.55rem;
+      width: 1.55rem;
+    }
+
+    .product-info-drawer__payment-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.2rem;
+      width: 100%;
+    }
+
+    .product-info-drawer__payment-icons .list-payment {
+      align-items: center;
+      display: flex;
+      gap: 0.45rem;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .product-info-drawer__payment-icons .list-payment__item {
+      align-items: center;
+      display: flex;
+      padding: 0.25rem;
+    }
+
+    .product-info-drawer__payment-icons .icon--full-color {
+      display: block;
+      height: 2rem;
+      width: auto;
+    }
+
+    .product-info-drawer__payment-icons .payment-icon--ideal {
+      align-items: center;
+      display: inline-flex;
+    }
+
+    .product-info-drawer__payment-icons .payment-icon--ideal img {
+      display: block;
+      height: 2rem;
+      width: auto;
+    }
+
     .product-info-drawer__cart-button--primary {
       background: #000;
       border: 0.1rem solid #000;
@@ -1546,7 +1599,7 @@
           min-height: 0;
           overflow-y: auto !important;
           overscroll-behavior: contain;
-          padding-bottom: 1.4rem;
+          padding-bottom: 8.6rem;
           -webkit-overflow-scrolling: touch;
         }
 
@@ -2597,6 +2650,7 @@
       .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
         overflow-y: auto !important;
         overscroll-behavior: contain;
+        padding-bottom: 10.8rem !important;
         -webkit-overflow-scrolling: touch;
       }
     }
@@ -3746,7 +3800,25 @@
               </div>
             </div>
             <div class="product-info-drawer__checkout-anchor">
-              <a class="product-info-drawer__cart-button product-info-drawer__cart-button--primary" href="/checkout">Afrekenen</a>
+              <a class="product-info-drawer__cart-button product-info-drawer__cart-button--primary" href="/checkout">
+                <span class="product-info-drawer__cart-button-icon">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+                <span>Veilig afrekenen</span>
+              </a>
+              <div class="product-info-drawer__payment-icons" aria-label="{{ 'sections.footer.payment' | t }}">
+                <ul class="list list-payment" role="list">
+                  {%- assign enabled_payment_type_names = shop.enabled_payment_types | join: ',' -%}
+                  {%- for type in shop.enabled_payment_types -%}
+                    <li class="list-payment__item">
+                      {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                    </li>
+                  {%- endfor -%}
+                  {%- unless enabled_payment_type_names contains 'ideal' -%}
+                    <li class="list-payment__item">
+                      {{ 'ideal' | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                    </li>
+                  {%- endunless -%}
+                </ul>
+              </div>
             </div>
           </div>
         `;

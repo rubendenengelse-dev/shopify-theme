@@ -95,6 +95,54 @@
   margin-top: 1rem;
 }
 
+.cart-notification__links .button .svg-wrapper {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin-right: 0.8rem;
+}
+
+.cart-notification__links .button .svg-wrapper svg {
+  display: block;
+  height: 1.55rem;
+  width: 1.55rem;
+}
+
+.cart-notification__payment-icons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cart-notification__payment-icons .list-payment {
+  align-items: center;
+  gap: 0.45rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-notification__payment-icons .list-payment__item {
+  padding: 0.25rem;
+}
+
+.cart-notification__payment-icons .icon--full-color {
+  display: block;
+  height: 2rem;
+  width: auto;
+}
+
+.cart-notification__payment-icons .payment-icon--ideal {
+  align-items: center;
+  display: inline-flex;
+}
+
+.cart-notification__payment-icons .payment-icon--ideal img {
+  display: block;
+  height: 2rem;
+  width: auto;
+}
+
 .cart-notification-product {
   align-items: flex-start;
   display: flex;

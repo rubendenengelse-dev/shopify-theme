@@ -643,6 +643,7 @@
         display: inline-flex;
         font-size: 1.28rem;
         font-weight: 560;
+        gap: 0.8rem;
         justify-content: center;
         letter-spacing: 0.08em;
         min-height: 4.4rem;
@@ -650,10 +651,59 @@
         text-transform: uppercase;
       }
 
+      .wog-global-cart-drawer .product-info-drawer__cart-button-icon {
+        align-items: center;
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 1.8rem;
+        justify-content: center;
+        width: 1.8rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__cart-button-icon svg {
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+
       .wog-global-cart-drawer .product-info-drawer__cart-button--primary {
         background: #000;
         border: 0.1rem solid #000;
         color: #fff;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__payment-icons {
+        margin-top: 1.2rem;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__payment-icons .list-payment {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__payment-icons .list-payment__item {
+        display: flex;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__payment-icons .icon--full-color {
+        height: 2.4rem;
+        width: auto;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__payment-icons .payment-icon--ideal {
+        align-items: center;
+        display: inline-flex;
+      }
+
+      .wog-global-cart-drawer .product-info-drawer__payment-icons .payment-icon--ideal img {
+        display: block;
+        height: 2.4rem;
+        width: auto;
       }
 
       .wog-global-cart-drawer .product-info-drawer__cart-empty {
@@ -734,7 +784,7 @@
           max-height: calc(94dvh - 14.1rem);
           overflow-y: auto !important;
           overscroll-behavior: contain;
-          padding: 3rem 2.4rem 1.6rem !important;
+          padding: 3rem 2.4rem 10.8rem !important;
           -webkit-overflow-scrolling: touch;
         }
 
@@ -857,7 +907,7 @@
           min-height: 0;
           overflow-y: auto !important;
           overscroll-behavior: contain;
-          padding-bottom: 1.4rem;
+          padding-bottom: 8.6rem;
           -webkit-overflow-scrolling: touch;
         }
 
@@ -950,13 +1000,17 @@
       </aside>
     </div>
 
-    {% sections 'header-group' %}
+    {%- unless template.name == 'login' or template.name == 'register' -%}
+      {% sections 'header-group' %}
+    {%- endunless -%}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {%- unless template.name == 'login' or template.name == 'register' -%}
+      {% sections 'footer-group' %}
+    {%- endunless -%}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
@@ -1040,6 +1094,25 @@
           style: 'currency',
           currency: 'EUR',
         }).format(Number(cents || 0) / 100);
+
+      const globalCartCheckoutIcon = `{{ 'icon-cart-empty.svg' | inline_asset_content | strip_newlines }}`;
+      const globalCartPaymentIcons = `
+        <div class="product-info-drawer__payment-icons" aria-label="{{ 'sections.footer.payment' | t }}">
+          <ul class="list list-payment" role="list">
+            {%- assign enabled_payment_type_names = shop.enabled_payment_types | join: ',' -%}
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="list-payment__item">
+                {{ type | payment_type_svg_tag: class: 'icon icon--full-color' | strip_newlines }}
+              </li>
+            {%- endfor -%}
+            {%- unless enabled_payment_type_names contains 'ideal' -%}
+              <li class="list-payment__item">
+                {{ 'ideal' | payment_type_svg_tag: class: 'icon icon--full-color' | strip_newlines }}
+              </li>
+            {%- endunless -%}
+          </ul>
+        </div>
+      `;
 
       const updateGlobalCartIcon = async () => {
         try {
@@ -1157,7 +1230,11 @@
               </div>
             </div>
             <div class="product-info-drawer__checkout-anchor">
-              <a class="product-info-drawer__cart-button product-info-drawer__cart-button--primary" href="/checkout">Afrekenen</a>
+              <a class="product-info-drawer__cart-button product-info-drawer__cart-button--primary" href="/checkout">
+                <span class="product-info-drawer__cart-button-icon">${globalCartCheckoutIcon}</span>
+                <span>Veilig afrekenen</span>
+              </a>
+              ${globalCartPaymentIcons}
             </div>
           </div>
         `;

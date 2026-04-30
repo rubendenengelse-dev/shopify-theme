@@ -572,8 +572,24 @@
               disabled
             {% endif %}
           >
-            {{ 'sections.cart.checkout' | t }}
+            <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+            <span>Veilig afrekenen</span>
           </button>
+          <div class="cart__payment-icons" aria-label="{{ 'sections.footer.payment' | t }}">
+            <ul class="list list-payment" role="list">
+              {%- assign enabled_payment_type_names = shop.enabled_payment_types | join: ',' -%}
+              {%- for type in shop.enabled_payment_types -%}
+                <li class="list-payment__item">
+                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </li>
+              {%- endfor -%}
+              {%- unless enabled_payment_type_names contains 'ideal' -%}
+                <li class="list-payment__item">
+                  {{ 'ideal' | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </li>
+              {%- endunless -%}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
