@@ -270,6 +270,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'wishlist.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -340,6 +341,142 @@
     {%- endif -%}
 
     <style>
+      .product-info-drawer__mobile-header-toggle {
+        display: none;
+      }
+
+      .product-info-drawer__wishlist-grid {
+        display: grid;
+        gap: 1.4rem;
+      }
+
+      .product-info-drawer__wishlist-item {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .product-info-drawer__wishlist-card {
+        align-items: flex-start;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 7.2rem minmax(0, 1fr);
+      }
+
+      .product-info-drawer__wishlist-link {
+        color: inherit;
+        display: block;
+        text-decoration: none;
+      }
+
+      .product-info-drawer__wishlist-media {
+        background: rgba(18, 18, 18, 0.03);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product-info-drawer__wishlist-media img {
+        display: block;
+        height: auto;
+        width: 100%;
+      }
+
+      .product-info-drawer__wishlist-details {
+        min-width: 0;
+      }
+
+      .product-info-drawer__wishlist-title {
+        color: #111;
+        font-family: var(--font-body-family);
+        font-size: 1.36rem;
+        font-style: var(--font-body-style);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.35;
+        margin: 0.65rem 0 0;
+      }
+
+      .product-info-drawer__wishlist-price {
+        color: #111;
+        font-family: var(--font-body-family);
+        font-size: 1.28rem;
+        font-style: var(--font-body-style);
+        font-weight: 700;
+        letter-spacing: 0;
+        margin: 0.18rem 0 0;
+      }
+
+      .product-info-drawer__wishlist-size {
+        margin-top: 0.45rem;
+      }
+
+      .product-info-drawer__wishlist-purchase {
+        align-items: flex-start;
+        display: grid;
+        gap: 0.55rem;
+        grid-template-columns: minmax(0, 1fr) 3.8rem;
+      }
+
+      .product-info-drawer__wishlist-size .account-wishlist__size-picker {
+        margin-top: 0;
+      }
+
+      .product-info-drawer__wishlist-size .account-wishlist__size-summary {
+        font-size: 1.24rem;
+        min-height: 3.7rem;
+        padding: 0.75rem 0.88rem;
+      }
+
+      .product-info-drawer__wishlist-size .account-wishlist__size-options {
+        bottom: auto;
+        left: 0;
+        right: 0;
+        top: calc(100% + 0.55rem);
+      }
+
+      .product-info-drawer__wishlist-cart-trigger {
+        align-items: center;
+        appearance: none;
+        background: #111;
+        border: 0;
+        border-radius: 999px;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        height: 3.8rem;
+        justify-content: center;
+        margin-top: 0;
+        padding: 0;
+        place-self: center end;
+        transform: translateX(0.7rem);
+        width: 3.8rem;
+      }
+
+      .product-info-drawer__wishlist-cart-trigger,
+      .product-info-drawer__wishlist-cart-trigger:hover,
+      .product-info-drawer__wishlist-cart-trigger:focus,
+      .product-info-drawer__wishlist-cart-trigger:focus-visible {
+        background: #111 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      .product-info-drawer__wishlist-cart-trigger svg {
+        display: block;
+        height: 1.82rem;
+        margin-left: -0.04rem;
+        margin-top: -0.02rem;
+        width: 1.82rem;
+      }
+
+      .product-info-drawer__wishlist-empty {
+        color: rgba(18, 18, 18, 0.68);
+        font-size: 1.4rem;
+        line-height: 1.55;
+        margin: 0;
+        text-align: center;
+      }
+
       html.product-info-drawer-open,
       html.product-info-drawer-open body {
         overflow: hidden;
@@ -366,6 +503,12 @@
         pointer-events: auto;
         transition: opacity 180ms ease, visibility 0s linear 0s;
         visibility: visible;
+      }
+
+      .wog-global-cart-drawer.is-switching,
+      .wog-global-cart-drawer.is-switching .product-info-drawer__overlay,
+      .wog-global-cart-drawer.is-switching .product-info-drawer__panel {
+        transition: none !important;
       }
 
       .wog-global-cart-drawer .product-info-drawer__overlay {
@@ -750,10 +893,13 @@
         }
 
         .wog-global-cart-drawer .product-info-drawer__header {
-          align-items: flex-start;
+          align-items: center;
           background: #fff;
           border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
           box-shadow: 0 1.1rem 1.7rem -1.7rem rgba(0, 0, 0, 0.38);
+          display: flex;
+          flex-direction: column;
+          gap: 0.85rem;
           justify-content: center;
           padding: 1.35rem 4.8rem 1.45rem !important;
           position: relative;
@@ -784,8 +930,106 @@
           max-height: calc(94dvh - 14.1rem);
           overflow-y: auto !important;
           overscroll-behavior: contain;
-          padding: 3rem 2.4rem 10.8rem !important;
+          padding: 2.2rem 2.4rem 12.4rem !important;
           -webkit-overflow-scrolling: touch;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-toggle {
+          align-items: center;
+          background: #f1f1f1;
+          border: 0;
+          border-radius: 999px;
+          display: inline-flex !important;
+          gap: 0.4rem;
+          height: 4.5rem;
+          justify-content: center;
+          margin: 0 auto;
+          padding: 0.4rem;
+          position: relative;
+          width: 10.8rem;
+          z-index: 4;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-toggle::before {
+          background: #000;
+          border-radius: 999px;
+          content: '';
+          height: 3.7rem;
+          left: 0.4rem;
+          position: absolute;
+          top: 0.4rem;
+          transform: translateX(0);
+          transition: transform 180ms ease;
+          width: calc(50% - 0.5rem);
+          z-index: 0;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-toggle.is-wishlist-active::before {
+          transform: translateX(calc(100% + 0.12rem));
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-button {
+          align-items: center;
+          appearance: none;
+          background: transparent;
+          border: 0;
+          border-radius: 999px;
+          color: rgba(0, 0, 0, 0.46);
+          display: inline-flex;
+          flex: 1 1 0;
+          height: 3.7rem;
+          justify-content: center;
+          min-width: 0;
+          padding: 0;
+          pointer-events: auto;
+          position: relative;
+          z-index: 5;
+          text-decoration: none;
+          -webkit-appearance: none;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-button.is-active {
+          color: #fff;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-button:focus,
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-button:focus-visible {
+          box-shadow: none !important;
+          outline: none !important;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-icon {
+          align-items: center;
+          color: currentColor;
+          display: inline-flex;
+          height: 1.65rem;
+          justify-content: center;
+          width: 1.65rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-icon svg {
+          display: block;
+          height: 1.65rem;
+          width: 1.65rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-icon .icon-heart path {
+          fill: currentColor;
+          stroke: none;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-button--wishlist .product-info-drawer__mobile-header-icon svg {
+          transform: scale(0.92);
+          transform-origin: center;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__mobile-header-icon .icon-cart-empty path {
+          fill: transparent;
+          stroke: currentColor;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-width: 1.15;
         }
 
         .wog-global-cart-drawer .product-info-drawer__cart-added {
@@ -797,7 +1041,7 @@
           background: #fff;
           border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
           box-shadow: 0 -1.2rem 1.8rem -1.8rem rgba(0, 0, 0, 0.34);
-          bottom: 3.6rem;
+          bottom: 2.2rem;
           left: 0;
           margin-top: 0;
           padding: 1rem 2.4rem calc(0.75rem + env(safe-area-inset-bottom));
@@ -907,7 +1151,7 @@
           min-height: 0;
           overflow-y: auto !important;
           overscroll-behavior: contain;
-          padding-bottom: 8.6rem;
+          padding-bottom: 6.9rem;
           -webkit-overflow-scrolling: touch;
         }
 
@@ -978,7 +1222,13 @@
     </style>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body
+    class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}"
+    data-customer-logged-in="{% if customer %}true{% else %}false{% endif %}"
+    data-account-login-url="{{ routes.account_login_url }}"
+    data-account-wishlist-url="{{ routes.account_url }}#wishlist"
+    data-wishlist-endpoint="/apps/wishlist/proxy"
+  >
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -995,8 +1245,45 @@
           <button type="button" class="product-info-drawer__close" data-wog-global-cart-close aria-label="{{ 'accessibility.close' | t }}">
             {{- 'icon-close.svg' | inline_asset_content -}}
           </button>
+          <div class="product-info-drawer__mobile-header-toggle" aria-label="Wissel tussen winkelwagen en wishlist">
+            <button type="button" class="product-info-drawer__mobile-header-button is-active" aria-label="Winkelwagen" aria-pressed="true">
+              <span class="product-info-drawer__mobile-header-icon">
+                {{- 'icon-cart-empty.svg' | inline_asset_content -}}
+              </span>
+            </button>
+            <a class="product-info-drawer__mobile-header-button product-info-drawer__mobile-header-button--wishlist" href="{{ routes.account_url }}#wishlist" aria-label="Wishlist" data-mobile-cart-wishlist-link>
+              <span class="product-info-drawer__mobile-header-icon">
+                {{- 'icon-heart.svg' | inline_asset_content -}}
+              </span>
+            </a>
+          </div>
         </div>
         <div class="product-info-drawer__body" data-wog-global-cart-body></div>
+      </aside>
+    </div>
+
+    <div class="product-info-drawer wog-global-cart-drawer wog-global-wishlist-drawer" data-wog-global-wishlist-drawer aria-hidden="true">
+      <button type="button" class="product-info-drawer__overlay" data-wog-global-wishlist-close aria-label="{{ 'accessibility.close' | t }}"></button>
+      <aside class="product-info-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="WogGlobalWishlistDrawerTitle">
+        <div class="product-info-drawer__header">
+          <h2 id="WogGlobalWishlistDrawerTitle">VERLANGLIJSTJE</h2>
+          <button type="button" class="product-info-drawer__close" data-wog-global-wishlist-close aria-label="{{ 'accessibility.close' | t }}">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </button>
+          <div class="product-info-drawer__mobile-header-toggle is-wishlist-active" aria-label="Wissel tussen winkelwagen en wishlist">
+            <button type="button" class="product-info-drawer__mobile-header-button" aria-label="Winkelwagen" aria-pressed="false" data-mobile-wishlist-open-cart>
+              <span class="product-info-drawer__mobile-header-icon">
+                {{- 'icon-cart-empty.svg' | inline_asset_content -}}
+              </span>
+            </button>
+            <button type="button" class="product-info-drawer__mobile-header-button product-info-drawer__mobile-header-button--wishlist is-active" aria-label="Wishlist" aria-pressed="true">
+              <span class="product-info-drawer__mobile-header-icon">
+                {{- 'icon-heart.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="product-info-drawer__body" data-wog-global-wishlist-body></div>
       </aside>
     </div>
 
@@ -1077,6 +1364,9 @@
       const globalCartDrawer = document.querySelector('[data-wog-global-cart-drawer]');
       const globalCartDrawerBody = globalCartDrawer?.querySelector('[data-wog-global-cart-body]');
       const globalCartDrawerCloseButtons = globalCartDrawer ? Array.from(globalCartDrawer.querySelectorAll('[data-wog-global-cart-close]')) : [];
+      const globalWishlistDrawer = document.querySelector('[data-wog-global-wishlist-drawer]');
+      const globalWishlistDrawerBody = globalWishlistDrawer?.querySelector('[data-wog-global-wishlist-body]');
+      const globalWishlistDrawerCloseButtons = globalWishlistDrawer ? Array.from(globalWishlistDrawer.querySelectorAll('[data-wog-global-wishlist-close]')) : [];
 
       const escapeGlobalCartHTML = (value = '') =>
         String(value).replace(/[&<>"']/g, (character) => {
@@ -1094,6 +1384,43 @@
           style: 'currency',
           currency: 'EUR',
         }).format(Number(cents || 0) / 100);
+
+      const formatGlobalWishlistPrice = (price) => {
+        if (!price?.amount || !price?.currencyCode) return '';
+
+        try {
+          const rawAmount = String(price.amount).trim();
+          let numericAmount = Number(rawAmount);
+
+          if (Number.isFinite(numericAmount) && numericAmount >= 1000) {
+            const looksLikeCents =
+              /^[0-9]+$/.test(rawAmount) ||
+              /^[0-9]+\.0+$/.test(rawAmount) ||
+              /^[0-9]+,0+$/.test(rawAmount);
+
+            if (looksLikeCents) numericAmount = numericAmount / 100;
+          }
+
+          return new Intl.NumberFormat('nl-NL', {
+            style: 'currency',
+            currency: price.currencyCode,
+          }).format(numericAmount);
+        } catch (error) {
+          return `${price.amount} ${price.currencyCode}`;
+        }
+      };
+
+      const getGlobalWishlistImageUrl = (url, width = 240) => {
+        if (!url) return '';
+
+        try {
+          const parsed = new URL(url, window.location.origin);
+          parsed.searchParams.set('width', String(width));
+          return parsed.toString();
+        } catch (error) {
+          return url;
+        }
+      };
 
       const globalCartCheckoutIcon = `{{ 'icon-cart-empty.svg' | inline_asset_content | strip_newlines }}`;
       const globalCartPaymentIcons = `
@@ -1240,6 +1567,81 @@
         `;
       };
 
+      const buildGlobalWishlistContent = (payload = {}) => {
+        const products = Array.isArray(payload?.wishlist?.products) ? payload.wishlist.products : [];
+
+        if (!products.length) {
+          return `<p class="product-info-drawer__wishlist-empty">Je hebt nog geen producten aan je verlanglijstje toegevoegd.</p>`;
+        }
+
+        return `
+          <div class="product-info-drawer__wishlist-grid">
+            ${products
+              .map((product) => {
+                const productTitle = escapeGlobalCartHTML(product.title || 'Product');
+                const productUrl = escapeGlobalCartHTML(product.url || '#');
+                const productPrice = product.price ? `<p class="product-info-drawer__wishlist-price">${formatGlobalWishlistPrice(product.price)}</p>` : '';
+                const productImage = product.image?.url
+                  ? `
+                    <div class="product-info-drawer__wishlist-media">
+                      <img src="${escapeGlobalCartHTML(getGlobalWishlistImageUrl(product.image.url, 220))}" alt="${escapeGlobalCartHTML(product.image.alt || product.title || 'Product')}" loading="lazy">
+                    </div>
+                  `
+                  : '';
+                const sizeSelector = `
+                  <div class="product-info-drawer__wishlist-purchase">
+                    <div class="product-info-drawer__wishlist-size">
+                    <details class="account-wishlist__size-picker">
+                      <summary class="account-wishlist__size-summary">
+                        <span class="account-wishlist__size-summary-label">Maat selecteren</span>
+                        <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
+                          <path d="M2.75 4.25 6 7.5l3.25-3.25" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </summary>
+                      <div class="account-wishlist__size-options" role="list">
+                        <button type="button" class="account-wishlist__size-option" data-size-value="XS">XS</button>
+                        <button type="button" class="account-wishlist__size-option" data-size-value="S">S</button>
+                        <button type="button" class="account-wishlist__size-option" data-size-value="M">M</button>
+                        <button type="button" class="account-wishlist__size-option" data-size-value="L">L</button>
+                        <button type="button" class="account-wishlist__size-option" data-size-value="XL">XL</button>
+                        <button type="button" class="account-wishlist__size-option" data-size-value="XXL">XXL</button>
+                      </div>
+                    </details>
+                    </div>
+                    <button
+                      type="button"
+                      class="product-info-drawer__wishlist-cart-trigger"
+                      aria-label="Toevoegen aan winkelwagen"
+                      data-mobile-wishlist-cart
+                      data-product-url="${productUrl}"
+                    >
+                      ${globalCartCheckoutIcon}
+                    </button>
+                  </div>
+                `;
+
+                return `
+                  <article class="product-info-drawer__wishlist-item">
+                    <div class="product-info-drawer__wishlist-card">
+                      <a class="product-info-drawer__wishlist-link" href="${productUrl}">
+                        ${productImage}
+                      </a>
+                      <div class="product-info-drawer__wishlist-details">
+                        <a class="product-info-drawer__wishlist-link" href="${productUrl}">
+                          <p class="product-info-drawer__wishlist-title">${productTitle}</p>
+                          ${productPrice}
+                        </a>
+                        ${sizeSelector}
+                      </div>
+                    </div>
+                  </article>
+                `;
+              })
+              .join('')}
+          </div>
+        `;
+      };
+
       const animateGlobalShippingProgress = () => {
         const progress = globalCartDrawerBody?.querySelector('[data-global-shipping-progress]');
         if (!progress) return;
@@ -1264,6 +1666,97 @@
         }
       };
 
+      const renderGlobalWishlistDrawer = async () => {
+        if (!globalWishlistDrawerBody) return;
+        globalWishlistDrawerBody.innerHTML = '<p class="product-info-drawer__wishlist-empty">Verlanglijstje laden...</p>';
+        try {
+          const response = await fetch(document.body?.dataset?.wishlistEndpoint || '/apps/wishlist/proxy', {
+            credentials: 'same-origin',
+            headers: {
+              Accept: 'application/json',
+            },
+          });
+
+          if (response.status === 401) {
+            globalWishlistDrawerBody.innerHTML = '<p class="product-info-drawer__wishlist-empty">Log in om je verlanglijstje te bekijken.</p>';
+            return;
+          }
+
+          if (!response.ok) throw new Error('Wishlist fetch failed');
+
+          const payload = await response.json();
+          if (payload?.authenticated === false) {
+            globalWishlistDrawerBody.innerHTML = '<p class="product-info-drawer__wishlist-empty">Log in om je verlanglijstje te bekijken.</p>';
+            return;
+          }
+
+          globalWishlistDrawerBody.innerHTML = buildGlobalWishlistContent(payload);
+        } catch (error) {
+          console.error(error);
+          globalWishlistDrawerBody.innerHTML = '<p class="product-info-drawer__wishlist-empty">Het verlanglijstje kon niet worden geladen.</p>';
+        }
+      };
+
+      const addWishlistDrawerItemToCart = async (button) => {
+        if (!button) return;
+
+        const purchaseRow = button.closest('.product-info-drawer__wishlist-purchase');
+        const selectedSize =
+          purchaseRow?.querySelector('.account-wishlist__size-summary-label')?.textContent?.trim() || '';
+
+        if (!selectedSize || selectedSize === 'Maat selecteren') return;
+
+        const productUrl = button.dataset.productUrl;
+        if (!productUrl) return;
+
+        button.disabled = true;
+
+        try {
+          const productResponse = await fetch(`${productUrl}.js`, {
+            credentials: 'same-origin',
+            headers: {
+              Accept: 'application/json',
+            },
+          });
+
+          if (!productResponse.ok) throw new Error('Wishlist product fetch failed');
+
+          const productData = await productResponse.json();
+          const matchingVariant = (productData.variants || []).find((variant) => {
+            return [variant.option1, variant.option2, variant.option3].some((option) => option === selectedSize);
+          });
+
+          if (!matchingVariant?.id) throw new Error('No matching variant found');
+
+          const cartResponse = await fetch(`${window.routes?.cart_add_url || '/cart/add'}.js`, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: matchingVariant.id,
+                  quantity: 1,
+                },
+              ],
+            }),
+          });
+
+          if (!cartResponse.ok) throw new Error('Wishlist add to cart failed');
+
+          await cartResponse.json();
+          updateGlobalCartIcon();
+          openGlobalCartDrawer();
+        } catch (error) {
+          console.error(error);
+        } finally {
+          button.disabled = false;
+        }
+      };
+
       const closeGlobalCartDrawer = () => {
         if (!globalCartDrawer) return;
         globalCartDrawer.classList.remove('is-open');
@@ -1271,8 +1764,16 @@
         document.documentElement.classList.remove('product-info-drawer-open');
       };
 
+      const closeGlobalWishlistDrawer = () => {
+        if (!globalWishlistDrawer) return;
+        globalWishlistDrawer.classList.remove('is-open');
+        globalWishlistDrawer.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('product-info-drawer-open');
+      };
+
       const openGlobalCartDrawer = () => {
         if (!globalCartDrawer) return false;
+        closeGlobalWishlistDrawer();
         globalCartDrawer.classList.add('is-open');
         globalCartDrawer.setAttribute('aria-hidden', 'false');
         document.documentElement.classList.add('product-info-drawer-open');
@@ -1280,8 +1781,68 @@
         return true;
       };
 
+      const openGlobalWishlistDrawer = () => {
+        if (!globalWishlistDrawer) return false;
+        closeGlobalCartDrawer();
+        globalWishlistDrawer.classList.add('is-open');
+        globalWishlistDrawer.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.add('product-info-drawer-open');
+        renderGlobalWishlistDrawer();
+        return true;
+      };
+
+      const switchGlobalMobileDrawer = (fromDrawer, toDrawer, renderCallback) => {
+        if (!fromDrawer || !toDrawer) return false;
+        fromDrawer.classList.add('is-switching');
+        toDrawer.classList.add('is-switching');
+        fromDrawer.classList.remove('is-open');
+        fromDrawer.setAttribute('aria-hidden', 'true');
+        toDrawer.classList.add('is-open');
+        toDrawer.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.add('product-info-drawer-open');
+        renderCallback?.();
+        window.requestAnimationFrame(() => {
+          fromDrawer.classList.remove('is-switching');
+          toDrawer.classList.remove('is-switching');
+        });
+        return true;
+      };
+
       globalCartDrawerCloseButtons.forEach((button) => {
         button.addEventListener('click', closeGlobalCartDrawer);
+      });
+
+      globalWishlistDrawerCloseButtons.forEach((button) => {
+        button.addEventListener('click', closeGlobalWishlistDrawer);
+      });
+
+      document.addEventListener('click', (event) => {
+        const wishlistLink = event.target.closest('[data-mobile-cart-wishlist-link]');
+        if (wishlistLink && window.matchMedia('(max-width: 749px)').matches) {
+          event.preventDefault();
+          switchGlobalMobileDrawer(globalCartDrawer, globalWishlistDrawer, renderGlobalWishlistDrawer);
+          return;
+        }
+
+        const wishlistToCart = event.target.closest('[data-mobile-wishlist-open-cart]');
+        if (wishlistToCart && window.matchMedia('(max-width: 749px)').matches) {
+          event.preventDefault();
+          switchGlobalMobileDrawer(globalWishlistDrawer, globalCartDrawer, renderGlobalCartDrawer);
+          return;
+        }
+
+        const headerWishlistLink = event.target.closest('.header__icon--wishlist');
+        if (headerWishlistLink && window.matchMedia('(max-width: 749px)').matches) {
+          event.preventDefault();
+          openGlobalWishlistDrawer();
+          return;
+        }
+
+        const wishlistCartButton = event.target.closest('[data-mobile-wishlist-cart]');
+        if (wishlistCartButton && window.matchMedia('(max-width: 749px)').matches) {
+          event.preventDefault();
+          addWishlistDrawerItemToCart(wishlistCartButton);
+        }
       });
 
       globalCartDrawer?.addEventListener(
@@ -1330,8 +1891,11 @@
         }
       });
 
-      document.addEventListener('keyup', (event) => {
-        if (event.code === 'Escape') closeGlobalCartDrawer();
+        document.addEventListener('keyup', (event) => {
+        if (event.code === 'Escape') {
+          closeGlobalCartDrawer();
+          closeGlobalWishlistDrawer();
+        }
       });
 
       const openWogCartDrawer = (trigger) => {
@@ -1381,5 +1945,6 @@
         window.history.replaceState({}, '', `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`);
       });
     </script>
+    <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>

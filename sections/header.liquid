@@ -2731,6 +2731,19 @@ body.desktop-search-open .desktop-search-panel {
   </button>
 
   {% if shop.customer_accounts_enabled %}
+    <a
+      href="{{ routes.account_url }}#wishlist"
+      class="header__icon header__icon--wishlist link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+      aria-label="Wishlist"
+    >
+      <span class="svg-wrapper">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 20.2 4.85 13.2a4.77 4.77 0 0 1 0-6.82 4.94 4.94 0 0 1 6.92 0L12 6.61l.23-.23a4.94 4.94 0 0 1 6.92 0 4.77 4.77 0 0 1 0 6.82Z"></path>
+        </svg>
+      </span>
+      <span class="visually-hidden">Wishlist</span>
+    </a>
+
     <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
       {% if section.settings.enable_customer_avatar %}
         <account-icon>

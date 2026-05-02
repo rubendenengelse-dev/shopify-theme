@@ -1,9 +1,36 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .account--wishlist-focus .account__header,
+  .account--wishlist-focus .account__details,
+  .account--wishlist-focus .account__orders {
+    display: none;
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .account--wishlist-focus.section-{{ section.id }}-padding {
+    padding-top: 0 !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    .account--wishlist-focus {
+      max-width: 128rem;
+      margin: 0 auto;
+    }
+
+    .account--wishlist-focus .account__wishlist-wrap {
+      margin-top: 0;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .account--wishlist-focus {
+      max-width: 150rem;
+    }
   }
 
   @media screen and (min-width: 750px) {
@@ -11,11 +38,15 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+
+    .account--wishlist-focus.section-{{ section.id }}-padding {
+      padding-top: 0 !important;
+    }
   }
 {%- endstyle -%}
 
-<div class="customer account section-{{ section.id }}-padding">
-  <div>
+<div class="customer account account--wishlist-focus section-{{ section.id }}-padding">
+  <div class="account__header">
     <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
     <a href="{{ routes.account_logout_url }}">
       <span class="svg-wrapper">
@@ -25,8 +56,26 @@
     </a>
   </div>
 
-  <div>
-    <div>
+  <div class="account__content">
+    <div class="account__wishlist-wrap">
+      <div class="account-wishlist" data-account-wishlist id="wishlist">
+        <div class="account-wishlist__card">
+          <h2 class="account-wishlist__title">Wishlist</h2>
+          <p class="account-wishlist__text">Je wishlist wordt geladen...</p>
+        </div>
+      </div>
+
+      <div class="account__details">
+        <h2>{{ 'customer.account.details' | t }}</h2>
+
+        {{ customer.default_address | format_address }}
+
+        <a href="{{ routes.account_addresses_url }}">
+          {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
+        </a>
+      </div>
+
+      <div class="account__orders">
       <h2>{{ 'customer.orders.title' | t }}</h2>
 
       {% paginate customer.orders by 20 %}
@@ -136,16 +185,6 @@
           {%- endif -%}
         {%- endif -%}
       {% endpaginate %}
-    </div>
-
-    <div>
-      <h2>{{ 'customer.account.details' | t }}</h2>
-
-      {{ customer.default_address | format_address }}
-
-      <a href="{{ routes.account_addresses_url }}">
-        {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
-      </a>
     </div>
   </div>
 </div>

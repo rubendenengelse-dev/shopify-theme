@@ -1,0 +1,17 @@
+{%- assign wishlist_variant = wishlist_variant | default: 'card' -%}
+<button
+  type="button"
+  class="wishlist-button wishlist-button--{{ wishlist_variant }}"
+  data-wishlist-button
+  data-product-id="{{ wishlist_product.id }}"
+  data-product-handle="{{ wishlist_product.handle }}"
+  aria-label="Toevoegen aan wishlist"
+  aria-pressed="false"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 20.2 4.85 13.2a4.77 4.77 0 0 1 0-6.82 4.94 4.94 0 0 1 6.92 0L12 6.61l.23-.23a4.94 4.94 0 0 1 6.92 0 4.77 4.77 0 0 1 0 6.82Z"></path>
+  </svg>
+  {%- if wishlist_variant == 'product' -%}
+    <span class="wishlist-button__label">Wishlist</span>
+  {%- endif -%}
+</button>
