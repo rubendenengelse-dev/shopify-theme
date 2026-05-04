@@ -188,8 +188,8 @@
   .header {
     min-height: 8.6rem;
     align-items: center;
-    padding-left: var(--wog-header-shell-gutter);
-    padding-right: var(--wog-header-shell-gutter);
+    padding-left: 4.5rem;
+    padding-right: 5rem;
     column-gap: var(--wog-header-shell-gap);
   }
 
@@ -257,8 +257,9 @@
 .header--middle-left .header__inline-menu {
   grid-area: navigation;
   justify-self: start;
-  width: max-content;
-  margin-left: -81rem;
+  width: auto;
+  max-width: 100%;
+  margin-left: 0;
 }
 
 .header--middle-left .header__inline-menu .list-menu--inline {
@@ -276,7 +277,7 @@
   justify-content: flex-end;
   gap: 0.2rem;
   padding-right: 0;
-  margin-right: -70rem;
+  margin-right: 0;
 }
 
   .header__menu-item {
@@ -351,10 +352,6 @@
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
-  .header--middle-left .header__inline-menu {
-    margin-left: -84rem;
-  }
-
   .header--middle-left .header__inline-menu .list-menu--inline > li:nth-child(1) .header__menu-item,
   .header--middle-left .header__inline-menu .list-menu--inline > li:nth-child(2) .header__menu-item,
   .header--middle-left .header__inline-menu .list-menu--inline > li:nth-child(3) .header__menu-item,
@@ -372,7 +369,7 @@
 
   .mega-menu__content,
   .mega-menu__content.global-settings-popup {
-    left: calc(50% - 12.6rem);
+    left: calc(50% - 17rem);
     width: 100vw;
     max-width: 100vw;
     padding: 2.4rem 1.4rem 2.8rem;
@@ -430,7 +427,7 @@
 
 .mega-menu__content,
 .mega-menu__content.global-settings-popup {
-  left: calc(50% - 12rem);
+  left: calc(50% - 18.5rem);
   right: auto;
   top: calc(100% + 2.4rem);
   transform: translateX(-50%);
@@ -441,21 +438,14 @@
   margin-top: 0;
   padding: 3.6rem 2rem 4rem;
   border: 0;
-  box-shadow: none;
+  box-shadow: 0 0 0 100vmax #fff !important;
+  clip-path: inset(0 -100vmax);
   overflow: hidden;
   background: #fff !important;
   background-color: #fff !important;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
-
-  .mega-menu__content::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: transparent;
-  }
 
   .mega-menu__panel {
     position: relative;
@@ -677,7 +667,7 @@
     justify-content: flex-end;
     gap: 0.2rem;
     padding-right: 0;
-    margin-right: -70rem;
+    margin-right: 0;
   }
 
   .header__icon,
@@ -1081,8 +1071,6 @@ body.desktop-search-open .desktop-search-panel {
 
 @media screen and (min-width: 990px) and (max-width: 1536px) {
   .header {
-    padding-left: var(--wog-header-shell-gutter);
-    padding-right: var(--wog-header-shell-gutter);
     column-gap: var(--wog-header-shell-gap);
   }
 
@@ -1093,10 +1081,6 @@ body.desktop-search-open .desktop-search-panel {
   .header__heading-logo-wrapper {
     width: 88px !important;
     max-width: 88px !important;
-  }
-
-  .header--middle-left .header__inline-menu {
-    margin-left: -20rem;
   }
 
   .header--middle-left .header__inline-menu .list-menu--inline {
@@ -1110,7 +1094,7 @@ body.desktop-search-open .desktop-search-panel {
 
   .header--middle-left .header__icons {
     gap: 0.2rem;
-    margin-right: -12rem;
+    margin-right: 0;
   }
 
   .header__search {
@@ -1193,7 +1177,7 @@ body.desktop-search-open .desktop-search-panel {
 
   .mega-menu__content,
   .mega-menu__content.global-settings-popup {
-    left: calc(50% - 10.7rem);
+    left: calc(50% - 17.5rem);
     top: calc(100% + 1.2rem);
     width: calc(100vw + 0.9rem);
     max-width: calc(100vw + 0.9rem);
@@ -1210,7 +1194,7 @@ body.desktop-search-open .desktop-search-panel {
     max-width: 30rem;
     gap: 1rem;
     justify-self: end;
-    margin-right: 0.4rem;
+    margin-right: 1rem;
   }
 
   .mega-menu__promo-card-image {
@@ -1320,10 +1304,6 @@ body.desktop-search-open .desktop-search-panel {
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
-  .header--middle-left .header__inline-menu {
-    margin-left: -22.89rem;
-  }
-
   .header--middle-left .header__inline-menu .list-menu--inline > li:nth-child(1) .header__menu-item,
   .header--middle-left .header__inline-menu .list-menu--inline > li:nth-child(2) .header__menu-item,
   .header--middle-left .header__inline-menu .list-menu--inline > li:nth-child(4) .header__menu-item {
@@ -1332,23 +1312,23 @@ body.desktop-search-open .desktop-search-panel {
 
   .mega-menu__content,
   .mega-menu__content.global-settings-popup {
-    left: calc(50% - 11.45rem);
-    width: 100vw;
-    max-width: 100vw;
+    left: calc(50% - 17rem);
+    width: calc(100vw + 2rem);
+    max-width: calc(100vw + 2rem);
     padding: 2.4rem 1.4rem 2.8rem;
   }
 
   .mega-menu__list {
-    margin: 0 0 0 3rem;
+    margin: 0 0 0 4rem;
   }
 
   .mega-menu__link--level-2,
   .mega-menu__link {
-    transform: translateX(1.2rem);
+    transform: none;
   }
 
   .mega-menu__promo {
-    margin-right: 0;
+    margin-right: 1rem;
   }
 }
 
@@ -2130,9 +2110,14 @@ body.desktop-search-open .desktop-search-panel {
 
   @media screen and (min-width: 990px) {
     .header {
+      max-width: none;
+      width: 100%;
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: 4.5rem;
+      padding-right: 5rem;
     }
+
   }
 {% endstyle %}
 
@@ -2546,12 +2531,9 @@ body.desktop-search-open .desktop-search-panel {
       <ul class="list-menu list-menu--inline" role="list">
         {% for link in section.settings.menu.links %}
           {% assign normalized_top_level_title = link.title | strip | downcase %}
+          {% unless normalized_top_level_title == 'onze missie' %}
           <li>
-            {% if normalized_top_level_title == 'onze missie' %}
-              <a class="header__menu-item list-menu__item link focus-inset header__menu-item--ghost" href="#" aria-hidden="true" tabindex="-1">
-                <span>{{- link.title | escape -}}</span>
-              </a>
-            {% elsif link.links != blank %}
+            {% if link.links != blank %}
               <header-menu>
                 <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
                   <summary
@@ -2654,6 +2636,7 @@ body.desktop-search-open .desktop-search-panel {
               </a>
             {% endif %}
           </li>
+          {% endunless %}
         {% endfor %}
       </ul>
     </nav>
