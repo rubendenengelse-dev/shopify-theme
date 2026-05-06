@@ -1924,6 +1924,14 @@
         return false;
       };
 
+      document.addEventListener('wog:wishlist-cart-added', async (event) => {
+        await updateGlobalCartIcon();
+        openWogCartDrawer(event.detail?.trigger || document.querySelector('#cart-icon-bubble'));
+        if (typeof event.detail?.onComplete === 'function') {
+          event.detail.onComplete();
+        }
+      });
+
       document.addEventListener(
         'click',
         (event) => {

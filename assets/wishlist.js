@@ -7,9 +7,14 @@
   const wishlistUrl = body.dataset.accountWishlistUrl || "/account#wishlist";
   const accountContainer = document.querySelector("[data-account-wishlist]");
   const mobileColumnsStorageKey = "wog-mobile-wishlist-columns";
+  const wishlistVariantStorageKeyPrefix = "wog-wishlist-variants:";
+  const wishlistFeedbackResetDelay = 2200;
+  const wishlistMinimumSpinnerDuration = 800;
+  const wishlistSuccessStateDuration = 600;
 
   let wishlistIds = new Set();
   let isAuthenticated = body.dataset.customerLoggedIn === "true";
+  const wishlistVariantCache = new Map();
   function getButtons() {
     return Array.from(document.querySelectorAll("[data-wishlist-button]"));
   }
@@ -17,6 +22,325 @@
   function setButtonState(button, active) {
     button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", String(active));
+  }
+
+  function escapeAttribute(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function normalizeSizeValue(value) {
+    return String(value || "")
+      .trim()
+      .toUpperCase()
+      .replace(/\s+/g, "");
+  }
+
+  function parseWishlistVariants(item) {
+    if (!item) return [];
+    try {
+      const variants = JSON.parse(item.dataset.productVariants || "[]");
+      return Array.isArray(variants) ? variants : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function readWishlistVariantStorage(handle) {
+    if (!handle) return [];
+    try {
+      const storedValue = window.localStorage.getItem(`${wishlistVariantStorageKeyPrefix}${handle}`);
+      if (!storedValue) return [];
+      const parsed = JSON.parse(storedValue);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeWishlistVariantStorage(handle, variants) {
+    if (!handle || !Array.isArray(variants) || !variants.length) return;
+    try {
+      window.localStorage.setItem(`${wishlistVariantStorageKeyPrefix}${handle}`, JSON.stringify(variants));
+    } catch {}
+  }
+
+  function setWishlistVariants(item, variants) {
+    if (!item || !Array.isArray(variants)) return [];
+    const normalizedVariants = variants.filter((variant) => variant?.id && variant?.size);
+    item.dataset.productVariants = JSON.stringify(normalizedVariants);
+
+    const handle = item.dataset.productHandle || "";
+    if (handle) {
+      wishlistVariantCache.set(handle, normalizedVariants);
+      writeWishlistVariantStorage(handle, normalizedVariants);
+    }
+
+    return normalizedVariants;
+  }
+
+  function getVariantSizeLabel(variant) {
+    const selectedOptions = Array.isArray(variant?.selectedOptions) ? variant.selectedOptions : [];
+    const namedOption = selectedOptions.find((option) => /size|maat/i.test(option?.name || ""));
+    if (namedOption?.value) return namedOption.value;
+
+    const optionValues = [variant?.option1, variant?.option2, variant?.option3]
+      .map((value) => String(value || "").trim())
+      .filter(Boolean);
+    const matchingOption = optionValues.find((value) => /^(xxs|xs|s|m|l|xl|xxl|xxxl|3xl|4xl|5xl)$/i.test(value));
+    if (matchingOption) return matchingOption;
+
+    const title = String(variant?.title || "").trim();
+    if (title && title.toLowerCase() !== "default title") return title;
+
+    return "";
+  }
+
+  function normalizeFetchedWishlistVariants(product) {
+    return (product?.variants || [])
+      .map((variant) => ({
+        id: Number(variant.id),
+        title: variant.title,
+        available: Boolean(variant.available),
+        size: getVariantSizeLabel(variant),
+      }))
+      .filter((variant) => variant.id && variant.size);
+  }
+
+  async function ensureWishlistVariants(item) {
+    if (!item) return [];
+
+    const existingVariants = parseWishlistVariants(item);
+    if (existingVariants.length) return existingVariants;
+
+    const handle = item.dataset.productHandle || "";
+    if (!handle) return [];
+
+    if (wishlistVariantCache.has(handle)) {
+      return setWishlistVariants(item, wishlistVariantCache.get(handle));
+    }
+
+    const storedVariants = readWishlistVariantStorage(handle);
+    if (storedVariants.length) {
+      wishlistVariantCache.set(handle, storedVariants);
+      return setWishlistVariants(item, storedVariants);
+    }
+
+    if (item._variantRequest) {
+      return item._variantRequest;
+    }
+
+    item._variantRequest = fetch(`/products/${handle}.js`, {
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Productgegevens konden niet worden geladen.");
+        }
+        return response.json();
+      })
+      .then((product) => {
+        const fetchedVariants = normalizeFetchedWishlistVariants(product);
+        return setWishlistVariants(item, fetchedVariants);
+      })
+      .catch((error) => {
+        console.warn("[wishlist variants]", error);
+        return [];
+      })
+      .finally(() => {
+        item._variantRequest = null;
+      });
+
+    return item._variantRequest;
+  }
+
+  function getSelectedWishlistVariant(item, requestedSize) {
+    const normalizedRequestedSize = normalizeSizeValue(requestedSize || item?.dataset.selectedSize);
+    if (!normalizedRequestedSize) return null;
+
+    return (
+      parseWishlistVariants(item).find((variant) => normalizeSizeValue(variant.size) === normalizedRequestedSize) || null
+    );
+  }
+
+  function getWishlistFeedbackElement(item) {
+    return item?.querySelector("[data-wishlist-feedback]") || null;
+  }
+
+  function clearWishlistFeedback(item) {
+    const feedback = getWishlistFeedbackElement(item);
+    if (!feedback) return;
+    feedback.textContent = "";
+    feedback.hidden = true;
+    feedback.classList.remove("is-error", "is-success");
+  }
+
+  function showWishlistFeedback(item, message, type = "error") {
+    const feedback = getWishlistFeedbackElement(item);
+    if (!feedback) return;
+
+    if (feedback._hideTimeout) {
+      window.clearTimeout(feedback._hideTimeout);
+      feedback._hideTimeout = null;
+    }
+
+    feedback.textContent = message;
+    feedback.hidden = !message;
+    feedback.classList.toggle("is-error", type === "error");
+    feedback.classList.toggle("is-success", type === "success");
+
+    if (message && type !== "success") {
+      feedback._hideTimeout = window.setTimeout(() => {
+        clearWishlistFeedback(item);
+      }, wishlistFeedbackResetDelay);
+    }
+  }
+
+  function setWishlistCartButtonState(button, state = "idle") {
+    if (!button) return;
+
+    if (button._stateTimeout) {
+      window.clearTimeout(button._stateTimeout);
+      button._stateTimeout = null;
+    }
+
+    button.dataset.state = state;
+    button.classList.toggle("is-loading", state === "loading");
+    button.classList.toggle("is-success", state === "success");
+    button.classList.toggle("is-error", state === "error");
+
+    if (state === "loading" || state === "success") {
+      button.disabled = true;
+      if (state === "loading") {
+        button.setAttribute("aria-busy", "true");
+      } else {
+        button.removeAttribute("aria-busy");
+      }
+      return;
+    }
+
+    button.disabled = false;
+    button.removeAttribute("aria-busy");
+
+    if (state === "error") {
+      button._stateTimeout = window.setTimeout(() => {
+        setWishlistCartButtonState(button, "idle");
+      }, 900);
+    }
+  }
+
+  async function addWishlistVariantToCart(button) {
+    const item = button.closest("[data-wishlist-item]");
+    if (!item || button.disabled) return;
+
+    const selectedSize = item.dataset.selectedSize || "";
+    if (!selectedSize) {
+      setWishlistCartButtonState(button, "error");
+      showWishlistFeedback(item, "Selecteer eerst een maat.", "error");
+      return;
+    }
+
+    const variants = (await ensureWishlistVariants(item)) || [];
+    if (!variants.length) {
+      setWishlistCartButtonState(button, "error");
+      showWishlistFeedback(item, "Productgegevens konden niet worden geladen.", "error");
+      return;
+    }
+
+    const selectedVariant = getSelectedWishlistVariant(item, selectedSize);
+    if (!selectedVariant) {
+      setWishlistCartButtonState(button, "error");
+      showWishlistFeedback(item, "Deze maat is niet beschikbaar.", "error");
+      return;
+    }
+
+    if (!selectedVariant.available) {
+      setWishlistCartButtonState(button, "error");
+      showWishlistFeedback(item, "Deze maat is uitverkocht.", "error");
+      return;
+    }
+
+    clearWishlistFeedback(item);
+    setWishlistCartButtonState(button, "loading");
+
+    try {
+      const addToCartPromise = fetch(`${routes.cart_add_url}`, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: JSON.stringify({
+          items: [
+            {
+              id: selectedVariant.id,
+              quantity: 1,
+            },
+          ],
+        }),
+      }).then((response) => response.json());
+      const minimumSpinnerDelay = new Promise((resolve) => {
+        window.setTimeout(resolve, wishlistMinimumSpinnerDuration);
+      });
+
+      const [payload] = await Promise.all([addToCartPromise, minimumSpinnerDelay]);
+
+      if (payload?.status) {
+        if (typeof publish === "function" && typeof PUB_SUB_EVENTS !== "undefined") {
+          publish(PUB_SUB_EVENTS.cartError, {
+            source: "wishlist",
+            productVariantId: selectedVariant.id,
+            errors: payload.errors || payload.description,
+            message: payload.message,
+          });
+        }
+
+        throw new Error(payload.description || payload.message || "Toevoegen aan winkelwagen mislukt.");
+      }
+
+      if (typeof publish === "function" && typeof PUB_SUB_EVENTS !== "undefined") {
+        publish(PUB_SUB_EVENTS.cartUpdate, {
+          source: "wishlist",
+          productVariantId: selectedVariant.id,
+          cartData: payload,
+        });
+      }
+
+      setWishlistCartButtonState(button, "success");
+      clearWishlistFeedback(item);
+
+      await new Promise((resolve) => {
+        window.setTimeout(resolve, wishlistSuccessStateDuration);
+      });
+
+      await new Promise((resolve) => {
+        document.dispatchEvent(
+          new CustomEvent("wog:wishlist-cart-added", {
+            detail: {
+              trigger: button,
+              cartData: payload,
+              productVariantId: selectedVariant.id,
+              onComplete: resolve,
+            },
+          })
+        );
+      });
+      clearWishlistFeedback(item);
+      setWishlistCartButtonState(button, "idle");
+    } catch (error) {
+      console.warn("[wishlist cart]", error);
+      setWishlistCartButtonState(button, "error");
+      showWishlistFeedback(item, error.message || "Toevoegen aan winkelwagen mislukt.", "error");
+    }
   }
 
   function syncButtons() {
@@ -98,6 +422,7 @@
           : "";
 
         const price = product.price ? `<p class="account-wishlist__item-price">${formatPrice(product.price)}</p>` : "";
+        const variants = escapeAttribute(JSON.stringify(product.variants || []));
         const sizeSelector = `
           <div class="account-wishlist__purchase-row">
             <details class="account-wishlist__size-picker">
@@ -116,21 +441,34 @@
                 <button type="button" class="account-wishlist__size-option" data-size-value="XXL">XXL</button>
               </div>
             </details>
-            <button type="button" class="account-wishlist__cart-trigger" aria-label="Toevoegen aan winkelwagen">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                <g transform="translate(-6.1 -6.1) scale(1.58)">
-                  <path d="M12 18.2V8.6" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
-                  <path d="M7.2 10.2h9.6v6.4a1.5 1.5 0 0 1-1.5 1.5h-6.6a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/>
-                  <path d="M6.7 8.1h10.6a.9.9 0 0 1 .9.9v1.2H5.8V9a.9.9 0 0 1 .9-.9z" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/>
-                  <path d="M12 8.1h-2.1c-.95 0-1.6-.56-1.6-1.33 0-.77.63-1.32 1.46-1.32.92 0 1.63.57 2.24 1.64.61-1.07 1.32-1.64 2.24-1.64.83 0 1.46.55 1.46 1.32 0 .77-.65 1.33-1.6 1.33H12z" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-              </svg>
+            <button type="button" class="account-wishlist__cart-trigger" data-wishlist-cart-trigger data-state="idle" aria-label="Toevoegen aan winkelwagen">
+              <span class="account-wishlist__cart-center" aria-hidden="true">
+                <span class="account-wishlist__cart-icon account-wishlist__cart-icon--cart" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <g transform="translate(-6.1 -6.1) scale(1.58)">
+                      <path d="M12 18.2V8.6" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+                      <path d="M7.2 10.2h9.6v6.4a1.5 1.5 0 0 1-1.5 1.5h-6.6a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/>
+                      <path d="M6.7 8.1h10.6a.9.9 0 0 1 .9.9v1.2H5.8V9a.9.9 0 0 1 .9-.9z" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/>
+                      <path d="M12 8.1h-2.1c-.95 0-1.6-.56-1.6-1.33 0-.77.63-1.32 1.46-1.32.92 0 1.63.57 2.24 1.64.61-1.07 1.32-1.64 2.24-1.64.83 0 1.46.55 1.46 1.32 0 .77-.65 1.33-1.6 1.33H12z" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="account-wishlist__cart-icon account-wishlist__cart-icon--spinner" aria-hidden="true">
+                  <span class="account-wishlist__cart-spinner"></span>
+                </span>
+                <span class="account-wishlist__cart-icon account-wishlist__cart-icon--check" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path d="M4.8 10.2 8.1 13.5 15.3 6.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </span>
             </button>
           </div>
+          <p class="account-wishlist__feedback" data-wishlist-feedback hidden aria-live="polite"></p>
         `;
 
         return `
-          <article class="account-wishlist__item">
+          <article class="account-wishlist__item" data-wishlist-item data-product-id="${product.id}" data-product-handle="${product.handle || ""}" data-product-variants="${variants}">
             <a class="account-wishlist__item-link" href="${product.url}">
               ${image}
               <p class="account-wishlist__item-title">${product.title}</p>
@@ -368,16 +706,32 @@
       if (sizeOption) {
         event.preventDefault();
         event.stopPropagation();
+        const item = sizeOption.closest("[data-wishlist-item]");
         const picker = sizeOption.closest(".account-wishlist__size-picker");
         const label = picker?.querySelector(".account-wishlist__size-summary-label");
         const value = sizeOption.dataset.sizeValue || sizeOption.textContent?.trim();
+        const selectedVariant = getSelectedWishlistVariant(item, value);
         if (label && value) label.textContent = value;
         picker?.querySelectorAll(".account-wishlist__size-option").forEach((button) => {
           const isSelected = button === sizeOption;
           button.classList.toggle("is-selected", isSelected);
           button.setAttribute("aria-pressed", String(isSelected));
         });
+        if (item && value) {
+          item.dataset.selectedSize = value;
+          item.dataset.selectedVariantId = selectedVariant?.id ? String(selectedVariant.id) : "";
+          item.dataset.selectedVariantAvailable = selectedVariant?.available ? "true" : "false";
+          clearWishlistFeedback(item);
+        }
         if (picker) picker.open = false;
+        return;
+      }
+
+      const cartTrigger = event.target.closest("[data-wishlist-cart-trigger]");
+      if (cartTrigger) {
+        event.preventDefault();
+        event.stopPropagation();
+        addWishlistVariantToCart(cartTrigger);
         return;
       }
 
