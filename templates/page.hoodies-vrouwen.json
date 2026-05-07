@@ -1,0 +1,277 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_hx7KA4": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cAWUfp": {
+          "type": "heading",
+          "settings": {
+            "heading": "HOODIES",
+            "heading_size": "h1"
+          }
+        },
+        "text_EjXMk4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Onze hoodies zijn gemaakt om elke dag te dragen. Ze bieden een comfortabele pasvorm, een warm gevoel en een uitstraling die moeiteloos aansluit bij uiteenlopende stijlen. Dankzij zorgvuldig gekozen materialen en een verfijnde afwerking voelen ze stevig aan en blijven ze lang mooi.<br/><br/>Deze hoodies staan voor meer dan alleen mode. Ze weerspiegelen een bewuste levensstijl, geworteld in geloof, vakmanschap en verantwoordelijkheid. Ontworpen vanuit passie voor God, geproduceerd onder eerlijke omstandigheden en met aandacht voor mens en milieu.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cAWUfp",
+        "text_EjXMk4"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
+    "collection_list_LM94Mm": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_V77wDF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mens"
+          }
+        },
+        "featured_collection_rVmVc3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oversize-tshirts"
+          }
+        },
+        "featured_collection_inCLin": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "over-size"
+          }
+        },
+        "featured_collection_BVtAXA": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "polos"
+          }
+        },
+        "featured_collection_FMxnAC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-t-shirtss"
+          }
+        },
+        "featured_collection_VMxPxQ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "07-hoodies"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_V77wDF",
+        "featured_collection_rVmVc3",
+        "featured_collection_inCLin",
+        "featured_collection_BVtAXA",
+        "featured_collection_FMxnAC",
+        "featured_collection_VMxPxQ"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 6,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_4QHXiD": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "hoodies",
+        "products_to_show": 25,
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "rich_text_4tyAdC": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_bDxniQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "HOODIES VAN WOG",
+            "heading_size": "h2"
+          }
+        },
+        "text_aBtCw8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>WOG Hoodies zijn meer dan een bewuste keuze: het staat voor kwaliteit, verantwoordelijkheid en respect voor mens en milieu. Al onze kleding wordt gemaakt van milieubewuste stoffen zoals biologisch katoen. Dit katoen wordt verbouwd zonder schadelijke pesticiden en chemicaliën, wat beter is voor de aarde én voor de mensen die het katoen verbouwen.</p><p><br/>Daarnaast voelt biologisch katoen zachter aan en gaat het langer mee. Dat betekent meer comfort, een betere pasvorm en een hoodies dat er ook na veel dragen goed uit blijft zien. Je investeert dus niet alleen in duurzaamheid, maar ook in een veilige en eerlijke werkomgeving voor mensen in een industrie waar vaak misbruik wordt gemaakt van slechte arbeidswetten en leefomstandigheden. Bovendien investeer je in jezelf met een prachtig kledingstuk van langdurige kwaliteit.</p><p><br/>Door te kiezen voor Warrior of God draag je bij aan een eerlijkere kledingindustrie. Minder milieuvervuiling, betere werkomstandigheden en kleding die met zorg is gemaakt: dat is stijl met impact.<br/>Maak een verschil met wat je aantrekt. Draag bewust. Draag WOG.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bDxniQ",
+        "text_aBtCw8"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_iCHfdW": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_xKdJbf": {
+          "type": "heading",
+          "settings": {
+            "heading": "HOODIES",
+            "heading_size": "h2"
+          }
+        },
+        "text_yr6MAU": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een hoodie is de perfecte keuze voor dagen waarop comfort en warmte samenkomen. Het biedt een ontspannen pasvorm en een behaaglijk gevoel, zonder in te leveren op stijl. <br/>Draag het als statement piece of combineer het met een jas voor extra warmte en gelaagdheid.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_xKdJbf",
+        "text_yr6MAU"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_FkBkeY": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CjGhGR": {
+          "type": "heading",
+          "settings": {
+            "heading": "TRUI",
+            "heading_size": "h2"
+          }
+        },
+        "text_aEDgKG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Een trui is de mooie keuze voor dagen waarop je wat netter gekleed moet dan in een hoodie. Het biedt warmte en comfort in een tijdloze pasvorm, zonder in te leveren op stijl. Draag de trui los voor een cleane look of combineer hem met een jas voor extra warmte en gelaagdheid.<br/>Ideaal voor koelere dagen en eenvoudig te stylen met elke outfit.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CjGhGR",
+        "text_aEDgKG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_9JWkeg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ihxaCg": {
+          "type": "heading",
+          "settings": {
+            "heading": "OVERSIZED FIT",
+            "heading_size": "h2"
+          }
+        },
+        "text_mTeptP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Oversized hoodies en truien zijn perfect voor dagen waarop comfort en warmte samenkomen, zonder concessies te doen aan stijl. De ruimere pasvorm zorgt voor een relaxed gevoel, terwijl de gestructureerde fit de uitstraling strak en verzorgd houdt. Draag ze los of combineer ze met een jas voor extra warmte en gelaagdheid.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ihxaCg",
+        "text_mTeptP"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_hx7KA4",
+    "collection_list_LM94Mm",
+    "featured_collection_4QHXiD",
+    "rich_text_4tyAdC",
+    "rich_text_iCHfdW",
+    "rich_text_FkBkeY",
+    "rich_text_9JWkeg"
+  ]
+}
