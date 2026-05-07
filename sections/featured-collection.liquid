@@ -4,6 +4,34 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
+{%- assign render_only_collection_handle = section.settings.render_only_collection_handle | strip -%}
+{%- assign should_render_featured_collection = true -%}
+{%- if render_only_collection_handle != blank -%}
+  {%- if request.page_type != 'collection' or collection.handle != render_only_collection_handle -%}
+    {%- assign should_render_featured_collection = false -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign is_collection_tshirts_vrouwen = false -%}
+{%- if request.page_type == 'collection' and collection.handle == 't-shirts-vrouwen' and render_only_collection_handle == 't-shirts-vrouwen' -%}
+  {%- assign is_collection_tshirts_vrouwen = true -%}
+{%- endif -%}
+{%- assign is_tshirts_template = false -%}
+{%- if template.suffix == 't-shirts' or template.suffix == 't-shirts-man' or template.suffix == 't-shirts-vrouw' or template.suffix == 'dames-t-shirts' -%}
+  {%- assign is_tshirts_template = true -%}
+{%- endif -%}
+{%- assign is_hoodies_template = false -%}
+{%- if template.suffix == 'hoodies' or template.suffix == 'hoodies-man' or template.suffix == 'hoodies-vrouw' or template.suffix == 'vrouwen-hoodie' -%}
+  {%- assign is_hoodies_template = true -%}
+{%- endif -%}
+{%- assign is_oversize_tshirts_template = false -%}
+{%- if template.suffix == 'oversize-t-shirt-s' -%}
+  {%- assign is_oversize_tshirts_template = true -%}
+{%- endif -%}
+{%- assign is_tshirts_like_featured_collection = false -%}
+{%- if is_tshirts_template or is_oversize_tshirts_template or is_hoodies_template or is_collection_tshirts_vrouwen -%}
+  {%- assign is_tshirts_like_featured_collection = true -%}
+{%- endif -%}
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -777,7 +805,7 @@
       }
     }
 
-    {% if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
+    {% if is_tshirts_like_featured_collection %}
       #collection-{{ section.id }} .desktop-filter-layout.scroll-trigger,
       #collection-{{ section.id }} .desktop-filter-layout .scroll-trigger,
       #collection-{{ section.id }} .desktop-filter-layout .animate--slide-in {
@@ -1178,6 +1206,7 @@
   endif
 -%}
 
+{% if should_render_featured_collection %}
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
@@ -1746,6 +1775,7 @@
     };
   })();
 </script>
+{% endif %}
 
 {% schema %}
 {
@@ -1756,6 +1786,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "render_only_collection_handle",
+      "label": "Render only on collection handle",
+      "info": "Optional. Leave blank to show everywhere."
+    },
     {
       "type": "collection",
       "id": "collection",

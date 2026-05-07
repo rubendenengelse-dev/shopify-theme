@@ -2,6 +2,34 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
+{%- assign render_only_collection_handle = section.settings.render_only_collection_handle | strip -%}
+{%- assign should_render_collection_list = true -%}
+{%- if render_only_collection_handle != blank -%}
+  {%- if request.page_type != 'collection' or collection.handle != render_only_collection_handle -%}
+    {%- assign should_render_collection_list = false -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign is_collection_tshirts_vrouwen = false -%}
+{%- if request.page_type == 'collection' and collection.handle == 't-shirts-vrouwen' and render_only_collection_handle == 't-shirts-vrouwen' -%}
+  {%- assign is_collection_tshirts_vrouwen = true -%}
+{%- endif -%}
+{%- assign is_tshirts_template = false -%}
+{%- if template.suffix == 't-shirts' or template.suffix == 't-shirts-man' or template.suffix == 't-shirts-vrouw' or template.suffix == 'dames-t-shirts' -%}
+  {%- assign is_tshirts_template = true -%}
+{%- endif -%}
+{%- assign is_hoodies_template = false -%}
+{%- if template.suffix == 'hoodies' or template.suffix == 'hoodies-man' or template.suffix == 'hoodies-vrouw' or template.suffix == 'vrouwen-hoodie' -%}
+  {%- assign is_hoodies_template = true -%}
+{%- endif -%}
+{%- assign is_oversize_tshirts_template = false -%}
+{%- if template.suffix == 'oversize-t-shirt-s' -%}
+  {%- assign is_oversize_tshirts_template = true -%}
+{%- endif -%}
+{%- assign is_tshirts_like_collection_list = false -%}
+{%- if is_tshirts_template or is_oversize_tshirts_template or is_hoodies_template or is_collection_tshirts_vrouwen -%}
+  {%- assign is_tshirts_like_collection_list = true -%}
+{%- endif -%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -229,7 +257,7 @@
       }
     {%- endif -%}
 
-    {% if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
+    {% if is_tshirts_like_collection_list %}
       .section-{{ section.id }}-padding.collection-list-wrapper {
         max-width: 100%;
         padding-left: 4.5rem;
@@ -399,13 +427,14 @@
   assign show_desktop_collection_slider = false
   if is_homepage_collection_list and section.blocks.size > collection_columns_desktop
     assign show_desktop_collection_slider = true
-  elsif template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies'
+  elsif is_tshirts_like_collection_list
     if section.blocks.size > 1
       assign show_desktop_collection_slider = true
     endif
   endif
 -%}
 
+{% if should_render_collection_list %}
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding{% if is_homepage_collection_list %} collection-list-homepage-slider{% endif %}">
     {%- unless section.settings.title == blank -%}
@@ -576,6 +605,7 @@
     {%- endif -%}
   </div>
 </div>
+{% endif %}
 
 {% schema %}
 {
@@ -587,6 +617,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "render_only_collection_handle",
+      "label": "Render only on collection handle",
+      "info": "Optional. Leave blank to show everywhere."
+    },
     {
       "type": "inline_richtext",
       "id": "title",

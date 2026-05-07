@@ -1,5 +1,33 @@
 {{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
 
+{%- assign render_only_collection_handle = section.settings.render_only_collection_handle | strip -%}
+{%- assign should_render_rich_text = true -%}
+{%- if render_only_collection_handle != blank -%}
+  {%- if request.page_type != 'collection' or collection.handle != render_only_collection_handle -%}
+    {%- assign should_render_rich_text = false -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign is_collection_tshirts_vrouwen = false -%}
+{%- if request.page_type == 'collection' and collection.handle == 't-shirts-vrouwen' and render_only_collection_handle == 't-shirts-vrouwen' -%}
+  {%- assign is_collection_tshirts_vrouwen = true -%}
+{%- endif -%}
+{%- assign is_tshirts_template = false -%}
+{%- if template.suffix == 't-shirts' or template.suffix == 't-shirts-man' or template.suffix == 't-shirts-vrouw' or template.suffix == 'dames-t-shirts' -%}
+  {%- assign is_tshirts_template = true -%}
+{%- endif -%}
+{%- assign is_hoodies_template = false -%}
+{%- if template.suffix == 'hoodies' or template.suffix == 'hoodies-man' or template.suffix == 'hoodies-vrouw' or template.suffix == 'vrouwen-hoodie' -%}
+  {%- assign is_hoodies_template = true -%}
+{%- endif -%}
+{%- assign is_oversize_tshirts_template = false -%}
+{%- if template.suffix == 'oversize-t-shirt-s' -%}
+  {%- assign is_oversize_tshirts_template = true -%}
+{%- endif -%}
+{%- assign is_tshirts_like_rich_text = false -%}
+{%- if is_tshirts_template or is_hoodies_template or is_oversize_tshirts_template or is_collection_tshirts_vrouwen -%}
+  {%- assign is_tshirts_like_rich_text = true -%}
+{%- endif -%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -7,7 +35,7 @@
   }
 
   @media screen and (max-width: 749px) {
-    {% if template.suffix == 't-shirts' or template.suffix == 'hoodies' or template.suffix == 'oversize-t-shirt-s' %}
+    {% if is_tshirts_like_rich_text %}
       .section-{{ section.id }}-padding .rich-text__heading--desktop-page-hero {
         font-family: var(--font-body-family) !important;
         font-style: var(--font-body-style) !important;
@@ -78,7 +106,7 @@
         display: inline;
       }
 
-      {% if template.suffix == 'hoodies' or template.suffix == 't-shirts' %}
+      {% if is_hoodies_template or is_tshirts_template or is_collection_tshirts_vrouwen %}
         .section-{{ section.id }}-padding .rich-text__mobile-readmore-intro {
           display: block;
         }
@@ -135,7 +163,7 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
-    {% if template.suffix == 't-shirts' or template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
+    {% if is_tshirts_like_rich_text %}
       .section-{{ section.id }}-padding .rich-text__wrapper.page-width {
         max-width: 100%;
         padding-left: 4.5rem;
@@ -154,7 +182,7 @@
         line-height: 1.05 !important;
       }
 
-      {% if template.suffix == 'oversize-t-shirt-s' or template.suffix == 'hoodies' %}
+      {% if is_oversize_tshirts_template or is_hoodies_template %}
         .section-{{ section.id }}-padding .rich-text__heading--desktop-page-hero + .rich-text__text {
           font-size: 1.75rem;
           line-height: 1.75;
@@ -165,7 +193,7 @@
         }
       {% endif %}
 
-      {% if template.suffix == 'oversize-t-shirt-s' or template.suffix == 't-shirts' or template.suffix == 'hoodies' %}
+      {% if is_oversize_tshirts_template or is_tshirts_template or is_hoodies_template or is_collection_tshirts_vrouwen %}
         .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 {
           font-family: var(--font-body-family) !important;
           font-style: var(--font-body-style) !important;
@@ -201,7 +229,7 @@
         }
       {% endif %}
 
-      {% if template.suffix == 'hoodies' or template.suffix == 't-shirts' %}
+      {% if is_hoodies_template or is_tshirts_template or is_collection_tshirts_vrouwen %}
         .section-{{ section.id }}-padding .rich-text__mobile-readmore[hidden] {
           display: none !important;
         }
@@ -252,6 +280,7 @@
   }
 {%- endstyle -%}
 
+{% if should_render_rich_text %}
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
   <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
@@ -260,7 +289,7 @@
           {%- case block.type -%}
             {%- when 'heading' -%}
               <h2
-                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if block.settings.heading_size == 'h1' and template.suffix == 't-shirts' or block.settings.heading_size == 'h1' and template.suffix == 'oversize-t-shirt-s' or block.settings.heading_size == 'h1' and template.suffix == 'hoodies' %} rich-text__heading--desktop-page-hero{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if block.settings.heading_size == 'h1' and is_tshirts_like_rich_text %} rich-text__heading--desktop-page-hero{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -331,15 +360,17 @@
     </div>
   </div>
 </div>
+{% endif %}
 
-{% if template.suffix == 't-shirts' or template.suffix == 'hoodies' or template.suffix == 'oversize-t-shirt-s' %}
+{% if should_render_rich_text and is_tshirts_like_rich_text %}
   <script>
     (() => {
       const applyMobileReadMore = () => {
         if (
           window.innerWidth >= 750
-          && '{{ template.suffix }}' != 'hoodies'
-          && '{{ template.suffix }}' != 't-shirts'
+          && !{{ is_hoodies_template | json }}
+          && !{{ is_tshirts_template | json }}
+          && !{{ is_collection_tshirts_vrouwen | json }}
         ) return;
 
         const section = document.querySelector('.section-{{ section.id }}-padding');
@@ -353,7 +384,7 @@
         if (!paragraph) return;
 
         const fullText = paragraph.innerHTML.trim();
-        if ('{{ template.suffix }}' === 'hoodies' || '{{ template.suffix }}' === 't-shirts') {
+        if ({{ is_hoodies_template | json }} || {{ is_tshirts_template | json }} || {{ is_collection_tshirts_vrouwen | json }}) {
           const paragraphBreakMatch = fullText.match(/<br\s*\/?>\s*<br\s*\/?>/i);
           if (!paragraphBreakMatch) return;
 
@@ -410,7 +441,13 @@
 
         const splitMarkers = {
           't-shirts': 'Onze T-shirts vormen de basis van elke sterke outfit.',
+          't-shirts-man': 'Onze T-shirts vormen de basis van elke sterke outfit.',
+          't-shirts-vrouw': 'Onze T-shirts vormen de basis van elke sterke outfit.',
+          'dames-t-shirts': 'Onze T-shirts vormen de basis van elke sterke outfit.',
           'hoodies': 'Onze hoodies zijn gemaakt om elke dag te dragen.',
+          'hoodies-man': 'Onze hoodies zijn gemaakt om elke dag te dragen.',
+          'hoodies-vrouw': 'Onze hoodies zijn gemaakt om elke dag te dragen.',
+          'vrouwen-hoodie': 'Onze hoodies zijn gemaakt om elke dag te dragen.',
           'oversize-t-shirt-s': 'Onze oversized T-shirts zijn een absolute must-have voor jouw collectie.'
         };
         const splitMarker = splitMarkers['{{ template.suffix }}'];
@@ -479,6 +516,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "render_only_collection_handle",
+      "label": "Render only on collection handle",
+      "info": "Optional. Leave blank to show everywhere."
+    },
     {
       "type": "select",
       "id": "desktop_content_position",
