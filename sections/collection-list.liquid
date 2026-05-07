@@ -14,11 +14,11 @@
   {%- assign is_collection_tshirts_vrouwen = true -%}
 {%- endif -%}
 {%- assign is_tshirts_template = false -%}
-{%- if template.suffix == 't-shirts' or template.suffix == 't-shirts-man' or template.suffix == 't-shirts-vrouw' or template.suffix == 'dames-t-shirts' -%}
+{%- if template.suffix == 't-shirts' or template.suffix == 't-shirts-man' or template.suffix == 't-shirts-vrouw' or template.suffix == 'dames-t-shirts' or template.suffix == 't-shirts-dames' or template.suffix == 't-shirt-mannen' -%}
   {%- assign is_tshirts_template = true -%}
 {%- endif -%}
 {%- assign is_hoodies_template = false -%}
-{%- if template.suffix == 'hoodies' or template.suffix == 'hoodies-man' or template.suffix == 'hoodies-vrouw' or template.suffix == 'vrouwen-hoodie' -%}
+{%- if template.suffix == 'hoodies' or template.suffix == 'hoodies-man' or template.suffix == 'hoodies-vrouw' or template.suffix == 'vrouwen-hoodie' or template.suffix == 'hoodies-vrouwen' -%}
   {%- assign is_hoodies_template = true -%}
 {%- endif -%}
 {%- assign is_oversize_tshirts_template = false -%}

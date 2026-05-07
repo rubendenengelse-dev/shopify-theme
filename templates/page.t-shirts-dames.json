@@ -54,7 +54,7 @@
         "featured_collection_BFwAdJ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "hoodies"
+            "collection": "hoodies-vrouwen"
           }
         },
         "featured_collection_zPLhGc": {
@@ -72,7 +72,7 @@
         "featured_collection_CPBmen": {
           "type": "featured_collection",
           "settings": {
-            "collection": "polos"
+            "collection": "t-shirts-vrouwen"
           }
         },
         "featured_collection_CFGWPi": {
