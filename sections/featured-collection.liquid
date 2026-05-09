@@ -1579,6 +1579,44 @@
   </div>
 </div>
 
+<style>
+  @media screen and (min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine) {
+    [data-wog-laptop-smooth-slider] .wog-laptop-slide-next .slider__slide {
+      animation: wogLaptopSlideNext 360ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    [data-wog-laptop-smooth-slider] .wog-laptop-slide-prev .slider__slide {
+      animation: wogLaptopSlidePrev 360ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    @keyframes wogLaptopSlideNext {
+      0% {
+        transform: translateX(0);
+      }
+      38% {
+        transform: translateX(-26px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes wogLaptopSlidePrev {
+      0% {
+        transform: translateX(0);
+      }
+      38% {
+        transform: translateX(26px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+  }
+</style>
+
 <script>
   (() => {
     if (window.__wogLaptopHomepageSliderFix) return;
@@ -1586,57 +1624,14 @@
 
     const laptopQuery = window.matchMedia('(min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine)');
 
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-
-    const animateSlider = (slider, targetLeft) => {
-      const slides = Array.from(slider.querySelectorAll('.slider__slide'));
-      if (!slides.length) {
-        slider.scrollLeft = targetLeft;
-        return;
-      }
-
-      const startLeft = slider.scrollLeft;
-      const distance = targetLeft - startLeft;
-      if (Math.abs(distance) < 1) return;
-
-      const previousSnapType = slider.style.scrollSnapType;
-      const previousScrollBehavior = slider.style.scrollBehavior;
-      const duration = 360;
-      const startTime = performance.now();
-
-      slider.style.scrollSnapType = 'none';
-      slider.style.scrollBehavior = 'auto';
-
-      slides.forEach((slide) => {
-        slide.style.willChange = 'transform';
-      });
-
-      const step = (currentTime) => {
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        const eased = easeOutCubic(progress);
-        const translateX = -distance * eased;
-
-        slides.forEach((slide) => {
-          slide.style.transform = `translateX(${translateX}px)`;
-        });
-
-        if (progress < 1) {
-          window.requestAnimationFrame(step);
-          return;
-        }
-
-        slider.scrollLeft = targetLeft;
-
-        slides.forEach((slide) => {
-          slide.style.transform = '';
-          slide.style.willChange = '';
-        });
-
-        slider.style.scrollSnapType = previousSnapType;
-        slider.style.scrollBehavior = previousScrollBehavior;
-      };
-
-      window.requestAnimationFrame(step);
+    const triggerVisualSlide = (slider, direction) => {
+      const classToAdd = direction === 'next' ? 'wog-laptop-slide-next' : 'wog-laptop-slide-prev';
+      slider.classList.remove('wog-laptop-slide-next', 'wog-laptop-slide-prev');
+      void slider.offsetWidth;
+      slider.classList.add(classToAdd);
+      window.setTimeout(() => {
+        slider.classList.remove(classToAdd);
+      }, 380);
     };
 
     document.addEventListener(
@@ -1653,19 +1648,7 @@
         const slider = sliderComponent.querySelector('[id^="Slider-"]');
         if (!slider) return;
 
-        const slides = Array.from(slider.querySelectorAll('.slider__slide')).filter((slide) => slide.clientWidth > 0);
-        if (slides.length < 2) return;
-
-        const itemOffset = slides[1].offsetLeft - slides[0].offsetLeft;
-        const step = Number(button.dataset.step || 1);
-        const rawTarget =
-          button.name === 'next' ? slider.scrollLeft + step * itemOffset : slider.scrollLeft - step * itemOffset;
-        const maxScroll = Math.max(0, slider.scrollWidth - slider.clientWidth);
-        const targetLeft = Math.max(0, Math.min(rawTarget, maxScroll));
-
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        animateSlider(slider, targetLeft);
+        triggerVisualSlide(slider, button.name === 'next' ? 'next' : 'previous');
       },
       true
     );
