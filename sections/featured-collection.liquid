@@ -1639,23 +1639,31 @@
       window.requestAnimationFrame(step);
     };
 
-    document.addEventListener(
-      'click',
-      (event) => {
+    const bindSliderComponent = (sliderComponent) => {
+      if (!sliderComponent || sliderComponent.dataset.wogLaptopSliderBound === 'true') return;
+
+      const slider = sliderComponent.querySelector('[id^="Slider-"]');
+      const previousButton = sliderComponent.querySelector('button[name="previous"]');
+      const nextButton = sliderComponent.querySelector('button[name="next"]');
+      if (!slider || !previousButton || !nextButton) return;
+
+      const replaceButton = (button) => {
+        const clone = button.cloneNode(true);
+        button.replaceWith(clone);
+        return clone;
+      };
+
+      const previousClone = replaceButton(previousButton);
+      const nextClone = replaceButton(nextButton);
+
+      const handleClick = (event) => {
         if (!laptopQuery.matches) return;
 
-        const button = event.target.closest('button[name="previous"], button[name="next"]');
-        if (!button) return;
-
-        const sliderComponent = button.closest('[data-wog-laptop-smooth-slider]');
-        if (!sliderComponent) return;
-
-        const slider = sliderComponent.querySelector('[id^="Slider-"]');
-        if (!slider) return;
-
+        const button = event.currentTarget;
         const slides = Array.from(slider.querySelectorAll('.slider__slide')).filter((slide) => slide.clientWidth > 0);
         if (slides.length < 2) return;
 
+        const pageScrollY = window.scrollY;
         const itemOffset = slides[1].offsetLeft - slides[0].offsetLeft;
         const step = Number(button.dataset.step || 1);
         const rawTarget =
@@ -1664,11 +1672,30 @@
         const targetLeft = Math.max(0, Math.min(rawTarget, maxScroll));
 
         event.preventDefault();
-        event.stopImmediatePropagation();
         animateSlider(slider, targetLeft);
-      },
-      true
-    );
+
+        window.setTimeout(() => {
+          slider.dispatchEvent(new Event('scroll'));
+          if (window.scrollY !== pageScrollY) {
+            window.scrollTo({ top: pageScrollY, left: window.scrollX, behavior: 'auto' });
+          }
+        }, 380);
+      };
+
+      previousClone.addEventListener('click', handleClick);
+      nextClone.addEventListener('click', handleClick);
+      sliderComponent.dataset.wogLaptopSliderBound = 'true';
+    };
+
+    const bindAll = () => {
+      document.querySelectorAll('[data-wog-laptop-smooth-slider]').forEach(bindSliderComponent);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bindAll, { once: true });
+    } else {
+      bindAll();
+    }
   })();
 
   (() => {
