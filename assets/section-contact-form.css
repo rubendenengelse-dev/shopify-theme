@@ -9,12 +9,17 @@
 .contact__layout {
   display: grid;
   gap: 3.2rem;
+  grid-template-areas:
+    'content'
+    'form'
+    'highlights';
 }
 
 .contact__content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  grid-area: content;
 }
 
 .contact__eyebrow {
@@ -46,6 +51,9 @@
   z-index: 1;
   background: rgb(var(--color-background));
   padding: 0 0.2rem;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }
 
 .contact__lede {
@@ -64,6 +72,7 @@
 .contact__highlights {
   display: grid;
   gap: 1.2rem;
+  grid-area: highlights;
 }
 
 .contact__highlight {
@@ -86,6 +95,7 @@
   border: 0.1rem solid rgba(var(--color-foreground), 0.08);
   background: rgb(var(--color-background));
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.08);
+  grid-area: form;
 }
 
 .contact__form-logo {
@@ -170,6 +180,9 @@
 
   .contact__layout {
     grid-template-columns: minmax(0, 0.95fr) minmax(32rem, 0.85fr);
+    grid-template-areas:
+      'content form'
+      'highlights form';
     gap: 5.6rem;
     align-items: start;
   }

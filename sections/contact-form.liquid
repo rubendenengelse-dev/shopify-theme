@@ -40,20 +40,6 @@
             </p>
           {%- endif -%}
         </div>
-        <div class="contact__highlights" aria-label="Contact voordelen">
-          <div class="contact__highlight">
-            <span class="contact__highlight-label">Reactietijd</span>
-            <strong>Binnen 24 uur</strong>
-          </div>
-          <div class="contact__highlight">
-            <span class="contact__highlight-label">Onderwerpen</span>
-            <strong>Bestellingen, retouren, sizing en samenwerkingen</strong>
-          </div>
-          <div class="contact__highlight">
-            <span class="contact__highlight-label">Contact</span>
-            <strong>Persoonlijk en direct</strong>
-          </div>
-        </div>
       </div>
       <div class="contact__form-card">
         <div class="contact__form-logo">
@@ -104,7 +90,7 @@
             value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
             placeholder=" "
           >
-          <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+          <label class="field__label" for="ContactForm-name">naam</label>
         </div>
         <div class="field field--with-error">
           <input
@@ -124,9 +110,8 @@
             placeholder=" "
           >
           <label class="field__label" for="ContactForm-email">
-            {{- 'templates.contact.form.email' | t }}
-            <span aria-hidden="true">*</span></label
-          >
+            e-mail
+          </label>
           {%- if form.errors contains 'email' -%}
             <small class="contact__field-error" id="ContactForm-email-error">
               <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
@@ -152,7 +137,7 @@
           {{- form.body -}}
         </textarea>
         <label class="form__label field__label" for="ContactForm-body">
-          {{- 'templates.contact.form.comment' | t -}}
+          opmerking
         </label>
       </div>
       <div class="contact__button">
@@ -161,6 +146,20 @@
         </button>
       </div>
     {%- endform -%}
+      </div>
+      <div class="contact__highlights" aria-label="Contact voordelen">
+        <div class="contact__highlight">
+          <span class="contact__highlight-label">Reactietijd</span>
+          <strong>Binnen 24 uur</strong>
+        </div>
+        <div class="contact__highlight">
+          <span class="contact__highlight-label">Onderwerpen</span>
+          <strong>Bestellingen, retouren, sizing en samenwerkingen</strong>
+        </div>
+        <div class="contact__highlight">
+          <span class="contact__highlight-label">Contact</span>
+          <strong>Persoonlijk en direct</strong>
+        </div>
       </div>
     </div>
   </div>
