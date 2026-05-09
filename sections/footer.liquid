@@ -609,21 +609,13 @@
       align-items: start;
     }
 
-    .footer__content-top .grid {
-      margin-left: 0;
-      width: 100%;
-    }
-
-    .footer__content-top .grid__item {
-      padding-left: 0;
-    }
-
     .footer__blocks-wrapper {
       grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
       column-gap: 4rem;
-      row-gap: 0;
+      row-gap: 2rem;
       width: 100%;
       margin-top: 0;
     }
@@ -639,12 +631,10 @@
     }
 
     .footer-block--menu {
-      grid-column: 1;
       width: max-content;
       max-width: 100%;
-      justify-self: start;
       margin: 0;
-      padding: 0;
+      padding-left: 2rem;
     }
 
     .footer-block--menu .footer-block__heading,
@@ -655,12 +645,11 @@
 
     .footer-block--brand,
     .footer-block--image-only {
-      grid-column: 2;
       width: max-content;
       max-width: 100%;
-      justify-self: end;
       margin-left: auto;
       padding: 0;
+      flex: 0 0 auto;
     }
 
     .footer-block__brand-info {
@@ -698,11 +687,10 @@
     }
 
     .footer-block__newsletter {
-      grid-column: 1;
       width: 100%;
       max-width: 34rem;
       margin: 0;
-      padding: 0;
+      padding-left: 2rem;
       text-align: left;
     }
 
@@ -722,14 +710,12 @@
     }
 
     .footer-block--newsletter > .footer__list-social {
-      grid-column: 2;
       width: max-content;
-      margin: 0;
-      margin-left: auto;
-      margin-right: 0;
+      margin: 0 0 0 auto;
       justify-content: flex-end;
       align-self: start;
       display: flex;
+      flex: 0 0 auto;
     }
 
     .footer__newsletter .newsletter-form__button {
