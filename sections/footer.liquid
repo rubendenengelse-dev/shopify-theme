@@ -525,13 +525,13 @@
   @media screen and (min-width: 990px) and (max-width: 1536px) {
     .footer-block--menu {
       transform: none;
-      padding-left: clamp(2.2rem, 2.8vw, 3.8rem);
+      padding-left: clamp(2.7rem, 3.2vw, 4.3rem);
     }
 
     .footer-block--newsletter,
     .footer-block__newsletter {
       transform: none;
-      padding-left: clamp(1.4rem, 1.8vw, 2.4rem);
+      padding-left: clamp(2.4rem, 2.6vw, 3.4rem);
     }
 
     .footer-block--brand,
@@ -555,8 +555,24 @@
       align-items: flex-end;
     }
 
-    .footer__list-social {
+    .footer-block--newsletter {
       width: 100%;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .footer-block--newsletter > .footer__list-social {
+      flex: 0 0 auto;
+      width: max-content;
+      margin-left: auto;
+      margin-top: 0;
+      justify-content: flex-end;
+      align-self: flex-start;
+    }
+
+    .footer__list-social {
+      width: max-content;
       margin-right: 0;
       margin-top: 2.8rem;
       justify-content: flex-end;
