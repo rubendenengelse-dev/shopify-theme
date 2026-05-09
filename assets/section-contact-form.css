@@ -43,6 +43,9 @@
   line-height: 1;
   letter-spacing: 0.02em;
   pointer-events: none;
+  z-index: 1;
+  background: rgb(var(--color-background));
+  padding: 0 0.2rem;
 }
 
 .contact__lede {
@@ -113,14 +116,14 @@
 
 .contact .field__input {
   min-height: 5.8rem;
-  padding-top: 2.8rem;
+  padding-top: 1.7rem;
   padding-bottom: 1.7rem;
   line-height: 1.4;
 }
 
 .contact .text-area.field__input {
   min-height: 18rem;
-  padding-top: 3.2rem;
+  padding-top: 1.9rem;
   padding-bottom: 1.9rem;
 }
 
