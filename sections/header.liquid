@@ -2089,6 +2089,85 @@ body.desktop-search-open .desktop-search-panel {
       display: block;
     }
   }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) and (hover: hover) and (pointer: fine) {
+    .header {
+      grid-template-columns: 8.8rem 1fr auto !important;
+    }
+
+    .header__icons {
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      gap: 0.2rem !important;
+    }
+
+    .header__search,
+    .header__search:hover,
+    .header__search:focus,
+    .header__search:focus-visible,
+    .header__search:focus-within,
+    .header__search:active {
+      position: static !important;
+      inset: auto !important;
+      z-index: auto !important;
+      width: auto !important;
+      min-width: 18.5rem !important;
+      max-width: none !important;
+      margin-right: 0.2rem !important;
+      transform: none !important;
+      flex: 0 0 auto !important;
+    }
+
+    .header__search .desktop-search-toggle,
+    .header__search .desktop-search-toggle.header__icon,
+    .header__search .desktop-search-toggle:focus,
+    .header__search .desktop-search-toggle.header__icon:focus,
+    .header__search .desktop-search-toggle:focus-visible,
+    .header__search .desktop-search-toggle.header__icon:focus-visible,
+    .header__search .desktop-search-toggle:focus-within,
+    .header__search .desktop-search-toggle.header__icon:focus-within,
+    .header__search .desktop-search-toggle:active {
+      display: inline-flex !important;
+      width: auto !important;
+      min-width: 18.5rem !important;
+      height: 4.4rem !important;
+      min-height: 4.4rem !important;
+      padding: 0 2rem !important;
+      gap: 1.2rem !important;
+      justify-content: flex-start !important;
+      border-radius: 999px !important;
+      background: #f3f1ee !important;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03) !important;
+      transform: none !important;
+    }
+
+    .header__search .desktop-search-toggle:hover,
+    .header__search .desktop-search-toggle.header__icon:hover,
+    .header__search .desktop-search-toggle:focus-visible {
+      background: #e7e1da !important;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    {% if section.settings.search_placeholder_text != blank %}
+      .header__search .desktop-search-toggle::after {
+        content: {{ section.settings.search_placeholder_text | json }} !important;
+        font-size: 1.14rem;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.42);
+        white-space: nowrap;
+      }
+    {% endif %}
+
+    .header__search .mobile-search-toggle,
+    .standalone-mobile-search-toggle {
+      display: none !important;
+    }
+  }
 </style>
 
 {% style %}
