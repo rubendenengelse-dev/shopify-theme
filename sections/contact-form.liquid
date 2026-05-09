@@ -15,14 +15,47 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {{ section.settings.heading }}
-      </h2>
-    {%- else -%}
-      <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
-    {%- endif -%}
+  <div class="contact contact--premium page-width section-{{ section.id }}-padding">
+    <div class="contact__layout">
+      <div class="contact__content{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <p class="contact__eyebrow">Warrior of God</p>
+        {%- if section.settings.heading != blank -%}
+          <h1 class="contact__heading {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h1>
+        {%- elsif page.title != blank -%}
+          <h1 class="contact__heading {{ section.settings.heading_size }}">
+            {{ page.title | escape }}
+          </h1>
+        {%- else -%}
+          <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
+        {%- endif -%}
+        <div class="contact__lede rte">
+          {%- if page.content != blank -%}
+            {{ page.content }}
+          {%- else -%}
+            <p>
+              Heb je een vraag over je bestelling, maatadvies of een samenwerking? Stuur ons een bericht en we
+              helpen je zo snel mogelijk verder.
+            </p>
+          {%- endif -%}
+        </div>
+        <div class="contact__highlights" aria-label="Contact voordelen">
+          <div class="contact__highlight">
+            <span class="contact__highlight-label">Reactietijd</span>
+            <strong>Binnen 1 werkdag</strong>
+          </div>
+          <div class="contact__highlight">
+            <span class="contact__highlight-label">Onderwerpen</span>
+            <strong>Bestellingen, retouren, sizing</strong>
+          </div>
+          <div class="contact__highlight">
+            <span class="contact__highlight-label">Contact</span>
+            <strong>Persoonlijk en direct</strong>
+          </div>
+        </div>
+      </div>
+      <div class="contact__form-card">
     {%- liquid
       assign contact_form_class = 'isolate'
       if settings.animations_reveal_on_scroll
@@ -132,6 +165,8 @@
         </button>
       </div>
     {%- endform -%}
+      </div>
+    </div>
   </div>
 </div>
 

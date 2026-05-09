@@ -2,6 +2,76 @@
   max-width: 100%;
 }
 
+.contact--premium {
+  max-width: 136rem;
+}
+
+.contact__layout {
+  display: grid;
+  gap: 3.2rem;
+}
+
+.contact__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact__eyebrow {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.62);
+}
+
+.contact__heading {
+  margin: 0;
+  max-width: 12ch;
+  line-height: 0.94;
+}
+
+.contact__lede {
+  max-width: 56rem;
+  color: rgba(var(--color-foreground), 0.78);
+}
+
+.contact__lede > *:first-child {
+  margin-top: 0;
+}
+
+.contact__lede > *:last-child {
+  margin-bottom: 0;
+}
+
+.contact__highlights {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.contact__highlight {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.6rem 1.8rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  background: rgba(var(--color-background), 0.72);
+}
+
+.contact__highlight-label {
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.52);
+}
+
+.contact__form-card {
+  padding: 2.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  background: rgb(var(--color-background));
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.08);
+}
+
 .contact .form__message {
   align-items: flex-start;
 }
@@ -24,6 +94,14 @@
   margin-top: 3rem;
 }
 
+.contact__button .button {
+  width: 100%;
+  min-height: 5.4rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 @media screen and (min-width: 750px) {
   .contact__button {
     margin-top: 4rem;
@@ -35,5 +113,41 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2rem;
+  }
+
+  .contact__layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(32rem, 0.85fr);
+    gap: 5.6rem;
+    align-items: start;
+  }
+
+  .contact__highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contact__form-card {
+    padding: 3.2rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .contact__layout {
+    gap: 7.2rem;
+  }
+
+  .contact__heading {
+    font-size: clamp(4.8rem, 6vw, 8.4rem);
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .contact__heading {
+    font-size: clamp(3.8rem, 9vw, 5.6rem);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .contact__highlights {
+    grid-template-columns: 1fr;
   }
 }
