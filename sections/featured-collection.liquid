@@ -1417,7 +1417,7 @@
         </aside>
     {%- endunless -%}
 
-    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if request.page_type == 'index' %} data-wog-laptop-smooth-slider{% endif %}>
       <ul
         id="Slider-{{ section.id }}"
         data-id="{{ section.id }}"
@@ -1580,6 +1580,97 @@
 </div>
 
 <script>
+  (() => {
+    if (window.__wogLaptopHomepageSliderFix) return;
+    window.__wogLaptopHomepageSliderFix = true;
+
+    const laptopQuery = window.matchMedia('(min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine)');
+
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+    const animateSlider = (slider, targetLeft) => {
+      const slides = Array.from(slider.querySelectorAll('.slider__slide'));
+      if (!slides.length) {
+        slider.scrollLeft = targetLeft;
+        return;
+      }
+
+      const startLeft = slider.scrollLeft;
+      const distance = targetLeft - startLeft;
+      if (Math.abs(distance) < 1) return;
+
+      const previousSnapType = slider.style.scrollSnapType;
+      const previousScrollBehavior = slider.style.scrollBehavior;
+      const duration = 360;
+      const startTime = performance.now();
+
+      slider.style.scrollSnapType = 'none';
+      slider.style.scrollBehavior = 'auto';
+
+      slides.forEach((slide) => {
+        slide.style.willChange = 'transform';
+      });
+
+      const step = (currentTime) => {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const eased = easeOutCubic(progress);
+        const translateX = -distance * eased;
+
+        slides.forEach((slide) => {
+          slide.style.transform = `translateX(${translateX}px)`;
+        });
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+          return;
+        }
+
+        slider.scrollLeft = targetLeft;
+
+        slides.forEach((slide) => {
+          slide.style.transform = '';
+          slide.style.willChange = '';
+        });
+
+        slider.style.scrollSnapType = previousSnapType;
+        slider.style.scrollBehavior = previousScrollBehavior;
+      };
+
+      window.requestAnimationFrame(step);
+    };
+
+    document.addEventListener(
+      'click',
+      (event) => {
+        if (!laptopQuery.matches) return;
+
+        const button = event.target.closest('button[name="previous"], button[name="next"]');
+        if (!button) return;
+
+        const sliderComponent = button.closest('[data-wog-laptop-smooth-slider]');
+        if (!sliderComponent) return;
+
+        const slider = sliderComponent.querySelector('[id^="Slider-"]');
+        if (!slider) return;
+
+        const slides = Array.from(slider.querySelectorAll('.slider__slide')).filter((slide) => slide.clientWidth > 0);
+        if (slides.length < 2) return;
+
+        const itemOffset = slides[1].offsetLeft - slides[0].offsetLeft;
+        const step = Number(button.dataset.step || 1);
+        const rawTarget =
+          button.name === 'next' ? slider.scrollLeft + step * itemOffset : slider.scrollLeft - step * itemOffset;
+        const maxScroll = Math.max(0, slider.scrollWidth - slider.clientWidth);
+        const targetLeft = Math.max(0, Math.min(rawTarget, maxScroll));
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        animateSlider(slider, targetLeft);
+      },
+      true
+    );
+  })();
+
   (() => {
     const collection = document.getElementById('collection-{{ section.id }}');
     if (!collection) return;
