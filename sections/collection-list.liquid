@@ -461,7 +461,7 @@
 
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ collection_columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if show_desktop_collection_slider %} slider slider--desktop{% elsif show_mobile_slider %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ collection_columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile or show_desktop_collection_slider %} slider{% if show_desktop_collection_slider %} slider--desktop{% endif %}{% if section.settings.swipe_on_mobile %} slider--tablet grid--peek{% endif %}{% endif %} collection-list--{{ section.blocks.size }}-items"
         id="Slider-{{ section.id }}"
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
