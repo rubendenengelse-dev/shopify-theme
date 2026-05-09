@@ -1105,6 +1105,9 @@ body.desktop-search-open .desktop-search-panel {
   .header--middle-left .header__icons {
     gap: 0.2rem;
     margin-right: 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
   }
 
   .header__search {
@@ -1112,6 +1115,11 @@ body.desktop-search-open .desktop-search-panel {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: auto !important;
+    min-width: 22rem !important;
+    max-width: none !important;
+    flex: 0 0 auto;
+    overflow: visible;
   }
 
   .header__search .desktop-search-toggle,
