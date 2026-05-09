@@ -1417,11 +1417,11 @@
         </aside>
     {%- endunless -%}
 
-    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if request.page_type == 'index' %} data-wog-laptop-smooth-slider{% endif %}>
+    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
         id="Slider-{{ section.id }}"
         data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
+        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_desktop_slider %} slider slider--desktop{% elsif show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
       >
@@ -1578,81 +1578,6 @@
     {%- endunless -%}
   </div>
 </div>
-
-<style>
-  @media screen and (min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine) {
-    [data-wog-laptop-smooth-slider] .wog-laptop-slide-next .slider__slide {
-      animation: wogLaptopSlideNext 360ms cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    [data-wog-laptop-smooth-slider] .wog-laptop-slide-prev .slider__slide {
-      animation: wogLaptopSlidePrev 360ms cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    @keyframes wogLaptopSlideNext {
-      0% {
-        transform: translateX(0);
-      }
-      38% {
-        transform: translateX(-26px);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes wogLaptopSlidePrev {
-      0% {
-        transform: translateX(0);
-      }
-      38% {
-        transform: translateX(26px);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
-  }
-</style>
-
-<script>
-  (() => {
-    if (window.__wogLaptopHomepageSliderFix) return;
-    window.__wogLaptopHomepageSliderFix = true;
-
-    const laptopQuery = window.matchMedia('(min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine)');
-
-    const triggerVisualSlide = (slider, direction) => {
-      const classToAdd = direction === 'next' ? 'wog-laptop-slide-next' : 'wog-laptop-slide-prev';
-      slider.classList.remove('wog-laptop-slide-next', 'wog-laptop-slide-prev');
-      void slider.offsetWidth;
-      slider.classList.add(classToAdd);
-      window.setTimeout(() => {
-        slider.classList.remove(classToAdd);
-      }, 380);
-    };
-
-    document.addEventListener(
-      'click',
-      (event) => {
-        if (!laptopQuery.matches) return;
-
-        const button = event.target.closest('button[name="previous"], button[name="next"]');
-        if (!button) return;
-
-        const sliderComponent = button.closest('[data-wog-laptop-smooth-slider]');
-        if (!sliderComponent) return;
-
-        const slider = sliderComponent.querySelector('[id^="Slider-"]');
-        if (!slider) return;
-
-        triggerVisualSlide(slider, button.name === 'next' ? 'next' : 'previous');
-      },
-      true
-    );
-  })();
 
   (() => {
     const collection = document.getElementById('collection-{{ section.id }}');
