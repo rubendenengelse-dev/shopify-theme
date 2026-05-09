@@ -610,19 +610,19 @@
     }
 
     .footer-block--menu {
-      padding-left: 4.3rem;
+      padding-left: 2.4rem;
     }
 
     .footer-block--newsletter,
     .footer-block__newsletter {
-      padding-left: 1.9rem;
+      padding-left: 2.4rem;
     }
 
     .footer-block--brand {
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      padding-right: 2.8rem;
+      padding-right: 1.2rem;
     }
 
     .footer-block__brand-info {
@@ -635,27 +635,36 @@
 
     .footer-block--newsletter {
       width: 100%;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: flex-start;
-      gap: 2rem;
+      gap: 3.2rem;
+    }
+
+    .footer__payment--desktop {
+      justify-content: flex-start;
+    }
+
+    .footer__payment--desktop .list-payment {
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .footer-block--newsletter > .footer__list-social {
       flex: 0 0 auto;
       width: max-content;
       margin-left: auto;
-      margin-right: calc(-1 * max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem));
+      margin-right: calc(-1 * max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem) - 2.4rem);
       margin-top: 0;
       justify-content: flex-end;
       align-self: flex-start;
-      transform: translateX(4.8rem);
+      transform: translateX(8rem);
     }
 
     .footer-block__brand-info > .footer__list-social {
       margin-left: auto;
-      margin-right: calc(-1 * max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem));
+      margin-right: calc(-1 * max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem) - 2.4rem);
       justify-content: flex-end;
-      transform: translateX(4.8rem);
+      transform: translateX(8rem);
     }
 
     .footer__list-social {
