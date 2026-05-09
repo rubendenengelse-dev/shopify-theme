@@ -525,13 +525,13 @@
   @media screen and (min-width: 990px) and (max-width: 1536px) {
     .footer-block--menu {
       transform: none;
-      padding-left: clamp(3.2rem, 4vw, 5.6rem);
+      padding-left: clamp(2.2rem, 2.8vw, 3.8rem);
     }
 
     .footer-block--newsletter,
     .footer-block__newsletter {
       transform: none;
-      padding-left: clamp(3.2rem, 4vw, 5.6rem);
+      padding-left: clamp(1.4rem, 1.8vw, 2.4rem);
     }
 
     .footer-block--brand,
@@ -550,6 +550,9 @@
     .footer-block__brand-info {
       max-width: none;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
 
     .footer__list-social {
@@ -557,6 +560,8 @@
       margin-right: 0;
       margin-top: 2.8rem;
       justify-content: flex-end;
+      display: flex;
+      margin-left: auto;
     }
   }
 
