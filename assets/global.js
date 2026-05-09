@@ -807,6 +807,69 @@ class SliderComponent extends HTMLElement {
     return element.offsetLeft + element.clientWidth <= lastVisibleSlide && element.offsetLeft >= this.slider.scrollLeft;
   }
 
+  shouldUseLaptopSlideAnimation() {
+    if (!window.matchMedia) return false;
+    if (!document.body.classList.contains('template-index')) return false;
+    if (!this.slider?.classList?.contains('slider--desktop')) return false;
+
+    return window.matchMedia('(min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine)')
+      .matches;
+  }
+
+  animateLaptopSlideTransition(targetPosition) {
+    if (this.isAnimatingLaptopSlider) return;
+
+    const currentPosition = this.slider.scrollLeft;
+    const distance = targetPosition - currentPosition;
+    if (Math.abs(distance) < 1) {
+      this.slider.scrollLeft = targetPosition;
+      this.update();
+      return;
+    }
+
+    const slides = this.sliderItemsToShow?.length ? this.sliderItemsToShow : Array.from(this.sliderItems);
+    const previousSnapType = this.slider.style.scrollSnapType;
+    const previousScrollBehavior = this.slider.style.scrollBehavior;
+    const duration = 360;
+    const startTime = performance.now();
+
+    this.isAnimatingLaptopSlider = true;
+    this.slider.style.scrollSnapType = 'none';
+    this.slider.style.scrollBehavior = 'auto';
+
+    slides.forEach((slide) => {
+      slide.style.willChange = 'transform';
+    });
+
+    const step = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const translateX = -distance * eased;
+
+      slides.forEach((slide) => {
+        slide.style.transform = `translateX(${translateX}px)`;
+      });
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+        return;
+      }
+
+      this.slider.scrollLeft = targetPosition;
+      slides.forEach((slide) => {
+        slide.style.transform = '';
+        slide.style.willChange = '';
+      });
+      this.slider.style.scrollSnapType = previousSnapType;
+      this.slider.style.scrollBehavior = previousScrollBehavior;
+      this.isAnimatingLaptopSlider = false;
+      this.update();
+    };
+
+    window.requestAnimationFrame(step);
+  }
+
   onButtonClick(event) {
     event.preventDefault();
     const step = event.currentTarget.dataset.step || 1;
@@ -814,6 +877,12 @@ class SliderComponent extends HTMLElement {
       event.currentTarget.name === 'next'
         ? this.slider.scrollLeft + step * this.sliderItemOffset
         : this.slider.scrollLeft - step * this.sliderItemOffset;
+
+    if (this.shouldUseLaptopSlideAnimation()) {
+      this.animateLaptopSlideTransition(this.slideScrollPosition);
+      return;
+    }
+
     this.setSlidePosition(this.slideScrollPosition);
   }
 
