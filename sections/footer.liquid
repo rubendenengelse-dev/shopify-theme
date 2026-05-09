@@ -597,7 +597,9 @@
   @media screen and (min-width: 1537px) {
     .footer__content-top.page-width,
     .footer__content-bottom-wrapper.page-width {
-      max-width: min(100%, 168rem);
+      max-width: 100%;
+      padding-left: max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem);
+      padding-right: max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem);
     }
 
     .footer__content-top.page-width {
@@ -609,6 +611,7 @@
 
     .footer__content-top .grid {
       margin-left: 0;
+      width: 100%;
     }
 
     .footer__content-top .grid__item {
@@ -721,7 +724,9 @@
     .footer-block--newsletter > .footer__list-social {
       grid-column: 2;
       width: max-content;
-      margin: 0 0 0 auto;
+      margin: 0;
+      margin-left: auto;
+      margin-right: 0;
       justify-content: flex-end;
       align-self: start;
       display: flex;
