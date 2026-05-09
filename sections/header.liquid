@@ -2215,6 +2215,30 @@ body.desktop-search-open .desktop-search-panel {
     html.announcement-bar-out-of-view .section-header > .header-wrapper {
       top: 0;
     }
+
+    .header__search {
+      display: none !important;
+      width: 0 !important;
+      min-width: 0 !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      pointer-events: none !important;
+      flex: 0 0 0 !important;
+    }
+
+    .header__search .desktop-search-toggle,
+    .header__search .mobile-search-toggle {
+      display: none !important;
+    }
+
+    .standalone-mobile-search-toggle {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   @media screen and (min-width: 990px) {
