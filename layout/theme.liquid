@@ -269,6 +269,7 @@
       }
     {% endstyle %}
 
+    {% comment %}WOG asset refresh marker{% endcomment %}
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'wishlist.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
