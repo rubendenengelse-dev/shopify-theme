@@ -600,49 +600,112 @@
       max-width: min(100%, 168rem);
     }
 
+    .footer__content-top.page-width {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      row-gap: 3.2rem;
+      align-items: start;
+    }
+
+    .footer__content-top .grid {
+      margin-left: 0;
+    }
+
+    .footer__content-top .grid__item {
+      padding-left: 0;
+    }
+
+    .footer__blocks-wrapper {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 4rem;
+      row-gap: 0;
+      width: 100%;
+      margin-top: 0;
+    }
+
     .footer-block--menu,
     .footer-block--newsletter,
     .footer-block__newsletter,
     .footer-block--brand,
     .footer-block--image-only,
-    .footer-block__brand-info {
+    .footer-block__brand-info,
+    .footer__list-social {
       transform: none;
     }
 
     .footer-block--menu {
-      width: 100%;
-      padding-left: 0;
-      margin-left: 0;
+      grid-column: 1;
+      width: max-content;
+      max-width: 100%;
       justify-self: start;
+      margin: 0;
+      padding: 0;
     }
 
-    .footer-block--newsletter,
-    .footer-block__newsletter {
+    .footer-block--menu .footer-block__heading,
+    .footer-block--menu .footer-block__details-content {
+      margin-left: 0;
       padding-left: 0;
     }
 
-    .footer-block--brand {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      padding-right: 0;
+    .footer-block--brand,
+    .footer-block--image-only {
+      grid-column: 2;
+      width: max-content;
+      max-width: 100%;
+      justify-self: end;
       margin-left: auto;
+      padding: 0;
     }
 
     .footer-block__brand-info {
-      max-width: none;
-      width: 100%;
+      width: max-content;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .footer-block__brand-info .footer-block__image-wrapper,
+    .footer-block--image-only .footer-block__image-wrapper {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .footer-block__brand-info > .footer__list-social {
+      width: max-content;
+      margin: 2.8rem 0 0 auto;
+      justify-content: flex-end;
+      display: flex;
     }
 
     .footer-block--newsletter {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      column-gap: 4rem;
       width: 100%;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 3.2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-block__newsletter {
+      grid-column: 1;
+      width: 100%;
+      max-width: 34rem;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    .footer-block--newsletter .footer-block__heading {
       margin-left: 0;
+      padding-left: 0;
     }
 
     .footer__payment--desktop {
@@ -652,45 +715,20 @@
     .footer__payment--desktop .list-payment {
       flex-wrap: nowrap;
       white-space: nowrap;
+      justify-content: flex-start;
     }
 
     .footer-block--newsletter > .footer__list-social {
-      flex: 0 0 auto;
+      grid-column: 2;
       width: max-content;
-      margin-left: auto;
-      margin-right: calc(-1 * max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem));
-      margin-top: 0;
+      margin: 0 0 0 auto;
       justify-content: flex-end;
-      align-self: flex-start;
-      transform: translateX(10.8rem);
-    }
-
-    .footer-block__brand-info > .footer__list-social {
-      margin-left: auto;
-      margin-right: calc(-1 * max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem));
-      justify-content: flex-end;
-      transform: translateX(10.8rem);
-    }
-
-    .footer__list-social {
-      width: max-content;
-      margin-right: 0;
-      margin-top: 2.8rem;
-      justify-content: flex-end;
+      align-self: start;
       display: flex;
-      margin-left: auto;
     }
 
     .footer__newsletter .newsletter-form__button {
       right: 0.2rem;
-    }
-
-    .footer-block--menu .footer-block__heading,
-    .footer-block--menu .footer-block__details-content,
-    .footer-block--newsletter .footer-block__heading,
-    .footer-block__newsletter {
-      margin-left: 0;
-      padding-left: 0;
     }
   }
 
