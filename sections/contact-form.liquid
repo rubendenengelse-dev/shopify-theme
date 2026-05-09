@@ -56,6 +56,15 @@
         </div>
       </div>
       <div class="contact__form-card">
+        <div class="contact__form-logo">
+          <img
+            src="{{ 'contact-sublogo.png' | asset_url }}"
+            alt="Warrior of God sublogo"
+            loading="lazy"
+            width="180"
+            height="180"
+          >
+        </div>
     {%- liquid
       assign contact_form_class = 'isolate'
       if settings.animations_reveal_on_scroll
