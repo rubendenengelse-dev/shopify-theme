@@ -691,14 +691,17 @@
   .header__icon:not(.header__icon--wishlist):not(.header__icon--account):not(.header__icon--cart):hover,
   .header__icon:not(.header__icon--wishlist):not(.header__icon--account):not(.header__icon--cart):focus-visible,
   .header__search:hover,
-  .header__search:focus-visible,
+  .header__search:focus-visible {
+    transform: translateY(-1px);
+  }
+
   .header__icon--wishlist:hover,
   .header__icon--wishlist:focus-visible,
   .header__icon--account:hover,
   .header__icon--account:focus-visible,
   .header__icon--cart:hover,
   .header__icon--cart:focus-visible {
-    transform: translateY(-1px);
+    transform: translateY(-3px);
   }
 
   .header__icon:not(.header__icon--wishlist):not(.header__icon--account):not(.header__icon--cart):hover,
