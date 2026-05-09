@@ -818,8 +818,13 @@ class SliderComponent extends HTMLElement {
   }
 
   setSlidePosition(position) {
+    const shouldSmoothScroll =
+      window.matchMedia &&
+      window.matchMedia('(min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine)').matches;
+
     this.slider.scrollTo({
       left: position,
+      behavior: shouldSmoothScroll ? 'smooth' : 'auto',
     });
   }
 }
