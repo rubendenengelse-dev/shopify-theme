@@ -614,7 +614,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: flex-start;
-      column-gap: 0.5rem;
+      column-gap: 0.2rem;
       row-gap: 2rem;
       width: 100%;
       margin-top: 0;
@@ -634,7 +634,7 @@
       width: max-content;
       max-width: 100%;
       margin: 0;
-      padding-left: 48px;
+      padding-left: 72px;
     }
 
     .footer-block--menu .footer-block__heading,
@@ -669,12 +669,7 @@
     }
 
     .footer-block__brand-info > .footer__list-social {
-      width: max-content;
-      margin: 2.8rem 0 0 auto;
-      justify-content: flex-end;
-      display: flex !important;
-      visibility: visible;
-      opacity: 1;
+      display: none !important;
     }
 
     .footer-block--newsletter {
@@ -692,7 +687,7 @@
       width: 100%;
       max-width: 34rem;
       margin: 0;
-      padding-left: 48px;
+      padding-left: 72px;
       text-align: left;
     }
 
@@ -712,7 +707,14 @@
     }
 
     .footer-block--newsletter > .footer__list-social {
-      display: none;
+      width: max-content;
+      margin: 0 0 0 auto;
+      justify-content: flex-end;
+      align-self: start;
+      display: flex !important;
+      flex: 0 0 auto;
+      visibility: visible;
+      opacity: 1;
     }
 
     .footer__newsletter .newsletter-form__button {
