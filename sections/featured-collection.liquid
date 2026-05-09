@@ -1417,7 +1417,7 @@
         </aside>
     {%- endunless -%}
 
-    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if request.page_type == 'index' %} data-wog-laptop-soft-slide{% endif %}>
       <ul
         id="Slider-{{ section.id }}"
         data-id="{{ section.id }}"
@@ -1578,6 +1578,64 @@
     {%- endunless -%}
   </div>
 </div>
+
+<style>
+  @media screen and (min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine) {
+    [data-wog-laptop-soft-slide] .wog-laptop-soft-next .slider__slide {
+      animation: wogLaptopSoftNext 340ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-wog-laptop-soft-slide] .wog-laptop-soft-prev .slider__slide {
+      animation: wogLaptopSoftPrev 340ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes wogLaptopSoftNext {
+      0% { transform: translateX(0); }
+      45% { transform: translateX(-20px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes wogLaptopSoftPrev {
+      0% { transform: translateX(0); }
+      45% { transform: translateX(20px); }
+      100% { transform: translateX(0); }
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    if (!window.__wogLaptopSoftSlideBound) {
+      window.__wogLaptopSoftSlideBound = true;
+      const laptopQuery = window.matchMedia('(min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine)');
+
+      document.addEventListener(
+        'click',
+        (event) => {
+          if (!laptopQuery.matches) return;
+
+          const button = event.target.closest('button[name="previous"], button[name="next"]');
+          if (!button) return;
+
+          const sliderComponent = button.closest('[data-wog-laptop-soft-slide]');
+          if (!sliderComponent) return;
+
+          const slider = sliderComponent.querySelector('[id^="Slider-"]');
+          if (!slider) return;
+
+          const className = button.name === 'next' ? 'wog-laptop-soft-next' : 'wog-laptop-soft-prev';
+          slider.classList.remove('wog-laptop-soft-next', 'wog-laptop-soft-prev');
+          void slider.offsetWidth;
+          slider.classList.add(className);
+          window.setTimeout(() => {
+            slider.classList.remove(className);
+          }, 360);
+        },
+        true
+      );
+    }
+
+  })();
 
   (() => {
     const collection = document.getElementById('collection-{{ section.id }}');
