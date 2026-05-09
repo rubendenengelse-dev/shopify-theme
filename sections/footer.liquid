@@ -464,10 +464,6 @@
       row-gap: clamp(1.6rem, 1.5vw, 2.4rem);
     }
 
-    .footer-block--menu {
-      transform: translateX(clamp(-14rem, -9vw, -4rem));
-    }
-
     .footer-block--menu .footer-block__heading,
     .footer-block--menu .footer-block__details-content,
     .footer-block--newsletter,
@@ -487,26 +483,78 @@
     .footer-block--newsletter,
     .footer-block__newsletter {
       max-width: min(100%, 34rem);
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .footer-block--brand,
+    .footer-block--image-only {
+      width: auto;
+      margin-left: auto;
+      justify-self: end;
     }
 
     .footer-block__brand-info {
-      width: min(100%, 28rem);
+      width: fit-content;
+      max-width: min(100%, 32rem);
+      margin-left: auto;
       margin-right: 0;
+      align-items: flex-end;
+      text-align: right;
     }
 
     .footer__list-social {
-      width: auto;
+      width: max-content;
+      margin-left: auto;
       margin-top: 1.6rem;
+      justify-content: flex-end;
     }
 
     .footer-block__brand-info .footer-block__image-wrapper,
     .footer-block--image-only .footer-block__image-wrapper {
       max-width: min(100%, 18rem);
+      margin-left: auto;
       margin-right: 0;
     }
 
     .footer__copyright.caption {
       width: auto;
+    }
+  }
+
+  @media screen and (min-width: 990px) and (max-width: 1536px) {
+    .footer-block--menu {
+      transform: translateX(clamp(-4rem, -2.5vw, -1.2rem));
+    }
+
+    .footer-block--newsletter,
+    .footer-block__newsletter {
+      transform: translateX(1.2rem);
+    }
+
+    .footer-block--brand,
+    .footer-block--image-only,
+    .footer-block__brand-info {
+      transform: translateX(2.4rem);
+    }
+  }
+
+  @media screen and (min-width: 1537px) {
+    .footer__content-top.page-width,
+    .footer__content-bottom-wrapper.page-width {
+      max-width: min(100%, 168rem);
+    }
+
+    .footer-block--menu,
+    .footer-block--newsletter,
+    .footer-block__newsletter {
+      transform: translateX(-7.2rem);
+    }
+
+    .footer-block--brand,
+    .footer-block--image-only,
+    .footer-block__brand-info {
+      transform: translateX(3.2rem);
     }
   }
 
