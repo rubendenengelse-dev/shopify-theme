@@ -2221,6 +2221,7 @@ body.desktop-search-open .desktop-search-panel {
       padding-left: 1.2rem !important;
       padding-right: 1.2rem !important;
       column-gap: 0.2rem !important;
+      position: relative;
     }
 
     header-drawer {
@@ -2231,14 +2232,16 @@ body.desktop-search-open .desktop-search-panel {
     }
 
     .standalone-mobile-search-toggle {
-      grid-column: 1;
-      justify-self: start;
+      position: absolute;
+      left: 5rem;
+      top: 50%;
+      transform: translateY(-50%);
       display: inline-flex !important;
       align-items: center;
       justify-content: center;
       width: 4.4rem;
       height: 4.4rem;
-      margin-left: 3.8rem !important;
+      margin-left: 0 !important;
       background: transparent !important;
       box-shadow: none !important;
       border: 0 !important;
@@ -2273,6 +2276,13 @@ body.desktop-search-open .desktop-search-panel {
       min-width: 0 !important;
       max-width: none !important;
       gap: 0 !important;
+    }
+
+    .header__icon--account,
+    .header__icon--account.small-hide,
+    .header__icon--cart {
+      width: 4rem !important;
+      min-width: 4rem !important;
     }
 
     .header__search {
