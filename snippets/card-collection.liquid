@@ -8,6 +8,7 @@
   - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
   - wrapper_class: {String} Wrapper class for card (optional)
   - placeholder_image: {String} Placeholder image when collection is empty (optional)
+  - card_url: {String} Optional override URL for the collection card link
 
   Usage:
   {% render 'card-collection' %}
@@ -88,7 +89,7 @@
                 {% if card_collection == blank %}
                   role="link" aria-disabled="true"
                 {% else %}
-                  href="{{ card_collection.url }}"
+                  href="{{ card_url | default: card_collection.url }}"
                 {% endif %}
                 class="full-unstyled-link"
               >
@@ -124,7 +125,7 @@
               {% if card_collection == blank %}
                 role="link" aria-disabled="true"
               {% else %}
-                href="{{ card_collection.url }}"
+                href="{{ card_url | default: card_collection.url }}"
               {% endif %}
               class="full-unstyled-link"
             >

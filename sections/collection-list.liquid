@@ -473,6 +473,23 @@
           endif
         -%}
         {%- for block in section.blocks -%}
+          {%- liquid
+            assign wog_collection_card_url = blank
+            if is_homepage_collection_list
+              case block.settings.collection
+                when 'mens'
+                  assign wog_collection_card_url = '/pages/t-shirts'
+                when 'hoodies'
+                  assign wog_collection_card_url = '/pages/hoodies'
+                when '07-t-shirtss'
+                  assign wog_collection_card_url = '/pages/dames-t-shirts'
+                when '07-hoodies'
+                  assign wog_collection_card_url = '/pages/vrouwen-hoodie'
+                when 'oversize-tshirts'
+                  assign wog_collection_card_url = '/pages/oversize-t-shirt-s'
+              endcase
+            endif
+          -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
             class="collection-list__item grid__item{% if show_mobile_slider or show_desktop_collection_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -486,6 +503,7 @@
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
             {% render 'card-collection',
               card_collection: block.settings.collection,
+              card_url: wog_collection_card_url,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
               placeholder_image: placeholder_image
