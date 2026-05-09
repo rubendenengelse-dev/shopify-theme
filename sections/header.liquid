@@ -688,17 +688,25 @@
     margin-right: 0 !important;
   }
 
-  .header__icon:hover,
-  .header__icon:focus-visible,
+  .header__icon:not(.header__icon--wishlist):not(.header__icon--account):not(.header__icon--cart):hover,
+  .header__icon:not(.header__icon--wishlist):not(.header__icon--account):not(.header__icon--cart):focus-visible,
   .header__search:hover,
   .header__search:focus-visible,
-  .header__icon--cart:hover,
-  .header__icon--cart:focus-visible,
+  .header__icon--wishlist:hover,
+  .header__icon--wishlist:focus-visible,
   .header__icon--account:hover,
-  .header__icon--account:focus-visible {
+  .header__icon--account:focus-visible,
+  .header__icon--cart:hover,
+  .header__icon--cart:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .header__icon:not(.header__icon--wishlist):not(.header__icon--account):not(.header__icon--cart):hover,
+  .header__icon:not(.header__icon--wishlist):not(.header__icon--account):not(.header__icon--cart):focus-visible,
+  .header__search:hover,
+  .header__search:focus-visible {
     background-color: rgba(var(--color-foreground), 0.04);
     box-shadow: inset 0 0 0 1px rgba(var(--color-foreground), 0.06);
-    transform: translateY(-1px);
   }
 
   .header__icon .svg-wrapper,
@@ -2454,21 +2462,9 @@ body.desktop-search-open .desktop-search-panel {
                   href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
                   class="menu-drawer__account link focus-inset h5 medium-hide large-up-hide"
                 >
-                  {% if section.settings.enable_customer_avatar %}
-                    <account-icon>
-                      {% if customer and customer.has_avatar? %}
-                        {{ customer | avatar }}
-                      {% else %}
-                        <span class="svg-wrapper">
-                          {{- 'icon-account.svg' | inline_asset_content -}}
-                        </span>
-                      {% endif %}
-                    </account-icon>
-                  {% else %}
-                    <span class="svg-wrapper">
-                      {{- 'icon-account.svg' | inline_asset_content -}}
-                    </span>
-                  {% endif %}
+                  <span class="svg-wrapper">
+                    {{- 'icon-account.svg' | inline_asset_content -}}
+                  </span>
                   {% liquid
                     if customer
                       echo 'customer.account_fallback' | t
@@ -2727,17 +2723,7 @@ body.desktop-search-open .desktop-search-panel {
     </a>
 
     <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
-      {% if section.settings.enable_customer_avatar %}
-        <account-icon>
-          {% if customer and customer.has_avatar? %}
-            {{ customer | avatar }}
-          {% else %}
-            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-          {% endif %}
-        </account-icon>
-      {% else %}
-        <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-      {% endif %}
+      <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
       <span class="visually-hidden">
         {% liquid
           if customer
@@ -3181,7 +3167,7 @@ body.desktop-search-open .desktop-search-panel {
     {
       "type": "checkbox",
       "id": "show_line_separator",
-      "default": true,
+      "default": false,
       "label": "Show line separator"
     },
     {
