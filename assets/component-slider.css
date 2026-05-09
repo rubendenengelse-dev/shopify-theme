@@ -375,3 +375,9 @@ slider-component.slider-component-full-width {
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
 }
+
+@media screen and (min-width: 990px) and (max-width: 1399px) and (hover: hover) and (pointer: fine) {
+  .template-index slider-component .slider--desktop {
+    outline: 4px solid red !important;
+  }
+}
