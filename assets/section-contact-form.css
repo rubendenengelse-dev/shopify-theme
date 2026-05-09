@@ -90,17 +90,6 @@
   margin-bottom: 1.5rem;
 }
 
-.contact .field__input,
-.contact .text-area {
-  min-height: 6.2rem;
-  padding-top: 2.2rem;
-  padding-bottom: 1rem;
-}
-
-.contact .text-area {
-  padding-top: 2.6rem;
-}
-
 @media screen and (min-width: 750px) {
   .contact .field {
     margin-bottom: 2rem;
