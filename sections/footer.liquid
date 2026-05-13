@@ -801,7 +801,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       row-gap: 3.2rem;
-      padding-bottom: 8rem;
+      padding-bottom: 5.2rem;
     }
 
     .footer__blocks-wrapper {
@@ -967,6 +967,7 @@
       align-items: flex-end;
       gap: 1rem;
       margin-left: auto;
+      margin-right: calc(var(--wog-footer-shell-gutter-clean) * -0.12);
       position: relative;
       width: max-content;
     }
@@ -996,6 +997,12 @@
     .footer__copyright.caption {
       text-align: left;
       width: max-content;
+      margin-top: 0;
+      padding-bottom: 0.2rem;
+    }
+
+    .footer__content-bottom {
+      padding-top: 1.6rem;
     }
   }
 
