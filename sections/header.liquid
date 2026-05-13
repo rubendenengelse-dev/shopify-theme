@@ -2177,6 +2177,100 @@ body.desktop-search-open .desktop-search-panel {
       display: none !important;
     }
   }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
+    .header {
+      grid-template-columns: 10rem 1fr 8.8rem !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      column-gap: 0.2rem !important;
+      position: relative;
+    }
+
+    header-drawer {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 0 !important;
+      gap: 0.4rem;
+    }
+
+    .standalone-mobile-search-toggle {
+      position: absolute;
+      left: 5.6rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 4.4rem;
+      height: 4.4rem;
+      margin-left: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      outline: none !important;
+      border-radius: 999px;
+      -webkit-tap-highlight-color: transparent !important;
+      color: #000 !important;
+      -webkit-text-fill-color: #000 !important;
+      z-index: 3;
+    }
+
+    .standalone-mobile-search-toggle::before,
+    .standalone-mobile-search-toggle::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .standalone-mobile-search-toggle .mobile-search-toggle__icon,
+    .standalone-mobile-search-toggle .mobile-search-toggle__icon svg,
+    .standalone-mobile-search-toggle .mobile-search-toggle__icon path,
+    .standalone-mobile-search-toggle .mobile-search-toggle__icon circle {
+      width: 1.75rem !important;
+      height: 1.75rem !important;
+      display: block !important;
+      color: #000 !important;
+    }
+
+    .header__icons {
+      width: 8.8rem !important;
+      min-width: 8.8rem !important;
+      max-width: 8.8rem !important;
+      gap: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    .header__icon--account,
+    .header__icon--account.small-hide,
+    .header__icon--cart {
+      width: 4.4rem !important;
+      min-width: 4.4rem !important;
+      height: 4.4rem !important;
+      min-height: 4.4rem !important;
+    }
+
+    .header__search {
+      display: none !important;
+      width: 0 !important;
+      min-width: 0 !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      pointer-events: none !important;
+      flex: 0 0 0 !important;
+    }
+
+    .header__search .desktop-search-toggle,
+    .header__search .mobile-search-toggle {
+      display: none !important;
+    }
+
+    .header__icon--wishlist {
+      display: none !important;
+    }
+  }
 </style>
 
 {% style %}
