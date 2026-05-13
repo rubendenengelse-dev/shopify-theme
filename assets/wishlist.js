@@ -11,13 +11,10 @@
   const wishlistFeedbackResetDelay = 2200;
   const wishlistMinimumSpinnerDuration = 800;
   const wishlistSuccessStateDuration = 600;
-  const wishlistBounceDuration = 280;
-  const wishlistToastDuration = 2200;
 
   let wishlistIds = new Set();
   let isAuthenticated = body.dataset.customerLoggedIn === "true";
   const wishlistVariantCache = new Map();
-  let wishlistToastTimeout = null;
   function getButtons() {
     return Array.from(document.querySelectorAll("[data-wishlist-button]"));
   }
@@ -25,48 +22,6 @@
   function setButtonState(button, active) {
     button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", String(active));
-  }
-
-  function playWishlistBounce(button) {
-    if (!button?.closest(".product-wishlist-mobile-slot")) return;
-    button.classList.remove("is-bouncing");
-    window.setTimeout(() => {
-      button.classList.add("is-bouncing");
-      window.setTimeout(() => {
-        button.classList.remove("is-bouncing");
-      }, wishlistBounceDuration);
-    }, 10);
-  }
-
-  function showWishlistToast() {
-    if (!window.matchMedia("(min-width: 750px)").matches) return;
-
-    const headerWishlistButton = document.querySelector(".header__icon--wishlist");
-    if (!headerWishlistButton) return;
-
-    let toast = document.querySelector("[data-wishlist-toast]");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.className = "wishlist-toast";
-      toast.dataset.wishlistToast = "true";
-      toast.textContent = "Artikel toegevoegd aan verlanglijst";
-      document.body.appendChild(toast);
-    }
-
-    const buttonRect = headerWishlistButton.getBoundingClientRect();
-    toast.style.top = `${buttonRect.bottom + 10}px`;
-    toast.style.left = `${Math.max(16, buttonRect.right - toast.offsetWidth)}px`;
-
-    toast.classList.remove("is-visible");
-    window.clearTimeout(wishlistToastTimeout);
-
-    window.requestAnimationFrame(() => {
-      toast.classList.add("is-visible");
-    });
-
-    wishlistToastTimeout = window.setTimeout(() => {
-      toast.classList.remove("is-visible");
-    }, wishlistToastDuration);
   }
 
   function escapeAttribute(value) {
@@ -639,11 +594,7 @@
       isAuthenticated = true;
       const productIds = payload?.wishlist?.productIds || [];
       wishlistIds = new Set(productIds.map((id) => Number(id)).filter(Boolean));
-      const isNowActive = wishlistIds.has(productId);
       syncButtons();
-      if (isNowActive) {
-        playWishlistBounce(button);
-      }
       renderAccountWishlistProducts(payload?.wishlist?.products || []);
     } catch (error) {
       console.warn("[wishlist]", error);
@@ -654,13 +605,6 @@
   async function toggleWishlist(button) {
     const productId = Number(button.dataset.productId);
     if (!productId) return;
-
-    const wasActive = button.classList.contains("is-active");
-
-    if (!wasActive) {
-      setButtonState(button, true);
-      playWishlistBounce(button);
-    }
 
     button.disabled = true;
 
@@ -693,20 +637,10 @@
       isAuthenticated = true;
       const productIds = payload?.wishlist?.productIds || [];
       wishlistIds = new Set(productIds.map((id) => Number(id)).filter(Boolean));
-      const isNowActive = wishlistIds.has(productId);
       syncButtons();
-      if (!wasActive && isNowActive) {
-        showWishlistToast();
-      }
-      if (!wasActive && !isNowActive) {
-        setButtonState(button, false);
-      }
       renderAccountWishlistProducts(payload?.wishlist?.products || []);
     } catch (error) {
       console.warn("[wishlist]", error);
-      if (!wasActive) {
-        setButtonState(button, false);
-      }
       if (!isAuthenticated && accountContainer) {
         renderAccountWishlistState("Log in om je wishlist op al je apparaten te bewaren.");
       }

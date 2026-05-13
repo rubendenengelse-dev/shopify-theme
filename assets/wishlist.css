@@ -58,30 +58,6 @@
   fill: currentColor;
 }
 
-.wishlist-toast {
-  background: #111;
-  border-radius: 0.9rem;
-  color: #fff;
-  font-family: var(--font-body-family);
-  font-size: 1.25rem;
-  font-style: var(--font-body-style);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  opacity: 0;
-  padding: 1rem 1.35rem;
-  pointer-events: none;
-  position: fixed;
-  transform: translateY(-0.4rem);
-  transition: opacity 180ms ease, transform 180ms ease;
-  white-space: nowrap;
-  z-index: 120;
-}
-
-.wishlist-toast.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .card__inner {
   position: relative;
 }
