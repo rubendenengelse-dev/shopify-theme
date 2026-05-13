@@ -465,6 +465,27 @@
   margin-top: 0.5rem;
 }
 
+.product-card-wrapper .card__information {
+  padding-top: 0.82rem;
+}
+
+.product-card-wrapper .card__heading,
+.product-card-wrapper .card__heading a {
+  font-size: 1.18rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.product-card-wrapper .card__information .card-information {
+  margin-top: 0.28rem;
+}
+
+.product-card-wrapper .card-information > .price,
+.product-card-wrapper .card-information > .price * {
+  font-size: 1.44rem;
+  line-height: 1.16;
+}
+
 .card-information {
   width: 100%;
 }
