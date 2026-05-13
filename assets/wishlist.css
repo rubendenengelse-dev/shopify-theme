@@ -1182,15 +1182,15 @@
   }
 
   .account-wishlist .account-wishlist__item-title {
-    font-size: 0.82rem !important;
+    font-size: 1rem !important;
     font-weight: 400 !important;
-    line-height: 1.16 !important;
+    line-height: 1.18 !important;
     margin: 0 !important;
   }
 
   .account-wishlist .account-wishlist__item-price {
-    font-size: 1.16rem !important;
-    line-height: 1.12 !important;
+    font-size: 1.28rem !important;
+    line-height: 1.14 !important;
     margin: 0.16rem 0 0 !important;
   }
 
