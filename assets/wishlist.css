@@ -1191,11 +1191,11 @@
   .account-wishlist .account-wishlist__item-price {
     font-size: 1.44rem !important;
     line-height: 1.16 !important;
-    margin: 0.2rem 0 0 !important;
+    margin: 0.28rem 0 0 !important;
   }
 
   .account-wishlist .account-wishlist__purchase-row {
-    margin-top: 0.9rem !important;
+    margin-top: 1.12rem !important;
   }
 
   .account-wishlist__size-summary {
