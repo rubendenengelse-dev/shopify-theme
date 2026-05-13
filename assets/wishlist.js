@@ -467,13 +467,48 @@
           <p class="account-wishlist__feedback" data-wishlist-feedback hidden aria-live="polite"></p>
         `;
 
+        const itemActions = `
+          <div class="account-wishlist__item-menu-shell" data-account-wishlist-menu-shell>
+            <button
+              type="button"
+              class="account-wishlist__item-menu-toggle"
+              aria-label="Meer acties"
+              aria-expanded="false"
+              data-account-wishlist-menu-toggle
+            >
+              <span class="account-wishlist__item-menu-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <div class="account-wishlist__item-menu" hidden>
+              <button type="button" class="account-wishlist__item-menu-action" data-wishlist-cart-trigger data-state="idle" aria-label="Toevoegen aan winkelwagen">
+                Aan winkelwagen toevoegen
+              </button>
+              <button
+                type="button"
+                class="account-wishlist__item-menu-action account-wishlist__item-menu-action--remove"
+                data-wishlist-button
+                data-product-id="${product.id}"
+                data-product-handle="${product.handle || ""}"
+                aria-label="Verwijder uit wishlist"
+                aria-pressed="true"
+              >
+                Uit verlanglijstje verwijderen
+              </button>
+            </div>
+          </div>
+        `;
+
         return `
           <article class="account-wishlist__item" data-wishlist-item data-product-id="${product.id}" data-product-handle="${product.handle || ""}" data-product-variants="${variants}">
             <a class="account-wishlist__item-link" href="${product.url}">
               ${image}
-              <p class="account-wishlist__item-title">${product.title}</p>
-              ${price}
             </a>
+            <div class="account-wishlist__item-header">
+              <a class="account-wishlist__item-text-link" href="${product.url}">
+                <p class="account-wishlist__item-title">${product.title}</p>
+                ${price}
+              </a>
+              ${itemActions}
+            </div>
             ${sizeSelector}
           </article>
         `;
@@ -735,6 +770,43 @@
         return;
       }
 
+      const accountWishlistMenuToggle = event.target.closest("[data-account-wishlist-menu-toggle]");
+      if (accountWishlistMenuToggle) {
+        event.preventDefault();
+        event.stopPropagation();
+        const menuShell = accountWishlistMenuToggle.closest("[data-account-wishlist-menu-shell]");
+        const shouldOpen = !menuShell?.classList.contains("is-open");
+        document.querySelectorAll("[data-account-wishlist-menu-shell].is-open").forEach((shell) => {
+          shell.classList.remove("is-open");
+          const toggle = shell.querySelector("[data-account-wishlist-menu-toggle]");
+          const menu = shell.querySelector(".account-wishlist__item-menu");
+          toggle?.setAttribute("aria-expanded", "false");
+          if (menu) menu.hidden = true;
+        });
+        if (menuShell && shouldOpen) {
+          menuShell.classList.add("is-open");
+          accountWishlistMenuToggle.setAttribute("aria-expanded", "true");
+          const menu = menuShell.querySelector(".account-wishlist__item-menu");
+          if (menu) menu.hidden = false;
+        }
+        return;
+      }
+
+    },
+    true
+  );
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (event.target.closest("[data-account-wishlist-menu-shell]")) return;
+      document.querySelectorAll("[data-account-wishlist-menu-shell].is-open").forEach((shell) => {
+        shell.classList.remove("is-open");
+        const toggle = shell.querySelector("[data-account-wishlist-menu-toggle]");
+        const menu = shell.querySelector(".account-wishlist__item-menu");
+        toggle?.setAttribute("aria-expanded", "false");
+        if (menu) menu.hidden = true;
+      });
     },
     true
   );
