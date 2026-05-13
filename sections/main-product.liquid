@@ -43,8 +43,8 @@
       #MainProduct-{{ section.id }} #Slider-Gallery-{{ section.id }} {
         overflow-y: hidden;
         overscroll-behavior-x: contain;
-        overscroll-behavior-y: none;
-        touch-action: pan-x pinch-zoom;
+        overscroll-behavior-y: auto;
+        touch-action: manipulation;
       }
 
       #MainProduct-{{ section.id }} .product__media-item,
@@ -53,7 +53,7 @@
       #MainProduct-{{ section.id }} .product__media img,
       #MainProduct-{{ section.id }} .product__media video,
       #MainProduct-{{ section.id }} .product__modal-opener--image {
-        touch-action: pan-x pinch-zoom;
+        touch-action: manipulation;
         -webkit-user-drag: none;
       }
     }
