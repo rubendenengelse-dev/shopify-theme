@@ -1157,12 +1157,21 @@
 }
 
 @media screen and (min-width: 990px) {
+  .account-wishlist__grid {
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 34rem));
+  }
+
+  .account-wishlist__item {
+    max-width: 34rem;
+  }
+
   .account-wishlist__item-menu-shell {
     display: none;
   }
 
   .account-wishlist .account-wishlist__item-header {
-    margin-top: 0.34rem !important;
+    margin-top: 0.42rem !important;
   }
 
   .account-wishlist .account-wishlist__item-text-link {
@@ -1173,20 +1182,20 @@
   }
 
   .account-wishlist .account-wishlist__item-title {
-    font-size: 0.72rem !important;
+    font-size: 0.82rem !important;
     font-weight: 400 !important;
-    line-height: 1.1 !important;
+    line-height: 1.16 !important;
     margin: 0 !important;
   }
 
   .account-wishlist .account-wishlist__item-price {
-    font-size: 1.06rem !important;
-    line-height: 1.08 !important;
-    margin: 0.08rem 0 0 !important;
+    font-size: 1.16rem !important;
+    line-height: 1.12 !important;
+    margin: 0.16rem 0 0 !important;
   }
 
   .account-wishlist .account-wishlist__purchase-row {
-    margin-top: 0.68rem !important;
+    margin-top: 0.9rem !important;
   }
 
   .account-wishlist__size-summary {
