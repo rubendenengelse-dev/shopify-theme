@@ -740,6 +740,42 @@
     }
   }
 
+  @media screen and (min-width: 1280px) {
+    .footer__content-top.page-width {
+      position: relative;
+      padding-bottom: 14rem;
+    }
+
+    .footer-block--brand,
+    .footer-block--image-only {
+      position: absolute !important;
+      left: auto !important;
+      right: max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem) !important;
+      bottom: 0 !important;
+      width: max-content !important;
+      max-width: 18rem !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+      justify-self: auto !important;
+    }
+
+    .footer-block__brand-info {
+      width: max-content !important;
+      max-width: none !important;
+      margin: 0 !important;
+      align-items: flex-end !important;
+      text-align: right !important;
+    }
+
+    .footer-block__brand-info .footer-block__image-wrapper,
+    .footer-block--image-only .footer-block__image-wrapper {
+      max-width: 18rem !important;
+      margin: 0 !important;
+      transform: none !important;
+    }
+  }
+
 @media screen and (max-width: 749px) {
   .footer__payment--desktop {
     display: none;
