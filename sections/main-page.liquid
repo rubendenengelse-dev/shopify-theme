@@ -1,10 +1,25 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+{% if page.handle == 'wishlist' %}
+  {{ 'customer.css' | asset_url | stylesheet_tag }}
+{% endif %}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
+
+  {% if page.handle == 'wishlist' %}
+    .section-{{ section.id }}-padding.section-{{ section.id }}-wishlist {
+      padding-top: 0 !important;
+    }
+
+    .section-{{ section.id }}-wishlist .account--wishlist-focus .account__header,
+    .section-{{ section.id }}-wishlist .account--wishlist-focus .account__details,
+    .section-{{ section.id }}-wishlist .account--wishlist-focus .account__orders {
+      display: none;
+    }
+  {% endif %}
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -23,17 +38,55 @@
       text-transform: uppercase !important;
       line-height: 1.1 !important;
     }
+
+    {% if page.handle == 'wishlist' %}
+      .section-{{ section.id }}-padding.section-{{ section.id }}-wishlist {
+        padding-top: 0 !important;
+      }
+
+      .section-{{ section.id }}-wishlist .account--wishlist-focus {
+        max-width: 128rem;
+        margin: 0 auto;
+      }
+
+      .section-{{ section.id }}-wishlist .account--wishlist-focus .account__wishlist-wrap {
+        margin-top: 0;
+      }
+    {% endif %}
   }
+
+  {% if page.handle == 'wishlist' %}
+  @media screen and (min-width: 1280px) {
+    .section-{{ section.id }}-wishlist .account--wishlist-focus {
+      max-width: 150rem;
+    }
+  }
+  {% endif %}
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
-  <h1 class="main-page-title main-page-title--desktop-strong page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
-  </h1>
-  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    {{ page.content }}
+{% if page.handle == 'wishlist' %}
+  <div class="customer account account--wishlist-focus section-{{ section.id }}-padding section-{{ section.id }}-wishlist">
+    <div class="account__content">
+      <div class="account__wishlist-wrap">
+        <div class="account-wishlist" data-account-wishlist id="wishlist">
+          <div class="account-wishlist__card">
+            <h1 class="account-wishlist__title">Wishlist</h1>
+            <p class="account-wishlist__text">Je wishlist wordt geladen...</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+{% else %}
+  <div class="page-width page-width--narrow section-{{ section.id }}-padding">
+    <h1 class="main-page-title main-page-title--desktop-strong page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{ page.title | escape }}
+    </h1>
+    <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ page.content }}
+    </div>
+  </div>
+{% endif %}
 
 {% schema %}
 {
