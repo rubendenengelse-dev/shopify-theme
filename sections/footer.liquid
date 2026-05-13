@@ -941,7 +941,24 @@
     }
 
     .footer-sublogo-desktop {
-      display: none !important;
+      display: flex !important;
+      position: absolute;
+      right: var(--wog-footer-shell-gutter-clean);
+      bottom: 1.2rem;
+      width: max-content;
+      margin: 0;
+      padding: 0;
+      justify-content: flex-end;
+      z-index: 2;
+    }
+
+    .footer-sublogo-desktop .footer__list-social {
+      display: flex !important;
+      width: max-content;
+      margin: 0 !important;
+      justify-content: flex-end;
+      visibility: visible;
+      opacity: 1;
     }
 
     .footer-brand-stack-desktop {
@@ -955,15 +972,7 @@
     }
 
     .footer-brand-stack-desktop .footer__list-social {
-      display: flex !important;
-      position: absolute;
-      right: 0;
-      bottom: calc(100% + 1rem);
-      width: max-content;
-      margin: 0 !important;
-      justify-content: flex-end;
-      visibility: visible;
-      opacity: 1;
+      display: none !important;
     }
 
     .footer-brand-stack-desktop .footer-block__image-wrapper {
@@ -1654,19 +1663,6 @@
             {%- if section.settings.show_social and has_social_icons -%}
               {%- render 'social-icons', class: 'footer__list-social' -%}
             {%- endif -%}
-            <div
-              class="footer-block__image-wrapper"
-              style="max-width: min(100%, {{ footer_sublogo_block.settings.image_width }}px);"
-            >
-              <img
-                srcset="{{ footer_sublogo_block.settings.image | image_url: width: footer_sublogo_block.settings.image_width }}, {{ footer_sublogo_block.settings.image | image_url: width: footer_sublogo_width_2x }} 2x"
-                src="{{ footer_sublogo_block.settings.image | image_url: width: 760 }}"
-                alt="{{ footer_sublogo_block.settings.image.alt | escape }}"
-                loading="lazy"
-                width="{{ footer_sublogo_block.settings.image.width }}"
-                height="{{ footer_sublogo_block.settings.image.height }}"
-              >
-            </div>
           </div>
         {%- endif -%}
 
@@ -1745,9 +1741,6 @@
       </div>
       {%- if footer_sublogo_block != blank and footer_sublogo_block.settings.image != blank -%}
         <div class="footer-brand-stack-desktop">
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
-          {%- endif -%}
           <div
             class="footer-block__image-wrapper"
             style="max-width: min(100%, {{ footer_sublogo_block.settings.image_width }}px);"
