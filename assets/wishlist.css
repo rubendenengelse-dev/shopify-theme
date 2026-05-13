@@ -33,6 +33,16 @@
   content: none !important;
 }
 
+.wishlist-button__icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.wishlist-button__icon--check {
+  display: none;
+}
+
 .wishlist-button svg {
   display: block;
   height: 1.55rem;
