@@ -1112,21 +1112,21 @@
         }
 
         .wog-global-wishlist-drawer .product-info-drawer__wishlist-actions {
-          align-items: center;
+          align-items: flex-end;
           gap: 0.35rem;
-          position: static;
-        }
-
-        .wog-global-wishlist-drawer .product-info-drawer__wishlist-menu-toggle {
           position: absolute;
           right: 0.8rem;
           top: 0.8rem;
           z-index: 7;
         }
 
+        .wog-global-wishlist-drawer .product-info-drawer__wishlist-menu-toggle {
+          position: static;
+        }
+
         .wog-global-wishlist-drawer .product-info-drawer__wishlist-menu {
-          right: 0.8rem;
-          top: 3.1rem;
+          right: 0;
+          top: calc(100% + 0.45rem);
         }
 
         .wog-global-cart-drawer .product-info-drawer__mobile-header-icon .icon-cart-empty path {
