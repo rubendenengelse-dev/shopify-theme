@@ -1724,35 +1724,6 @@
                       </div>
                     </details>
                     </div>
-                    <div class="product-info-drawer__wishlist-menu-shell">
-                      <button
-                        type="button"
-                        class="product-info-drawer__wishlist-menu-toggle"
-                        aria-label="Meer acties"
-                        aria-expanded="false"
-                        data-mobile-wishlist-menu-toggle
-                      >
-                        <span class="product-info-drawer__wishlist-menu-dots" aria-hidden="true"><span></span><span></span><span></span></span>
-                      </button>
-                      <div class="product-info-drawer__wishlist-menu" hidden>
-                        <button
-                          type="button"
-                          class="product-info-drawer__wishlist-menu-action"
-                          data-mobile-wishlist-cart
-                          data-product-url="${productUrl}"
-                        >
-                          Aan winkelwagen toevoegen
-                        </button>
-                        <button
-                          type="button"
-                          class="product-info-drawer__wishlist-menu-action product-info-drawer__wishlist-menu-action--remove"
-                          data-mobile-wishlist-remove
-                          data-product-id="${product.id}"
-                        >
-                          Uit verlanglijstje verwijderen
-                        </button>
-                      </div>
-                    </div>
                     <div class="product-info-drawer__wishlist-actions">
                       <button
                         type="button"
@@ -1770,6 +1741,35 @@
                 return `
                   <article class="product-info-drawer__wishlist-item" data-mobile-wishlist-item data-product-id="${product.id}">
                     <div class="product-info-drawer__wishlist-card">
+                      <div class="product-info-drawer__wishlist-menu-shell">
+                        <button
+                          type="button"
+                          class="product-info-drawer__wishlist-menu-toggle"
+                          aria-label="Meer acties"
+                          aria-expanded="false"
+                          data-mobile-wishlist-menu-toggle
+                        >
+                          <span class="product-info-drawer__wishlist-menu-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                        </button>
+                        <div class="product-info-drawer__wishlist-menu" hidden>
+                          <button
+                            type="button"
+                            class="product-info-drawer__wishlist-menu-action"
+                            data-mobile-wishlist-cart
+                            data-product-url="${productUrl}"
+                          >
+                            Aan winkelwagen toevoegen
+                          </button>
+                          <button
+                            type="button"
+                            class="product-info-drawer__wishlist-menu-action product-info-drawer__wishlist-menu-action--remove"
+                            data-mobile-wishlist-remove
+                            data-product-id="${product.id}"
+                          >
+                            Uit verlanglijstje verwijderen
+                          </button>
+                        </div>
+                      </div>
                       <a class="product-info-drawer__wishlist-link" href="${productUrl}">
                         ${productImage}
                       </a>
