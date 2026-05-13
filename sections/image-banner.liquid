@@ -28,25 +28,6 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 
-  {%- if request.page_type == 'index' and section.id == 'image_banner_KmfCLW' -%}
-    @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
-      #Banner-{{ section.id }} .banner__content.banner__content--middle-left {
-        align-items: flex-end;
-        justify-content: flex-start;
-        padding: 5rem 5rem 10rem 2.8rem;
-      }
-
-      #Banner-{{ section.id }} .banner__box {
-        min-width: 0;
-        max-width: none;
-        padding: 0;
-      }
-
-      #Banner-{{ section.id }} .banner__buttons {
-        transform: none;
-      }
-    }
-  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
