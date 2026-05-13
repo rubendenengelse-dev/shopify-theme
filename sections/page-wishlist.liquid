@@ -1,0 +1,100 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{% if page.handle == 'wishlist' %}
+  {%- style -%}
+    .section-{{ section.id }}-wishlist {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    .section-{{ section.id }}-wishlist .account__header,
+    .section-{{ section.id }}-wishlist .account__details,
+    .section-{{ section.id }}-wishlist .account__orders {
+      display: none;
+    }
+
+    [id$="__rich_text_B4WEEa"],
+    [id$="__image_with_text_JyyQyt"],
+    [id$="__rich_text_CG6NQn"],
+    [id$="__rich_text_JE9qb9"],
+    [id$="__image_banner_gU88Wp"],
+    [id$="__rich_text_y97eWe"],
+    [id$="__rich_text_hifwNn"],
+    [id$="__image_with_text_mr7HGi"],
+    [id$="__rich_text_VxxGEt"],
+    [id$="__rich_text_CrUwRT"],
+    [id$="__image_with_text_pr8897"] {
+      display: none !important;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-wishlist {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+
+      .section-{{ section.id }}-wishlist .account--wishlist-focus {
+        max-width: 128rem;
+        margin: 0 auto;
+      }
+
+      .section-{{ section.id }}-wishlist .account__wishlist-wrap {
+        margin-top: 0;
+      }
+    }
+
+    @media screen and (min-width: 1280px) {
+      .section-{{ section.id }}-wishlist .account--wishlist-focus {
+        max-width: 150rem;
+      }
+    }
+  {%- endstyle -%}
+
+  <div class="customer account account--wishlist-focus section-{{ section.id }}-wishlist">
+    <div class="account__content">
+      <div class="account__wishlist-wrap">
+        <div class="account-wishlist" data-account-wishlist id="wishlist">
+          <div class="account-wishlist__card">
+            <h1 class="account-wishlist__title">Wishlist</h1>
+            <p class="account-wishlist__text">Je wishlist wordt geladen...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Page wishlist",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page wishlist"
+    }
+  ]
+}
+{% endschema %}
