@@ -425,12 +425,12 @@
         const variants = escapeAttribute(JSON.stringify(product.variants || []));
         const sizeSelector = `
           <div class="account-wishlist__purchase-row">
-            <details class="account-wishlist__size-picker">
-              <summary class="account-wishlist__size-summary">
-                <span class="account-wishlist__size-summary-label">Maat selecteren</span>
-                <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
-                  <path d="M2.75 4.25 6 7.5l3.25-3.25" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <details class="account-wishlist__size-picker">
+                <summary class="account-wishlist__size-summary">
+                  <span class="account-wishlist__size-summary-label">MAAT</span>
+                  <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
+                    <path d="M2.75 4.25 6 7.5l3.25-3.25" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
               </summary>
               <div class="account-wishlist__size-options" role="list">
                 <button type="button" class="account-wishlist__size-option" data-size-value="XS">XS</button>
