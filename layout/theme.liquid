@@ -1709,7 +1709,7 @@
                     <div class="product-info-drawer__wishlist-size">
                     <details class="account-wishlist__size-picker">
                       <summary class="account-wishlist__size-summary">
-                        <span class="account-wishlist__size-summary-label">Maat selecteren</span>
+                        <span class="account-wishlist__size-summary-label">MAAT</span>
                         <svg viewBox="0 0 12 12" focusable="false" aria-hidden="true">
                           <path d="M2.75 4.25 6 7.5l3.25-3.25" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -1888,7 +1888,7 @@
         const selectedSize =
           purchaseRow?.querySelector('.account-wishlist__size-summary-label')?.textContent?.trim() || '';
 
-        if (!selectedSize || selectedSize === 'Maat selecteren') return;
+        if (!selectedSize || selectedSize === 'MAAT') return;
 
         const productUrl = button.dataset.productUrl;
         if (!productUrl) return;

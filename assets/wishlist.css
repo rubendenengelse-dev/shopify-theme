@@ -199,7 +199,7 @@
   column-gap: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  margin-top: 0.42rem;
+  margin-top: 0.82rem;
 }
 
 .account-wishlist__item-text-link {
@@ -384,8 +384,8 @@
 .account-wishlist__size-summary {
   align-items: center;
   appearance: none;
-  background: #f4f4f4;
-  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border: 0.1rem solid rgba(17, 17, 17, 0.22);
   border-radius: 0.6rem;
   color: #111;
   cursor: pointer;
@@ -1005,7 +1005,7 @@
 
   .account-wishlist__item-header {
     display: block;
-    margin-top: 0;
+    margin-top: 0.82rem;
   }
 
   .account-wishlist__item-menu-shell {
@@ -1171,7 +1171,7 @@
   }
 
   .account-wishlist .account-wishlist__item-header {
-    margin-top: 0.42rem !important;
+    margin-top: 0.82rem !important;
   }
 
   .account-wishlist .account-wishlist__item-text-link {
