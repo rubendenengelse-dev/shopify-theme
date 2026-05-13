@@ -417,6 +417,79 @@
         grid-template-columns: minmax(0, 1fr) 3.8rem;
       }
 
+      .product-info-drawer__wishlist-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.45rem;
+        position: relative;
+      }
+
+      .product-info-drawer__wishlist-menu-toggle {
+        align-items: center;
+        appearance: none;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        color: #111;
+        cursor: pointer;
+        display: inline-flex;
+        height: 1.8rem;
+        justify-content: center;
+        min-height: 1.8rem;
+        min-width: 3.8rem;
+        padding: 0;
+        width: 3.8rem;
+      }
+
+      .product-info-drawer__wishlist-menu-dots {
+        align-items: center;
+        display: inline-flex;
+        gap: 0.32rem;
+        justify-content: center;
+      }
+
+      .product-info-drawer__wishlist-menu-dots span {
+        background: currentColor;
+        border-radius: 999px;
+        display: block;
+        height: 0.28rem;
+        width: 0.28rem;
+      }
+
+      .product-info-drawer__wishlist-menu {
+        background: #fff;
+        border: 0.1rem solid rgba(17, 17, 17, 0.08);
+        box-shadow: 0 1.6rem 3rem rgba(17, 17, 17, 0.12);
+        display: none;
+        min-width: 17.4rem;
+        padding: 0.8rem;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 0.55rem);
+        z-index: 6;
+      }
+
+      .product-info-drawer__wishlist-actions.is-open .product-info-drawer__wishlist-menu {
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .product-info-drawer__wishlist-menu-action {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        color: #111;
+        cursor: pointer;
+        font: inherit;
+        padding: 0.55rem 0.4rem;
+        text-align: left;
+      }
+
+      .product-info-drawer__wishlist-menu-action--remove {
+        color: #c33;
+      }
+
       .product-info-drawer__wishlist-size .account-wishlist__size-picker {
         margin-top: 0;
       }
@@ -1020,9 +1093,23 @@
           stroke: none;
         }
 
-        .wog-global-cart-drawer .product-info-drawer__mobile-header-button--wishlist .product-info-drawer__mobile-header-icon svg {
+      .wog-global-cart-drawer .product-info-drawer__mobile-header-button--wishlist .product-info-drawer__mobile-header-icon svg {
           transform: scale(0.92);
           transform-origin: center;
+        }
+
+        .wog-global-wishlist-drawer .product-info-drawer__wishlist-purchase {
+          align-items: flex-start;
+          grid-template-columns: minmax(0, 1fr) 3.8rem;
+        }
+
+        .wog-global-wishlist-drawer .product-info-drawer__wishlist-actions {
+          gap: 0.35rem;
+        }
+
+        .wog-global-wishlist-drawer .product-info-drawer__wishlist-menu {
+          right: 0;
+          top: calc(100% + 0.45rem);
         }
 
         .wog-global-cart-drawer .product-info-drawer__mobile-header-icon .icon-cart-empty path {
@@ -1609,20 +1696,49 @@
                       </div>
                     </details>
                     </div>
-                    <button
-                      type="button"
-                      class="product-info-drawer__wishlist-cart-trigger"
-                      aria-label="Toevoegen aan winkelwagen"
-                      data-mobile-wishlist-cart
-                      data-product-url="${productUrl}"
-                    >
-                      ${globalCartCheckoutIcon}
-                    </button>
+                    <div class="product-info-drawer__wishlist-actions">
+                      <button
+                        type="button"
+                        class="product-info-drawer__wishlist-menu-toggle"
+                        aria-label="Meer acties"
+                        aria-expanded="false"
+                        data-mobile-wishlist-menu-toggle
+                      >
+                        <span class="product-info-drawer__wishlist-menu-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                      </button>
+                      <button
+                        type="button"
+                        class="product-info-drawer__wishlist-cart-trigger"
+                        aria-label="Toevoegen aan winkelwagen"
+                        data-mobile-wishlist-cart
+                        data-product-url="${productUrl}"
+                      >
+                        ${globalCartCheckoutIcon}
+                      </button>
+                      <div class="product-info-drawer__wishlist-menu" hidden>
+                        <button
+                          type="button"
+                          class="product-info-drawer__wishlist-menu-action"
+                          data-mobile-wishlist-cart
+                          data-product-url="${productUrl}"
+                        >
+                          Aan winkelwagen toevoegen
+                        </button>
+                        <button
+                          type="button"
+                          class="product-info-drawer__wishlist-menu-action product-info-drawer__wishlist-menu-action--remove"
+                          data-mobile-wishlist-remove
+                          data-product-id="${product.id}"
+                        >
+                          Uit verlanglijstje verwijderen
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 `;
 
                 return `
-                  <article class="product-info-drawer__wishlist-item">
+                  <article class="product-info-drawer__wishlist-item" data-mobile-wishlist-item data-product-id="${product.id}">
                     <div class="product-info-drawer__wishlist-card">
                       <a class="product-info-drawer__wishlist-link" href="${productUrl}">
                         ${productImage}
@@ -1695,6 +1811,43 @@
         } catch (error) {
           console.error(error);
           globalWishlistDrawerBody.innerHTML = '<p class="product-info-drawer__wishlist-empty">Het verlanglijstje kon niet worden geladen.</p>';
+        }
+      };
+
+      const closeMobileWishlistMenus = () => {
+        if (!globalWishlistDrawer) return;
+        globalWishlistDrawer.querySelectorAll('.product-info-drawer__wishlist-actions.is-open').forEach((actions) => {
+          actions.classList.remove('is-open');
+          const toggle = actions.querySelector('[data-mobile-wishlist-menu-toggle]');
+          const menu = actions.querySelector('.product-info-drawer__wishlist-menu');
+          toggle?.setAttribute('aria-expanded', 'false');
+          if (menu) menu.hidden = true;
+        });
+      };
+
+      const removeGlobalWishlistItem = async (button) => {
+        const productId = Number(button?.dataset?.productId);
+        if (!productId) return;
+
+        button.disabled = true;
+
+        try {
+          const response = await fetch(`${document.body?.dataset?.wishlistEndpoint || '/apps/wishlist/proxy'}/toggle`, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({ productId }),
+          });
+
+          if (!response.ok) throw new Error('Wishlist remove failed');
+          await renderGlobalWishlistDrawer();
+        } catch (error) {
+          console.error(error);
+        } finally {
+          button.disabled = false;
         }
       };
 
@@ -1832,6 +1985,22 @@
           return;
         }
 
+        const wishlistMenuToggle = event.target.closest('[data-mobile-wishlist-menu-toggle]');
+        if (wishlistMenuToggle && window.matchMedia('(max-width: 749px)').matches) {
+          event.preventDefault();
+          event.stopPropagation();
+          const actions = wishlistMenuToggle.closest('.product-info-drawer__wishlist-actions');
+          const shouldOpen = !actions?.classList.contains('is-open');
+          closeMobileWishlistMenus();
+          if (actions && shouldOpen) {
+            actions.classList.add('is-open');
+            wishlistMenuToggle.setAttribute('aria-expanded', 'true');
+            const menu = actions.querySelector('.product-info-drawer__wishlist-menu');
+            if (menu) menu.hidden = false;
+          }
+          return;
+        }
+
         const headerWishlistLink = event.target.closest('.header__icon--wishlist');
         if (headerWishlistLink && window.matchMedia('(max-width: 749px)').matches) {
           event.preventDefault();
@@ -1839,11 +2008,27 @@
           return;
         }
 
+        const wishlistRemoveButton = event.target.closest('[data-mobile-wishlist-remove]');
+        if (wishlistRemoveButton && window.matchMedia('(max-width: 749px)').matches) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeMobileWishlistMenus();
+          removeGlobalWishlistItem(wishlistRemoveButton);
+          return;
+        }
+
         const wishlistCartButton = event.target.closest('[data-mobile-wishlist-cart]');
         if (wishlistCartButton && window.matchMedia('(max-width: 749px)').matches) {
           event.preventDefault();
+          closeMobileWishlistMenus();
           addWishlistDrawerItemToCart(wishlistCartButton);
         }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!window.matchMedia('(max-width: 749px)').matches) return;
+        if (event.target.closest('.product-info-drawer__wishlist-actions')) return;
+        closeMobileWishlistMenus();
       });
 
       globalCartDrawer?.addEventListener(
