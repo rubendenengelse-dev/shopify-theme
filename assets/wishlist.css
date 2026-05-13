@@ -711,7 +711,7 @@
   }
 
   .account-wishlist__item-title {
-    margin-top: 0.9rem;
+    margin-top: 0;
   }
 
   .account-wishlist__purchase-row {
@@ -1162,7 +1162,15 @@
   }
 
   .account-wishlist__item-title {
-    font-size: 0.96rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.18;
+    margin: 0;
+  }
+
+  .account-wishlist__item-price {
+    font-size: 1.16rem;
+    margin: 0.04rem 0 0;
   }
 
   .account-wishlist__size-summary {
