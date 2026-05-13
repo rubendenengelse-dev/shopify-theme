@@ -746,48 +746,49 @@
       padding-bottom: 8rem;
     }
 
-    .footer__content-top.page-width .footer-block--brand,
     .footer__content-top.page-width .footer-block--image-only {
       position: absolute !important;
       top: auto !important;
       left: auto !important;
       right: max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem) !important;
       bottom: 1.4rem !important;
-      width: 10.4rem !important;
-      max-width: 10.4rem !important;
-      min-width: 10.4rem !important;
+      width: auto !important;
+      max-width: none !important;
+      min-width: 0 !important;
       margin: 0 !important;
       padding: 0 !important;
       display: flex !important;
       justify-content: flex-end !important;
+      align-items: flex-end !important;
+      flex: 0 0 auto !important;
       justify-self: auto !important;
       z-index: 2;
     }
 
-    .footer__content-top.page-width .footer-block__brand-info {
-      width: 10.4rem !important;
-      max-width: 10.4rem !important;
-      min-width: 10.4rem !important;
+    .footer__content-top.page-width .footer-block--image-only .footer-content,
+    .footer__content-top.page-width .footer-block--image-only .footer-block__details-content.footer-block-image.right {
+      width: auto !important;
+      max-width: none !important;
+      min-width: 0 !important;
       margin: 0 !important;
+      padding: 0 !important;
       display: flex !important;
-      flex-direction: column !important;
+      justify-content: flex-end !important;
       align-items: flex-end !important;
-      text-align: right !important;
     }
 
-    .footer__content-top.page-width .footer-block__brand-info .footer-block__image-wrapper,
     .footer__content-top.page-width .footer-block--image-only .footer-block__image-wrapper {
-      width: 10.4rem !important;
-      max-width: 10.4rem !important;
-      min-width: 10.4rem !important;
+      width: auto !important;
+      max-width: 5rem !important;
+      min-width: 0 !important;
       margin: 0 !important;
+      padding: 0 !important;
       transform: none !important;
     }
 
-    .footer__content-top.page-width .footer-block__brand-info .footer-block__image-wrapper img,
     .footer__content-top.page-width .footer-block--image-only .footer-block__image-wrapper img {
-      width: 100% !important;
-      max-width: 100% !important;
+      width: 5rem !important;
+      max-width: 5rem !important;
       height: auto !important;
       display: block !important;
     }
