@@ -8,16 +8,9 @@
   aria-label="Toevoegen aan wishlist"
   aria-pressed="false"
 >
-  <span class="wishlist-button__icon wishlist-button__icon--heart" aria-hidden="true">
-    <svg viewBox="0 0 24 24" focusable="false">
-      <path d="M12 20.2 4.85 13.2a4.77 4.77 0 0 1 0-6.82 4.94 4.94 0 0 1 6.92 0L12 6.61l.23-.23a4.94 4.94 0 0 1 6.92 0 4.77 4.77 0 0 1 0 6.82Z"></path>
-    </svg>
-  </span>
-  <span class="wishlist-button__icon wishlist-button__icon--check" aria-hidden="true">
-    <svg viewBox="0 0 24 24" focusable="false">
-      <path d="M6.75 12.25 10.15 15.65 17.25 8.55"></path>
-    </svg>
-  </span>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 20.2 4.85 13.2a4.77 4.77 0 0 1 0-6.82 4.94 4.94 0 0 1 6.92 0L12 6.61l.23-.23a4.94 4.94 0 0 1 6.92 0 4.77 4.77 0 0 1 0 6.82Z"></path>
+  </svg>
   {%- if wishlist_variant == 'product' -%}
     <span class="wishlist-button__label">Wishlist</span>
   {%- endif -%}
