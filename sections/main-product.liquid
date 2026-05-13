@@ -38,6 +38,26 @@
       }
     }
 
+    @media screen and (max-width: 749px) {
+      #MainProduct-{{ section.id }} #GalleryViewer-{{ section.id }},
+      #MainProduct-{{ section.id }} #Slider-Gallery-{{ section.id }} {
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: none;
+        touch-action: pan-x pinch-zoom;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-item,
+      #MainProduct-{{ section.id }} .product-media-container,
+      #MainProduct-{{ section.id }} .product__media,
+      #MainProduct-{{ section.id }} .product__media img,
+      #MainProduct-{{ section.id }} .product__media video,
+      #MainProduct-{{ section.id }} .product__modal-opener--image {
+        touch-action: pan-x pinch-zoom;
+        -webkit-user-drag: none;
+      }
+    }
+
     @media screen and (min-width: 990px) {
       #MainProduct-{{ section.id }} {
         --wog-product-fluid-progress: clamp(0, (100vw - 1024px) / 512, 1);
