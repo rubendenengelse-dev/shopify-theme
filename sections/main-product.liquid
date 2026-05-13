@@ -49,6 +49,7 @@
       min-height: 3.5rem;
       min-width: 7.2rem;
       padding: 0 1.9rem;
+      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
       width: auto;
     }
 
@@ -69,6 +70,12 @@
     }
 
     #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product path,
+    #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product path {
+      fill: transparent !important;
+      stroke: currentColor !important;
+      stroke-width: 1.5 !important;
+    }
+
     #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product.is-active path {
       fill: currentColor !important;
       stroke: currentColor !important;
@@ -83,6 +90,24 @@
       background: rgba(0, 0, 0, 0.07);
       border-color: rgba(0, 0, 0, 0.12);
       color: #000;
+    }
+
+    #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button.is-bouncing {
+      animation: wog-wishlist-heart-bounce-{{ section.id }} 260ms ease-out;
+    }
+
+    @keyframes wog-wishlist-heart-bounce-{{ section.id }} {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      45% {
+        transform: translateY(-0.28rem) scale(1.08);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
     }
 
     #MainProduct-{{ section.id }} .product-wishlist-legacy-slot {

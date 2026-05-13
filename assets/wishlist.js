@@ -11,6 +11,7 @@
   const wishlistFeedbackResetDelay = 2200;
   const wishlistMinimumSpinnerDuration = 800;
   const wishlistSuccessStateDuration = 600;
+  const wishlistBounceDuration = 280;
 
   let wishlistIds = new Set();
   let isAuthenticated = body.dataset.customerLoggedIn === "true";
@@ -22,6 +23,17 @@
   function setButtonState(button, active) {
     button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", String(active));
+  }
+
+  function playWishlistBounce(button) {
+    if (!button?.closest(".product-wishlist-mobile-slot")) return;
+    button.classList.remove("is-bouncing");
+    window.setTimeout(() => {
+      button.classList.add("is-bouncing");
+      window.setTimeout(() => {
+        button.classList.remove("is-bouncing");
+      }, wishlistBounceDuration);
+    }, 10);
   }
 
   function escapeAttribute(value) {
@@ -594,7 +606,11 @@
       isAuthenticated = true;
       const productIds = payload?.wishlist?.productIds || [];
       wishlistIds = new Set(productIds.map((id) => Number(id)).filter(Boolean));
+      const isNowActive = wishlistIds.has(productId);
       syncButtons();
+      if (isNowActive) {
+        playWishlistBounce(button);
+      }
       renderAccountWishlistProducts(payload?.wishlist?.products || []);
     } catch (error) {
       console.warn("[wishlist]", error);
