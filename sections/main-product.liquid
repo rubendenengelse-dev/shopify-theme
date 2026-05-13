@@ -64,25 +64,25 @@
 
       #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product {
         align-items: center;
-        background: transparent;
-        border: 0;
-        border-radius: 0;
+        background: rgba(0, 0, 0, 0.05);
+        border: 0.1rem solid rgba(0, 0, 0, 0.08);
+        border-radius: 999px;
         box-shadow: none;
         color: rgba(0, 0, 0, 0.46);
-        gap: 0.7rem;
-        justify-content: flex-start;
+        gap: 0;
+        justify-content: center;
         margin: 0;
-        min-height: auto;
+        min-height: 3.8rem;
         padding: 0;
-        width: auto;
+        width: 3.8rem;
       }
 
       #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product:hover,
       #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product:focus,
       #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product:focus-visible,
       #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button--product:active {
-        background: transparent;
-        border: 0;
+        background: rgba(0, 0, 0, 0.08);
+        border: 0.1rem solid rgba(0, 0, 0, 0.1);
         box-shadow: none;
         color: rgba(0, 0, 0, 0.6);
         transform: none;
@@ -94,12 +94,7 @@
       }
 
       #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button__label {
-        color: currentColor;
-        font-size: 1.2rem;
-        font-weight: 500;
-        letter-spacing: 0;
-        margin-left: 0;
-        text-transform: none;
+        display: none;
       }
 
       #MainProduct-{{ section.id }} .product-wishlist-mobile-slot .wishlist-button.is-active {
