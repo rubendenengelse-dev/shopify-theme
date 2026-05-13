@@ -256,9 +256,10 @@
 .account-wishlist__item-menu-toggle {
   align-items: center;
   appearance: none;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   color: #111;
   cursor: pointer;
   display: inline-flex;
@@ -306,8 +307,10 @@
 .account-wishlist__item-menu-action {
   align-items: center;
   appearance: none;
-  background: transparent;
-  border: 0;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   color: #111;
   cursor: pointer;
   display: flex;
@@ -323,6 +326,20 @@
   text-align: left;
   text-transform: none;
   width: 100%;
+}
+
+.account-wishlist__item-menu-toggle:hover,
+.account-wishlist__item-menu-toggle:focus,
+.account-wishlist__item-menu-toggle:focus-visible,
+.account-wishlist__item-menu-toggle:active,
+.account-wishlist__item-menu-action:hover,
+.account-wishlist__item-menu-action:focus,
+.account-wishlist__item-menu-action:focus-visible,
+.account-wishlist__item-menu-action:active {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .account-wishlist__item-menu-action--remove {
