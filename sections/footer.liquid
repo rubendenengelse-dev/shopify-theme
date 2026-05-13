@@ -854,7 +854,7 @@
       column-gap: clamp(2rem, 2vw, 3.2rem);
       row-gap: 1.4rem;
       margin: 0 !important;
-      padding-left: 0.6rem !important;
+      padding-left: 0 !important;
     }
 
     .footer-block__newsletter {
@@ -941,23 +941,19 @@
     }
 
     .footer-sublogo-desktop {
-      display: flex !important;
-      position: absolute;
-      right: var(--wog-footer-shell-gutter-clean);
-      bottom: 0.8rem;
-      justify-content: flex-end;
-      align-items: flex-end;
-      width: max-content;
-      margin: 0;
-      padding: 0;
-      z-index: 2;
+      display: none !important;
     }
 
-    .footer-sublogo-desktop .footer__list-social {
+    .footer-brand-stack-desktop {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-left: auto;
+    }
+
+    .footer-brand-stack-desktop .footer__list-social {
       display: flex !important;
-      position: absolute;
-      right: 0;
-      bottom: calc(100% + 1rem);
       width: max-content;
       margin: 0 !important;
       justify-content: flex-end;
@@ -965,12 +961,12 @@
       opacity: 1;
     }
 
-    .footer-sublogo-desktop .footer-block__image-wrapper {
+    .footer-brand-stack-desktop .footer-block__image-wrapper {
       margin: 0;
       max-width: 5rem !important;
     }
 
-    .footer-sublogo-desktop .footer-block__image-wrapper img {
+    .footer-brand-stack-desktop .footer-block__image-wrapper img {
       display: block;
       width: 5rem;
       max-width: 5rem;
@@ -978,7 +974,9 @@
     }
 
     .footer__content-bottom-wrapper.page-width:last-child {
-      justify-content: flex-start;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
     }
 
     .footer__copyright.caption {
@@ -1740,6 +1738,26 @@
           </ul>
         {%- endif -%}
       </div>
+      {%- if footer_sublogo_block != blank and footer_sublogo_block.settings.image != blank -%}
+        <div class="footer-brand-stack-desktop">
+          {%- if section.settings.show_social and has_social_icons -%}
+            {%- render 'social-icons', class: 'footer__list-social' -%}
+          {%- endif -%}
+          <div
+            class="footer-block__image-wrapper"
+            style="max-width: min(100%, {{ footer_sublogo_block.settings.image_width }}px);"
+          >
+            <img
+              srcset="{{ footer_sublogo_block.settings.image | image_url: width: footer_sublogo_block.settings.image_width }}, {{ footer_sublogo_block.settings.image | image_url: width: footer_sublogo_width_2x }} 2x"
+              src="{{ footer_sublogo_block.settings.image | image_url: width: 760 }}"
+              alt="{{ footer_sublogo_block.settings.image.alt | escape }}"
+              loading="lazy"
+              width="{{ footer_sublogo_block.settings.image.width }}"
+              height="{{ footer_sublogo_block.settings.image.height }}"
+            >
+          </div>
+        </div>
+      {%- endif -%}
     </div>
 
   </div>
