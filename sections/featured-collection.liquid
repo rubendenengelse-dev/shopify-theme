@@ -1180,19 +1180,20 @@
   }
 
   @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
-    #collection-{{ section.id }} .collection__title.title-wrapper {
-      padding-left: 0.8rem !important;
-      padding-right: 2rem !important;
+    #collection-{{ section.id }}.collection {
+      padding-left: 2rem !important;
+      padding-right: 0 !important;
     }
 
+    #collection-{{ section.id }} > .collection__title,
     #collection-{{ section.id }} > .slider-mobile-gutter {
-      padding-left: 0.8rem !important;
+      padding-left: 0 !important;
       padding-right: 0 !important;
     }
 
     #collection-{{ section.id }} > .slider-mobile-gutter .product-grid {
       margin-left: 0 !important;
-      width: 100% !important;
+      width: calc(100% + 2rem) !important;
     }
 
     #collection-{{ section.id }} .slider-buttons {
