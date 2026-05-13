@@ -1158,10 +1158,14 @@
 
 @media screen and (min-width: 990px) {
   .account-wishlist__item-menu-shell {
-    display: block;
+    display: none;
   }
 
   .account-wishlist__item-title {
     font-size: 1.08rem;
+  }
+
+  .account-wishlist__size-summary {
+    background: #fff;
   }
 }
