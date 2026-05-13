@@ -659,8 +659,10 @@
       padding: 0;
       flex: 0 0 auto;
       position: absolute;
+      left: auto;
       right: max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem);
       bottom: 0;
+      justify-self: end;
     }
 
     .footer-block__brand-info {
@@ -671,12 +673,14 @@
       align-items: flex-end;
       text-align: right;
       margin-left: auto;
+      margin-right: 0;
     }
 
     .footer-block__brand-info .footer-block__image-wrapper,
     .footer-block--image-only .footer-block__image-wrapper {
       margin-left: auto;
       margin-right: 0;
+      transform: none;
     }
 
     .footer-block__brand-info > .footer__list-social {
