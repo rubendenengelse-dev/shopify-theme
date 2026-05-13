@@ -1833,7 +1833,7 @@
         }
 
         const headerWishlistLink = event.target.closest('.header__icon--wishlist');
-        if (headerWishlistLink) {
+        if (headerWishlistLink && window.matchMedia('(max-width: 749px)').matches) {
           event.preventDefault();
           openGlobalWishlistDrawer();
           return;
