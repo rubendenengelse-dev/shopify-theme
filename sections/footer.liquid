@@ -746,51 +746,35 @@
       padding-bottom: 8rem;
     }
 
-    .footer__content-top.page-width .footer-block--image-only {
-      position: absolute !important;
-      top: auto !important;
-      left: auto !important;
-      right: max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem) !important;
-      bottom: 1.4rem !important;
-      width: auto !important;
-      max-width: none !important;
-      min-width: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      display: flex !important;
-      justify-content: flex-end !important;
-      align-items: flex-end !important;
-      flex: 0 0 auto !important;
-      justify-self: auto !important;
+    .footer__blocks-wrapper .footer-block--image-flow {
+      display: none !important;
+    }
+
+    .footer-sublogo-desktop {
+      position: absolute;
+      right: max(var(--wog-footer-shell-gutter, 2.4rem), 2.4rem);
+      bottom: 1.4rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      width: max-content;
+      max-width: none;
+      margin: 0;
+      padding: 0;
       z-index: 2;
     }
 
-    .footer__content-top.page-width .footer-block--image-only .footer-content,
-    .footer__content-top.page-width .footer-block--image-only .footer-block__details-content.footer-block-image.right {
-      width: auto !important;
-      max-width: none !important;
-      min-width: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      display: flex !important;
-      justify-content: flex-end !important;
-      align-items: flex-end !important;
+    .footer-sublogo-desktop .footer-block__image-wrapper {
+      margin: 0;
+      padding: 0;
+      max-width: 5rem !important;
     }
 
-    .footer__content-top.page-width .footer-block--image-only .footer-block__image-wrapper {
-      width: auto !important;
-      max-width: 5rem !important;
-      min-width: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      transform: none !important;
-    }
-
-    .footer__content-top.page-width .footer-block--image-only .footer-block__image-wrapper img {
-      width: 5rem !important;
-      max-width: 5rem !important;
-      height: auto !important;
-      display: block !important;
+    .footer-sublogo-desktop .footer-block__image-wrapper img {
+      display: block;
+      width: 5rem;
+      max-width: 5rem;
+      height: auto;
     }
   }
 
@@ -1214,6 +1198,7 @@
             elsif section.blocks.size > 4
               assign footer_grid_class = 'grid--3-col-tablet'
             endif
+            assign footer_sublogo_block = section.blocks | where: 'type', 'image' | first
           -%}
 
           <div
@@ -1224,7 +1209,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'image' %} footer-block--image-only{% endif %}{% if block.type == 'brand_information' %} footer-block--brand{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'image' %} footer-block--image-only footer-block--image-flow{% endif %}{% if block.type == 'brand_information' %} footer-block--brand{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -1449,6 +1434,25 @@
             {%- render 'social-icons', class: 'footer__list-social' -%}
           {%- endif -%}
         </div>
+
+        {%- if footer_sublogo_block != blank and footer_sublogo_block.settings.image != blank -%}
+          {%- assign footer_sublogo_width_2x = footer_sublogo_block.settings.image_width | times: 2 | at_most: 5760 -%}
+          <div class="footer-sublogo-desktop">
+            <div
+              class="footer-block__image-wrapper"
+              style="max-width: min(100%, {{ footer_sublogo_block.settings.image_width }}px);"
+            >
+              <img
+                srcset="{{ footer_sublogo_block.settings.image | image_url: width: footer_sublogo_block.settings.image_width }}, {{ footer_sublogo_block.settings.image | image_url: width: footer_sublogo_width_2x }} 2x"
+                src="{{ footer_sublogo_block.settings.image | image_url: width: 760 }}"
+                alt="{{ footer_sublogo_block.settings.image.alt | escape }}"
+                loading="lazy"
+                width="{{ footer_sublogo_block.settings.image.width }}"
+                height="{{ footer_sublogo_block.settings.image.height }}"
+              >
+            </div>
+          </div>
+        {%- endif -%}
 
       </div>
     {%- endunless -%}
