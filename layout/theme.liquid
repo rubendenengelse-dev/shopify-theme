@@ -1833,14 +1833,14 @@
         }
 
         const headerWishlistLink = event.target.closest('.header__icon--wishlist');
-        if (headerWishlistLink) {
+        if (headerWishlistLink && window.matchMedia('(max-width: 749px)').matches) {
           event.preventDefault();
           openGlobalWishlistDrawer();
           return;
         }
 
         const headerAccountLink = event.target.closest('.header__icon--account');
-        if (headerAccountLink) {
+        if (headerAccountLink && window.matchMedia('(max-width: 749px)').matches) {
           event.preventDefault();
           openGlobalWishlistDrawer();
           return;
