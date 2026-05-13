@@ -475,7 +475,7 @@
         {%- for block in section.blocks -%}
           {%- liquid
             assign wog_collection_card_url = blank
-            if is_homepage_collection_list
+            if is_homepage_collection_list or is_tshirts_like_collection_list
               case block.settings.collection
                 when 'mens'
                   assign wog_collection_card_url = '/pages/t-shirts'
