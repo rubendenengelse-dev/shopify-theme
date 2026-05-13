@@ -3941,6 +3941,12 @@
 
       document.addEventListener('product:cart-added-drawer', async (event) => {
         if (!drawer || !root?.contains(event.detail?.productForm)) return;
+        if (mobileProductMedia.matches) {
+          document.querySelector('#cart-icon-bubble')?.dispatchEvent(
+            new MouseEvent('click', { bubbles: true, cancelable: true })
+          );
+          return;
+        }
         const cartState = await getDrawerCartState();
         openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent(event.detail?.cartData, cartState));
         animateShippingProgress();
@@ -3948,6 +3954,7 @@
 
       document.getElementById('cart-icon-bubble')?.addEventListener('click', async (event) => {
         if (!drawer) return;
+        if (mobileProductMedia.matches) return;
         event.preventDefault();
         const cartState = await getDrawerCartState();
         openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent({}, cartState));
@@ -3956,6 +3963,7 @@
 
       document.addEventListener('wog:open-product-cart-drawer', async (event) => {
         if (!drawer) return;
+        if (mobileProductMedia.matches) return;
         event.preventDefault();
         const cartState = await getDrawerCartState();
         openInfoDrawer('WINKELWAGEN', buildCartAddedDrawerContent({}, cartState));
