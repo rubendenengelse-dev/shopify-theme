@@ -3381,23 +3381,6 @@ details-disclosure > details {
   }
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
-  section[id^="shopify-section-template--"][id$="__image_banner_KmfCLW"] {
-    position: relative;
-  }
-
-  section[id^="shopify-section-template--"][id$="__image_banner_KmfCLW"] a[href="https://warrior-of-god.nl/pages/onze-missie"] {
-    position: absolute !important;
-    left: 1.2rem !important;
-    bottom: 3.2rem !important;
-    top: auto !important;
-    right: auto !important;
-    margin: 0 !important;
-    transform: none !important;
-    z-index: 4;
-  }
-}
-
 @media screen and (max-width: 749px) {
   [id$="__image_banner_hda3BV"] .banner__media > img {
     object-fit: cover;
