@@ -3391,6 +3391,7 @@ details-disclosure > details {
   }
 
   [id$="__image_banner_KmfCLW"] .banner__box {
+    position: static;
     min-width: 0;
     max-width: none;
     width: auto;
