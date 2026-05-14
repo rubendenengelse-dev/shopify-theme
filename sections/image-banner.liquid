@@ -28,11 +28,33 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 
+  {%- if request.page_type == 'index' and section.id contains 'image_banner_KmfCLW' -%}
+    #Banner-{{ section.id }} .wog-home-mission-banner__tablet-cta {
+      display: none;
+    }
+
+    @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
+      #Banner-{{ section.id }} .banner__buttons {
+        display: none;
+      }
+
+      #Banner-{{ section.id }} .wog-home-mission-banner__tablet-cta {
+        display: inline-flex;
+        position: absolute;
+        left: 1.2rem;
+        bottom: 3.2rem;
+        z-index: 4;
+      }
+    }
+  {%- endif -%}
+
 {%- endstyle -%}
 
 {%- liquid
   assign full_width = '100vw'
   assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+  assign wog_tablet_cta_label = blank
+  assign wog_tablet_cta_link = blank
 
   if section.settings.image_behavior == 'ambient'
     assign half_width = '60vw'
@@ -49,6 +71,15 @@
   assign fetch_priority = 'auto'
   if section.index == 1
     assign fetch_priority = 'high'
+  endif
+  if request.page_type == 'index' and section.id contains 'image_banner_KmfCLW'
+    for block in section.blocks
+      if block.type == 'buttons'
+        assign wog_tablet_cta_label = block.settings.button_label_1
+        assign wog_tablet_cta_link = block.settings.button_link_1
+        break
+      endif
+    endfor
   endif
 -%}
 
@@ -165,6 +196,14 @@
       {%- endfor -%}
     </div>
   </div>
+  {%- if request.page_type == 'index' and section.id contains 'image_banner_KmfCLW' and wog_tablet_cta_label != blank -%}
+    <a
+      href="{{ wog_tablet_cta_link }}"
+      class="button button--primary wog-home-mission-banner__tablet-cta"
+    >
+      {{- wog_tablet_cta_label | escape -}}
+    </a>
+  {%- endif -%}
 </div>
 
 {% schema %}
