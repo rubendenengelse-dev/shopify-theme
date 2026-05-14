@@ -3382,7 +3382,7 @@ details-disclosure > details {
 }
 
 @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
-  [id$="__image_banner_KmfCLW"] .banner__content {
+  div[id^="Banner-template--"][id$="__image_banner_KmfCLW"] .banner__content {
     position: absolute;
     inset: 0;
     align-items: flex-end !important;
@@ -3390,7 +3390,7 @@ details-disclosure > details {
     padding: 0 !important;
   }
 
-  [id$="__image_banner_KmfCLW"] .banner__box {
+  div[id^="Banner-template--"][id$="__image_banner_KmfCLW"] .banner__box {
     position: static;
     min-width: 0;
     max-width: none;
@@ -3398,7 +3398,7 @@ details-disclosure > details {
     padding: 0;
   }
 
-  [id$="__image_banner_KmfCLW"] .banner__buttons {
+  div[id^="Banner-template--"][id$="__image_banner_KmfCLW"] .banner__buttons {
     position: absolute !important;
     left: 1.2rem !important;
     bottom: 3.2rem !important;
