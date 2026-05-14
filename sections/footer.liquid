@@ -1498,11 +1498,19 @@
     text-align: left;
     font-size: 1.1rem;
     line-height: 1.35;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.8rem;
   }
 
   .footer__copyright.caption .copyright__content,
   .footer__copyright.caption .policies a {
     font-size: 1.1rem;
+  }
+
+  .footer__copyright.caption .copyright__content:nth-of-type(2) {
+    display: none;
   }
 
   .footer__copyright.caption .policies {
