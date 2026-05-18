@@ -63,6 +63,12 @@
   }
 }
 
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .collection--full-width .slider--tablet.product-grid:after {
+    padding-left: calc(1.5rem + var(--grid-desktop-horizontal-spacing));
+  }
+}
+
 .collection__description > * {
   margin: 0;
 }
