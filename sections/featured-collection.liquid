@@ -24,10 +24,6 @@
   <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-{%- liquid
-  assign featured_collection_title = section.settings.title | strip_html
--%}
-
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -40,14 +36,6 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  {%- if featured_collection_title contains 'Bestsellers' -%}
-    @media screen and (min-width: 750px) and (max-width: 989px) {
-      .section-{{ section.id }}-padding .slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item {
-        width: calc(50% - var(--grid-desktop-horizontal-spacing) - 4rem);
-      }
-    }
-  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
