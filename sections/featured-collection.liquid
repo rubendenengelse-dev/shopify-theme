@@ -1560,6 +1560,46 @@
       #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-options--color {
         flex-direction: row;
         gap: 1.4rem;
+        padding-top: 0.6rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch {
+        align-items: center;
+        appearance: none;
+        background: transparent;
+        border: 0;
+        display: inline-flex;
+        justify-content: center;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch__dot {
+        border: 0.1rem solid rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        display: block;
+        height: 3.05rem;
+        width: 3.05rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch__dot--black {
+        background: #000;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch__dot--white {
+        background: #fff;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch.is-selected .mobile-filter-sort-color-swatch__dot {
+        border-color: #000;
+        box-shadow: 0 0 0 0.2rem #fff, 0 0 0 0.32rem #000;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch:focus,
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch:focus-visible,
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-color-swatch:active {
+        box-shadow: none !important;
+        outline: none !important;
       }
 
       #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-clear {
