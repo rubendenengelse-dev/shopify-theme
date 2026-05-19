@@ -644,6 +644,16 @@
       grid-template-rows: repeat(2, 1fr);
     }
 
+    #collection-{{ section.id }} .mobile-product-column-toggle__button[data-mobile-product-columns='3'] {
+      display: none;
+    }
+
+    #collection-{{ section.id }} .mobile-product-column-toggle__button[data-mobile-product-columns='3'] .mobile-product-column-toggle__icon {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      width: 2.4rem;
+    }
+
     #collection-{{ section.id }} .mobile-product-column-toggle__icon span {
       background: currentColor;
       border-radius: 0.08rem;
@@ -668,6 +678,11 @@
     #collection-{{ section.id }}[data-mobile-product-columns='2'] .product-grid .grid__item {
       max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
       width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+    }
+
+    #collection-{{ section.id }}[data-mobile-product-columns='3'] .product-grid .grid__item {
+      max-width: calc(33.333% - var(--grid-mobile-horizontal-spacing) * 2 / 3) !important;
+      width: calc(33.333% - var(--grid-mobile-horizontal-spacing) * 2 / 3) !important;
     }
 
     #collection-{{ section.id }} .grid__item.is-filter-hidden {
@@ -1284,9 +1299,15 @@
       #collection-{{ section.id }} .desktop-filter-layout .product-grid.grid .grid__item,
       #collection-{{ section.id }} > .slider-mobile-gutter .product-grid .grid__item,
       #collection-{{ section.id }}[data-mobile-product-columns='2'] .product-grid .grid__item {
-        flex: 0 0 calc(50% - clamp(1.2rem, 2vw, 1.8rem) / 2) !important;
-        max-width: calc(50% - clamp(1.2rem, 2vw, 1.8rem) / 2) !important;
-        width: calc(50% - clamp(1.2rem, 2vw, 1.8rem) / 2) !important;
+        flex: 0 0 calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
+        max-width: calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
+        width: calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
+      }
+
+      #collection-{{ section.id }}[data-mobile-product-columns='3'] .product-grid .grid__item {
+        flex: 0 0 calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
+        max-width: calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
+        width: calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
       }
 
       #collection-{{ section.id }}[data-mobile-product-columns='1'] .product-grid .grid__item {
@@ -1315,6 +1336,253 @@
 
       #collection-{{ section.id }} .slider-buttons {
         display: none !important;
+      }
+
+      #collection-{{ section.id }} .mobile-product-column-toggle {
+        align-items: center;
+        display: flex !important;
+        gap: 0.9rem;
+        justify-content: flex-start;
+        margin: 0.6rem 0 1.8rem;
+        width: 100%;
+      }
+
+      #collection-{{ section.id }} .mobile-product-column-toggle__group {
+        align-items: center;
+        background: #f4f4f4;
+        border: 0.1rem solid rgba(0, 0, 0, 0.1);
+        border-radius: 999px;
+        display: inline-flex;
+        flex: 0 0 16.34rem;
+        gap: 0.36rem;
+        height: 5.19rem;
+        padding: 0.42rem;
+      }
+
+      #collection-{{ section.id }} .mobile-product-column-toggle__button[data-mobile-product-columns='2'] {
+        display: none !important;
+      }
+
+      #collection-{{ section.id }} .mobile-product-column-toggle__button[data-mobile-product-columns='3'] {
+        display: inline-flex !important;
+      }
+
+      #collection-{{ section.id }} .mobile-product-filter-sort {
+        align-items: center;
+        appearance: none;
+        background: #f4f4f4;
+        border: 0.1rem solid rgba(0, 0, 0, 0.1);
+        border-radius: 999px;
+        color: #000;
+        display: inline-flex;
+        flex: 0 0 16.34rem;
+        font-family: var(--font-heading-family);
+        font-size: 1.52rem;
+        font-weight: 760;
+        gap: 0.75rem;
+        height: 5.19rem;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        padding: 0 1.4rem;
+        text-transform: uppercase;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet {
+        background: rgba(0, 0, 0, 0.34);
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        right: 0;
+        top: 0;
+        display: block !important;
+        transition: opacity 220ms ease;
+        z-index: 80;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__panel {
+        background: #fff;
+        border-radius: 0;
+        bottom: 0;
+        left: 0;
+        min-height: 74vh;
+        padding: 0 2rem 2.8rem;
+        position: absolute;
+        right: 0;
+        transform: translateY(100%);
+        transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet.is-open .mobile-filter-sort-sheet__panel {
+        transform: translateY(0);
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__header {
+        align-items: center;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.11);
+        display: flex;
+        justify-content: center;
+        min-height: 6.4rem;
+        position: relative;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__title {
+        color: #000;
+        font-family: var(--font-heading-family);
+        font-size: 1.86rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        line-height: 1.1;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__close {
+        align-items: center;
+        appearance: none;
+        background: transparent;
+        border: 0;
+        color: #000;
+        display: inline-flex;
+        height: 4.4rem;
+        justify-content: center;
+        padding: 0;
+        position: absolute;
+        right: -0.4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4.4rem;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__close svg {
+        display: block;
+        height: 2.2rem;
+        width: 2.2rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__close:focus,
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__close:focus-visible,
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__close:active {
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet__content {
+        padding-top: 0.8rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-dropdown {
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-dropdown__summary {
+        align-items: center;
+        color: #000;
+        cursor: pointer;
+        display: flex;
+        font-family: var(--font-heading-family);
+        font-size: 1.5rem;
+        font-weight: 700;
+        justify-content: space-between;
+        line-height: 1.2;
+        list-style: none;
+        min-height: 5.8rem;
+        text-transform: uppercase;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-dropdown__summary::-webkit-details-marker {
+        display: none;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-dropdown__summary svg {
+        display: block;
+        height: 1.55rem;
+        transition: transform 180ms ease;
+        width: 1.55rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-dropdown[open] .mobile-filter-sort-dropdown__summary svg {
+        transform: rotate(-90deg);
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-dropdown__body {
+        padding: 0.1rem 0 2rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-option {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        color: #000;
+        cursor: pointer;
+        font-family: var(--font-body-family);
+        font-size: 1.42rem;
+        line-height: 1.2;
+        padding: 0;
+        text-align: left;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-options--size {
+        display: grid;
+        gap: 0.9rem;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-options--size .mobile-filter-sort-option {
+        align-items: center;
+        border: 0.1rem solid rgba(0, 0, 0, 0.16);
+        border-radius: 999px;
+        display: inline-flex;
+        justify-content: center;
+        min-height: 4.1rem;
+        text-align: center;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-option.is-selected {
+        border-color: #000;
+        font-weight: 700;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-option--radio {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-options--color {
+        flex-direction: row;
+        gap: 1.4rem;
+      }
+
+      #collection-{{ section.id }} .mobile-filter-sort-sheet .mobile-filter-sort-clear {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        color: #000;
+        font-family: var(--font-heading-family);
+        font-size: 1.28rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-top: 1.65rem;
+        padding: 0;
+        text-align: left;
+        -webkit-tap-highlight-color: transparent !important;
       }
     }
   {% endif %}
@@ -1398,6 +1666,15 @@
             aria-pressed="true"
           >
             <span class="mobile-product-column-toggle__icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+          </button>
+          <button
+            class="mobile-product-column-toggle__button"
+            type="button"
+            data-mobile-product-columns="3"
+            aria-label="Toon producten in 3 kolommen"
+            aria-pressed="false"
+          >
+            <span class="mobile-product-column-toggle__icon" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
           </button>
           <button
             class="mobile-product-column-toggle__button"
@@ -1790,9 +2067,19 @@
     const productItems = Array.from(collection.querySelectorAll('.product-grid .grid__item'));
     const recentlyViewedStorageKey = 'wog-recently-viewed-products';
 
+    const ipadPortraitColumnsQuery = window.matchMedia('(min-width: 750px) and (max-width: 989px) and (orientation: portrait)');
     const storageKey = 'wog-mobile-product-columns';
+    const ipadStorageKey = 'wog-ipad-portrait-product-columns';
+    const getStorageKey = () => (ipadPortraitColumnsQuery.matches ? ipadStorageKey : storageKey);
+    const getDefaultColumns = () => (ipadPortraitColumnsQuery.matches ? '3' : '2');
+    const normalizeColumns = (columns) => {
+      if (columns === '1') return '1';
+      if (columns === '2' || columns === '3') return columns;
+      return getDefaultColumns();
+    };
+
     const setColumns = (columns) => {
-      const nextColumns = columns === '1' ? '1' : '2';
+      const nextColumns = normalizeColumns(columns);
       collection.dataset.mobileProductColumns = nextColumns;
       buttons.forEach((button) => {
         const isActive = button.dataset.mobileProductColumns === nextColumns;
@@ -1800,14 +2087,14 @@
         button.setAttribute('aria-pressed', String(isActive));
       });
       try {
-        window.localStorage.setItem(storageKey, nextColumns);
+        window.localStorage.setItem(getStorageKey(), nextColumns);
       } catch (error) {}
     };
 
     try {
-      setColumns(window.localStorage.getItem(storageKey) || '2');
+      setColumns(window.localStorage.getItem(getStorageKey()) || getDefaultColumns());
     } catch (error) {
-      setColumns('2');
+      setColumns(getDefaultColumns());
     }
 
     buttons.forEach((button) => {
