@@ -14,6 +14,26 @@
   text-transform: uppercase;
 }
 
+@media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
+  .related-products {
+    max-width: 100vw;
+    padding-left: clamp(1.6rem, 2.7vw, 2.4rem);
+    padding-right: clamp(1.6rem, 2.7vw, 2.4rem);
+  }
+
+  .related-products .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: clamp(1rem, 1.8vw, 1.6rem);
+    row-gap: clamp(2.4rem, 3.6vw, 3.4rem);
+  }
+
+  .related-products .product-grid .grid__item {
+    max-width: none;
+    width: 100%;
+  }
+}
+
 @media screen and (min-width: 990px) {
   .related-products {
     max-width: min(100vw, 178rem);
