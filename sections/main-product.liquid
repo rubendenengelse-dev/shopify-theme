@@ -532,25 +532,38 @@
         }
 
         #MainProduct-{{ section.id }} .product__media-wrapper {
-          flex: 0 0 54% !important;
-          max-width: 54% !important;
-          width: 54% !important;
+          flex: 0 0 56% !important;
+          max-width: 56% !important;
+          width: 56% !important;
         }
 
         #MainProduct-{{ section.id }} .product__info-wrapper {
           box-sizing: border-box;
-          flex: 0 0 46% !important;
+          flex: 0 0 44% !important;
           left: 0 !important;
-          max-width: 46% !important;
+          max-width: 44% !important;
           padding: 0 0 0 clamp(1.6rem, 2vw, 2.4rem) !important;
           position: relative;
-          width: 46% !important;
+          width: 44% !important;
         }
 
         #MainProduct-{{ section.id }} .product__info-container {
           box-sizing: border-box;
           max-width: 100%;
           padding-right: 0 !important;
+        }
+
+        #MainProduct-{{ section.id }} .product-gallery-scroll-indicator {
+          left: clamp(1.8rem, 2.3vw, 2.8rem) !important;
+        }
+
+        #MainProduct-{{ section.id }} .product-gallery-links {
+          left: clamp(2.4rem, 3vw, 3.6rem) !important;
+        }
+
+        #MainProduct-{{ section.id }} .product-gallery-tab-content {
+          margin-left: clamp(2.4rem, 3vw, 3.6rem) !important;
+          max-width: min(92rem, calc(100vw - clamp(4.8rem, 6vw, 7.2rem))) !important;
         }
       }
 
