@@ -968,6 +968,7 @@
     @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
       #MainProduct-{{ section.id }}.section-{{ section.id }}-padding {
         padding-top: 0 !important;
+        --wog-product-portrait-content-gutter: clamp(1.6rem, 2.7vw, 2.4rem);
         --wog-product-portrait-header-overlap: 2px;
       }
 
@@ -1050,13 +1051,13 @@
         justify-content: flex-start;
         letter-spacing: 0.12em;
         line-height: 1.2;
-        margin: clamp(1.8rem, 3vw, 2.6rem) 0 0;
+        margin: clamp(1.8rem, 3vw, 2.6rem) 0 0 var(--wog-product-portrait-content-gutter);
         overflow-x: auto;
         padding: 0 0 1.25rem;
         scrollbar-width: none;
         text-transform: uppercase;
         white-space: nowrap;
-        width: 52%;
+        width: calc(52% - var(--wog-product-portrait-content-gutter));
       }
 
       #MainProduct-{{ section.id }} .product-gallery-links--mobile::-webkit-scrollbar {
@@ -1104,8 +1105,8 @@
       #MainProduct-{{ section.id }} .product-gallery-tab-content {
         box-sizing: border-box;
         display: block !important;
-        margin: 1.2rem 0 4.8rem;
-        width: 52%;
+        margin: 1.2rem 0 4.8rem var(--wog-product-portrait-content-gutter);
+        width: calc(52% - var(--wog-product-portrait-content-gutter));
       }
 
       #MainProduct-{{ section.id }} .product-gallery-tab-panel[hidden] {
@@ -1157,6 +1158,26 @@
         line-height: 1.2;
         margin: 0;
         text-transform: uppercase;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon {
+        align-items: center;
+        color: #000;
+        display: inline-flex;
+        flex: 0 0 3.2rem;
+        height: 3.2rem;
+        justify-content: center;
+        width: 3.2rem;
+      }
+
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon svg,
+      #MainProduct-{{ section.id }} .product-gallery-benefit__icon img {
+        display: block;
+        height: 2.35rem;
+        max-height: 2.35rem;
+        max-width: 2.35rem;
+        object-fit: contain;
+        width: 2.35rem;
       }
 
       #MainProduct-{{ section.id }} media-gallery,
