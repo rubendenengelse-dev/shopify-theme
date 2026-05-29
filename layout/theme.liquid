@@ -1490,6 +1490,58 @@
           width: 100%;
         }
       }
+
+      @media screen and (min-width: 750px) and (max-width: 1440px) {
+        html.product-info-drawer-open,
+        html.product-info-drawer-open body {
+          touch-action: auto;
+        }
+
+        [data-wog-global-cart-drawer] .product-info-drawer__panel {
+          bottom: 0 !important;
+          display: flex !important;
+          flex-direction: column !important;
+          height: 100dvh !important;
+          max-height: 100dvh !important;
+          min-height: 0 !important;
+          overflow: hidden !important;
+          top: 0 !important;
+        }
+
+        [data-wog-global-cart-drawer] .product-info-drawer__body {
+          display: flex !important;
+          flex: 1 1 0 !important;
+          flex-direction: column !important;
+          height: auto !important;
+          max-height: none !important;
+          min-height: 0 !important;
+          overflow: hidden !important;
+        }
+
+        [data-wog-global-cart-drawer] .product-info-drawer__cart-added {
+          display: flex !important;
+          flex: 1 1 0 !important;
+          flex-direction: column !important;
+          height: auto !important;
+          min-height: 0 !important;
+        }
+
+        [data-wog-global-cart-drawer] .product-info-drawer__cart-scroll {
+          display: flex !important;
+          flex: 1 1 0 !important;
+          flex-direction: column !important;
+          min-height: 0 !important;
+          overflow-x: hidden !important;
+          overflow-y: auto !important;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        [data-wog-global-cart-drawer] .product-info-drawer__checkout-anchor {
+          flex: 0 0 auto !important;
+          margin-top: 0 !important;
+        }
+      }
     </style>
   </head>
 
@@ -2228,13 +2280,13 @@
         { passive: false }
       );
 
-      const iPadPortraitCartQuery = window.matchMedia('(min-width: 750px) and (max-width: 1180px) and (orientation: portrait)');
+      const tabletCartQuery = window.matchMedia('(min-width: 750px) and (max-width: 1440px)');
       let globalCartTouchY = null;
 
       globalCartDrawer?.addEventListener(
         'touchstart',
         (event) => {
-          if (!iPadPortraitCartQuery.matches) return;
+          if (!tabletCartQuery.matches) return;
           if (!event.target.closest('.product-info-drawer__cart-scroll')) return;
           globalCartTouchY = event.touches?.[0]?.clientY ?? null;
         },
@@ -2244,7 +2296,7 @@
       globalCartDrawer?.addEventListener(
         'touchmove',
         (event) => {
-          if (!iPadPortraitCartQuery.matches) return;
+          if (!tabletCartQuery.matches) return;
           const scrollArea = event.target.closest('.product-info-drawer__cart-scroll');
           if (!scrollArea) return;
 
