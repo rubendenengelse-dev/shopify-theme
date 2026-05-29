@@ -3393,6 +3393,50 @@
       }
     }
 
+    @media screen and (min-width: 750px) and (max-width: 1440px) {
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__panel {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
+        display: flex !important;
+        flex: 1 1 0 !important;
+        flex-direction: column !important;
+        height: auto !important;
+        max-height: none !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-added {
+        display: flex !important;
+        flex: 1 1 0 !important;
+        flex-direction: column !important;
+        min-height: 0 !important;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__cart-scroll {
+        display: flex !important;
+        flex: 1 1 0 !important;
+        flex-direction: column !important;
+        min-height: 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__checkout-anchor {
+        flex: 0 0 auto !important;
+        margin-top: 0 !important;
+      }
+    }
+
     @media screen and (max-width: 749px) {
       .product-info-drawer[data-product-info-drawer-active-title='WINKELWAGEN'] .product-info-drawer__body {
         overflow-y: auto !important;
@@ -4620,6 +4664,46 @@
           scrollArea.scrollTop += event.deltaY * 0.58;
         },
         { passive: false }
+      );
+
+      const productDrawerTabletCartMedia = window.matchMedia('(min-width: 750px) and (max-width: 1440px)');
+      let productDrawerCartTouchY = null;
+
+      drawer?.addEventListener(
+        'touchstart',
+        (event) => {
+          if (!productDrawerTabletCartMedia.matches) return;
+          if (drawer.getAttribute('data-product-info-drawer-active-title') !== 'WINKELWAGEN') return;
+          if (!event.target.closest('.product-info-drawer__cart-scroll')) return;
+          productDrawerCartTouchY = event.touches?.[0]?.clientY ?? null;
+        },
+        { passive: true }
+      );
+
+      drawer?.addEventListener(
+        'touchmove',
+        (event) => {
+          if (!productDrawerTabletCartMedia.matches) return;
+          if (drawer.getAttribute('data-product-info-drawer-active-title') !== 'WINKELWAGEN') return;
+          const scrollArea = event.target.closest('.product-info-drawer__cart-scroll');
+          if (!scrollArea) return;
+
+          const nextTouchY = event.touches?.[0]?.clientY;
+          if (typeof nextTouchY !== 'number' || productDrawerCartTouchY === null) return;
+
+          event.preventDefault();
+          scrollArea.scrollTop += productDrawerCartTouchY - nextTouchY;
+          productDrawerCartTouchY = nextTouchY;
+        },
+        { passive: false }
+      );
+
+      drawer?.addEventListener(
+        'touchend',
+        () => {
+          productDrawerCartTouchY = null;
+        },
+        { passive: true }
       );
 
       drawerBody?.addEventListener('click', async (event) => {
