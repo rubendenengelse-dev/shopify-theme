@@ -389,7 +389,7 @@
       })
         .format(numericAmount)
         .replace(/\u00a0/g, " ")
-        .replace(/^\u20ac\s*/, "\u20ac ");
+        .replace(/^\u20ac\s*/, "\u20ac\u202f");
     } catch {
       return `${price.amount} ${price.currencyCode}`;
     }

@@ -129,7 +129,7 @@
                     {{ order.fulfillment_status_label }}
                   </td>
                   <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
-                    {{ order.total_net_amount | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
+                    {{ order.total_net_amount | money_without_currency | replace: ',00', '' | prepend: '&euro;&#8239;' }}
                   </td>
                 </tr>
               {%- endfor -%}
