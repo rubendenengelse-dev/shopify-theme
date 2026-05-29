@@ -23,6 +23,12 @@
 {%- if template.suffix == 'oversize-t-shirt-s' -%}
   {%- assign is_oversize_tshirts_template = true -%}
 {%- endif -%}
+{%- assign is_mannen_polo_page = false -%}
+{%- if request.page_type == 'page' -%}
+  {%- if canonical_url contains '/pages/mannen-polo' -%}
+    {%- assign is_mannen_polo_page = true -%}
+  {%- endif -%}
+{%- endif -%}
 {%- assign is_tshirts_like_rich_text = false -%}
 {%- if is_tshirts_template or is_hoodies_template or is_oversize_tshirts_template or is_collection_tshirts_vrouwen -%}
   {%- assign is_tshirts_like_rich_text = true -%}
@@ -290,7 +296,7 @@
             {%- when 'heading' -%}
               {%- liquid
                 assign rendered_heading = block.settings.heading
-                if request.page_type == 'page' and canonical_url contains '/pages/mannen-polo'
+                if is_mannen_polo_page
                   if section.id contains 'rich_text_yGBKb3'
                     assign rendered_heading = "POLO'S"
                   elsif section.id contains 'rich_text_rnxHdp'
@@ -322,7 +328,7 @@
             {%- when 'text' -%}
               {%- liquid
                 assign rendered_text = block.settings.text
-                if request.page_type == 'page' and canonical_url contains '/pages/mannen-polo'
+                if is_mannen_polo_page
                   if section.id contains 'rich_text_yGBKb3'
                     assign rendered_text = "<p>Onze polo's combineren dagelijks comfort met een verzorgde uitstraling. Gemaakt met oog voor detail, ontworpen voor momenten waarop je stijlvol en ontspannen voor de dag wilt komen, en gedragen met een boodschap die verder gaat dan trends.<br/><br/>Dit is meer dan mode. Het is een manier om Gods Woord zichtbaar te dragen, verpakt in kwaliteit en vakmanschap. Ontworpen met passie voor God en gedreven door een missie om de kledingindustrie eerlijker en bewuster te maken.<br/><br/></p>"
                   elsif section.id contains 'rich_text_rnxHdp'
