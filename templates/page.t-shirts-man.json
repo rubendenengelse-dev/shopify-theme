@@ -117,7 +117,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "render_only_collection_handle": "",
-        "collection": "polos",
+        "collection": "over-size",
         "products_to_show": 25,
         "title": "",
         "heading_size": "h1",
