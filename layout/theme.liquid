@@ -1706,7 +1706,12 @@
         new Intl.NumberFormat('nl-NL', {
           style: 'currency',
           currency: 'EUR',
-        }).format(Number(cents || 0) / 100);
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2,
+        })
+          .format(Number(cents || 0) / 100)
+          .replace(/\u00a0/g, ' ')
+          .replace(/^\u20ac\s*/, '\u20ac ');
 
       const formatGlobalWishlistPrice = (price) => {
         if (!price?.amount || !price?.currencyCode) return '';
@@ -1727,7 +1732,12 @@
           return new Intl.NumberFormat('nl-NL', {
             style: 'currency',
             currency: price.currencyCode,
-          }).format(numericAmount);
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2,
+          })
+            .format(numericAmount)
+            .replace(/\u00a0/g, ' ')
+            .replace(/^\u20ac\s*/, '\u20ac ');
         } catch (error) {
           return `${price.amount} ${price.currencyCode}`;
         }

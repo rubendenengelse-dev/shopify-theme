@@ -384,7 +384,12 @@
       return new Intl.NumberFormat("nl-NL", {
         style: "currency",
         currency: price.currencyCode,
-      }).format(numericAmount);
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+      })
+        .format(numericAmount)
+        .replace(/\u00a0/g, " ")
+        .replace(/^\u20ac\s*/, "\u20ac ");
     } catch {
       return `${price.amount} ${price.currencyCode}`;
     }
