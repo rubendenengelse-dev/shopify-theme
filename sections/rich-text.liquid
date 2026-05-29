@@ -24,10 +24,8 @@
   {%- assign is_oversize_tshirts_template = true -%}
 {%- endif -%}
 {%- assign is_mannen_polo_page = false -%}
-{%- if request.page_type == 'page' -%}
-  {%- if canonical_url contains '/pages/mannen-polo' -%}
-    {%- assign is_mannen_polo_page = true -%}
-  {%- endif -%}
+{%- if page_title contains 'Mannen Polo' -%}
+  {%- assign is_mannen_polo_page = true -%}
 {%- endif -%}
 {%- assign is_tshirts_like_rich_text = false -%}
 {%- if is_tshirts_template or is_hoodies_template or is_oversize_tshirts_template or is_collection_tshirts_vrouwen -%}
