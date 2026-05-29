@@ -160,18 +160,18 @@
                                 {{ 'products.product.price.regular_price' | t }}
                               </span>
                               <s class="cart-item__old-price product-option">
-                                {{- item.original_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -}}
+                                {{- item.original_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' -}}
                               </s>
                               <span class="visually-hidden">
                                 {{ 'products.product.price.sale_price' | t }}
                               </span>
                               <strong class="cart-item__final-price product-option">
-                                {{ item.final_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
+                                {{ item.final_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
                               </strong>
                             </div>
                           {%- else -%}
                             <div class="product-option">
-                              {{ item.original_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
+                              {{ item.original_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
                             </div>
                           {%- endif -%}
 
@@ -242,18 +242,18 @@
                                   {{ 'products.product.price.regular_price' | t }}
                                 </span>
                                 <s class="cart-item__old-price price price--end">
-                                  {{ item.original_line_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
+                                  {{ item.original_line_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
                                 </s>
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.sale_price' | t }}
                                 </span>
                                 <span class="price price--end">
-                                  {{ item.final_line_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
+                                  {{ item.final_line_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
                                 </span>
                               </div>
                             {%- else -%}
                               <span class="price price--end">
-                                {{ item.original_line_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
+                                {{ item.original_line_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
                               </span>
                             {%- endif -%}
 
@@ -432,7 +432,7 @@
                                     <ul class="list-unstyled">
                                       <li>
                                         <span>{{ item.variant.quantity_rule.min }}+</span>
-                                        <span>{{ item.variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}/ea</span>
+                                        <span>{{ item.variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}/ea</span>
                                       </li>
                                       {%- for price_break in item.variant.quantity_price_breaks -%}
                                         <li>
@@ -440,7 +440,7 @@
                                             {{- price_break.minimum_quantity -}}
                                             <span aria-hidden="true">+</span></span
                                           >
-                                          <span>{{ price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}/ea</span>
+                                          <span>{{ price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}/ea</span>
                                         </li>
                                       {%- endfor -%}
                                     </ul>
@@ -506,7 +506,7 @@
                   <li class="discounts__discount discounts__discount--end">
                     {{- 'icon-discount.svg' | inline_asset_content -}}
                     {{ discount.title | escape }}
-                    (-{{ discount.total_allocated_amount | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }})
+                    (-{{ discount.total_allocated_amount | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }})
                   </li>
                 {%- endfor -%}
               </ul>
@@ -515,7 +515,7 @@
 
           <div class="totals" role="status">
             <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}</p>
+            <p class="totals__total-value">{{ cart.total_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}</p>
           </div>
 
           <small class="tax-note caption-large rte">

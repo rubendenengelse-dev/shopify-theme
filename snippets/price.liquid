@@ -27,9 +27,9 @@
   assign price_min = product.price_min
   assign price_max = product.price_max
   assign available = target.available | default: false
-  assign money_price = price | money_without_currency | replace: ',00', '' | prepend: '&euro; '
-  assign money_price_min = price_min | money_without_currency | replace: ',00', '' | prepend: '&euro; '
-  assign money_price_max = price_max | money_without_currency | replace: ',00', '' | prepend: '&euro; '
+  assign money_price = price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;'
+  assign money_price_min = price_min | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;'
+  assign money_price_max = price_max | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;'
 
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
@@ -63,7 +63,7 @@
               </span>
               <span>
                 <s class="price-item price-item--regular variant-item__old-price">
-                  {{ compare_at_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
+                  {{ compare_at_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
                 </s>
               </span>
             {%- endunless -%}
@@ -87,7 +87,7 @@
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
           <span>
             <s class="price-item price-item--regular">
-              {{ compare_at_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
+              {{ compare_at_price | money_without_currency | replace: ',00', '' | prepend: '&euro;&nbsp;' }}
             </s>
           </span>
         {%- endunless -%}
