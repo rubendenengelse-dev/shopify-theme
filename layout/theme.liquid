@@ -2172,6 +2172,61 @@
         document.documentElement.classList.remove('product-info-drawer-open');
       };
 
+      const normalizeWogPriceText = (root = document.body) => {
+        if (!root || typeof document.createTreeWalker !== 'function') return;
+
+        const priceSelector = [
+          '.price',
+          '[class*="price"]',
+          '.totals',
+          '.cart-item',
+          '.product-info-drawer',
+          '.facets',
+          '.active-facets',
+          '.quick-order-list',
+          '.order',
+          '.account',
+        ].join(',');
+
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            const value = node.nodeValue || '';
+            if (!value.includes('\u20ac') && !/,00\b/.test(value)) return NodeFilter.FILTER_REJECT;
+
+            const parent = node.parentElement;
+            if (!parent || parent.closest('script, style, noscript, textarea, select, option')) {
+              return NodeFilter.FILTER_REJECT;
+            }
+
+            return parent.closest(priceSelector) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+          },
+        });
+
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+
+        nodes.forEach((node) => {
+          node.nodeValue = node.nodeValue
+            .replace(/\u20ac(?=\d)/g, '\u20ac ')
+            .replace(/(\d+),00\b/g, '$1');
+        });
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        normalizeWogPriceText();
+
+        const priceObserver = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE) normalizeWogPriceText(node);
+              if (node.nodeType === Node.TEXT_NODE) normalizeWogPriceText(node.parentElement);
+            });
+          });
+        });
+
+        priceObserver.observe(document.body, { childList: true, subtree: true });
+      });
+
       const openGlobalCartDrawer = () => {
         if (!globalCartDrawer) return false;
         closeGlobalWishlistDrawer();
