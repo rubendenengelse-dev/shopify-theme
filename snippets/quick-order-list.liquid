@@ -177,7 +177,7 @@
               <span class="totals__subtotal-value">
                 {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
                 {% # theme-check-disable %}
-                {{ cart | line_items_for: product | sum: 'original_line_price' | money }}
+                {{ cart | line_items_for: product | sum: 'original_line_price' | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
                 {% # theme-check-enable %}
               </span>
               <p class="totals__subtotal h5">{{ 'sections.quick_order_list.product_total' | t }}</p>

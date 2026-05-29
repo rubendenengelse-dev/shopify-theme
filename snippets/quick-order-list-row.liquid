@@ -58,7 +58,7 @@
       {%- endif -%}
     </div>
 
-    {%- assign item_price = item.price | money -%}
+    {%- assign item_price = item.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
     {%- if item.compare_at_price -%}
       <dl class="variant-item__discounted-prices">
         <dt class="visually-hidden">
@@ -66,7 +66,7 @@
         </dt>
         <dd>
           <s class="variant-item__old-price price price--end">
-            {{ item.compare_at_price | money }}
+            {{ item.compare_at_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
           </s>
         </dd>
         <dt class="visually-hidden">
@@ -84,14 +84,14 @@
             >
               <div class="price-per-item">
                 {%- if cart_qty < volume_pricing_array.last.minimum_quantity -%}
-                  {%- assign variant_price = variant.price | money -%}
+                  {%- assign variant_price = variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                   <span class="price-per-item--current price">
                     {{- 'sections.quick_order_list.each' | t: money: variant_price -}}
                   </span>
                 {%- else -%}
                   {%- for price_break in volume_pricing_array -%}
                     {%- if cart_qty >= price_break.minimum_quantity -%}
-                      {%- assign price_break_price = price_break.price | money -%}
+                      {%- assign price_break_price = price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                       <span class="price-per-item--current price">
                         {{- 'sections.quick_order_list.each' | t: money: price_break_price -}}
                       </span>
@@ -120,14 +120,14 @@
         >
           <div class="price-per-item">
             {%- if cart_qty < volume_pricing_array.last.minimum_quantity -%}
-              {%- assign variant_price = variant.price | money -%}
+              {%- assign variant_price = variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
               <span class="price-per-item--current price">
                 {{- 'sections.quick_order_list.each' | t: money: variant_price -}}
               </span>
             {%- else -%}
               {%- for price_break in volume_pricing_array -%}
                 {%- if cart_qty >= price_break.minimum_quantity -%}
-                  {%- assign price_break_price = price_break.price | money -%}
+                  {%- assign price_break_price = price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                   <span class="price-per-item--current price">
                     {{- 'sections.quick_order_list.each' | t: money: price_break_price -}}
                   </span>
@@ -153,7 +153,7 @@
     {%- render 'loading-spinner' -%}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
-    <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money }}</span>
+    <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}</span>
     {% # theme-check-enable %}
   </td>
 
@@ -246,7 +246,7 @@
                   <ul class="list-unstyled">
                     <li>
                       <span>{{ variant.quantity_rule.min }}+</span>
-                      {%- assign price = variant.price | money_with_currency -%}
+                      {%- assign price = variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                       <span>{{ 'sections.quick_order_list.each' | t: money: price }}</span>
                     </li>
                     {%- for price_break in variant.quantity_price_breaks -%}
@@ -255,7 +255,7 @@
                           {{- price_break.minimum_quantity -}}
                           <span aria-hidden="true">+</span></span
                         >
-                        {%- assign price = price_break.price | money_with_currency -%}
+                        {%- assign price = price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                         <span> {{ 'sections.quick_order_list.each' | t: money: price }}</span>
                       </li>
                     {%- endfor -%}
@@ -320,7 +320,7 @@
       </div>
     </quantity-popover>
   </td>
-  {%- assign item_price = item.price | money -%}
+  {%- assign item_price = item.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
   <td class="variant-item__price small-hide medium-hide">
     {%- if item.compare_at_price -%}
       <dl class="variant-item__discounted-prices">
@@ -329,7 +329,7 @@
         </dt>
         <dd>
           <s class="variant-item__old-price price price--end">
-            {{ item.compare_at_price | money }}
+            {{ item.compare_at_price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}
           </s>
         </dd>
         <dt class="visually-hidden">
@@ -347,14 +347,14 @@
             >
               <div class="price-per-item">
                 {%- if cart_qty < volume_pricing_array.last.minimum_quantity -%}
-                  {%- assign variant_price = variant.price | money -%}
+                  {%- assign variant_price = variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                   <span class="price-per-item--current price">
                     {{- 'sections.quick_order_list.each' | t: money: variant_price -}}
                   </span>
                 {%- else -%}
                   {%- for price_break in volume_pricing_array -%}
                     {%- if cart_qty >= price_break.minimum_quantity -%}
-                      {%- assign price_break_price = price_break.price | money -%}
+                      {%- assign price_break_price = price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                       <span class="price-per-item--current price">
                         {{- 'sections.quick_order_list.each' | t: money: price_break_price -}}
                       </span>
@@ -383,14 +383,14 @@
         >
           <div class="price-per-item">
             {%- if cart_qty < volume_pricing_array.last.minimum_quantity -%}
-              {%- assign variant_price = variant.price | money -%}
+              {%- assign variant_price = variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
               <span class="price-per-item--current price">
                 {{- 'sections.quick_order_list.each' | t: money: variant_price -}}
               </span>
             {%- else -%}
               {%- for price_break in volume_pricing_array -%}
                 {%- if cart_qty >= price_break.minimum_quantity -%}
-                  {%- assign price_break_price = price_break.price | money -%}
+                  {%- assign price_break_price = price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
                   <span class="price-per-item--current price">
                     {{- 'sections.quick_order_list.each' | t: money: price_break_price -}}
                   </span>
@@ -415,7 +415,7 @@
     {%- render 'loading-spinner' -%}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
-    <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money }}</span>
+    <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}</span>
     {% # theme-check-enable %}
   </td>
 </tr>
@@ -436,16 +436,16 @@
     <ul>
       <li>
         <span>{{ variant.quantity_rule.min }}</span>
-        {%- assign price = variant.price | money -%}
+        {%- assign price = variant.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
         <span data-text="{{ price }}">{{ price }}</span>
       </li>
       {%- for price_break in variant.quantity_price_breaks -%}
-        {%- assign price_break_price = price_break.price | money -%}
+        {%- assign price_break_price = price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' -%}
         <li>
           <span>
             {{- price_break.minimum_quantity -}}
           </span>
-          <span data-text="{{ price_break_price }}">{{- price_break.price | money }}</span>
+          <span data-text="{{ price_break_price }}">{{- price_break.price | money_without_currency | replace: ',00', '' | prepend: '&euro; ' }}</span>
         </li>
       {%- endfor -%}
     </ul>
