@@ -73,7 +73,7 @@
         "featured_collection_CPBmen": {
           "type": "featured_collection",
           "settings": {
-            "collection": "polos"
+            "collection": "mens"
           }
         },
         "featured_collection_CFGWPi": {
