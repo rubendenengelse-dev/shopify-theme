@@ -1335,6 +1335,149 @@
           width: 100%;
         }
       }
+
+      @media screen and (min-width: 750px) and (max-width: 1180px) and (orientation: portrait) {
+        html.product-info-drawer-open,
+        html.product-info-drawer-open body {
+          touch-action: auto;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__panel {
+          max-width: 48rem;
+          padding: 0;
+          width: min(44rem, calc(100vw - 1.6rem));
+        }
+
+        .wog-global-cart-drawer.is-open .product-info-drawer__panel {
+          box-shadow: -1.4rem 0 3.4rem rgba(0, 0, 0, 0.18);
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__header {
+          align-items: flex-start;
+          background: #fff;
+          border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1.1rem 1.7rem -1.7rem rgba(0, 0, 0, 0.38);
+          justify-content: center;
+          padding: 1.5rem 5.2rem 1.45rem !important;
+          position: sticky;
+          text-align: center;
+          top: 0;
+          z-index: 3;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__header h2 {
+          font-size: 2.2rem;
+          transform: none;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__close {
+          height: 4rem;
+          margin-right: 0;
+          position: absolute;
+          right: 1.6rem;
+          top: 0.45rem;
+          width: 4rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__close svg {
+          height: 1.75rem;
+          width: 1.75rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__body {
+          display: flex;
+          flex: 1 1 auto;
+          flex-direction: column;
+          height: auto;
+          overflow: hidden !important;
+          padding: 2.8rem 2.4rem 1.8rem !important;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-added {
+          display: flex;
+          flex: 1 1 auto;
+          flex-direction: column;
+          gap: 1.45rem;
+          min-height: 0;
+          padding-bottom: 0;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-scroll {
+          display: flex;
+          flex: 1 1 auto;
+          flex-direction: column;
+          gap: 1.45rem;
+          min-height: 0;
+          overflow-y: auto !important;
+          overscroll-behavior: contain;
+          padding-bottom: 6.9rem;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-item {
+          align-items: flex-start;
+          gap: 1.05rem;
+          grid-template-columns: 6.8rem minmax(0, 1fr);
+          padding: 1.15rem 0;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-image {
+          height: 8.8rem;
+          width: 6.8rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-title {
+          font-size: 1.34rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-meta,
+        .wog-global-cart-drawer .product-info-drawer__cart-price,
+        .wog-global-cart-drawer .product-info-drawer__summary-row {
+          font-size: 1.2rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__quantity {
+          height: 3.4rem;
+          width: 10.2rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__shipping-tracker {
+          padding-bottom: 1.2rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__shipping-title,
+        .wog-global-cart-drawer .product-info-drawer__summary-heading {
+          font-size: 1.36rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__shipping-message {
+          font-size: 1.18rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__order-summary {
+          gap: 0.75rem;
+          padding-top: 1.5rem;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__checkout-anchor {
+          background: #fff;
+          border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+          box-shadow: 0 -1.2rem 1.8rem -1.8rem rgba(0, 0, 0, 0.34);
+          bottom: 0;
+          left: 0;
+          margin-top: 0;
+          padding: 1rem 2.4rem 1.3rem;
+          position: relative;
+          right: 0;
+          z-index: 2;
+        }
+
+        .wog-global-cart-drawer .product-info-drawer__cart-button {
+          font-size: 1.16rem;
+          min-height: 4.5rem;
+          width: 100%;
+        }
+      }
     </style>
   </head>
 
