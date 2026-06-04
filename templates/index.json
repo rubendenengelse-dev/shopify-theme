@@ -51,6 +51,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
+        "render_only_collection_handle": "",
         "collection": "all",
         "products_to_show": 8,
         "title": "<strong>POPULAIRE BESTSELLERS</strong>",
@@ -205,6 +206,7 @@
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "title": "WAT PAST HET BEST BIJ JOU ?",
         "heading_size": "h2",
         "image_ratio": "adapt",
@@ -244,7 +246,7 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/DSC_7163.jpg",
+        "image": "shopify://shop_images/DSC_9864.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
