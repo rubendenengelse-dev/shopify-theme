@@ -14,11 +14,11 @@
   {%- assign is_collection_tshirts_vrouwen = true -%}
 {%- endif -%}
 {%- assign is_tshirts_template = false -%}
-{%- if template.suffix == 't-shirts' or template.suffix == 't-shirts-man' or template.suffix == 't-shirts-vrouw' or template.suffix == 'dames-t-shirts' or template.suffix == 't-shirts-dames' or template.suffix == 't-shirt-mannen' or template.suffix == 'mannen-polo' or template.suffix == 'mannen-polo-3' -%}
+{%- if template.suffix == 't-shirts' or template.suffix == 't-shirts-man' or template.suffix == 't-shirts-vrouw' or template.suffix == 'dames-t-shirts' or template.suffix == 't-shirts-dames' or template.suffix == 't-shirt-mannen' or template.suffix == 'house-of-miracles' -%}
   {%- assign is_tshirts_template = true -%}
 {%- endif -%}
 {%- assign is_hoodies_template = false -%}
-{%- if template.suffix == 'hoodies' or template.suffix == 'hoodies-man' or template.suffix == 'hoodies-vrouw' or template.suffix == 'vrouwen-hoodie' or template.suffix == 'hoodies-vrouwen' or template.suffix == 'oversize-hoodies' -%}
+{%- if template.suffix == 'hoodies' or template.suffix == 'hoodies-man' or template.suffix == 'hoodies-vrouw' or template.suffix == 'vrouwen-hoodie' or template.suffix == 'hoodies-vrouwen' -%}
   {%- assign is_hoodies_template = true -%}
 {%- endif -%}
 {%- assign is_oversize_tshirts_template = false -%}
@@ -103,12 +103,6 @@
         padding-right: 0 !important;
       }
 
-      .section-{{ section.id }}-padding.collection-list-homepage-slider .slider-mobile-gutter {
-        max-width: calc(100% + 5rem) !important;
-        margin-right: -5rem !important;
-        overflow: visible !important;
-      }
-
       .section-{{ section.id }}-padding.collection-list-homepage-slider .title-wrapper-with-link {
         justify-content: flex-start !important;
       }
@@ -121,12 +115,12 @@
 
       .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list {
         justify-content: flex-start !important;
-        margin-left: -0.6rem !important;
+        margin-left: 0 !important;
         margin-right: 0 !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
+        scroll-behavior: smooth;
         scroll-padding-left: 0 !important;
-        width: calc(100% + 2.8rem) !important;
       }
 
       .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list.slider--desktop::after {
@@ -138,17 +132,17 @@
       }
 
       .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list__item.slider__slide {
-        max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4 - 3rem) !important;
-        width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4 - 3rem) !important;
+        max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+        width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
       }
 
       .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list-desktop-controls {
         display: flex !important;
         gap: 1rem;
         position: absolute;
-        right: 5rem;
+        right: 0;
         top: 0;
-        transform: translate(0, -5.1rem);
+        transform: translate(-0.2rem, -5.1rem);
         z-index: 2;
       }
 
@@ -384,169 +378,6 @@
     }
   }
 
-  {% if is_tshirts_like_collection_list %}
-    @media screen and (min-width: 990px) and (max-width: 1366px) and (orientation: landscape) {
-      .section-{{ section.id }}-padding.collection-list-wrapper {
-        box-sizing: border-box;
-        max-width: 100vw !important;
-        overflow-x: clip;
-        padding-left: clamp(1.8rem, 2.2vw, 3rem) !important;
-        padding-right: clamp(1.8rem, 2.2vw, 3rem) !important;
-        width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .title-wrapper-with-link,
-      .section-{{ section.id }}-padding .slider-mobile-gutter {
-        box-sizing: border-box;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        max-width: 100% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list {
-        column-gap: clamp(1.2rem, 1.6vw, 1.8rem) !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        overflow-x: auto;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        scroll-padding-left: 0 !important;
-        width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list__item,
-      .section-{{ section.id }}-padding .collection-list__item.slider__slide {
-        flex: 0 0 calc(25% - clamp(1.2rem, 1.6vw, 1.8rem) * 3 / 4) !important;
-        max-width: calc(25% - clamp(1.2rem, 1.6vw, 1.8rem) * 3 / 4) !important;
-        scroll-margin-left: 0 !important;
-        width: calc(25% - clamp(1.2rem, 1.6vw, 1.8rem) * 3 / 4) !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list .card-wrapper,
-      .section-{{ section.id }}-padding .collection-list .card,
-      .section-{{ section.id }}-padding .collection-list .card__inner {
-        max-width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list img {
-        display: block;
-        height: auto;
-        max-width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list-desktop-controls,
-      .section-{{ section.id }}-padding .slider-buttons {
-        display: none !important;
-      }
-    }
-
-    @media screen and (min-width: 750px) and (max-width: 1180px) and (orientation: portrait) {
-      .section-{{ section.id }}-padding.collection-list-wrapper {
-        box-sizing: border-box;
-        max-width: 100vw !important;
-        overflow-x: clip;
-        padding-left: clamp(1.6rem, 3.5vw, 2.8rem) !important;
-        padding-right: clamp(1.6rem, 3.5vw, 2.8rem) !important;
-        width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .title-wrapper-with-link,
-      .section-{{ section.id }}-padding .slider-mobile-gutter {
-        box-sizing: border-box;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        max-width: 100% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list {
-        column-gap: clamp(1.2rem, 2vw, 1.8rem) !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        overflow-x: auto;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        scroll-padding-left: 0 !important;
-        width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list__item,
-      .section-{{ section.id }}-padding .collection-list__item.slider__slide {
-        flex: 0 0 calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
-        max-width: calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
-        scroll-margin-left: 0 !important;
-        width: calc(33.333% - clamp(1.2rem, 2vw, 1.8rem) * 2 / 3) !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list .card-wrapper,
-      .section-{{ section.id }}-padding .collection-list .card,
-      .section-{{ section.id }}-padding .collection-list .card__inner {
-        max-width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list img {
-        display: block;
-        height: auto;
-        max-width: 100% !important;
-      }
-
-      .section-{{ section.id }}-padding .collection-list-desktop-controls,
-      .section-{{ section.id }}-padding .slider-buttons {
-        display: none !important;
-      }
-    }
-  {% endif %}
-
-  @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
-    .section-{{ section.id }}-padding.collection-list-homepage-slider {
-      max-width: 100% !important;
-      padding-left: 2.8rem !important;
-      padding-right: 0 !important;
-      margin-left: 0 !important;
-      margin-right: auto !important;
-    }
-
-    .section-{{ section.id }}-padding.collection-list-homepage-slider .title-wrapper-with-link,
-    .section-{{ section.id }}-padding.collection-list-homepage-slider .slider-mobile-gutter {
-      max-width: none !important;
-      width: 100% !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-
-    .section-{{ section.id }}-padding.collection-list-homepage-slider .slider-mobile-gutter {
-      max-width: none !important;
-      overflow: visible !important;
-      margin-right: 0 !important;
-    }
-
-    .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-      scroll-padding-left: 0 !important;
-      width: calc(100% + 2.8rem) !important;
-    }
-
-    .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list__item.slider__slide {
-      max-width: calc(33.333% - var(--grid-mobile-horizontal-spacing) * 2 / 3) !important;
-      width: calc(33.333% - var(--grid-mobile-horizontal-spacing) * 2 / 3) !important;
-    }
-
-    .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list-desktop-controls,
-    .section-{{ section.id }}-padding.collection-list-homepage-slider .slider-buttons {
-      display: none !important;
-    }
-  }
-
   @media screen and (max-width: 749px) {
     .section-{{ section.id }}-padding.collection-list-homepage-slider {
       padding-left: 0;
@@ -566,8 +397,7 @@
 
     .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list {
       padding-left: 1.5rem !important;
-      padding-right: 0 !important;
-      width: calc(100% + 1.5rem) !important;
+      padding-right: 1.5rem !important;
     }
 
     .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list__item.slider__slide {
@@ -603,6 +433,10 @@
       assign show_desktop_collection_slider = true
     endif
   endif
+
+  if show_desktop_collection_slider
+    assign show_mobile_slider = false
+  endif
 -%}
 
 {% if should_render_collection_list %}
@@ -630,9 +464,9 @@
       </div>
     {%- endunless -%}
 
-    <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if is_homepage_collection_list %} data-wog-laptop-soft-slide{% endif %}>
+    <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ collection_columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if show_mobile_slider or show_desktop_collection_slider %} slider{% if show_desktop_collection_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ collection_columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if show_desktop_collection_slider %} slider slider--desktop{% elsif show_mobile_slider %} slider{% endif %} collection-list--{{ section.blocks.size }}-items"
         id="Slider-{{ section.id }}"
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
@@ -644,23 +478,6 @@
           endif
         -%}
         {%- for block in section.blocks -%}
-          {%- liquid
-            assign wog_collection_card_url = blank
-            if is_homepage_collection_list or is_tshirts_like_collection_list
-              case block.settings.collection
-                when 'mens'
-                  assign wog_collection_card_url = '/pages/t-shirts'
-                when 'hoodies'
-                  assign wog_collection_card_url = '/pages/hoodies'
-                when '07-t-shirtss'
-                  assign wog_collection_card_url = '/pages/dames-t-shirts'
-                when '07-hoodies'
-                  assign wog_collection_card_url = '/pages/vrouwen-hoodie'
-                when 'oversize-tshirts'
-                  assign wog_collection_card_url = '/pages/oversize-t-shirt-s'
-              endcase
-            endif
-          -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
             class="collection-list__item grid__item{% if show_mobile_slider or show_desktop_collection_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -674,7 +491,6 @@
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
             {% render 'card-collection',
               card_collection: block.settings.collection,
-              card_url: wog_collection_card_url,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
               placeholder_image: placeholder_image
