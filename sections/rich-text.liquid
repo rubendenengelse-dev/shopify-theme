@@ -296,7 +296,11 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.heading }}
+                {%- if page.handle == 'house-of-miracles' and block.settings.heading == 'T-SHIRT' -%}
+                  HOUSE OF MIRACLES
+                {%- else -%}
+                  {{ block.settings.heading }}
+                {%- endif -%}
               </h2>
             {%- when 'caption' -%}
               <p
