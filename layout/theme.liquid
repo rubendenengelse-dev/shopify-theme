@@ -1,6 +1,16 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TBRK2GB2');
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -1335,213 +1345,6 @@
           width: 100%;
         }
       }
-
-      @media screen and (min-width: 750px) and (max-width: 1180px) and (orientation: portrait) {
-        html.product-info-drawer-open,
-        html.product-info-drawer-open body {
-          touch-action: auto;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__panel {
-          bottom: 0 !important;
-          display: flex;
-          flex-direction: column;
-          height: 100dvh;
-          max-height: 100dvh;
-          max-width: 48rem;
-          overflow: hidden !important;
-          padding: 0;
-          top: 0 !important;
-          width: min(44rem, calc(100vw - 1.6rem));
-        }
-
-        .wog-global-cart-drawer.is-open .product-info-drawer__panel {
-          box-shadow: -1.4rem 0 3.4rem rgba(0, 0, 0, 0.18);
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__header {
-          align-items: flex-start;
-          background: #fff;
-          border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1.1rem 1.7rem -1.7rem rgba(0, 0, 0, 0.38);
-          justify-content: center;
-          padding: 1.5rem 5.2rem 1.45rem !important;
-          position: sticky;
-          text-align: center;
-          top: 0;
-          z-index: 3;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__header h2 {
-          font-size: 2.2rem;
-          transform: none;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__close {
-          height: 4rem;
-          margin-right: 0;
-          position: absolute;
-          right: 1.6rem;
-          top: 0.45rem;
-          width: 4rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__close svg {
-          height: 1.75rem;
-          width: 1.75rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__body {
-          display: flex;
-          flex: 1 1 0;
-          flex-direction: column;
-          height: 100%;
-          max-height: none;
-          min-height: 0;
-          overflow: hidden !important;
-          padding: 2.8rem 2.4rem 1.8rem !important;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__cart-added {
-          display: flex;
-          flex: 1 1 0;
-          flex-direction: column;
-          gap: 1.45rem;
-          height: 100%;
-          min-height: 0;
-          padding-bottom: 0;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__cart-scroll {
-          display: flex;
-          flex: 1 1 0;
-          flex-direction: column;
-          gap: 1.45rem;
-          height: auto;
-          min-height: 0;
-          overflow-y: auto !important;
-          overscroll-behavior: contain;
-          padding-bottom: 1.8rem;
-          -webkit-overflow-scrolling: touch;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__cart-item {
-          align-items: flex-start;
-          gap: 1.05rem;
-          grid-template-columns: 6.8rem minmax(0, 1fr);
-          padding: 1.15rem 0;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__cart-image {
-          height: 8.8rem;
-          width: 6.8rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__cart-title {
-          font-size: 1.34rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__cart-meta,
-        .wog-global-cart-drawer .product-info-drawer__cart-price,
-        .wog-global-cart-drawer .product-info-drawer__summary-row {
-          font-size: 1.2rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__quantity {
-          height: 3.4rem;
-          width: 10.2rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__shipping-tracker {
-          padding-bottom: 1.2rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__shipping-title,
-        .wog-global-cart-drawer .product-info-drawer__summary-heading {
-          font-size: 1.36rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__shipping-message {
-          font-size: 1.18rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__order-summary {
-          gap: 0.75rem;
-          padding-top: 1.5rem;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__checkout-anchor {
-          background: #fff;
-          border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
-          box-shadow: 0 -1.2rem 1.8rem -1.8rem rgba(0, 0, 0, 0.34);
-          bottom: 0;
-          flex: 0 0 auto;
-          left: 0;
-          margin-top: 0;
-          padding: 1rem 0 max(1.3rem, env(safe-area-inset-bottom));
-          position: relative;
-          right: 0;
-          z-index: 2;
-        }
-
-        .wog-global-cart-drawer .product-info-drawer__cart-button {
-          font-size: 1.16rem;
-          min-height: 4.5rem;
-          width: 100%;
-        }
-      }
-
-      @media screen and (min-width: 750px) and (max-width: 1440px) {
-        html.product-info-drawer-open,
-        html.product-info-drawer-open body {
-          touch-action: auto;
-        }
-
-        [data-wog-global-cart-drawer] .product-info-drawer__panel {
-          bottom: 0 !important;
-          display: flex !important;
-          flex-direction: column !important;
-          height: 100dvh !important;
-          max-height: 100dvh !important;
-          min-height: 0 !important;
-          overflow: hidden !important;
-          top: 0 !important;
-        }
-
-        [data-wog-global-cart-drawer] .product-info-drawer__body {
-          display: flex !important;
-          flex: 1 1 0 !important;
-          flex-direction: column !important;
-          height: auto !important;
-          max-height: none !important;
-          min-height: 0 !important;
-          overflow: hidden !important;
-        }
-
-        [data-wog-global-cart-drawer] .product-info-drawer__cart-added {
-          display: flex !important;
-          flex: 1 1 0 !important;
-          flex-direction: column !important;
-          height: auto !important;
-          min-height: 0 !important;
-        }
-
-        [data-wog-global-cart-drawer] .product-info-drawer__cart-scroll {
-          display: flex !important;
-          flex: 1 1 0 !important;
-          flex-direction: column !important;
-          min-height: 0 !important;
-          overflow-x: hidden !important;
-          overflow-y: auto !important;
-          overscroll-behavior: contain;
-          -webkit-overflow-scrolling: touch;
-        }
-
-        [data-wog-global-cart-drawer] .product-info-drawer__checkout-anchor {
-          flex: 0 0 auto !important;
-          margin-top: 0 !important;
-        }
-      }
     </style>
   </head>
 
@@ -1552,6 +1355,13 @@
     data-account-wishlist-url="{{ routes.account_url }}#wishlist"
     data-wishlist-endpoint="/apps/wishlist/proxy"
   >
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBRK2GB2"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -1706,12 +1516,7 @@
         new Intl.NumberFormat('nl-NL', {
           style: 'currency',
           currency: 'EUR',
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 2,
-        })
-          .format(Number(cents || 0) / 100)
-          .replace(/\u00a0/g, ' ')
-          .replace(/^\u20ac\s*/, '\u20ac ');
+        }).format(Number(cents || 0) / 100);
 
       const formatGlobalWishlistPrice = (price) => {
         if (!price?.amount || !price?.currencyCode) return '';
@@ -1732,12 +1537,7 @@
           return new Intl.NumberFormat('nl-NL', {
             style: 'currency',
             currency: price.currencyCode,
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 2,
-          })
-            .format(numericAmount)
-            .replace(/\u00a0/g, ' ')
-            .replace(/^\u20ac\s*/, '\u20ac ');
+          }).format(numericAmount);
         } catch (error) {
           return `${price.amount} ${price.currencyCode}`;
         }
@@ -2172,61 +1972,6 @@
         document.documentElement.classList.remove('product-info-drawer-open');
       };
 
-      const normalizeWogPriceText = (root = document.body) => {
-        if (!root || typeof document.createTreeWalker !== 'function') return;
-
-        const priceSelector = [
-          '.price',
-          '[class*="price"]',
-          '.totals',
-          '.cart-item',
-          '.product-info-drawer',
-          '.facets',
-          '.active-facets',
-          '.quick-order-list',
-          '.order',
-          '.account',
-        ].join(',');
-
-        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-          acceptNode(node) {
-            const value = node.nodeValue || '';
-            if (!value.includes('\u20ac') && !/,00\b/.test(value)) return NodeFilter.FILTER_REJECT;
-
-            const parent = node.parentElement;
-            if (!parent || parent.closest('script, style, noscript, textarea, select, option')) {
-              return NodeFilter.FILTER_REJECT;
-            }
-
-            return parent.closest(priceSelector) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-          },
-        });
-
-        const nodes = [];
-        while (walker.nextNode()) nodes.push(walker.currentNode);
-
-        nodes.forEach((node) => {
-          node.nodeValue = node.nodeValue
-            .replace(/\u20ac(?=\d)/g, '\u20ac ')
-            .replace(/(\d+),00\b/g, '$1');
-        });
-      };
-
-      document.addEventListener('DOMContentLoaded', () => {
-        normalizeWogPriceText();
-
-        const priceObserver = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-              if (node.nodeType === Node.ELEMENT_NODE) normalizeWogPriceText(node);
-              if (node.nodeType === Node.TEXT_NODE) normalizeWogPriceText(node.parentElement);
-            });
-          });
-        });
-
-        priceObserver.observe(document.body, { childList: true, subtree: true });
-      });
-
       const openGlobalCartDrawer = () => {
         if (!globalCartDrawer) return false;
         closeGlobalWishlistDrawer();
@@ -2343,44 +2088,6 @@
           scrollArea.scrollTop += event.deltaY * 0.58;
         },
         { passive: false }
-      );
-
-      const tabletCartQuery = window.matchMedia('(min-width: 750px) and (max-width: 1440px)');
-      let globalCartTouchY = null;
-
-      globalCartDrawer?.addEventListener(
-        'touchstart',
-        (event) => {
-          if (!tabletCartQuery.matches) return;
-          if (!event.target.closest('.product-info-drawer__cart-scroll')) return;
-          globalCartTouchY = event.touches?.[0]?.clientY ?? null;
-        },
-        { passive: true }
-      );
-
-      globalCartDrawer?.addEventListener(
-        'touchmove',
-        (event) => {
-          if (!tabletCartQuery.matches) return;
-          const scrollArea = event.target.closest('.product-info-drawer__cart-scroll');
-          if (!scrollArea) return;
-
-          const nextTouchY = event.touches?.[0]?.clientY;
-          if (typeof nextTouchY !== 'number' || globalCartTouchY === null) return;
-
-          event.preventDefault();
-          scrollArea.scrollTop += globalCartTouchY - nextTouchY;
-          globalCartTouchY = nextTouchY;
-        },
-        { passive: false }
-      );
-
-      globalCartDrawer?.addEventListener(
-        'touchend',
-        () => {
-          globalCartTouchY = null;
-        },
-        { passive: true }
       );
 
       globalCartDrawerBody?.addEventListener('click', async (event) => {
