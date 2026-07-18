@@ -379,6 +379,16 @@
   }
 
   @media screen and (max-width: 749px) {
+    {% if request.page_type == 'index' %}
+      .section-{{ section.id }}-padding.collection-list-homepage-slider .collection-list.slider--tablet {
+        scroll-behavior: smooth;
+        scroll-snap-type: x proximity;
+        scroll-snap-stop: normal;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+    {% endif %}
+
     .section-{{ section.id }}-padding.collection-list-homepage-slider {
       padding-left: 0;
       padding-right: 0;
