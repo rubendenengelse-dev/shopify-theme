@@ -26,7 +26,7 @@
   {%- assign is_oversize_tshirts_template = true -%}
 {%- endif -%}
 {%- assign is_tshirts_like_collection_list = false -%}
-{%- if is_tshirts_template or is_oversize_tshirts_template or is_hoodies_template or is_collection_tshirts_vrouwen -%}
+{%- if is_tshirts_template or is_oversize_tshirts_template or is_hoodies_template or is_collection_tshirts_vrouwen or page.handle == 'mannen-polo' or page.handle == 'oversize-hoodies' -%}
   {%- assign is_tshirts_like_collection_list = true -%}
 {%- endif -%}
 
