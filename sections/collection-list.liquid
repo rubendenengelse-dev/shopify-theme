@@ -450,6 +450,12 @@
       assign use_mens_category_page_links = true
     endif
   endif
+  assign use_dames_category_page_links = false
+  if request.page_type == 'page'
+    if page.handle == 'dames-t-shirts' or page.handle == 'vrouwen-hoodie'
+      assign use_dames_category_page_links = true
+    endif
+  endif
 
 -%}
 
@@ -506,6 +512,14 @@
                   assign category_card_url = '/pages/oversize-hoodies'
                 when 'polos'
                   assign category_card_url = '/pages/mannen-polo'
+              endcase
+            endif
+            if use_dames_category_page_links
+              case block.settings.collection.handle
+                when 't-shirts-vrouwen'
+                  assign category_card_url = '/pages/dames-t-shirts'
+                when 'hoodies-vrouwen'
+                  assign category_card_url = '/pages/vrouwen-hoodie'
               endcase
             endif
           -%}

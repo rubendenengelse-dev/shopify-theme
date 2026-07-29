@@ -33,6 +33,12 @@
     {%- assign is_mens_category_readmore = true -%}
   {%- endif -%}
 {%- endif -%}
+{%- assign is_dames_category_readmore = false -%}
+{%- if request.page_type == 'page' -%}
+  {%- if page.handle == 'dames-t-shirts' or page.handle == 'vrouwen-hoodie' -%}
+    {%- assign is_dames_category_readmore = true -%}
+  {%- endif -%}
+{%- endif -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -112,7 +118,7 @@
         display: inline;
       }
 
-      {% if is_mens_category_readmore or is_collection_tshirts_vrouwen %}
+      {% if is_mens_category_readmore or is_dames_category_readmore or is_collection_tshirts_vrouwen %}
         .section-{{ section.id }}-padding .rich-text__mobile-readmore-intro {
           display: block;
         }
@@ -235,7 +241,7 @@
         }
       {% endif %}
 
-      {% if is_mens_category_readmore or is_collection_tshirts_vrouwen %}
+      {% if is_mens_category_readmore or is_dames_category_readmore or is_collection_tshirts_vrouwen %}
         .section-{{ section.id }}-padding .rich-text__mobile-readmore[hidden] {
           display: none !important;
         }
@@ -383,6 +389,7 @@
         if (
           window.innerWidth >= 750
           && !{{ is_mens_category_readmore | json }}
+          && !{{ is_dames_category_readmore | json }}
           && !{{ is_collection_tshirts_vrouwen | json }}
         ) return;
 
@@ -397,7 +404,7 @@
         if (!paragraph) return;
 
         const fullText = paragraph.innerHTML.trim();
-        if ({{ is_mens_category_readmore | json }} || {{ is_collection_tshirts_vrouwen | json }}) {
+        if ({{ is_mens_category_readmore | json }} || {{ is_dames_category_readmore | json }} || {{ is_collection_tshirts_vrouwen | json }}) {
           const paragraphBreakMatch = fullText.match(/<br\s*\/?>\s*<br\s*\/?>/i);
           if (!paragraphBreakMatch) return;
 
