@@ -24,8 +24,14 @@
   {%- assign is_oversize_tshirts_template = true -%}
 {%- endif -%}
 {%- assign is_tshirts_like_rich_text = false -%}
-{%- if is_tshirts_template or is_hoodies_template or is_oversize_tshirts_template or is_collection_tshirts_vrouwen -%}
+{%- if is_tshirts_template or is_hoodies_template or is_oversize_tshirts_template or is_collection_tshirts_vrouwen or page.handle == 'mannen-polo' or page.handle == 'oversize-hoodies' -%}
   {%- assign is_tshirts_like_rich_text = true -%}
+{%- endif -%}
+{%- assign is_mens_category_readmore = false -%}
+{%- if request.page_type == 'page' -%}
+  {%- if page.handle == 't-shirts' or page.handle == 'hoodies' or page.handle == 'oversize-t-shirts' or page.handle == 'oversize-hoodies' or page.handle == 'mannen-polo' -%}
+    {%- assign is_mens_category_readmore = true -%}
+  {%- endif -%}
 {%- endif -%}
 
 {%- style -%}
@@ -106,7 +112,7 @@
         display: inline;
       }
 
-      {% if is_hoodies_template or is_tshirts_template or is_collection_tshirts_vrouwen %}
+      {% if is_mens_category_readmore or is_collection_tshirts_vrouwen %}
         .section-{{ section.id }}-padding .rich-text__mobile-readmore-intro {
           display: block;
         }
@@ -229,7 +235,7 @@
         }
       {% endif %}
 
-      {% if is_hoodies_template or is_tshirts_template or is_collection_tshirts_vrouwen %}
+      {% if is_mens_category_readmore or is_collection_tshirts_vrouwen %}
         .section-{{ section.id }}-padding .rich-text__mobile-readmore[hidden] {
           display: none !important;
         }
@@ -376,8 +382,7 @@
       const applyMobileReadMore = () => {
         if (
           window.innerWidth >= 750
-          && !{{ is_hoodies_template | json }}
-          && !{{ is_tshirts_template | json }}
+          && !{{ is_mens_category_readmore | json }}
           && !{{ is_collection_tshirts_vrouwen | json }}
         ) return;
 
@@ -392,7 +397,7 @@
         if (!paragraph) return;
 
         const fullText = paragraph.innerHTML.trim();
-        if ({{ is_hoodies_template | json }} || {{ is_tshirts_template | json }} || {{ is_collection_tshirts_vrouwen | json }}) {
+        if ({{ is_mens_category_readmore | json }} || {{ is_collection_tshirts_vrouwen | json }}) {
           const paragraphBreakMatch = fullText.match(/<br\s*\/?>\s*<br\s*\/?>/i);
           if (!paragraphBreakMatch) return;
 
