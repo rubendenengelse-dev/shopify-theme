@@ -444,6 +444,13 @@
     endif
   endif
 
+  assign use_mens_category_page_links = false
+  if request.page_type == 'page'
+    if page.handle == 't-shirts' or page.handle == 'hoodies' or page.handle == 'oversize-t-shirts' or page.handle == 'oversize-hoodies' or page.handle == 'mannen-polo'
+      assign use_mens_category_page_links = true
+    endif
+  endif
+
 -%}
 
 {% if should_render_collection_list %}
@@ -485,6 +492,23 @@
           endif
         -%}
         {%- for block in section.blocks -%}
+          {%- liquid
+            assign category_card_url = block.settings.collection.url
+            if use_mens_category_page_links
+              case block.settings.collection.handle
+                when 'mens'
+                  assign category_card_url = '/pages/t-shirts'
+                when 'hoodies'
+                  assign category_card_url = '/pages/hoodies'
+                when 'oversize-tshirts'
+                  assign category_card_url = '/pages/oversize-t-shirts'
+                when 'over-size'
+                  assign category_card_url = '/pages/oversize-hoodies'
+                when 'polos'
+                  assign category_card_url = '/pages/mannen-polo'
+              endcase
+            endif
+          -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
             class="collection-list__item grid__item{% if show_mobile_slider or show_desktop_collection_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -500,7 +524,8 @@
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
-              placeholder_image: placeholder_image
+              placeholder_image: placeholder_image,
+              card_url: category_card_url
             %}
           </li>
         {%- endfor -%}
