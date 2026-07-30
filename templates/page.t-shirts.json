@@ -32,6 +32,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "desktop_content_position": "left",
         "content_alignment": "left",
         "color_scheme": "",
@@ -77,12 +78,14 @@
         },
         "featured_collection_CFGWPi": {
           "type": "featured_collection",
+          "disabled": true,
           "settings": {
             "collection": "07-t-shirtss"
           }
         },
         "featured_collection_GB6VKi": {
           "type": "featured_collection",
+          "disabled": true,
           "settings": {
             "collection": "07-hoodies"
           }
@@ -98,6 +101,7 @@
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "title": "",
         "heading_size": "h1",
         "image_ratio": "adapt",
@@ -114,6 +118,7 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "collection": "mens",
         "products_to_show": 25,
         "title": "",
@@ -162,6 +167,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "desktop_content_position": "left",
         "content_alignment": "left",
         "color_scheme": "",
@@ -193,6 +199,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "desktop_content_position": "left",
         "content_alignment": "left",
         "color_scheme": "",
@@ -225,6 +232,7 @@
       "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "desktop_content_position": "left",
         "content_alignment": "left",
         "color_scheme": "",
@@ -256,6 +264,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "desktop_content_position": "left",
         "content_alignment": "left",
         "color_scheme": "",
@@ -287,6 +296,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
+        "render_only_collection_handle": "",
         "desktop_content_position": "left",
         "content_alignment": "left",
         "color_scheme": "",
