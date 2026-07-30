@@ -432,6 +432,12 @@
         order: 1;
       }
 
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item--filtered-small {
+        flex: 0 0 calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
+        max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
+        width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
+      }
+
       #MainProduct-{{ section.id }} .product__media-item--click-zoom .product__modal-opener--image,
       #MainProduct-{{ section.id }} .product__media-item--click-zoom .product__media {
         overflow: hidden;
