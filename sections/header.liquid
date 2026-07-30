@@ -114,6 +114,70 @@
     text-transform: uppercase;
   }
 
+  .wog-coming-soon-trigger {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    width: 100%;
+  }
+
+  .wog-coming-soon-toast {
+    align-items: center;
+    background: rgba(17, 17, 17, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    box-shadow: 0 1.8rem 5rem rgba(0, 0, 0, 0.28);
+    color: #fff;
+    display: flex;
+    font-size: 1.25rem;
+    font-weight: 700;
+    gap: 0.9rem;
+    left: 50%;
+    letter-spacing: 0.22em;
+    opacity: 0;
+    padding: 1.4rem 2.2rem;
+    pointer-events: none;
+    position: fixed;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translate(-50%, -42%) scale(0.92);
+    transition: opacity 180ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    white-space: nowrap;
+    z-index: 10000;
+  }
+
+  .wog-coming-soon-toast::before {
+    animation: wog-coming-soon-pulse 1.4s ease-in-out infinite;
+    background: #fff;
+    border-radius: 50%;
+    content: '';
+    height: 0.65rem;
+    width: 0.65rem;
+  }
+
+  .wog-coming-soon-toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  @keyframes wog-coming-soon-pulse {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: scale(0.78);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.18);
+    }
+  }
+
   .mega-menu__list {
     gap: 0;
     display: flex;
@@ -2323,11 +2387,20 @@ body.desktop-search-open .desktop-search-panel {
     <ul class="list-unstyled mobile-menu-promo" role="list">
       {% for block in section.blocks %}
         {% if block.type == 'menu-image' and block.settings.link_name == link.title %}
+          {% assign normalized_promo_title = block.settings.link_title | strip | downcase %}
+          {% assign is_o7_coming_soon = false %}
+          {% if normalized_promo_title contains 'o7' or normalized_promo_title contains '07' %}
+            {% assign is_o7_coming_soon = true %}
+          {% endif %}
           <li class="mega_menu_img slide">
+            {% if is_o7_coming_soon %}
+            <button type="button" class="mega-menu__link wog-coming-soon-trigger" data-coming-soon-trigger aria-label="{{ block.settings.link_title | escape }} — Coming soon">
+            {% else %}
             <a class="mega-menu__link" href="{{ block.settings.link_url }}"{% if block.settings.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>
+            {% endif %}
               <div>{{ block.settings.link_image | image_url: width: 500 | image_tag }}</div>
               <div class="title">{{ block.settings.link_title }}</div>
-            </a>
+            {% if is_o7_coming_soon %}</button>{% else %}</a>{% endif %}
           </li>
         {% endif %}
       {% endfor %}
@@ -2368,11 +2441,20 @@ body.desktop-search-open .desktop-search-panel {
                                       <ul class="list-unstyled" role="list">
                                         {% for block in section.blocks %}
                                           {% if block.type == 'menu-image' and block.settings.link_name == childlink.title or block.type == 'menu-image' and block.settings.link_name == link.title %}
+                                            {% assign normalized_promo_title = block.settings.link_title | strip | downcase %}
+                                            {% assign is_o7_coming_soon = false %}
+                                            {% if normalized_promo_title contains 'o7' or normalized_promo_title contains '07' %}
+                                              {% assign is_o7_coming_soon = true %}
+                                            {% endif %}
                                             <li class="mega_menu_img slide">
+                                              {% if is_o7_coming_soon %}
+                                              <button type="button" class="mega-menu__link wog-coming-soon-trigger" data-coming-soon-trigger aria-label="{{ block.settings.link_title | escape }} — Coming soon">
+                                              {% else %}
                                               <a class="mega-menu__link" href="{{ block.settings.link_url }}"{% if block.settings.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>
+                                              {% endif %}
                                                 <div>{{ block.settings.link_image | image_url: width: 500 | image_tag }}</div>
                                                 <div class="title">{{ block.settings.link_title }}</div>
-                                              </a>
+                                              {% if is_o7_coming_soon %}</button>{% else %}</a>{% endif %}
                                             </li>
                                           {% endif %}
                                         {% endfor %}
@@ -2408,6 +2490,10 @@ body.desktop-search-open .desktop-search-panel {
                                             {% liquid
                                               assign grandchildlink_url = grandchildlink.url
                                               assign normalized_grandchild_title = grandchildlink.title | strip | downcase
+                                              assign is_o7_coming_soon = false
+                                              if normalized_grandchild_title contains 'o7' or normalized_grandchild_title contains '07'
+                                                assign is_o7_coming_soon = true
+                                              endif
                                               if normalized_top_level_title == 'dames'
                                                 if normalized_grandchild_title contains 'oversize t-shirt'
                                                   assign grandchildlink_url = '/pages/oversize-t-shirts'
@@ -2417,6 +2503,16 @@ body.desktop-search-open .desktop-search-panel {
                                               endif
                                             %}
                                             <li>
+                                              {% if is_o7_coming_soon %}
+                                              <button
+                                                type="button"
+                                                id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                                class="menu-drawer__menu-item link link--text list-menu__item focus-inset wog-coming-soon-trigger"
+                                                data-coming-soon-trigger
+                                              >
+                                                {{ grandchildlink.title | escape }}
+                                              </button>
+                                              {% else %}
                                               <a
                                                 id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                                 href="{{ grandchildlink_url }}"
@@ -2427,6 +2523,7 @@ body.desktop-search-open .desktop-search-panel {
                                               >
                                                 {{ grandchildlink.title | escape }}
                                               </a>
+                                              {% endif %}
                                             </li>
                                           {% endfor %}
                                         </ul>
@@ -2586,6 +2683,10 @@ body.desktop-search-open .desktop-search-panel {
                                     {% liquid
                                       assign grandchildlink_url = grandchildlink.url
                                       assign normalized_grandchild_title = grandchildlink.title | strip | downcase
+                                      assign is_o7_coming_soon = false
+                                      if normalized_grandchild_title contains 'o7' or normalized_grandchild_title contains '07'
+                                        assign is_o7_coming_soon = true
+                                      endif
                                       if normalized_top_level_title == 'dames'
                                         if normalized_grandchild_title contains 'oversize t-shirt'
                                           assign grandchildlink_url = '/pages/oversize-t-shirts'
@@ -2595,6 +2696,16 @@ body.desktop-search-open .desktop-search-panel {
                                       endif
                                     %}
                                     <li>
+                                      {% if is_o7_coming_soon %}
+                                      <button
+                                        type="button"
+                                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                        class="mega-menu__link link wog-coming-soon-trigger"
+                                        data-coming-soon-trigger
+                                      >
+                                        {{ grandchildlink.title | escape }}
+                                      </button>
+                                      {% else %}
                                       <a
                                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                         href="{{ grandchildlink_url }}"
@@ -2605,6 +2716,7 @@ body.desktop-search-open .desktop-search-panel {
                                       >
                                         {{ grandchildlink.title | escape }}
                                       </a>
+                                      {% endif %}
                                     </li>
                                   {% endfor %}
                                 </ul>
@@ -2618,19 +2730,33 @@ body.desktop-search-open .desktop-search-panel {
                         <div class="mega-menu__promo">
                           {% for block in section.blocks %}
                             {% if block.type == 'menu-image' and block.settings.link_name == link.title %}
+                              {% assign normalized_promo_title = block.settings.link_title | strip | downcase %}
+                              {% assign is_o7_coming_soon = false %}
+                              {% if normalized_promo_title contains 'o7' or normalized_promo_title contains '07' %}
+                                {% assign is_o7_coming_soon = true %}
+                              {% endif %}
                               <div class="mega-menu__promo-item" {{ block.shopify_attributes }}>
+                                {% if is_o7_coming_soon %}
+                                <button
+                                  type="button"
+                                  class="mega-menu__promo-card wog-coming-soon-trigger"
+                                  data-coming-soon-trigger
+                                  aria-label="{{ block.settings.link_title | escape }} — Coming soon"
+                                >
+                                {% else %}
                                 <a
                                   class="mega-menu__promo-card"
                                   href="{{ block.settings.link_url }}"
                                   {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
                                 >
+                                {% endif %}
                                   <div class="mega-menu__promo-card-image">
                                     {{ block.settings.link_image | image_url: width: 720 | image_tag }}
                                   </div>
                                   {% if block.settings.link_title != blank %}
                                     <div class="mega-menu__promo-card-title">{{ block.settings.link_title }}</div>
                                   {% endif %}
-                                </a>
+                                {% if is_o7_coming_soon %}</button>{% else %}</a>{% endif %}
                               </div>
                             {% endif %}
                           {% endfor %}
@@ -3369,6 +3495,38 @@ body.desktop-search-open .desktop-search-panel {
     }
   }
 </style>
+
+<div class="wog-coming-soon-toast" role="status" aria-live="polite" aria-atomic="true">
+  Coming soon
+</div>
+
+<script>
+  (() => {
+    if (window.wogComingSoonBound) return;
+    window.wogComingSoonBound = true;
+
+    let hideComingSoonTimer;
+    document.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-coming-soon-trigger]');
+      if (!trigger) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const toast = document.querySelector('.wog-coming-soon-toast');
+      if (!toast) return;
+
+      window.clearTimeout(hideComingSoonTimer);
+      toast.classList.remove('is-visible');
+      void toast.offsetWidth;
+      toast.classList.add('is-visible');
+
+      hideComingSoonTimer = window.setTimeout(() => {
+        toast.classList.remove('is-visible');
+      }, 1800);
+    });
+  })();
+</script>
 
 {% schema %}
 {
