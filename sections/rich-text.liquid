@@ -73,6 +73,16 @@
         margin-top: 0 !important;
       }
 
+      {% if request.page_type == 'page' and page.handle == 'oversize-hoodies' %}
+        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2,
+        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text,
+        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text p {
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center !important;
+        }
+      {% endif %}
+
       .section-{{ section.id }}-padding .rich-text__mobile-readmore {
         display: inline;
       }
@@ -205,7 +215,7 @@
         }
       {% endif %}
 
-      {% if is_oversize_tshirts_template or is_tshirts_template or is_hoodies_template or is_collection_tshirts_vrouwen %}
+      {% if is_tshirts_like_rich_text %}
         .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 {
           font-family: var(--font-body-family) !important;
           font-style: var(--font-body-style) !important;
@@ -239,6 +249,16 @@
           width: 100%;
           max-width: none;
         }
+
+        {% if request.page_type == 'page' and page.handle == 'oversize-hoodies' %}
+          .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2,
+          .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text,
+          .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text p {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center !important;
+          }
+        {% endif %}
       {% endif %}
 
       {% if is_mens_category_readmore or is_dames_category_readmore or is_collection_tshirts_vrouwen %}
