@@ -33,6 +33,11 @@
   if card_url == blank
     assign card_url = card_collection.url
   endif
+  assign normalized_collection_title = card_collection.title | strip | downcase
+  assign is_o7_coming_soon = false
+  if normalized_collection_title contains 'o7' or normalized_collection_title contains '07'
+    assign is_o7_coming_soon = true
+  endif
 -%}
 
 <div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
@@ -88,6 +93,14 @@
         <div class="card__content">
           <div class="card__information">
             <h3 class="card__heading">
+              {% if is_o7_coming_soon %}
+              <button
+                type="button"
+                class="full-unstyled-link wog-coming-soon-trigger"
+                data-coming-soon-trigger
+                aria-label="{{ card_collection.title | escape }} — Coming soon"
+              >
+              {% else %}
               <a
                 {% if card_collection == blank %}
                   role="link" aria-disabled="true"
@@ -96,6 +109,7 @@
                 {% endif %}
                 class="full-unstyled-link"
               >
+              {% endif %}
                 {%- if card_collection.title != blank -%}
                   {{- card_collection.title | escape -}}
                 {%- else -%}
@@ -106,7 +120,7 @@
                     {{- 'icon-arrow.svg' | inline_asset_content -}}
                   </span>
                 {%- endif %}
-              </a>
+              {% if is_o7_coming_soon %}</button>{% else %}</a>{% endif %}
             </h3>
             {%- if card_collection.description != blank -%}
               <p class="card__caption">
@@ -124,6 +138,14 @@
       <div class="card__content">
         <div class="card__information">
           <h3 class="card__heading">
+            {% if is_o7_coming_soon %}
+            <button
+              type="button"
+              class="full-unstyled-link wog-coming-soon-trigger"
+              data-coming-soon-trigger
+              aria-label="{{ card_collection.title | escape }} — Coming soon"
+            >
+            {% else %}
             <a
               {% if card_collection == blank %}
                 role="link" aria-disabled="true"
@@ -132,6 +154,7 @@
               {% endif %}
               class="full-unstyled-link"
             >
+            {% endif %}
               {%- if card_collection.title != blank -%}
                 {{- card_collection.title | escape -}}
               {%- else -%}
@@ -142,7 +165,7 @@
                   {{- 'icon-arrow.svg' | inline_asset_content -}}
                 </span>
               {%- endif %}
-            </a>
+            {% if is_o7_coming_soon %}</button>{% else %}</a>{% endif %}
           </h3>
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
