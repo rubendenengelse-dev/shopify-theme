@@ -73,16 +73,6 @@
         margin-top: 0 !important;
       }
 
-      {% if request.page_type == 'page' and page.handle == 'oversize-hoodies' %}
-        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2,
-        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text,
-        .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text p {
-          margin-left: auto;
-          margin-right: auto;
-          text-align: center !important;
-        }
-      {% endif %}
-
       .section-{{ section.id }}-padding .rich-text__mobile-readmore {
         display: inline;
       }
@@ -250,15 +240,6 @@
           max-width: none;
         }
 
-        {% if request.page_type == 'page' and page.handle == 'oversize-hoodies' %}
-          .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2,
-          .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text,
-          .section-{{ section.id }}-padding .rich-text__heading.rte.inline-richtext.h2 + .rich-text__text p {
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center !important;
-          }
-        {% endif %}
       {% endif %}
 
       {% if is_mens_category_readmore or is_dames_category_readmore or is_collection_tshirts_vrouwen %}
