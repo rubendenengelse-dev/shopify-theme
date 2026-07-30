@@ -152,13 +152,43 @@
     z-index: 10000;
   }
 
-  .wog-coming-soon-toast::before {
-    animation: wog-coming-soon-pulse 1.4s ease-in-out infinite;
-    background: #fff;
+  .wog-coming-soon-smile {
+    background: linear-gradient(145deg, #f7e1bd 0%, #d7a963 52%, #a87435 100%);
+    border: 1px solid rgba(255, 255, 255, 0.52);
     border-radius: 50%;
+    box-shadow:
+      inset 0.18rem 0.18rem 0.3rem rgba(255, 255, 255, 0.55),
+      inset -0.22rem -0.24rem 0.32rem rgba(73, 39, 8, 0.3),
+      0 0.45rem 1rem rgba(0, 0, 0, 0.28);
+    display: block;
+    flex: 0 0 auto;
+    height: 2.2rem;
+    position: relative;
+    transform-style: preserve-3d;
+    width: 2.2rem;
+  }
+
+  .wog-coming-soon-smile::before {
+    background: #302316;
+    border-radius: 50%;
+    box-shadow: 0.76rem 0 0 #302316;
     content: '';
-    height: 0.65rem;
-    width: 0.65rem;
+    height: 0.24rem;
+    left: 0.5rem;
+    position: absolute;
+    top: 0.63rem;
+    width: 0.24rem;
+  }
+
+  .wog-coming-soon-smile::after {
+    border-bottom: 0.2rem solid #302316;
+    border-radius: 0 0 1rem 1rem;
+    bottom: 0.46rem;
+    content: '';
+    height: 0.48rem;
+    left: 0.55rem;
+    position: absolute;
+    width: 1.05rem;
   }
 
   .wog-coming-soon-toast.is-visible {
@@ -166,15 +196,22 @@
     transform: translate(-50%, -50%) scale(1);
   }
 
-  @keyframes wog-coming-soon-pulse {
-    0%,
-    100% {
-      opacity: 0.45;
-      transform: scale(0.78);
+  .wog-coming-soon-toast.is-visible .wog-coming-soon-smile {
+    animation: wog-coming-soon-smile-pop 720ms cubic-bezier(0.2, 0.85, 0.25, 1.25) both;
+  }
+
+  @keyframes wog-coming-soon-smile-pop {
+    0% {
+      opacity: 0;
+      transform: perspective(8rem) rotateY(-100deg) rotateZ(-12deg) scale(0.55);
     }
-    50% {
+    58% {
       opacity: 1;
-      transform: scale(1.18);
+      transform: perspective(8rem) rotateY(18deg) rotateZ(4deg) scale(1.16);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(8rem) rotateY(0) rotateZ(0) scale(1);
     }
   }
 
@@ -3497,6 +3534,7 @@ body.desktop-search-open .desktop-search-panel {
 </style>
 
 <div class="wog-coming-soon-toast" role="status" aria-live="polite" aria-atomic="true">
+  <span class="wog-coming-soon-smile" aria-hidden="true"></span>
   Coming soon
 </div>
 
