@@ -184,12 +184,14 @@
         },
         "featured_collection_QU4gqM": {
           "type": "featured_collection",
+          "disabled": true,
           "settings": {
             "collection": "07-t-shirtss"
           }
         },
         "featured_collection_tG9K9t": {
           "type": "featured_collection",
+          "disabled": true,
           "settings": {
             "collection": "07-hoodies"
           }
