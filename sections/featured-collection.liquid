@@ -91,6 +91,40 @@
     font-weight: 600 !important;
   }
 
+  {% if request.page_type == 'page' and page.handle == 'oversize-hoodies' %}
+    #collection-{{ section.id }} .card__information,
+    #collection-{{ section.id }} .card__heading,
+    #collection-{{ section.id }} .card__heading a,
+    #collection-{{ section.id }} .card-information,
+    #collection-{{ section.id }} .card-information__text,
+    #collection-{{ section.id }} .price,
+    #collection-{{ section.id }} .price__container {
+      text-align: center !important;
+    }
+
+    #collection-{{ section.id }} .card__heading,
+    #collection-{{ section.id }} .card__heading a,
+    #collection-{{ section.id }} .card-information,
+    #collection-{{ section.id }} .card-information__text {
+      font-family: var(--font-body-family) !important;
+      font-style: var(--font-body-style) !important;
+      font-size: 1.5rem !important;
+      font-weight: var(--font-body-weight) !important;
+      line-height: 1.2 !important;
+      letter-spacing: 0.06rem !important;
+    }
+
+    #collection-{{ section.id }} .price,
+    #collection-{{ section.id }} .price * {
+      font-family: var(--font-body-family) !important;
+      font-style: var(--font-body-style) !important;
+      font-size: 1.5rem !important;
+      font-weight: 600 !important;
+      line-height: 1.16 !important;
+      letter-spacing: 0.1rem !important;
+    }
+  {% endif %}
+
   #collection-{{ section.id }} .price__prefix,
   #collection-{{ section.id }} .price-item__label,
   #collection-{{ section.id }} .price .currency,
