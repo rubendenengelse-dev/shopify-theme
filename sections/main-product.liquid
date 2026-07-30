@@ -4163,12 +4163,16 @@
         const otherItems = visibleItems.filter(
           (item) => !['front', 'detail', 'back'].includes(item.dataset.productMediaView)
         );
-        const beforeBackItems = [...frontItems, ...detailItems, ...otherItems];
+        const inferredBackItems = backItems.length ? backItems : visibleItems.slice(0, 1);
+        const inferredBackSet = new Set(inferredBackItems);
+        const beforeBackItems = [...frontItems, ...detailItems, ...otherItems].filter(
+          (item) => !inferredBackSet.has(item)
+        );
         const orderedVisibleItems = [
           ...beforeBackItems.slice(0, 2),
-          ...backItems.slice(0, 1),
+          ...inferredBackItems.slice(0, 1),
           ...beforeBackItems.slice(2),
-          ...backItems.slice(1),
+          ...inferredBackItems.slice(1),
         ].filter(Boolean);
 
         slider.querySelectorAll('.product__media-item').forEach((item) => {
@@ -4185,16 +4189,14 @@
 
         clickZoomItems = orderedVisibleItems;
         clickZoomItems.forEach((item, index) => {
-          const isFeaturedLarge = index === 2;
-          const isOnlyImage = orderedVisibleItems.length === 1;
-          const remainingAfterFeatured = Math.max(orderedVisibleItems.length - 3, 0);
+          const isPatternLarge = index % 3 === 2;
           const isTrailingUnpaired =
-            index > 2 && index === orderedVisibleItems.length - 1 && remainingAfterFeatured % 2 === 1;
+            index === orderedVisibleItems.length - 1 && orderedVisibleItems.length % 3 === 1;
 
           item.classList.add('product__media-item--click-zoom');
           item.style.order = String(index + 1);
 
-          if (isFeaturedLarge || isOnlyImage || isTrailingUnpaired) {
+          if (isPatternLarge || isTrailingUnpaired) {
             item.classList.add('product__media-item--filtered-large', 'product__media-item--click-zoom-large');
           } else {
             item.classList.add('product__media-item--filtered-small');
