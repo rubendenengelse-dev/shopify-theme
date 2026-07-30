@@ -78,14 +78,12 @@
         },
         "featured_collection_CFGWPi": {
           "type": "featured_collection",
-          "disabled": true,
           "settings": {
             "collection": "07-t-shirtss"
           }
         },
         "featured_collection_GB6VKi": {
           "type": "featured_collection",
-          "disabled": true,
           "settings": {
             "collection": "07-hoodies"
           }
