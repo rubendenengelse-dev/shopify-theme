@@ -40,7 +40,7 @@
   endif
 -%}
 
-<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
+<div class="card-wrapper animate-arrow{% if is_o7_coming_soon %} wog-coming-soon-card{% endif %} {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
   <div
     class="
       card
@@ -133,6 +133,12 @@
           </div>
         </div>
       {%- endif -%}
+      {% if is_o7_coming_soon %}
+        <div class="wog-coming-soon-card-overlay" aria-hidden="true">
+          <span class="wog-coming-soon-lock"></span>
+          <span>Coming soon</span>
+        </div>
+      {% endif %}
     </div>
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
