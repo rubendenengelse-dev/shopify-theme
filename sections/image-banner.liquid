@@ -52,13 +52,13 @@
       #Banner-{{ section.id }} .wog-homepage-video-cta {
         display: flex;
         position: absolute;
-        top: 50%;
+        top: 35%;
         right: clamp(3rem, 7vw, 12rem);
         z-index: 3;
         align-items: center;
         flex-direction: column;
         gap: 2rem;
-        max-width: min(42rem, 36vw);
+        max-width: none;
         color: #fff;
         text-align: center;
         transform: translateY(-50%);
@@ -67,17 +67,18 @@
       #Banner-{{ section.id }} .wog-homepage-video-cta__heading {
         margin: 0;
         color: inherit;
-        font-size: clamp(2.8rem, 3.2vw, 5.2rem);
+        font-size: clamp(3.6rem, 4.2vw, 6.8rem);
         line-height: 1.05;
         text-shadow: 0 0.2rem 1.8rem rgba(0, 0, 0, 0.35);
+        white-space: nowrap;
       }
 
       #Banner-{{ section.id }} .wog-homepage-video-cta__button {
         min-width: 14rem;
         padding: 1.4rem 2.8rem;
         border: 0.1rem solid #fff;
-        background: #fff;
-        color: #111;
+        background: transparent;
+        color: #fff;
         font-weight: 600;
         letter-spacing: 0.08em;
         line-height: 1;
@@ -87,8 +88,8 @@
       }
 
       #Banner-{{ section.id }} .wog-homepage-video-cta__button:hover {
-        background: transparent;
-        color: #fff;
+        background: #fff;
+        color: #111;
         transform: translateY(-0.2rem);
       }
     }
