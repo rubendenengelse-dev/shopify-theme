@@ -28,7 +28,7 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 
-  {%- if section.id == 'image_banner' -%}
+  {%- if template.name == 'index' and section.index == 1 -%}
     #Banner-{{ section.id }} .wog-homepage-desktop-video {
       display: none;
     }
@@ -89,7 +89,7 @@
           assign sizes = full_width
         endif
       -%}
-      {%- if section.id == 'image_banner' -%}
+      {%- if template.name == 'index' and section.index == 1 -%}
         <video
           class="wog-homepage-desktop-video"
           autoplay
