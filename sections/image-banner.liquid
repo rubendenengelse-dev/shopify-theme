@@ -28,53 +28,29 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 
-  {%- if request.page_type == 'index' and section.id contains 'image_banner_KmfCLW' -%}
-    #Banner-{{ section.id }} .wog-home-mission-banner__tablet-cta {
+  {%- if section.id == 'image_banner' -%}
+    #Banner-{{ section.id }} .wog-homepage-desktop-video {
       display: none;
     }
 
-    @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
-      #Banner-{{ section.id }} .banner__buttons {
-        display: none;
-      }
-
-      #Banner-{{ section.id }} .wog-home-mission-banner__tablet-cta {
-        display: inline-flex;
+    @media screen and (min-width: 750px) {
+      #Banner-{{ section.id }} .wog-homepage-desktop-video {
+        display: block;
         position: absolute;
-        left: 1.8rem;
-        bottom: 20rem;
-        z-index: 4;
-        min-height: 4.8rem;
-        padding: 0 3.6rem;
-        border: 2px solid #91867d;
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.08);
-        color: #91867d;
-        box-shadow: none;
-      }
-
-      #Banner-{{ section.id }} .wog-home-mission-banner__tablet-cta::before,
-      #Banner-{{ section.id }} .wog-home-mission-banner__tablet-cta::after {
-        border-radius: 0;
-      }
-
-      #Banner-{{ section.id }} .wog-home-mission-banner__tablet-cta:hover {
-        border-color: #91867d;
-        background: rgba(255, 255, 255, 0.08);
-        color: #91867d;
-        box-shadow: 0 22px 44px rgba(0, 0, 0, 0.24), inset 0 0 0 1px rgba(145, 134, 125, 0.9);
-        transform: translateY(-4px);
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
       }
     }
   {%- endif -%}
-
 {%- endstyle -%}
 
 {%- liquid
   assign full_width = '100vw'
   assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
-  assign wog_tablet_cta_label = blank
-  assign wog_tablet_cta_link = blank
 
   if section.settings.image_behavior == 'ambient'
     assign half_width = '60vw'
@@ -92,20 +68,11 @@
   if section.index == 1
     assign fetch_priority = 'high'
   endif
-  if request.page_type == 'index' and section.id contains 'image_banner_KmfCLW'
-    for block in section.blocks
-      if block.type == 'buttons'
-        assign wog_tablet_cta_label = block.settings.button_label_1
-        assign wog_tablet_cta_link = block.settings.button_link_1
-        break
-      endif
-    endfor
-  endif
 -%}
 
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if request.page_type == 'index' and section.id contains 'image_banner_KmfCLW' %} wog-home-mission-banner{% endif %}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if section.settings.image != blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -122,6 +89,24 @@
           assign sizes = full_width
         endif
       -%}
+      {%- if section.id == 'image_banner' -%}
+        <video
+          class="wog-homepage-desktop-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="{{ section.settings.image | image_url: width: 2000 }}"
+          aria-hidden="true"
+        >
+          <source
+            src="{{ 'wog-homepage-desktop.mp4' | asset_url }}"
+            type="video/mp4"
+            media="(min-width: 750px)"
+          >
+        </video>
+      {%- endif -%}
       {{
         section.settings.image
         | image_url: width: 3840
@@ -216,14 +201,6 @@
       {%- endfor -%}
     </div>
   </div>
-  {%- if request.page_type == 'index' and section.id contains 'image_banner_KmfCLW' and wog_tablet_cta_label != blank -%}
-    <a
-      href="{{ wog_tablet_cta_link }}"
-      class="button button--primary wog-home-mission-banner__tablet-cta"
-    >
-      {{- wog_tablet_cta_label | escape -}}
-    </a>
-  {%- endif -%}
 </div>
 
 {% schema %}
